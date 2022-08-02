@@ -1,0 +1,26 @@
+.note {
+    display: grid;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--note-bg);
+    color: var(--note-text);
+    margin: 0.5rem 0;
+}
+
+.note a {
+    color: var(--note-text);
+    text-decoration: underline;
+}
+
+.note p,
+.note li {
+    margin: 0.5rem 0;
+}
+
+.note ul {
+    margin: 0;
+}
+
+.note b {
+    font-family: "Roboto Slab", serif;
+}

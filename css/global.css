@@ -1,0 +1,42 @@
+/* Imports */
+@import url(partials/colors.css);
+@import url(partials/header.css);
+@import url(partials/fonts.css);
+@import url(partials/footer.css);
+@import url(shortcodes/quote.css);
+
+/* Root */
+*, :before, :after {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    background-color: var(--bg);
+    color: var(--text) !important;
+    scroll-behavior: smooth;
+}
+
+main {
+    width: 88vw;
+    max-width: 64rem;
+    margin: 0 auto;
+}
+
+p {
+    margin: 1.25rem 0;
+    line-height: 1.5rem;
+    text-align: justify;
+}
+
+main a {
+    text-decoration: none;
+    color: var(--link);
+    white-space: break-spaces;
+}
+
+main a:hover {
+    text-decoration: underline;
+}

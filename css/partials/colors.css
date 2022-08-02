@@ -1,0 +1,71 @@
+@media (prefers-color-scheme: light) {
+    :root {
+        /* Main */
+        --bg: #fdfbff;
+        --text: #1a1b1e;
+        --link: #005db7;
+        --outline: #74777f;
+        --shadow: #e0e2ec;
+        --hr: #e0e2ec;
+
+        /* Accents */
+        --primary-bg: #005db7;
+        --primary-text: #ffffff;
+
+        /* Header */
+        --header-bg: rgba(252, 250, 255, 0.75);
+
+        /* Details */
+        --details-bg: #006d43;
+        --details-text: #ffffff;
+
+        /* Warning */
+        --warning-bg: #ba1a1a;
+        --warning-text: #ffffff;
+
+        /* Note */
+        --note-bg: #6f5575;
+        --note-text: #ffffff;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Main */
+        --bg: #1a1b1e;
+        --text: #e3e2e6;
+        --link: #a9c7ff;
+        --outline: #8e9099;
+        --shadow: #111215;
+        --hr: #44474e;
+
+        /* Accents */
+        --primary-bg: #a9c7ff;
+        --primary-text: #003063;
+
+        /* Header */
+        --header-bg: rgba(26, 27, 30, 75%);
+
+        /* Details */
+        --details-bg: #76daa2;
+        --details-text: #003920;
+
+        /* Warning */
+        --warning-bg: #ffb4ab;
+        --warning-text: #690005;
+
+        /* Note */
+        --note-bg: #dcbce1;
+        --note-text: #3f2845;   
+    }
+}
+
+::selection {
+    background-color: var(--primary-bg);
+    color: var(--primary-text);
+}
+
+::-moz-selection {
+    background-color: var(--primary-bg);
+    color: var(--primary-text);
+}

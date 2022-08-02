@@ -1,0 +1,110 @@
+/* Imports */
+@import url(partials/tags.css);
+@import url(shortcodes/details.css);
+@import url(shortcodes/warning.css);
+@import url(shortcodes/note.css);
+
+/* Main */
+hr {
+    border: none;
+    border-top: solid 0.125rem var(--hr);
+    width: 100%;
+}
+
+blockquote {
+    border-left: 0.125 solid var(--outline);
+    padding: 0.25rem 1rem;
+    margin-inline-start: 2rem;
+}
+
+/* Article */
+article {
+    margin: 0 auto;
+}
+
+article h1,
+article h2,
+article h3,
+article h4,
+article h5,
+article h6 {    
+    scroll-margin-top: 8vh; /* Thanks to https://stackoverflow.com/a/60975588 */
+}
+
+article h1 {
+    font-size: 2rem;
+}
+
+article h2 {
+    border-top: solid 0.125rem var(--hr);
+    padding-top: 1rem;
+}
+
+/* Post Header */
+.posttitle,
+.postdate,
+.postdesc {
+    margin: 1rem 0;
+    text-align: center;
+    font-family: "Roboto Slab", serif;
+    font-weight: bold;
+}
+
+.postdate {
+    font-size: 0.875rem;
+}
+
+.postdesc {
+    font-size: 0.9375rem;
+}
+
+/* Task list */
+/* Thanks to https://github.com/squidfunk/mkdocs-material/blob/master/src/assets/stylesheets/main/extensions/pymdownx/_tasklist.scss */
+.task-list {
+    padding-inline-start: 1rem;
+}
+
+.task-list li {
+    position: relative;
+    list-style-type: none;
+    margin: 1rem;
+}
+
+[type=checkbox] {
+    position: absolute;
+    inset-inline-start: -1.5rem;
+    visibility: hidden;
+}
+
+[type=checkbox]::before {
+    position: absolute;
+    height: 1rem;
+    width: 1rem;
+    content: '';
+    mask: url('/svg/unchecked-box.svg');
+    -webkit-mask: url('/svg/unchecked-box.svg');
+    background-color: var(--text);
+    visibility: visible;
+}
+
+[type=checkbox][checked]::before {
+    mask: url('/svg/checked-box.svg');
+    -webkit-mask: url('/svg/checked-box.svg');
+    height: 1rem;
+    width: 1rem;
+}
+
+/* Code */
+.highlight pre {
+    border-radius: 0.5rem;
+    padding: 1rem;
+    overflow: auto;
+    font-size: 0.875rem;
+}
+
+code:not(.highlight code) {
+    background-color: #272822;
+    color: #f8f8f2;
+    border-radius: 0.5rem;
+    padding: 0.125rem;
+}

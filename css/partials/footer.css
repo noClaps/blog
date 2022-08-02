@@ -1,0 +1,31 @@
+footer {
+    margin-top: 4rem;
+    position: relative;
+    display: flex;
+    bottom: 0;
+    width: 100vw;
+    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Footer.Link */
+.footer-link {
+    color: var(--text);
+    padding: 0.5rem;
+    margin: 0 0.25rem;
+    border-radius: 0.5rem;
+    display: grid;
+    transition: all 0.25s;
+}
+
+.footer-link:hover {
+    color: var(--link);
+}
+
+/* Footer.Link.SVG */
+.footer-link svg {
+    justify-self: center;
+    align-self: center;
+    height: 1.25rem;
+}

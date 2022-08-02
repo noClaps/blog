@@ -1,0 +1,26 @@
+.warning {
+    display: grid;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--warning-bg);
+    color: var(--warning-text);
+    margin: 0.5rem 0;
+}
+
+.warning a {
+    color: var(--warning-text);
+    text-decoration: underline;
+}
+
+.warning p,
+.warning li {
+    margin: 0.5rem 0;
+}
+
+.warning ul {
+    margin: 0;
+}
+
+.warning b {
+    font-family: "Roboto Slab", serif;
+}

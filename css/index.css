@@ -1,0 +1,45 @@
+/* Site Meta */
+.sitetitle,
+.sitedesc {
+    font-family: "Roboto Slab", serif;
+    word-spacing: 0.2rem;
+}
+
+.sitedesc {
+    font-weight: normal;
+}
+
+/* Info Boxes */
+.infoboxes {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding-top: 1rem;
+}
+
+.info {
+    width: 50%;
+    background-color: var(--primary-bg);
+    color: var(--primary-text);
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.info b {
+    font-family: "Roboto Slab", serif;
+}
+
+.info a {
+    color: var(--primary-text);
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .infoboxes {
+        flex-direction: column;
+    }
+    
+    .info {
+        width: 100%;
+    }
+}

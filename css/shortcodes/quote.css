@@ -1,0 +1,27 @@
+.quote {
+    display: grid;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--primary-bg);
+    color: var(--primary-text);
+    margin: 0.5rem 0;
+}
+
+.quote a {
+    color: var(--primary-text);
+    text-decoration: underline;
+}
+
+.quote p,
+.quote li {
+    margin: 0.5rem 0;
+}
+
+.quote ul {
+    margin: 0;
+}
+
+.quote b,
+.quote b a {
+    font-family: "Roboto Slab", serif;
+}
