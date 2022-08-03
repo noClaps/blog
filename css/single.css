@@ -28,7 +28,7 @@ article h3,
 article h4,
 article h5,
 article h6 {    
-    scroll-margin-top: 8vh; /* Thanks to https://stackoverflow.com/a/60975588 */
+    scroll-margin-top: 12vh; /* Thanks to https://stackoverflow.com/a/60975588 */
 }
 
 article h1 {
