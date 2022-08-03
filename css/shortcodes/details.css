@@ -31,4 +31,5 @@ details a {
 details summary {
     font-weight: bold;
     font-family: "Roboto Slab", serif;
+    cursor: pointer;
 }
