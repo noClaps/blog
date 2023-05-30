@@ -1,5 +1,6 @@
 {
   "name": "@noclaps/gallery",
+  "description": "Aperturic Focus",
   "type": "module",
   "version": "4.3.0",
   "repository": {

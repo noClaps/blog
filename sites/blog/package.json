@@ -1,5 +1,6 @@
 {
   "name": "@noclaps/blog",
+  "description": "The Blog of Random",
   "type": "module",
   "version": "4.5.0",
   "repository": {

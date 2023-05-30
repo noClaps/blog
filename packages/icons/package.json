@@ -1,5 +1,6 @@
 {
   "name": "@noclaps/icons",
+  "description": "A package that hosts the icons used in the ZeroLimits.dev sites.",
   "version": "1.0.0",
   "type": "module",
   "repository": {
