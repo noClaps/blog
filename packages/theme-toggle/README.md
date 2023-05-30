@@ -3,17 +3,17 @@
 A package that hosts the theme toggle used in the ZeroLimits.dev sites. Not to be used outside.
 
 ## Installation
-Add the `theme-toggle` package to `package.json`
+Add the `@noclaps/theme-toggle` package to `package.json`
 ```json
 "dependencies" {
-    "theme-toggle": "*"
+    "@noclaps/theme-toggle": "*"
 }
 ```
 
 ## Usage
 ```astro
 ---
-import { ThemeToggle } from "theme-toggle";
+import { ThemeToggle } from "@noclaps/theme-toggle";
 ---
 ```
 
@@ -29,7 +29,7 @@ The color of the item when it is hovered. Allows a CSS color string.
 ### Example
 ```astro
 ---
-import { ThemeToggle } from "theme-toggle";
+import { ThemeToggle } from "@noclaps/theme-toggle";
 ---
 
 <ThemeToggle color="#eee" hoverColor="#2ef" />
