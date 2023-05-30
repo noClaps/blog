@@ -1,7 +1,12 @@
 {
-  "name": "icons",
-  "version": "0.0.1",
+  "name": "@noclaps/icons",
+  "version": "1.0.0",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/noClaps/ZeroLimits.dev.git",
+    "directory": "packages/icons"
+  },
   "exports": {
     ".": "./index.ts"
   },
@@ -19,6 +24,5 @@
   },
   "peerDependencies": {
     "astro": "^2.0.0-beta.0"
-  },
-  "license": "0BSD"
+  }
 }
