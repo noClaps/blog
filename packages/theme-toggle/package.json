@@ -1,7 +1,13 @@
 {
-  "name": "theme-toggle",
-  "version": "0.0.1",
+  "name": "@noclaps/theme-toggle",
+  "description": "A package that hosts the theme toggle used in the ZeroLimits.dev sites.",
+  "version": "1.0.0",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/noClaps/ZeroLimits.dev.git",
+    "directory": "packages/theme-toggle"
+  },
   "exports": {
     ".": "./index.ts"
   },
@@ -14,7 +20,7 @@
   ],
   "scripts": {},
   "dependencies": {
-    "icons": "*"
+    "@noclaps/icons": "*"
   },
   "devDependencies": {
     "astro": "^2.5.5",

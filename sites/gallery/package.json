@@ -1,8 +1,13 @@
 {
-  "name": "gallery",
+  "name": "@noclaps/gallery",
+  "description": "Aperturic Focus",
   "type": "module",
-  "version": "0.0.1",
-  "private": true,
+  "version": "4.3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/noClaps/ZeroLimits.dev.git",
+    "directory": "sites/gallery"
+  },
   "scripts": {
     "dev": "astro check --watch & astro dev",
     "start": "astro dev",
@@ -15,8 +20,8 @@
     "astro": "^2.5.5",
     "medium-zoom": "^1.0.8",
     "sharp": "^0.32.1",
-    "theme-toggle": "*",
-    "icons": "*"
+    "@noclaps/theme-toggle": "*",
+    "@noclaps/icons": "*"
   },
   "devDependencies": {
     "sass": "^1.62.1"

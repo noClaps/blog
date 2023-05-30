@@ -3,17 +3,17 @@
 A package that hosts the icons used in the ZeroLimits.dev sites. Not to be used outside.
 
 ## Installation
-Add the `icons` package to `package.json`.
+Add the `@noclaps/icons` package to `package.json`.
 ```json
 "dependencies": {
-    "icons": "*"
+    "@noclaps/icons": "*"
 }
 ```
 
 ## Usage
 ```astro
 ---
-import { Icon } from "icons";
+import { Icon } from "@noclaps/icons";
 ---
 ```
 
@@ -37,7 +37,7 @@ Allows a string, one of:
 ### Example
 ```astro
 ---
-import { Icon } from "icons"
+import { Icon } from "@noclaps/icons"
 ---
 
 <Icon name="github" />

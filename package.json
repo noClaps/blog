@@ -1,9 +1,11 @@
 {
-  "name": "zerolimits.dev",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "keywords": [],
+  "name": "root",
+  "version": "0.0.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/noClaps/ZeroLimits.dev.git"
+  },
   "author": "noClaps",
   "license": "0BSD",
   "workspaces": [
