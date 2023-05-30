@@ -8,9 +8,6 @@
     "url": "https://github.com/noClaps/ZeroLimits.dev.git",
     "directory": "packages/icons"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "exports": {
     ".": "./index.ts"
   },

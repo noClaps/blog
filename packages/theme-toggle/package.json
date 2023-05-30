@@ -8,9 +8,6 @@
     "url": "https://github.com/noClaps/ZeroLimits.dev.git",
     "directory": "packages/theme-toggle"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "exports": {
     ".": "./index.ts"
   },
