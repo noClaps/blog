@@ -1,0 +1,31 @@
+---
+import { Image } from "astro:assets";
+const images = await Astro.glob("../assets/*.{jpg,jpeg}");
+---
+
+<div>
+    {
+        images.map((image) => (
+            <Image class="zoom" src={image.default} alt="" width="1008" />
+        ))
+    }
+</div>
+
+<style lang="scss">
+    div {
+        columns: 16rem auto;
+        column-gap: 0.5rem;
+
+        img {
+            border-radius: 0.5rem;
+            width: 100%;
+            height: fit-content;
+            margin-bottom: 0.5rem;
+        }
+    }
+</style>
+
+<script>
+    import mediumZoom from "medium-zoom";
+    mediumZoom(".zoom", { background: "var(--image-bg)", margin: 8 });
+</script>

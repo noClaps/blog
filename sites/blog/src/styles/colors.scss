@@ -1,0 +1,108 @@
+@mixin light-theme {
+    // Main
+    --bg: #fff;
+    --text: #111;
+    --link: #05b;
+    --variant: #eee;
+
+    // Accents
+    --primary-bg: #def;
+    --primary-text: #013;
+    --selection-bg: #048;
+    --selection-text: #def;
+
+    // Details
+    --details-bg: #9fb;
+    --details-text: #021;
+
+    // Warning
+    --warning-bg: #fdd;
+    --warning-text: #402;
+
+    // Note
+    --note-bg: #fdf;
+    --note-text: #212;
+}
+
+@mixin dark-theme {
+    // Main
+    --bg: #111;
+    --text: #eee;
+    --link: #acf;
+    --variant: #444;
+
+    // Accents
+    --primary-bg: #048;
+    --primary-text: #def;
+    --selection-bg: #def;
+    --selection-text: #013;
+
+    // Details
+    --details-bg: #053;
+    --details-text: #9fb;
+
+    // Warning
+    --warning-bg: #900;
+    --warning-text: #fdd;
+
+    // Note
+    --note-bg: #535;
+    --note-text: #fdf;
+}
+
+
+body {
+    @media (prefers-color-scheme: dark) {
+        @include dark-theme;
+
+        .moon {
+            display: none;
+        }
+
+        .sun {
+            display: inline-block;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        @include light-theme;
+
+        .sun {
+            display: none;
+        }
+    }
+
+    &.light {
+        @include light-theme;
+
+        .moon {
+            display: inline-block;
+        }
+        
+        .sun {
+            display: none;
+        }
+    }
+
+    &.dark {
+        @include dark-theme;
+
+        .moon {
+            display: none;
+        }
+
+        .sun {
+            display: inline-block;
+        }
+    }
+}
+
+::selection {
+    background-color: var(--selection-bg);
+    color: var(--selection-text);
+}
+
+::-moz-selection {
+    background-color: var(--selection-bg);
+    color: var(--selection-text);
+}

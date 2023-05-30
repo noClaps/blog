@@ -1,0 +1,26 @@
+---
+import Head from "../components/Head.astro";
+import { ThemeToggle } from "theme-toggle";
+
+import "../styles/global.scss";
+
+const { title, description } = Astro.props;
+---
+
+<html lang="en">
+    <head>
+        <Head />
+        <title>{title}</title>
+        <meta
+            name="description"
+            content={description ||
+                "The most interesting boring homepage you've ever seen"}
+        />
+    </head>
+    <body>
+        <header>
+            <ThemeToggle color="var(--text)" hoverColor="var(--link)" />
+        </header>
+        <slot />
+    </body>
+</html>

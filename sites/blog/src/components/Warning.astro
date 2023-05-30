@@ -1,0 +1,46 @@
+---
+import { Icon } from "icons";
+const { title } = Astro.props;
+---
+
+<div>
+    <p>
+        <Icon name="warning" />
+        <b>{title ? title : "WARNING"}</b>
+    </p>
+    <slot />
+</div>
+
+<style lang="scss">
+    div {
+        display: grid;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        background-color: var(--warning-bg);
+        color: var(--warning-text);
+        margin: 0.5rem 0;
+
+        p {
+            margin: 0;
+
+            b {
+                vertical-align: middle;
+            }
+        }
+
+        :global(a) {
+            color: var(--warning-text);
+            text-decoration: underline;
+        }
+
+        :global(*)::selection {
+            background-color: var(--warning-text);
+            color: var(--warning-bg);
+        }
+
+        :global(*)::-moz-selection {
+            background-color: var(--warning-text);
+            color: var(--warning-bg);
+        }
+    }
+</style>

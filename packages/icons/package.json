@@ -1,0 +1,24 @@
+{
+  "name": "icons",
+  "version": "0.0.1",
+  "type": "module",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "files": [
+    "src",
+    "index.ts"
+  ],
+  "keywords": [
+    "astro-component"
+  ],
+  "scripts": {},
+  "devDependencies": {
+    "astro": "^2.5.5",
+    "sass": "^1.62.1"
+  },
+  "peerDependencies": {
+    "astro": "^2.0.0-beta.0"
+  },
+  "license": "0BSD"
+}

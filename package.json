@@ -1,0 +1,21 @@
+{
+  "name": "zerolimits.dev",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "noClaps",
+  "license": "0BSD",
+  "workspaces": [
+    "packages/*",
+    "sites/*"
+  ],
+  "dependencies": {
+    "turbo": "^1.9.9"
+  },
+  "scripts": {
+    "dev": "turbo start",
+    "build": "turbo build",
+    "preview": "turbo preview"
+  }
+}
