@@ -334,7 +334,7 @@
                     </div>
                 </main>
                 <footer>
-                    <a href="https://github.com/noClaps/blog" title="Source Code">
+                    <a href="https://github.com/noClaps/ZeroLimits.dev" title="Source Code">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
                             <path
                                 fill-rule="evenodd"
