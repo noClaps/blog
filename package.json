@@ -6,9 +6,6 @@
     "type": "git",
     "url": "https://github.com/noClaps/ZeroLimits.dev.git"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "author": "noClaps",
   "license": "0BSD",
   "workspaces": [

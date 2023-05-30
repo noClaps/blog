@@ -8,9 +8,6 @@
     "url": "https://github.com/noClaps/ZeroLimits.dev.git",
     "directory": "sites/gallery"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "scripts": {
     "dev": "astro check --watch & astro dev",
     "start": "astro dev",
