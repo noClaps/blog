@@ -15,13 +15,13 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v3
 
-      - name: Setup Node.js 16
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: latest
 
       - name: Install Dependencies
-        run: yarn
+        run: npm ci
 
       - name: Create Release Pull Request
         uses: changesets/action@v1
