@@ -15,9 +15,7 @@ const posts = await getCollection("posts");
                 (post) =>
                     post.slug.startsWith("science/") && (
                         <a href={`/${post.slug}`}>
-                            {post.data.shortTitle
-                                ? post.data.shortTitle
-                                : post.data.title}
+                            {post.data.shortTitle ?? post.data.title}
                         </a>
                     )
             )
@@ -32,9 +30,7 @@ const posts = await getCollection("posts");
                 (post) =>
                     post.slug.startsWith("history/") && (
                         <a href={`/${post.slug}`}>
-                            {post.data.shortTitle
-                                ? post.data.shortTitle
-                                : post.data.title}
+                            {post.data.shortTitle ?? post.data.title}
                         </a>
                     )
             )
@@ -50,9 +46,7 @@ const posts = await getCollection("posts");
                 (post) =>
                     post.slug.startsWith("tech/psa/") && (
                         <a href={`/${post.slug}`}>
-                            {post.data.shortTitle
-                                ? post.data.shortTitle
-                                : post.data.title}
+                            {post.data.shortTitle ?? post.data.title}
                         </a>
                     )
             )
