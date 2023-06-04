@@ -58,9 +58,7 @@ const posts = await getCollection("posts");
                     post.slug.startsWith("tech/") &&
                     !post.slug.startsWith("tech/psa/") && (
                         <a href={`/${post.slug}`}>
-                            {post.data.shortTitle
-                                ? post.data.shortTitle
-                                : post.data.title}
+                            {post.data.shortTitle ?? post.data.title}
                         </a>
                     )
             )
