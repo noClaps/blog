@@ -14,7 +14,11 @@ const posts = await getCollection("posts");
             posts.map(
                 (post) =>
                     post.slug.startsWith("science/") && (
-                        <a href={`/${post.slug}`}>{post.data.title}</a>
+                        <a href={`/${post.slug}`}>
+                            {post.data.shortTitle
+                                ? post.data.shortTitle
+                                : post.data.title}
+                        </a>
                     )
             )
         }
@@ -27,7 +31,11 @@ const posts = await getCollection("posts");
             posts.map(
                 (post) =>
                     post.slug.startsWith("history/") && (
-                        <a href={`/${post.slug}`}>{post.data.title}</a>
+                        <a href={`/${post.slug}`}>
+                            {post.data.shortTitle
+                                ? post.data.shortTitle
+                                : post.data.title}
+                        </a>
                     )
             )
         }
