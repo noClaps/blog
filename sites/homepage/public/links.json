@@ -1,4 +1,5 @@
 {
+    "$schema": "./schema.json",
     "links": [
         {
             "url": "https://blog.zerolimits.dev",
