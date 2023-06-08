@@ -1,7 +1,7 @@
 {
   "name": "@noclaps/icons",
   "description": "A package that hosts the icons used in the ZeroLimits.dev sites.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
   ],
   "scripts": {},
   "devDependencies": {
-    "astro": "^2.5.7",
+    "astro": "^2.6.1",
     "sass": "^1.62.1"
   },
   "peerDependencies": {
