@@ -17,10 +17,10 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^1.3.3",
-    "astro": "^2.6.1",
-    "@noclaps/theme-toggle": "*"
+    "@noclaps/theme-toggle": "^1.0.1",
+    "astro": "^2.6.1"
   },
   "devDependencies": {
-    "sass": "^1.62.1"
+    "sass": "^1.63.2"
   }
 }
