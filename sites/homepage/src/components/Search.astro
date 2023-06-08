@@ -1,3 +1,7 @@
+---
+import "../styles/searchResults.scss";
+---
+
 <div id="search">
     <input
         id="searchBar"
@@ -44,78 +48,6 @@
                 outline: none;
             }
         }
-
-        ul {
-            display: none;
-            flex-direction: column;
-            gap: 0.5rem;
-            background-color: var(--variant);
-            border-radius: 0.75rem;
-            padding: 0.5rem;
-            position: absolute;
-            overflow: auto;
-            max-height: 75vh;
-            width: 100%;
-
-            :global(a) {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                gap: 0.5rem;
-                border-radius: 0.5rem;
-                text-decoration: none;
-                color: var(--text);
-                transition: 0.25s;
-                padding: 1rem;
-
-                &:hover {
-                    color: var(--primary-text);
-                    background-color: var(--primary-bg);
-
-                    :global(p).desc {
-                        filter: opacity(75%);
-                    }
-
-                    :global(svg) {
-                        fill: var(--primary-text);
-                    }
-                }
-
-                :global(div) {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-
-                    :global(img) {
-                        display: inline-flex;
-                        align-self: center;
-                        justify-self: center;
-                        height: 1.25rem;
-                        margin-right: 0.5rem;
-                    }
-
-                    :global(svg) {
-                        display: inline-flex;
-                        align-self: center;
-                        justify-self: center;
-                        height: 1.25rem;
-                        margin-right: 0.5rem;
-                        fill: var(--text);
-                        transition: 0.25s;
-                    }
-                }
-
-                :global(p) {
-                    font-size: 1.25rem;
-                    text-align: center;
-                    margin: 0;
-
-                    &.desc {
-                        filter: opacity(50%);
-                    }
-                }
-            }
-        }
     }
 </style>
 
@@ -124,7 +56,7 @@
     // Only load search component if JS is enabled
     const searchComponent = document.getElementById("search")!;
     searchComponent.style.display = "initial";
-    
+
     const hints = [
         "Hint: Type * to see all results!",
         "Try searching for my blog!",
