@@ -72,8 +72,7 @@
                 "posts",
                 "tech",
                 "privacy",
-                "security",
-                "anonymity"
+                "security"
             ]
         },
         {
@@ -163,6 +162,16 @@
                 "donating",
                 "donation",
                 "sponsoring"
+            ]
+        },
+        {
+            "url": "https://blog.zerolimits.dev/science/split-brain",
+            "title": "The Split-Brain Experiment",
+            "favicon": "https://blog.zerolimits.dev/icon/favicon.svg",
+            "desc": "Cutting the corpus callosum",
+            "tags": [
+                "posts",
+                "science"
             ]
         }
     ]
