@@ -21,6 +21,6 @@ export default defineConfig({
   integrations: [mdx(), sitemap()],
   compressHTML: true,
   build: {
-    inlineStylesheets: true
+    inlineStylesheets: "auto"
   }
 });
