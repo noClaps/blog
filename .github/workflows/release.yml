@@ -13,10 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@main
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@main
         with:
           node-version: latest
 
@@ -24,7 +24,7 @@ jobs:
         run: npm ci
 
       - name: Create Release Pull Request
-        uses: changesets/action@v1
+        uses: changesets/action@main
         with:
           publish: npx changeset tag
           commit: Update version
