@@ -4,9 +4,6 @@
 - [ ] I am not using insecure packages.
 - [ ] I am not adding malicious code that may harm the privacy or security of the reader.
 
-<!-- Make a list of changes you've made so far here. If you add on more changes later, you can edit the list later. -->
-**Changes**:
-
 <!-- If you've solved an open issue, link it here so that it can automatically be resolved -->
 Resolves: #
 
