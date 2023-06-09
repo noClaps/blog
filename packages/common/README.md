@@ -16,7 +16,7 @@ Add the `@noclaps/common` package to `package.json`
 
 ```astro
 ---
-import { Head } from "@noclaps/common";
+import { Head, Footer, Page404, Sidebar } from "@noclaps/common";
 import "@noclaps/common/global.scss";
 ---
 ```
@@ -43,14 +43,36 @@ The content of the description meta tag for the page.
 
 The site for the footer component to be used on.
 
+#### Sidebar
+
+The content that should be displayed in the sidebar should go inside the sidebar component. This is usually your
+navigation bar.
+
 ### Example
 
 ```astro
 ---
-import { Head, Footer } from "@noclaps/common";
+import Layout from "path/to/your/layout";
+import { Head, Footer, Sidebar } from "@noclaps/common";
 import "@noclaps/common/global.scss";
 ---
+<Layout>
+    <Head site="blog" title="Your title here" description="Your description here" />
+    <Sidebar>
+        <!-- Your sidebar content should go here. -->
+    </Sidebar>
+    <Footer site="blog" />
+</Layout>
+```
 
-<Head site="blog" title="Your title here" description="Your description here" />
-<Footer site="blog" />
+```astro
+---
+// This should be your 404 page
+import Layout from "path/to/your/layout";
+import { Page404 } from "@noclaps/common";
+---
+
+<Layout>
+    <Page404 />
+</Layout>
 ```
