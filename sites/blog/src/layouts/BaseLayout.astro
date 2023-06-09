@@ -4,25 +4,25 @@ import Header from "../components/Header.astro";
 import Head from "../components/Head.astro";
 
 import "@fontsource/patua-one";
-import '@fontsource-variable/jetbrains-mono';
+import "@fontsource-variable/jetbrains-mono";
 import "../styles/global.scss";
 
 const { title, description } = Astro.props;
 ---
 
 <html lang="en">
-    <head>
-        <Head />
-        <title>{title}</title>
-        <meta
-            name="description"
-            content={description ||
-                "A blog about the most random things you can think of, brought to you by the most interesting boring person you've ever met."}
-        />
-    </head>
-    <body>
-        <Header />
-        <slot />
-        <Footer />
-    </body>
+  <head>
+    <Head />
+    <title>{title}</title>
+    <meta
+      name="description"
+      content={description ||
+        "A blog about the most random things you can think of, brought to you by the most interesting boring person you've ever met."}
+    />
+  </head>
+  <body>
+    <Header />
+    <slot />
+    <Footer />
+  </body>
 </html>
