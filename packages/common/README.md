@@ -37,13 +37,20 @@ The title to be set for the page.
 
 The content of the description meta tag for the page.
 
+#### Footer
+
+`site`
+
+The site for the footer component to be used on.
+
 ### Example
 
 ```astro
 ---
-import { Head } from "@noclaps/theme-toggle";
+import { Head, Footer } from "@noclaps/common";
 import "@noclaps/common/global.scss";
 ---
 
 <Head site="blog" title="Your title here" description="Your description here" />
+<Footer site="blog" />
 ```

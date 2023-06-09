@@ -20,6 +20,9 @@
         "astro-component"
     ],
     "scripts": {},
+    "dependencies": {
+        "@noclaps/icons": "^1.0.1"
+    },
     "devDependencies": {
         "astro": "^2.6.2",
         "sass": "^1.63.3"

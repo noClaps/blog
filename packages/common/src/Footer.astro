@@ -1,17 +1,29 @@
 ---
 import { Icon } from "@noclaps/icons";
+
+interface Props {
+  site: string;
+}
+
+const { site } = Astro.props;
 ---
 
 <footer>
   <a href="https://github.com/noClaps/ZeroLimits.dev" title="Source Code">
     <Icon name="github" />
   </a>
-  <a href="/rss.xml" title="Atom Feed">
-    <Icon name="rss" />
-  </a>
-  <noscript>
-    <a href="/sitemap">Sitemap</a>
-  </noscript>
+  {
+    site === "blog" && (
+      <>
+        <a href="/rss.xml" title="Atom Feed">
+          <Icon name="rss" />
+        </a>
+        <noscript>
+          <a href="/sitemap">Sitemap</a>
+        </noscript>
+      </>
+    )
+  }
 </footer>
 
 <style lang="scss">
