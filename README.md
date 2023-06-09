@@ -14,6 +14,7 @@ For details on each, see their respective READMEs:
 
 - [icons](./packages/icons/README.md)
 - [theme-toggle](./packages/theme-toggle/README.md)
+- [common](./packages/common/README.md)
 
 ## Build Instructions
 
