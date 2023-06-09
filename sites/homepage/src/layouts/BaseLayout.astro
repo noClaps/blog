@@ -1,10 +1,14 @@
 ---
 import { Head } from "@noclaps/common";
 import { ThemeToggle } from "@noclaps/theme-toggle";
+import "@noclaps/common/global.scss";
 
 import "../styles/global.scss";
 
-const { title, description="The most interesting boring homepage you've ever seen" } = Astro.props;
+const {
+  title,
+  description = "The most interesting boring homepage you've ever seen",
+} = Astro.props;
 ---
 
 <html lang="en">
