@@ -1,8 +1,7 @@
 ---
-import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 
-import { Head } from "@noclaps/common";
+import { Head, Footer } from "@noclaps/common";
 import "@noclaps/common/global.scss";
 
 import "../styles/global.scss";
@@ -18,6 +17,6 @@ const {
   <body>
     <Header />
     <slot />
-    <Footer />
+    <Footer site="gallery" />
   </body>
 </html>
