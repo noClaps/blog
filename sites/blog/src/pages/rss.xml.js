@@ -15,6 +15,5 @@ export async function get(context) {
       pubDate: post.data.lastmod ? post.data.lastmod : post.data.date,
       description: post.data.description,
     })),
-    stylesheet: '/rss.xsl'
   });
 }
