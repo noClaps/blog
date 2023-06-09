@@ -1,9 +1,6 @@
 @mixin light-theme {
     // Main
-    --bg: #fff;
-    --text: #111;
     --link: #fa0;
-    --variant: #eee;
 
     // Accents
     --primary-bg: #fa0;
@@ -14,10 +11,7 @@
 
 @mixin dark-theme {
     // Main
-    --bg: #111;
-    --text: #eee;
     --link: #fb6;
-    --variant: #222;
 
     // Accents
     --primary-bg: #fb6;
@@ -29,55 +23,17 @@
 body {
     @media (prefers-color-scheme: dark) {
         @include dark-theme;
-
-        .moon {
-            display: none;
-        }
-
-        .sun {
-            display: inline-block;
-        }
     }
 
     @media (prefers-color-scheme: light) {
         @include light-theme;
-
-        .sun {
-            display: none;
-        }
     }
 
     &.light {
         @include light-theme;
-
-        .moon {
-            display: inline-block;
-        }
-
-        .sun {
-            display: none;
-        }
     }
 
     &.dark {
         @include dark-theme;
-
-        .moon {
-            display: none;
-        }
-
-        .sun {
-            display: inline-block;
-        }
     }
-}
-
-::selection {
-    background-color: var(--selection-bg);
-    color: var(--selection-text);
-}
-
-::-moz-selection {
-    background-color: var(--selection-bg);
-    color: var(--selection-text);
 }

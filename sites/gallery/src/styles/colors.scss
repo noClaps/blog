@@ -1,9 +1,6 @@
 @mixin light-theme {
     // Main
-    --bg: #fff;
-    --text: #111;
     --link: #062;
-    --variant: #eee;
     --image-bg: #fffc;
     --filter: blur(10px);
 
@@ -16,10 +13,7 @@
 
 @mixin dark-theme {
     // Main
-    --bg: #111;
-    --text: #eee;
     --link: #4e7;
-    --variant: #444;
     --image-bg: #111c;
     --filter: blur(10px);
 
@@ -33,55 +27,17 @@
 body {
     @media (prefers-color-scheme: dark) {
         @include dark-theme;
-
-        .moon {
-            display: none;
-        }
-
-        .sun {
-            display: inline-block;
-        }
     }
 
     @media (prefers-color-scheme: light) {
         @include light-theme;
-
-        .sun {
-            display: none;
-        }
     }
 
     &.light {
         @include light-theme;
-
-        .moon {
-            display: inline-block;
-        }
-
-        .sun {
-            display: none;
-        }
     }
 
     &.dark {
         @include dark-theme;
-
-        .moon {
-            display: none;
-        }
-
-        .sun {
-            display: inline-block;
-        }
     }
-}
-
-::selection {
-    background-color: var(--selection-bg);
-    color: var(--selection-text);
-}
-
-::-moz-selection {
-    background-color: var(--selection-bg);
-    color: var(--selection-text);
 }
