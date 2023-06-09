@@ -1,22 +1,14 @@
 ---
-import Head from "../components/Head.astro";
+import { Head } from "@noclaps/common";
 import { ThemeToggle } from "@noclaps/theme-toggle";
 
 import "../styles/global.scss";
 
-const { title, description } = Astro.props;
+const { title, description="The most interesting boring homepage you've ever seen" } = Astro.props;
 ---
 
 <html lang="en">
-  <head>
-    <Head />
-    <title>{title}</title>
-    <meta
-      name="description"
-      content={description ||
-        "The most interesting boring homepage you've ever seen"}
-    />
-  </head>
+  <Head site="homepage" title={title} description={description} />
   <body>
     <header>
       <ThemeToggle color="var(--text)" hoverColor="var(--link)" />
