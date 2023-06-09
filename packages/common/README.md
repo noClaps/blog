@@ -29,6 +29,14 @@ import "@noclaps/common/global.scss";
 
 The site for the head component to be used on.
 
+`title`
+
+The title to be set for the page.
+
+`description`
+
+The content of the description meta tag for the page.
+
 ### Example
 
 ```astro
@@ -37,6 +45,5 @@ import { Head } from "@noclaps/theme-toggle";
 import "@noclaps/common/global.scss";
 ---
 
-<ThemeToggle color="#eee" hoverColor="#2ef" />
-<ThemeToggle color="var(--text)" hoverColor="var(--link)" />
+<Head site="blog" title="Your title here" description="Your description here" />
 ```
