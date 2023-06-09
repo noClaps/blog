@@ -8,232 +8,228 @@ const posts = await getCollection("posts");
 <a href="/about">About</a>
 <div class="divider"></div>
 <div class="nav-menu">
-    <p>Science <Icon name="dropdown-arrow" /></p>
-    <menu>
-        {
-            posts.map(
-                (post) =>
-                    post.slug.startsWith("science/") && (
-                        <a href={`/${post.slug}`}>{post.data.title}</a>
-                    )
-            )
-        }
-    </menu>
+  <p>Science <Icon name="dropdown-arrow" /></p>
+  <menu>
+    {
+      posts.map(
+        (post) =>
+          post.slug.startsWith("science/") && (
+            <a href={`/${post.slug}`}>{post.data.title}</a>
+          )
+      )
+    }
+  </menu>
 </div>
 <div class="nav-menu">
-    <p>History <Icon name="dropdown-arrow" /></p>
-    <menu>
-        {
-            posts.map(
-                (post) =>
-                    post.slug.startsWith("history/") && (
-                        <a href={`/${post.slug}`}>{post.data.title}</a>
-                    )
-            )
-        }
-    </menu>
+  <p>History <Icon name="dropdown-arrow" /></p>
+  <menu>
+    {
+      posts.map(
+        (post) =>
+          post.slug.startsWith("history/") && (
+            <a href={`/${post.slug}`}>{post.data.title}</a>
+          )
+      )
+    }
+  </menu>
 </div>
 <div class="nav-menu">
-    <p>Tech <Icon name="dropdown-arrow" /></p>
-    <menu>
-        <b>Priv/Sec/Anon</b>
-        {
-            posts.map(
-                (post) =>
-                    post.slug.startsWith("tech/psa/") && (
-                        <a href={`/${post.slug}`}>
-                            {post.data.shortTitle
-                                ? post.data.shortTitle
-                                : post.data.title}
-                        </a>
-                    )
-            )
-        }
-        <hr />
-        {
-            posts.map(
-                (post) =>
-                    post.slug.startsWith("tech/") &&
-                    !post.slug.startsWith("tech/psa/") && (
-                        <a href={`/${post.slug}`}>
-                            {post.data.shortTitle
-                                ? post.data.shortTitle
-                                : post.data.title}
-                        </a>
-                    )
-            )
-        }
-    </menu>
+  <p>Tech <Icon name="dropdown-arrow" /></p>
+  <menu>
+    <b>Priv/Sec/Anon</b>
+    {
+      posts.map(
+        (post) =>
+          post.slug.startsWith("tech/psa/") && (
+            <a href={`/${post.slug}`}>
+              {post.data.shortTitle ? post.data.shortTitle : post.data.title}
+            </a>
+          )
+      )
+    }
+    <hr />
+    {
+      posts.map(
+        (post) =>
+          post.slug.startsWith("tech/") &&
+          !post.slug.startsWith("tech/psa/") && (
+            <a href={`/${post.slug}`}>
+              {post.data.shortTitle ? post.data.shortTitle : post.data.title}
+            </a>
+          )
+      )
+    }
+  </menu>
 </div>
 <div class="divider"></div>
 <a
-    href="https://zerolimits.dev"
-    class="homepage"
-    target="_blank"
-    title="ZeroLimits.dev"
+  href="https://zerolimits.dev"
+  class="homepage"
+  target="_blank"
+  title="ZeroLimits.dev"
 >
-    <img src="https://zerolimits.dev/icon/favicon.svg" alt="Favicon" />
+  <img src="https://zerolimits.dev/icon/favicon.svg" alt="Favicon" />
 </a>
 
 <style lang="scss">
-    a {
-        text-decoration: none;
+  a {
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.25s;
+    color: var(--text);
+    font-weight: 550;
+
+    &:hover {
+      color: var(--link);
+    }
+  }
+
+  .nav-menu {
+    background-color: transparent;
+    position: relative;
+
+    @media (max-width: 768px) {
+      padding: 0.5rem 0.1rem;
+    }
+
+    p {
+      font-weight: 550;
+      color: var(--text);
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s;
+      padding: 0.5rem;
+      margin: 0;
+      display: inline-flex;
+      align-items: center;
+
+      &:hover {
+        color: var(--link);
+
+        &::after {
+          background-color: var(--link);
+        }
+      }
+    }
+
+    menu {
+      position: absolute;
+      background-color: var(--bg);
+      color: var(--text);
+      border: solid 0.125rem var(--variant);
+      margin: 0;
+      padding: 0.5rem;
+      border-radius: 0.75rem;
+      z-index: 9999;
+      transition: all 0.25s;
+      opacity: 0;
+      visibility: hidden;
+
+      b {
+        display: block;
         padding: 0.5rem;
         border-radius: 0.5rem;
         transition: all 0.25s;
         color: var(--text);
-        font-weight: 550;
+      }
+
+      @media (max-width: 768px) {
+        transform: translate(-90%, -50%);
+      }
+
+      @media (min-width: 769px) {
+        transform: translate(-37.5%, -10%);
+      }
+
+      a {
+        display: block;
+        white-space: nowrap;
 
         &:hover {
-            color: var(--link);
+          color: var(--primary-text);
+          background-color: var(--primary-bg);
         }
+      }
     }
 
-    .nav-menu {
-        background-color: transparent;
-        position: relative;
+    &[open] menu {
+      opacity: 1;
+      visibility: visible;
 
-        @media (max-width: 768px) {
-            padding: 0.5rem 0.1rem;
-        }
+      @media (max-width: 768px) {
+        transform: translate(-100%, -50%);
+      }
 
-        p {
-            font-weight: 550;
-            color: var(--text);
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-            transition: all 0.25s;
-            padding: 0.5rem;
-            margin: 0;
-            display: inline-flex;
-            align-items: center;
+      @media (min-width: 769px) {
+        transform: translate(-37.5%, 0);
+      }
+    }
+  }
 
-            &:hover {
-                color: var(--link);
+  // Homepage
+  .homepage {
+    transition-duration: 0.25s;
+    display: inline-flex;
+    align-items: center;
 
-                &::after {
-                    background-color: var(--link);
-                }
-            }
-        }
-
-        menu {
-            position: absolute;
-            background-color: var(--bg);
-            color: var(--text);
-            border: solid 0.125rem var(--variant);
-            margin: 0;
-            padding: 0.5rem;
-            border-radius: 0.75rem;
-            z-index: 9999;
-            transition: all 0.25s;
-            opacity: 0;
-            visibility: hidden;
-
-            b {
-                display: block;
-                padding: 0.5rem;
-                border-radius: 0.5rem;
-                transition: all 0.25s;
-                color: var(--text);
-            }
-
-            @media (max-width: 768px) {
-                transform: translate(-90%, -50%);
-            }
-
-            @media (min-width: 769px) {
-                transform: translate(-37.5%, -10%);
-            }
-
-            a {
-                display: block;
-                white-space: nowrap;
-
-                &:hover {
-                    color: var(--primary-text);
-                    background-color: var(--primary-bg);
-                }
-            }
-        }
-
-        &[open] menu {
-            opacity: 1;
-            visibility: visible;
-
-            @media (max-width: 768px) {
-                transform: translate(-100%, -50%);
-            }
-
-            @media (min-width: 769px) {
-                transform: translate(-37.5%, 0);
-            }
-        }
+    @media (max-width: 768px) {
+      text-align: center;
     }
 
-    // Homepage
-    .homepage {
-        transition-duration: 0.25s;
-        display: inline-flex;
-        align-items: center;
-
-        @media (max-width: 768px) {
-            text-align: center;
-        }
-
-        img {
-            height: 1.25rem;
-        }
-
-        &:hover {
-            filter: brightness(75%);
-        }
+    img {
+      height: 1.25rem;
     }
 
-    .divider {
-        @media (min-width: 769px) {
-            border-left: 2px solid var(--variant);
-            height: 1.5rem;
-        }
-
-        @media (max-width: 768px) {
-            border-left: none;
-            border-top: 2px solid var(--variant);
-            height: 1px;
-        }
+    &:hover {
+      filter: brightness(75%);
     }
+  }
+
+  .divider {
+    @media (min-width: 769px) {
+      border-left: 2px solid var(--variant);
+      height: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      border-left: none;
+      border-top: 2px solid var(--variant);
+      height: 1px;
+    }
+  }
 </style>
 
 <script>
-    let navMenus = document.querySelectorAll(".nav-menu");
-    navMenus.forEach((targeted) => {
-        if (window.matchMedia("(min-width: 769px)").matches) {
-            targeted.addEventListener("mouseover", () => {
-                targeted.setAttribute("open", "true");
-            });
-            targeted.addEventListener("mouseout", () => {
-                targeted.removeAttribute("open");
-            });
-        }
+  let navMenus = document.querySelectorAll(".nav-menu");
+  navMenus.forEach((targeted) => {
+    if (window.matchMedia("(min-width: 769px)").matches) {
+      targeted.addEventListener("mouseover", () => {
+        targeted.setAttribute("open", "true");
+      });
+      targeted.addEventListener("mouseout", () => {
+        targeted.removeAttribute("open");
+      });
+    }
 
-        if (window.matchMedia("(max-width: 768px)").matches) {
-            targeted.addEventListener("click", () => {
-                targeted.toggleAttribute("open");
-                navMenus.forEach((navMenu) => {
-                    if (navMenu !== targeted) {
-                        navMenu.removeAttribute("open");
-                    }
-                });
-            });
+    if (window.matchMedia("(max-width: 768px)").matches) {
+      targeted.addEventListener("click", () => {
+        targeted.toggleAttribute("open");
+        navMenus.forEach((navMenu) => {
+          if (navMenu !== targeted) {
+            navMenu.removeAttribute("open");
+          }
+        });
+      });
 
-            document.addEventListener("click", (event) => {
-                if ((event.target as HTMLElement).closest(".nav-menu")) return;
+      document.addEventListener("click", (event) => {
+        if ((event.target as HTMLElement).closest(".nav-menu")) return;
 
-                navMenus.forEach((navMenu) => {
-                    navMenu.removeAttribute("open");
-                });
-            });
-        }
-    });
+        navMenus.forEach((navMenu) => {
+          navMenu.removeAttribute("open");
+        });
+      });
+    }
+  });
 </script>

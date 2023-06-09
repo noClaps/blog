@@ -5,56 +5,56 @@ import { ThemeToggle } from "@noclaps/theme-toggle";
 ---
 
 <header>
-    <h3>
-        <a href="/">The Blog of Random</a>
-        <ThemeToggle color="var(--text)" hoverColor="var(--link)" />
-    </h3>
-    <nav id="nav">
-        <Nav />
-    </nav>
-    <Sidebar />
+  <h3>
+    <a href="/">The Blog of Random</a>
+    <ThemeToggle color="var(--text)" hoverColor="var(--link)" />
+  </h3>
+  <nav id="nav">
+    <Nav />
+  </nav>
+  <Sidebar />
 </header>
 
 <style lang="scss">
-    header {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        background-color: var(--bg);
-        top: 0;
-        margin: 2vh 1vw;
+  header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--bg);
+    top: 0;
+    margin: 2vh 1vw;
 
-        h3 {
-            margin: 0;
-            display: inline-flex;
+    h3 {
+      margin: 0;
+      display: inline-flex;
 
-            a {
-                text-decoration: none;
-                padding: 0.5rem;
-                border-radius: 0.5rem;
-                transition: all 0.25s;
-                color: var(--text);
+      a {
+        text-decoration: none;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        transition: all 0.25s;
+        color: var(--text);
 
-                &:hover {
-                    color: var(--link);
-                }
-            }
+        &:hover {
+          color: var(--link);
         }
-
-        // Nav
-        nav {
-            display: none;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            gap: 0.5rem;
-        }
+      }
     }
+
+    // Nav
+    nav {
+      display: none;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+    }
+  }
 </style>
 
 <script>
-    if (window.matchMedia("(min-width: 769px)").matches) {
-        document.getElementById("nav")!.style.display = "flex";
-    }
+  if (window.matchMedia("(min-width: 769px)").matches) {
+    document.getElementById("nav")!.style.display = "flex";
+  }
 </script>

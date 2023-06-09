@@ -5,53 +5,53 @@ const { name, link } = Astro.props;
 ---
 
 <blockquote>
-    <p>
-        <Icon name="quote" />
-        {
-            link ? (
-                <b>
-                    <a href={link} target="_blank" rel="noopener noreferrer">
-                        {name}
-                    </a>
-                </b>
-            ) : (
-                <b>{name ? name : "QUOTE"}</b>
-            )
-        }
-    </p>
-    <slot />
+  <p>
+    <Icon name="quote" />
+    {
+      link ? (
+        <b>
+          <a href={link} target="_blank" rel="noopener noreferrer">
+            {name}
+          </a>
+        </b>
+      ) : (
+        <b>{name ? name : "QUOTE"}</b>
+      )
+    }
+  </p>
+  <slot />
 </blockquote>
 
 <style lang="scss">
-    blockquote {
-        display: grid;
-        padding: 1rem;
-        border-radius: 0.5rem;
-        background-color: var(--primary-bg);
-        color: var(--primary-text);
-        margin: 0.5rem 0;
+  blockquote {
+    display: grid;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--primary-bg);
+    color: var(--primary-text);
+    margin: 0.5rem 0;
 
-        p {
-            margin: 0;
+    p {
+      margin: 0;
 
-            b {
-                vertical-align: middle;
-            }
-        }
-
-        :global(a) {
-            color: var(--primary-text);
-            text-decoration: underline;
-        }
-
-        :global(*)::selection {
-            background-color: var(--primary-text);
-            color: var(--primary-bg);
-        }
-
-        :global(*)::-moz-selection {
-            background-color: var(--primary-text);
-            color: var(--primary-bg);
-        }
+      b {
+        vertical-align: middle;
+      }
     }
+
+    :global(a) {
+      color: var(--primary-text);
+      text-decoration: underline;
+    }
+
+    :global(*)::selection {
+      background-color: var(--primary-text);
+      color: var(--primary-bg);
+    }
+
+    :global(*)::-moz-selection {
+      background-color: var(--primary-text);
+      color: var(--primary-bg);
+    }
+  }
 </style>

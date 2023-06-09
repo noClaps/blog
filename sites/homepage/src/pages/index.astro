@@ -3,22 +3,19 @@ import Search from "../components/Search.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-
 <BaseLayout title="ZeroLimits.dev">
-	<main>
-		<Search />
-		<noscript>
-			Sorry, this site needs JavaScript to work!
-		</noscript>
-	</main>
+  <main>
+    <Search />
+    <noscript> Sorry, this site needs JavaScript to work!</noscript>
+  </main>
 </BaseLayout>
 
 <style lang="scss">
-	main {
-		display: flex;
-		flex-direction: column;
-		height: 100%;
-		align-items: center;
-		position: relative;
-	}
+  main {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    position: relative;
+  }
 </style>

@@ -7,50 +7,46 @@ const { title, description, author, date, lastmod, readingTime } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
-    <main>
-        <div class="header">
-            {
-                lastmod ? (
-                    <time datetime={lastmod.toISOString()}>
-                        {lastmod.toDateString()}
-                    </time>
-                ) : (
-                    <time datetime={date.toISOString()}>
-                        {date.toDateString()}
-                    </time>
-                )
-            }
-            <h1>{title}</h1>
-            <h3>{description}</h3>
-            <div class="post-info">
-                <p>{readingTime}</p>
-                <p>
-                    Written by <a href={author.data.link}>{author.data.name}</a>
-                </p>
-            </div>
-        </div>
-        <article>
-            <slot />
-        </article>
-        <button
-            type="button"
-            id="scrollToTop"
-            onclick="window.scrollTo({top:0, behavior:'smooth'});"
-            title="Go to top"
-        >
-            <p><Icon name="arrow-up" />Back to top</p>
-        </button>
-    </main>
-    <script>
-        let button = document.getElementById("scrollToTop");
+  <main>
+    <div class="header">
+      {
+        lastmod ? (
+          <time datetime={lastmod.toISOString()}>{lastmod.toDateString()}</time>
+        ) : (
+          <time datetime={date.toISOString()}>{date.toDateString()}</time>
+        )
+      }
+      <h1>{title}</h1>
+      <h3>{description}</h3>
+      <div class="post-info">
+        <p>{readingTime}</p>
+        <p>
+          Written by <a href={author.data.link}>{author.data.name}</a>
+        </p>
+      </div>
+    </div>
+    <article>
+      <slot />
+    </article>
+    <button
+      type="button"
+      id="scrollToTop"
+      onclick="window.scrollTo({top:0, behavior:'smooth'});"
+      title="Go to top"
+    >
+      <p><Icon name="arrow-up" />Back to top</p>
+    </button>
+  </main>
+  <script>
+    let button = document.getElementById("scrollToTop");
 
-        button!.style.display = "flex";
-        window.onscroll = function () {
-            if (window.scrollY > 64) {
-                button!.style.opacity = "1";
-            } else {
-                button!.style.opacity = "0";
-            }
-        };
-    </script>
+    button!.style.display = "flex";
+    window.onscroll = function () {
+      if (window.scrollY > 64) {
+        button!.style.opacity = "1";
+      } else {
+        button!.style.opacity = "0";
+      }
+    };
+  </script>
 </BaseLayout>
