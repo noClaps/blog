@@ -17,7 +17,7 @@ Add the `@noclaps/common` package to `package.json`
 ```astro
 ---
 import { Head } from "@noclaps/common";
-import "@noclaps/common/src/global.scss";
+import "@noclaps/common/global.scss";
 ---
 ```
 
@@ -34,6 +34,7 @@ The site for the head component to be used on.
 ```astro
 ---
 import { Head } from "@noclaps/theme-toggle";
+import "@noclaps/common/global.scss";
 ---
 
 <ThemeToggle color="#eee" hoverColor="#2ef" />
