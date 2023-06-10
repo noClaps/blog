@@ -17,10 +17,7 @@ const { site, title, description } = Astro.props;
   <link rel="preconnect" href="https://rsms.me/" />
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
   <title>{title}</title>
-  <meta
-    name="description"
-    content={description}
-  />
+  <meta name="description" content={description} />
   {
     site === "blog" && (
       <link
