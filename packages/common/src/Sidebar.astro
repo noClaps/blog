@@ -4,7 +4,9 @@ import { Icon } from "@noclaps/icons";
 
 <aside id="aside">
   <button
-    onclick="document.getElementById('sidebar').classList.toggle('open');"
+    onclick="
+    document.getElementById('sidebar').classList.toggle('open');
+"
     title="Sidebar"
     type="button"
   >
@@ -62,16 +64,21 @@ import { Icon } from "@noclaps/icons";
 </style>
 
 <script>
-  if (window.matchMedia("(max-width: 768px)").matches) {
-    document.getElementById("aside")!.style.display = "initial";
-  }
+  const aside = document.getElementById("aside");
+  const sidebar = document.getElementById("sidebar");
 
-  document.addEventListener("click", function (event) {
-    if (
-      (event.target as HTMLElement).closest("button") ||
-      (event.target as HTMLElement).closest("nav")
-    )
-      return;
-    document.getElementById("sidebar")!.classList.remove("open");
-  });
+  if (aside && sidebar) {
+    if (window.matchMedia("(max-width: 768px)").matches) {
+      aside.style.display = "initial";
+    }
+
+    document.addEventListener("click", function (event) {
+      if (
+        (event.target as HTMLElement).closest("button") ||
+        (event.target as HTMLElement).closest("nav")
+      )
+        return;
+      sidebar.classList.remove("open");
+    });
+  }
 </script>
