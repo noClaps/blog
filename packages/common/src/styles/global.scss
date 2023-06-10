@@ -1,20 +1,17 @@
 @use "colors";
 
 // Font
-:root {
+:root, input {
     font-family: 'Inter', sans-serif;
-}
 
-@supports (font-variation-settings: normal) {
-    :root {
+    @supports (font-variation-settings: normal) {
         font-family: 'Inter var', sans-serif;
     }
 }
 
+
 // Root
-*,
-:before,
-:after {
+*, :before, :after {
     box-sizing: border-box;
 }
 
