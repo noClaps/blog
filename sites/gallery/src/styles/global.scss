@@ -1,66 +1,18 @@
 @use 'colors';
 
-// Font
-@import url('https://rsms.me/inter/inter.css');
-
-html {
-  font-family: 'Inter', sans-serif;
-
-  @supports (font-variation-settings: normal) {
-    font-family: 'Inter var', sans-serif;
-  }
-}
-
-// Root
-*,
-:before,
-:after {
-  box-sizing: border-box;
-}
-
 body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin: 0;
-  background-color: var(--bg);
-  color: var(--text) !important;
-  height: 100vh;
-
-  @supports (scroll-behavior: smooth) {
-    scroll-behavior: smooth;
-  }
-}
-
-
-main {
-  width: 88vw;
-  max-width: 64rem;
-  margin: 0 auto;
+    justify-content: space-between;
 }
 
 p {
-  margin: 1.25rem 0;
-  line-height: 1.5rem;
-  text-align: justify;
-}
-
-// Scrollbar
-::-webkit-scrollbar {
-  width: 1.25rem;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--variant);
-  border-radius: 0.5rem;
-  border: solid 0.375rem var(--bg);
+    margin: 1.25rem 0;
 }
 
 // Zoomed images
 .medium-zoom-overlay {
-  backdrop-filter: var(--filter);
+    backdrop-filter: var(--filter);
 }
 
 .medium-zoom-image--opened {
-  border-radius: 0.5rem;
+    border-radius: 0.5rem;
 }

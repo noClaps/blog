@@ -4,57 +4,64 @@ import { Icon } from "@noclaps/icons";
 ---
 
 <BaseLayout title="The Blog of Random">
-	<main>
-		<Icon name="blog-icon" />
-		<div>
-			<h1>The Blog of Random</h1>
-			<h2>
-				A blog about the most random things you can think of, brought to
-				you by the most interesting boring person you've ever met.
-			</h2>
-			<noscript>
-				<p>
-					If you have JavaScript disabled, unfortunately many of the
-					features of this site won't work. However, you can access
-					the sitemap in the footer on all pages to navigate that way
-					instead.
-				</p>
-			</noscript>
-		</div>
-	</main>
+  <main>
+    <Icon name="blog-icon" />
+    <div>
+      <h1>The Blog of Random</h1>
+      <h2>
+        A blog about the most random things you can think of, brought to you by
+        the most interesting boring person you've ever met.
+      </h2>
+      <noscript>
+        <p>
+          If you have JavaScript disabled, unfortunately many of the features of
+          this site won't work. However, you can access the sitemap in the
+          footer on all pages to navigate that way instead.
+        </p>
+      </noscript>
+    </div>
+  </main>
 
-	<style lang="scss">
-		main {
-			display: grid;
-			grid-auto-flow: column;
-			grid-template-columns: repeat(2, 1fr);
-			grid-gap: 1rem;
+  <style lang="scss">
+    main {
+      display: grid;
+      grid-auto-flow: column;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 1rem;
 
-			div {
-				align-self: center;
-				justify-self: center;
-			}
-		}
+      div {
+        align-self: center;
+        justify-self: center;
 
-		@media (max-width: 768px) {
-			main {
-				display: flex;
-				flex-direction: column;
-				grid-gap: 0;
-				gap: 1rem;
-				height: initial;
+        h2 {
+          font-family: "Inter", sans-serif;
 
-				svg {
-					width: 50%;
-					max-width: 425px;
-					height: auto;
-				}
+          @supports (font-variation-settings: normal) {
+            font-family: "Inter var", sans-serif;
+          }
+        }
+      }
+    }
 
-				h1,
-				h2 {
-					text-align: center;
-				}
-			}
-		}
-	</style>
+    @media (max-width: 768px) {
+      main {
+        display: flex;
+        flex-direction: column;
+        grid-gap: 0;
+        gap: 1rem;
+        height: initial;
+
+        svg {
+          width: 50%;
+          max-width: 425px;
+          height: auto;
+        }
+
+        h1,
+        h2 {
+          text-align: center;
+        }
+      }
+    }
+  </style>
 </BaseLayout>

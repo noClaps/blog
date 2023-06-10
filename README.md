@@ -1,18 +1,23 @@
 # ZeroLimits.dev
+
 This is a monorepo containing all of the sites and packages for ZeroLimits.dev.
 
 For details on each, see their respective READMEs:
 
 **Sites**:
+
 - [Homepage](./sites/homepage/README.md)
 - [The Blog of Random](./sites/blog/README.md)
 - [Aperturic Focus](./sites/gallery/README.md)
 
 **Packages**:
+
 - [icons](./packages/icons/README.md)
 - [theme-toggle](./packages/theme-toggle/README.md)
+- [common](./packages/common/README.md)
 
 ## Build Instructions
+
 1.  ```bash
     git clone https://github.com/noClaps/ZeroLimits.dev.git && cd ZeroLimits.dev
     ```
@@ -22,7 +27,9 @@ For details on each, see their respective READMEs:
     npm run dev
     ```
 
-    Run this in the root directory (`ZeroLimits.dev/` if you followed the instructions above). Turbo's CLI will then notify you for the links to the preview to each of the sites. If you want to see the preview for only one of the sites, use:
+    Run this in the root directory (`ZeroLimits.dev/` if you followed the instructions above). Turbo's CLI will then
+    notify you for the links to the preview to each of the sites. If you want to see the preview for only one of the
+    sites, use:
 
     ```bash
     npm run dev -- --filter=homepage # for homepage

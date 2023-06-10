@@ -1,23 +1,22 @@
 ---
-import Footer from '../components/Footer.astro';
-import Head from '../components/Head.astro';
-import Header from '../components/Header.astro';
+import Header from "../components/Header.astro";
 
-import '../styles/global.scss'
+import { Head, Footer } from "@noclaps/common";
+import "@noclaps/common/global.scss";
 
-const {title, description} = Astro.props
+import "../styles/global.scss";
+
+const {
+  title,
+  description = "A website to showcase some cool photos I've taken.",
+} = Astro.props;
 ---
 
 <html lang="en">
-    <head>
-        <Head />
-        <title>{title}</title>
-        <meta name="description" content={description || "A website to showcase some cool photos I've taken."}>
-    </head>
-    <body>
-        <Header />
-        <slot />
-        <Footer />
-    </body>
+  <Head site="gallery" title={title} description={description} />
+  <body>
+    <Header />
+    <slot />
+    <Footer site="gallery" />
+  </body>
 </html>
-

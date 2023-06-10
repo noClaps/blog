@@ -1,65 +1,67 @@
 ---
 import Nav from "./Nav.astro";
-import Sidebar from "./Sidebar.astro";
 import { ThemeToggle } from "@noclaps/theme-toggle";
+import { Sidebar } from "@noclaps/common";
 ---
 
 <header>
-    <h3>
-        <a href="/">Aperturic Focus</a>
-        <ThemeToggle color="var(--text)" hoverColor="var(--link)" />
-    </h3>
+  <h3>
+    <a href="/">Aperturic Focus</a>
+    <ThemeToggle />
+  </h3>
 
-    <nav>
-        <Nav />
-    </nav>
+  <nav>
+    <Nav />
+  </nav>
 
-    <Sidebar />
+  <Sidebar>
+    <Nav />
+  </Sidebar>
 </header>
 
 <style lang="scss">
-    header {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        background-color: var(--bg);
-        top: 0;
-        margin: 2vh 1vw;
+  header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--bg);
+    top: 0;
+    margin: 2vh 1vw;
 
-        a {
-            text-decoration: none;
-            padding: 0.5rem;
-            transition: all 0.25s;
+    a {
+      text-decoration: none;
+      padding: 0.5rem;
+      transition: all 0.25s;
 
-            &:hover {
-                color: var(--link);
-            }
-        }
-
-        // Title
-        h3 {
-            margin: 0;
-            display: inline-flex;
-
-            a {
-                text-decoration: none;
-                color: var(--text);
-                position: relative;
-            }
-        }
-
-        // Nav
-        nav {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            gap: 0.5rem;
-
-            @media (max-width: 768px) {
-                display: none;
-            }
-        }
+      &:hover {
+        color: var(--link);
+      }
     }
+
+    // Title
+    h3 {
+      margin: 0;
+      display: inline-flex;
+
+      a {
+        text-decoration: none;
+        color: var(--text);
+        position: relative;
+      }
+    }
+
+    // Nav
+    nav {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+  }
 </style>

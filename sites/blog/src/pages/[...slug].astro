@@ -6,12 +6,12 @@ import Note from "../components/Note.astro";
 import Warning from "../components/Warning.astro";
 
 export async function getStaticPaths() {
-    const posts = await getCollection("posts");
+  const posts = await getCollection("posts");
 
-    return posts.map((post) => ({
-        params: { slug: post.slug },
-        props: { post },
-    }));
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
 }
 
 const { post } = Astro.props;
@@ -19,12 +19,12 @@ const { Content, remarkPluginFrontmatter } = await post.render();
 ---
 
 <Post
-    title={post.data.title}
-    description={post.data.description}
-    author={await getEntry(post.data.author)}
-    date={post.data.date}
-    lastmod={post.data.lastmod}
-    readingTime={remarkPluginFrontmatter.minutesRead}
+  title={post.data.title}
+  description={post.data.description}
+  author={await getEntry(post.data.author)}
+  date={post.data.date}
+  lastmod={post.data.lastmod}
+  readingTime={remarkPluginFrontmatter.minutesRead}
 >
-    <Content components={{ Quote, Note, Warning }} />
+  <Content components={{ Quote, Note, Warning }} />
 </Post>
