@@ -1,12 +1,5 @@
 ---
 import { Icon } from "@noclaps/icons";
-
-interface Props {
-  color: string;
-  hoverColor: string;
-}
-
-const { color, hoverColor } = Astro.props;
 ---
 
 <button title="Theme toggle" type="button" id="theme-toggle">
@@ -14,19 +7,19 @@ const { color, hoverColor } = Astro.props;
   <Icon name="moon" />
 </button>
 
-<style lang="scss" define:vars={{ color, hoverColor }}>
+<style lang="scss">
   button {
     display: none;
     text-decoration: none;
     padding: 0.5rem;
     transition: all 0.25s;
-    color: var(--color);
+    color: var(--text);
     background-color: transparent;
     border: none;
     cursor: pointer;
 
     &:hover {
-      color: var(--hoverColor);
+      color: var(--link);
     }
   }
 </style>
