@@ -20,16 +20,6 @@ import { ThemeToggle } from "@noclaps/theme-toggle";
 ---
 ```
 
-### Options
-
-`color`
-
-The color of the icon. Allows a CSS color string.
-
-`hoverColor`
-
-The color of the item when it is hovered. Allows a CSS color string.
-
 ### Example
 
 ```astro
@@ -37,6 +27,5 @@ The color of the item when it is hovered. Allows a CSS color string.
 import { ThemeToggle } from "@noclaps/theme-toggle";
 ---
 
-<ThemeToggle color="#eee" hoverColor="#2ef" />
-<ThemeToggle color="var(--text)" hoverColor="var(--link)" />
+<ThemeToggle />
 ```
