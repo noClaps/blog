@@ -1,7 +1,7 @@
 {
   "name": "@noclaps/theme-toggle",
   "description": "A package that hosts the theme toggle used in the ZeroLimits.dev sites.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "repository": {
     "type": "git",
