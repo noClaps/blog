@@ -1,7 +1,7 @@
 ---
 import Nav from "./Nav.astro";
-import Sidebar from "./Sidebar.astro";
 import { ThemeToggle } from "@noclaps/theme-toggle";
+import { Sidebar } from "@noclaps/common";
 ---
 
 <header>
@@ -12,7 +12,9 @@ import { ThemeToggle } from "@noclaps/theme-toggle";
   <nav id="nav">
     <Nav />
   </nav>
-  <Sidebar />
+  <Sidebar>
+    <Nav />
+  </Sidebar>
 </header>
 
 <style lang="scss">

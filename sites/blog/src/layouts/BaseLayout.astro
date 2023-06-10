@@ -1,28 +1,24 @@
 ---
-import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
-import Head from "../components/Head.astro";
+
+import { Head, Footer } from "@noclaps/common";
+import "@noclaps/common/global.scss";
 
 import "@fontsource/patua-one";
 import "@fontsource-variable/jetbrains-mono";
 import "../styles/global.scss";
 
-const { title, description } = Astro.props;
+const {
+  title,
+  description = "A blog about the most random things you can think of, brought to you by the most interesting boring person you've ever met.",
+} = Astro.props;
 ---
 
 <html lang="en">
-  <head>
-    <Head />
-    <title>{title}</title>
-    <meta
-      name="description"
-      content={description ||
-        "A blog about the most random things you can think of, brought to you by the most interesting boring person you've ever met."}
-    />
-  </head>
+  <Head site="blog" title={title} description={description} />
   <body>
     <Header />
     <slot />
-    <Footer />
+    <Footer site="blog" />
   </body>
 </html>

@@ -1,0 +1,33 @@
+{
+    "name": "@noclaps/common",
+    "description": "A package that hosts the common components and files used in the ZeroLimits.dev sites.",
+    "version": "1.0.0",
+    "type": "module",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/noClaps/ZeroLimits.dev.git",
+        "directory": "packages/common"
+    },
+    "exports": {
+        ".": "./index.ts",
+        "./global.scss": "./src/styles/global.scss"
+    },
+    "files": [
+        "src",
+        "index.ts"
+    ],
+    "keywords": [
+        "astro-component"
+    ],
+    "scripts": {},
+    "dependencies": {
+        "@noclaps/icons": "^1.0.1"
+    },
+    "devDependencies": {
+        "astro": "^2.6.3",
+        "sass": "^1.63.3"
+    },
+    "peerDependencies": {
+        "astro": "^2.0.0-beta.0"
+    }
+}
