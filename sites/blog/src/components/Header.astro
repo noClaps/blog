@@ -51,12 +51,10 @@ import { Sidebar } from "@noclaps/common";
       justify-content: space-between;
       align-items: center;
       gap: 0.5rem;
+
+      @media (min-width: 769px) {
+        display: flex;
+      }
     }
   }
 </style>
-
-<script>
-  if (window.matchMedia("(min-width: 769px)").matches) {
-    document.getElementById("nav")!.style.display = "flex";
-  }
-</script>
