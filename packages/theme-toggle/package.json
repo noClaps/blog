@@ -23,8 +23,8 @@
     "@noclaps/icons": "^1.0.1"
   },
   "devDependencies": {
-    "astro": "^2.6.3",
-    "sass": "^1.63.3"
+    "astro": "^2.7.3",
+    "sass": "^1.63.6"
   },
   "peerDependencies": {
     "astro": "^2.0.0-beta.0"

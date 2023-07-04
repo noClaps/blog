@@ -20,11 +20,11 @@
     "@noclaps/common": "^1.0.1",
     "@noclaps/icons": "^1.0.1",
     "@noclaps/theme-toggle": "^1.0.2",
-    "astro": "^2.6.3",
+    "astro": "^2.7.3",
     "medium-zoom": "^1.0.8",
     "sharp": "^0.32.1"
   },
   "devDependencies": {
-    "sass": "^1.63.3"
+    "sass": "^1.63.6"
   }
 }
