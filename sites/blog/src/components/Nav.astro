@@ -202,34 +202,58 @@ const posts = await getCollection("posts");
 </style>
 
 <script>
+  // Create menu object
+  const menu = {
+    open(menu: Element) {
+      // Open the menu
+      menu.setAttribute("open", "");
+    },
+
+    close(menu: Element) {
+      // Close the menu
+      menu.removeAttribute("open");
+    },
+
+    toggle(menuList: NodeListOf<Element>, targeted: Element) {
+      // Toggle opening and closing menu
+      // If one menu is opened, the others are closed
+      targeted.toggleAttribute("open");
+      for (const menu of menuList) {
+        if (menu !== targeted) {
+          this.close(menu);
+        }
+      }
+    },
+
+    closeAll(menuList: NodeListOf<Element>) {
+      // Close all menus
+      for (const menu of menuList) {
+        this.close(menu);
+      }
+    },
+  };
+
   let navMenus = document.querySelectorAll(".nav-menu");
-  navMenus.forEach((targeted) => {
+  for (const targeted of navMenus) {
     if (window.matchMedia("(min-width: 769px)").matches) {
       targeted.addEventListener("mouseover", () => {
-        targeted.setAttribute("open", "true");
+        menu.open(targeted);
       });
-      targeted.addEventListener("mouseout", () => {
-        targeted.removeAttribute("open");
+      targeted.addEventListener("mouseleave", () => {
+        menu.close(targeted);
       });
     }
 
     if (window.matchMedia("(max-width: 768px)").matches) {
       targeted.addEventListener("click", () => {
-        targeted.toggleAttribute("open");
-        navMenus.forEach((navMenu) => {
-          if (navMenu !== targeted) {
-            navMenu.removeAttribute("open");
-          }
-        });
+        menu.toggle(navMenus, targeted);
       });
 
       document.addEventListener("click", (event) => {
-        if ((event.target as HTMLElement).closest(".nav-menu")) return;
-
-        navMenus.forEach((navMenu) => {
-          navMenu.removeAttribute("open");
-        });
+        if (!(event.target as HTMLElement).closest(".nav-menu")) {
+          menu.closeAll(navMenus);
+        }
       });
     }
-  });
+  }
 </script>
