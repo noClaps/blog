@@ -131,12 +131,8 @@ article {
 
 // Scroll to top button
 #scrollToTop {
-    display: none;
-    opacity: 0;
-    position: sticky;
-    bottom: 1rem;
-    margin: 0 auto;
-    text-decoration: none;
+    display: flex;
+    margin: auto;
     padding: 0.5rem;
     border-radius: 0.5rem;
     transition: all 0.25s;
@@ -148,10 +144,6 @@ article {
     &:hover {
         background-color: var(--link);
         color: var(--variant);
-
-        p::before {
-            background-color: var(--variant);
-        }
     }
 
     p {
