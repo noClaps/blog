@@ -30,6 +30,7 @@ const {
         plugins: [
           new SwupScrollPlugin({
             doScrollingRightAway: true,
+            offset: () => document.querySelector("header").offsetHeight,
           }),
           new SwupHeadPlugin(),
           new SwupSlideTheme(),
