@@ -7,7 +7,7 @@ const { title, description, author, date, lastmod, readingTime } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
-  <main>
+  <main id="swup">
     <div class="header">
       {
         lastmod ? (
@@ -31,22 +31,12 @@ const { title, description, author, date, lastmod, readingTime } = Astro.props;
     <button
       type="button"
       id="scrollToTop"
-      onclick="window.scrollTo({top:0, behavior:'smooth'});"
+      onclick="
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      "
       title="Go to top"
     >
       <p><Icon name="arrow-up" />Back to top</p>
     </button>
   </main>
-  <script>
-    let button = document.getElementById("scrollToTop");
-
-    button!.style.display = "flex";
-    window.onscroll = function () {
-      if (window.scrollY > 64) {
-        button!.style.opacity = "1";
-      } else {
-        button!.style.opacity = "0";
-      }
-    };
-  </script>
 </BaseLayout>
