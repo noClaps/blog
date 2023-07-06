@@ -20,5 +20,14 @@ const {
     <Header />
     <slot />
     <Footer site="blog" />
+    <script>
+      import Swup from "swup";
+      import SwupSlideTheme from "@swup/slide-theme";
+      import SwupHeadPlugin from "@swup/head-plugin";
+
+      const swup = new Swup({
+        plugins: [new SwupHeadPlugin(), new SwupSlideTheme()],
+      });
+    </script>
   </body>
 </html>

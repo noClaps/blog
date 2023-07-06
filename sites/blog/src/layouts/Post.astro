@@ -7,7 +7,7 @@ const { title, description, author, date, lastmod, readingTime } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
-  <main>
+  <main id="swup">
     <div class="header">
       {
         lastmod ? (
@@ -31,7 +31,9 @@ const { title, description, author, date, lastmod, readingTime } = Astro.props;
     <button
       type="button"
       id="scrollToTop"
-      onclick="window.scrollTo({top:0, behavior:'smooth'});"
+      onclick="
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+"
       title="Go to top"
     >
       <p><Icon name="arrow-up" />Back to top</p>
