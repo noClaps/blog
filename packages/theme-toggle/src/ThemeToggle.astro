@@ -25,35 +25,47 @@ import { Icon } from "@noclaps/icons";
 </style>
 
 <script>
+  const theme = {
+    value: "light",
+
+    init() {
+      // Check if theme is stored in sessionStorage, else use prefers-color-scheme
+      this.value =
+        sessionStorage.getItem("theme") ??
+        (window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light");
+
+      // Set the body class to be the current theme value
+      document.body.className = this.value;
+    },
+
+    toggle() {
+      // Switch between light and dark
+      if (this.value === "dark") {
+        this.value = "light";
+      } else {
+        this.value = "dark";
+      }
+
+      // Update value in sessionStorage
+      sessionStorage.setItem("theme", this.value);
+
+      // Set body class to be updated theme value
+      document.body.className = this.value;
+    },
+  };
+
+  // Initialise theme
+  theme.init();
+
   const themeToggleButton = document.getElementById(
     "theme-toggle"
   ) as HTMLButtonElement;
+
+  // Display theme toggle only if JavaScript is enabled
   themeToggleButton.style.display = "inline-flex";
-  themeToggleButton.addEventListener("click", themeToggle);
 
-  if (sessionStorage.getItem("theme") === "light") {
-    document.body.classList.add("light");
-  } else if (sessionStorage.getItem("theme") === "dark") {
-    document.body.classList.add("dark");
-  }
-
-  function themeToggle() {
-    if (document.body.classList.length === 0) {
-      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        sessionStorage.setItem("theme", "light");
-        document.body.classList.add("light");
-      } else {
-        sessionStorage.setItem("theme", "dark");
-        document.body.classList.add("dark");
-      }
-    } else if (document.body.classList.contains("dark")) {
-      sessionStorage.setItem("theme", "light");
-      document.body.classList.add("light");
-      document.body.classList.remove("dark");
-    } else {
-      sessionStorage.setItem("theme", "dark");
-      document.body.classList.add("dark");
-      document.body.classList.remove("light");
-    }
-  }
+  // Attach event listener to theme toggle
+  themeToggleButton.addEventListener("click", () => theme.toggle());
 </script>
