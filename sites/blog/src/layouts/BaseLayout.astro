@@ -24,12 +24,14 @@ const {
       import Swup from "swup";
       import SwupSlideTheme from "@swup/slide-theme";
       import SwupHeadPlugin from "@swup/head-plugin";
-      import SwupProgressPlugin from "@swup/progress-plugin";
+      import SwupScrollPlugin from "@swup/scroll-plugin";
 
       const swup = new Swup({
         plugins: [
+          new SwupScrollPlugin({
+            doScrollingRightAway: true,
+          }),
           new SwupHeadPlugin(),
-          new SwupProgressPlugin(),
           new SwupSlideTheme(),
         ],
       });
