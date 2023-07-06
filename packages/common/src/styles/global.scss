@@ -1,7 +1,8 @@
 @use "colors";
 
 // Font
-:root, input {
+:root,
+input {
     font-family: 'Inter', sans-serif;
 
     @supports (font-variation-settings: normal) {
@@ -11,7 +12,9 @@
 
 
 // Root
-*, :before, :after {
+*,
+:before,
+:after {
     box-sizing: border-box;
 }
 
@@ -39,7 +42,8 @@ main {
     margin: 0 auto;
 }
 
-p, li {
+p,
+li {
     line-height: 1.5rem;
     text-align: justify;
 }

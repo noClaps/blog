@@ -25,7 +25,9 @@ import { Sidebar } from "@noclaps/common";
     align-items: center;
     background-color: var(--bg);
     top: 0;
-    margin: 2vh 1vw;
+    padding: 2vh 1vw;
+    position: sticky;
+    z-index: 2;
 
     h3 {
       margin: 0;
@@ -51,12 +53,10 @@ import { Sidebar } from "@noclaps/common";
       justify-content: space-between;
       align-items: center;
       gap: 0.5rem;
+
+      @media (min-width: 769px) {
+        display: flex;
+      }
     }
   }
 </style>
-
-<script>
-  if (window.matchMedia("(min-width: 769px)").matches) {
-    document.getElementById("nav")!.style.display = "flex";
-  }
-</script>
