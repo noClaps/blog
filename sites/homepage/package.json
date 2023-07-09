@@ -22,7 +22,6 @@
         "astro": "^2.8.0"
     },
     "devDependencies": {
-        "postcss": "^8.4.25",
         "postcss-mixins": "^9.0.4"
     }
 }

@@ -25,6 +25,7 @@
     "sharp": "^0.32.1"
   },
   "devDependencies": {
+    "postcss-mixins": "^9.0.4",
     "sass": "^1.63.6"
   }
 }
