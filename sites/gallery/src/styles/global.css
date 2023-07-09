@@ -1,4 +1,4 @@
-@use 'colors';
+@import url("./colors.css");
 
 body {
     justify-content: space-between;
@@ -8,7 +8,7 @@ p {
     margin: 1.25rem 0;
 }
 
-// Zoomed images
+/* Zoomed images */
 .medium-zoom-overlay {
     backdrop-filter: var(--filter);
 }

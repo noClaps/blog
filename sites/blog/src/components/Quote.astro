@@ -4,7 +4,7 @@ import { Icon } from "@noclaps/icons";
 const { name, link } = Astro.props;
 ---
 
-<blockquote>
+<blockquote class="quote">
   <p>
     <Icon name="quote" />
     {
@@ -22,36 +22,21 @@ const { name, link } = Astro.props;
   <slot />
 </blockquote>
 
-<style lang="scss">
-  blockquote {
+<style>
+  .quote {
     display: grid;
     padding: 1rem;
     border-radius: 0.5rem;
     background-color: var(--primary-bg);
     color: var(--primary-text);
     margin: 0.5rem 0;
+  }
 
-    p {
-      margin: 0;
+  p {
+    margin: 0;
+  }
 
-      b {
-        vertical-align: middle;
-      }
-    }
-
-    :global(a) {
-      color: var(--primary-text);
-      text-decoration: underline;
-    }
-
-    :global(*)::selection {
-      background-color: var(--primary-text);
-      color: var(--primary-bg);
-    }
-
-    :global(*)::-moz-selection {
-      background-color: var(--primary-text);
-      color: var(--primary-bg);
-    }
+  b {
+    vertical-align: middle;
   }
 </style>

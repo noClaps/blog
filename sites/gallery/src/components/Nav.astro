@@ -18,7 +18,7 @@ import { Icon } from "@noclaps/icons";
   <img src="https://zerolimits.dev/icon/favicon.svg" alt="Favicon" />
 </a>
 
-<style lang="scss">
+<style>
   a {
     text-decoration: none;
     padding: 0.5rem;
@@ -35,13 +35,12 @@ import { Icon } from "@noclaps/icons";
       fill: var(--link);
     }
 
-    &.homepage {
-      img {
-        width: 1.25rem;
-      }
-      &:hover {
-        filter: brightness(75%);
-      }
+    &.homepage:hover {
+      filter: brightness(75%);
     }
+  }
+
+  img {
+    width: 1.25rem;
   }
 </style>

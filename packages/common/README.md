@@ -17,7 +17,7 @@ Add the `@noclaps/common` package to `package.json`
 ```astro
 ---
 import { Head, Footer, Page404, Sidebar } from "@noclaps/common";
-import "@noclaps/common/global.scss";
+import "@noclaps/common/global.css";
 ---
 ```
 
@@ -54,7 +54,7 @@ navigation bar.
 ---
 import Layout from "path/to/your/layout";
 import { Head, Footer, Sidebar } from "@noclaps/common";
-import "@noclaps/common/global.scss";
+import "@noclaps/common/global.css";
 ---
 <Layout>
     <Head site="blog" title="Your title here" description="Your description here" />

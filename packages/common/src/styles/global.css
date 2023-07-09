@@ -1,8 +1,9 @@
-@use "colors";
+@import url("./colors.css");
 
-// Font
+/* Font */
 :root,
-input {
+input,
+button {
     font-family: 'Inter', sans-serif;
 
     @supports (font-variation-settings: normal) {
@@ -11,7 +12,7 @@ input {
 }
 
 
-// Root
+/* Root */
 *,
 :before,
 :after {
@@ -48,7 +49,7 @@ li {
     text-align: justify;
 }
 
-// Scrollbar
+/* Scrollbar */
 ::-webkit-scrollbar {
     width: 1.25rem;
 }
@@ -59,7 +60,7 @@ li {
     border: solid 0.375rem var(--bg);
 }
 
-// Nav
+/* Nav */
 nav img {
     margin: auto;
 }

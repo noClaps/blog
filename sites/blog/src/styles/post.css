@@ -1,0 +1,157 @@
+/* Post Header */
+.header {
+    display: flex;
+    flex-direction: column;
+
+    & h1 {
+        font-size: 2.5rem;
+    }
+
+    & h3 {
+        opacity: 0.75;
+        font-size: 1.25rem;
+    }
+
+    & h1,
+    time,
+    h3 {
+        margin: 1rem 0;
+        text-align: center;
+    }
+
+    & time {
+        font-weight: bold;
+        opacity: 0.75;
+    }
+}
+
+.post-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    /* Author and reading time */
+    & p {
+        font-style: italic;
+        opacity: 0.75;
+    }
+
+    & a {
+        color: var(--text);
+    }
+}
+
+article {
+
+    & h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        & a {
+            color: var(--text);
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+
+    & h2 {
+        border-top: solid 0.125rem var(--variant);
+        padding-top: 1.33rem;
+        margin-top: 0.5rem;
+    }
+
+    & h3 {
+        margin-top: 2rem;
+        margin-bottom: 0;
+    }
+}
+
+/* Lists */
+li {
+    margin: 1rem 0;
+}
+
+/* Tables */
+table {
+    margin: 1rem auto;
+    border: solid var(--text);
+}
+
+th {
+    text-decoration: underline;
+}
+
+td,
+th {
+    padding: 0.375rem;
+}
+
+/* Code */
+.astro-code {
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+code:not(.astro-code code) {
+    background-color: #0d1117;
+    color: #c9d1d9;
+    border-radius: 0.25rem;
+    padding: 0.25rem;
+}
+
+/* Checklist */
+.contains-task-list {
+    list-style-type: none;
+}
+
+.task-list-item {
+    & input {
+        margin-left: -1.25rem;
+        visibility: hidden;
+
+        &[type=checkbox]::before {
+            position: absolute;
+            height: 1rem;
+            width: 1rem;
+            content: '';
+            -webkit-mask: url('/svg/unchecked.svg');
+            mask: url('/svg/unchecked.svg');
+            background-color: var(--text);
+            visibility: visible;
+        }
+
+        &[type=checkbox][checked]::before {
+            -webkit-mask: url('/svg/checked.svg');
+            mask: url('/svg/checked.svg');
+        }
+    }
+}
+
+/* Scroll to top button */
+#scrollToTop {
+    display: flex;
+    margin: auto;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.25s;
+    color: var(--primary-text);
+    background-color: var(--primary-bg);
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--link);
+        color: var(--variant);
+    }
+
+    & p {
+        font: inherit;
+        font-size: 1rem;
+        margin: 0;
+        display: inline-flex;
+        align-items: center;
+    }
+}

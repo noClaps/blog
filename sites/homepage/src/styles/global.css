@@ -1,4 +1,4 @@
-@use "colors";
+@import url("./colors.css");
 
 header {
     display: flex;
