@@ -6,7 +6,7 @@ import { Icon } from "@noclaps/icons";
   <button
     onclick="
     document.getElementById('sidebar').classList.toggle('open');
-"
+    "
     title="Sidebar"
     type="button"
   >
@@ -18,47 +18,47 @@ import { Icon } from "@noclaps/icons";
   </nav>
 </aside>
 
-<style lang="scss">
+<style>
   aside {
     display: none;
     z-index: 999;
     position: relative;
+  }
 
-    button {
-      display: inline-flex;
-      background-color: transparent;
-      border: none;
-      color: var(--text);
-      margin: 1vh 1vw;
+  button {
+    display: inline-flex;
+    background-color: transparent;
+    border: none;
+    color: var(--text);
+    margin: 1vh 1vw;
+  }
+
+  /* Sidebar */
+  nav {
+    display: flex;
+    position: absolute;
+    right: 0;
+    scroll-margin-top: 5rem;
+    background-color: var(--bg);
+    border: solid 0.125rem var(--variant);
+    border-radius: 0.75rem;
+    padding: 0.5rem;
+    white-space: nowrap;
+    margin-right: 1rem;
+    margin-top: 0.5rem;
+    transition: all 0.25s;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    &.open {
+      visibility: visible;
+      transform: translateY(0%);
     }
 
-    // Sidebar
-    nav {
-      display: flex;
-      position: absolute;
-      right: 0;
-      scroll-margin-top: 5rem;
-      background-color: var(--bg);
-      border: solid 0.125rem var(--variant);
-      border-radius: 0.75rem;
-      padding: 0.5rem;
-      white-space: nowrap;
-      margin-right: 1rem;
-      margin-top: 0.5rem;
-      transition: all 0.25s;
-      flex-direction: column;
-      gap: 0.5rem;
-
-      &.open {
-        visibility: visible;
-        transform: translateY(0%);
-      }
-
-      &:not(nav.open) {
-        visibility: hidden;
-        opacity: 0;
-        transform: translateY(-10%);
-      }
+    &:not(nav.open) {
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(-10%);
     }
   }
 </style>

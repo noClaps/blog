@@ -1,0 +1,55 @@
+@define-mixin light-theme {
+    --bg: #fff;
+    --text: #111;
+    --variant: #eee;
+
+    .moon {
+        display: inline-block;
+    }
+
+    .sun {
+        display: none;
+    }
+}
+
+@define-mixin dark-theme {
+    --bg: #111;
+    --text: #eee;
+    --variant: #222;
+
+    .moon {
+        display: none;
+    }
+
+    .sun {
+        display: inline-block;
+    }
+}
+
+body {
+    @media (prefers-color-scheme: dark) {
+        @mixin dark-theme;
+    }
+
+    @media (prefers-color-scheme: light) {
+        @mixin light-theme;
+    }
+
+    &.light {
+        @mixin light-theme;
+    }
+
+    &.dark {
+        @mixin dark-theme;
+    }
+}
+
+::selection {
+    background-color: var(--selection-bg);
+    color: var(--selection-text);
+}
+
+::-moz-selection {
+    background-color: var(--selection-bg);
+    color: var(--selection-text);
+}
