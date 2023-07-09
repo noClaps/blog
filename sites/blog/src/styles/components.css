@@ -1,0 +1,50 @@
+.note {
+    & a {
+        color: var(--note-text);
+        text-decoration: underline;
+    }
+
+    ::selection {
+        background-color: var(--note-text);
+        color: var(--note-bg);
+    }
+
+    ::-moz-selection {
+        background-color: var(--note-text);
+        color: var(--note-bg);
+    }
+}
+
+.quote {
+    & a {
+        color: var(--primary-text);
+        text-decoration: underline;
+    }
+
+    ::selection {
+        background-color: var(--primary-text);
+        color: var(--primary-bg);
+    }
+
+    ::-moz-selection {
+        background-color: var(--primary-text);
+        color: var(--primary-bg);
+    }
+}
+
+.warning {
+    & a {
+        color: var(--warning-text);
+        text-decoration: underline;
+    }
+
+    ::selection {
+        background-color: var(--warning-text);
+        color: var(--warning-bg);
+    }
+
+    ::-moz-selection {
+        background-color: var(--warning-text);
+        color: var(--warning-bg);
+    }
+}

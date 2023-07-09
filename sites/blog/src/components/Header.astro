@@ -17,7 +17,7 @@ import { Sidebar } from "@noclaps/common";
   </Sidebar>
 </header>
 
-<style lang="scss">
+<style>
   header {
     display: flex;
     flex-direction: row;
@@ -28,35 +28,35 @@ import { Sidebar } from "@noclaps/common";
     padding: 2vh 1vw;
     position: sticky;
     z-index: 2;
+  }
 
-    h3 {
-      margin: 0;
-      display: inline-flex;
+  h3 {
+    margin: 0;
+    display: inline-flex;
+  }
 
-      a {
-        text-decoration: none;
-        padding: 0.5rem;
-        border-radius: 0.5rem;
-        transition: all 0.25s;
-        color: var(--text);
+  a {
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.25s;
+    color: var(--text);
 
-        &:hover {
-          color: var(--link);
-        }
-      }
+    &:hover {
+      color: var(--link);
     }
+  }
 
-    // Nav
-    nav {
-      display: none;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      gap: 0.5rem;
+  /* Nav */
+  nav {
+    display: none;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
 
-      @media (min-width: 769px) {
-        display: flex;
-      }
+    @media (min-width: 769px) {
+      display: flex;
     }
   }
 </style>
