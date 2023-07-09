@@ -1,5 +1,11 @@
+#search[show-results] #searchResults {
+    transform: translateY(0%);
+}
+
 #searchResults {
-    display: none;
+    display: flex;
+    opacity: 0;
+    visibility: hidden;
     flex-direction: column;
     gap: 0.5rem;
     background-color: var(--variant);
@@ -9,6 +15,8 @@
     overflow: auto;
     max-height: 75vh;
     width: 100%;
+    transition: all 0.25s;
+    transform: translateY(-10%);
 
     &::-webkit-scrollbar-thumb {
         background: var(--bg);
