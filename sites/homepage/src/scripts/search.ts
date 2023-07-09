@@ -106,11 +106,10 @@ async function search() {
       result.target = "_blank";
       result.innerHTML = `
                     <div>
-                        ${
-                          index.favicon.startsWith("https")
-                            ? `<img src=${index.favicon} />`
-                            : index.favicon
-                        }
+                        ${index.favicon.startsWith("https")
+          ? `<img src=${index.favicon} />`
+          : index.favicon
+        }
                         <p>${index.title}</p>
                     </div>
                     ${index.desc ? `<p class="desc">${index.desc}</p>` : ""}
@@ -121,3 +120,5 @@ async function search() {
     }
   }
 }
+
+export { };
