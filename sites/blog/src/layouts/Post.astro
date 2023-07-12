@@ -27,15 +27,26 @@ const { title, description, author, date, lastmod } = Astro.props;
     <article>
       <slot />
     </article>
-    <button
-      type="button"
-      id="scrollToTop"
-      onclick="
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      "
-      title="Go to top"
-    >
+    <button type="button" id="scrollToTop" title="Go to top">
       <p><Icon name="arrow-up" />Back to top</p>
     </button>
   </main>
 </BaseLayout>
+
+<script>
+  let button = document.getElementById("scrollToTop");
+
+  button?.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  button!.style.display = "flex";
+
+  window.onscroll = function () {
+    if (window.scrollY > 64) {
+      button!.style.opacity = "1";
+    } else {
+      button!.style.opacity = "0";
+    }
+  };
+</script>

@@ -132,8 +132,10 @@ code:not(.astro-code code) {
 
 /* Scroll to top button */
 #scrollToTop {
-    display: flex;
+    display: none;
     margin: auto;
+    position: sticky;
+    bottom: 1rem;
     padding: 0.5rem;
     border-radius: 0.5rem;
     transition: all 0.25s;
