@@ -3,7 +3,7 @@ import BaseLayout from "./BaseLayout.astro";
 import "../styles/post.css";
 import { Icon } from "@noclaps/icons";
 
-const { title, description, author, date, lastmod, readingTime } = Astro.props;
+const { title, description, author, date, lastmod } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
@@ -19,7 +19,6 @@ const { title, description, author, date, lastmod, readingTime } = Astro.props;
       <h1>{title}</h1>
       <h3>{description}</h3>
       <div class="post-info">
-        <p>{readingTime}</p>
         <p>
           Written by <a href={author.data.link}>{author.data.name}</a>
         </p>

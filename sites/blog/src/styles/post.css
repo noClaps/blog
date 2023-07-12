@@ -28,16 +28,16 @@
 .post-info {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: end;
 
-    /* Author and reading time */
+    /* Author */
     & p {
         font-style: italic;
         opacity: 0.75;
-    }
 
-    & a {
-        color: var(--text);
+        & a {
+            color: var(--text);
+        }
     }
 }
 
