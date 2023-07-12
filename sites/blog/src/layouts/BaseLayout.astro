@@ -20,22 +20,5 @@ const {
     <Header />
     <slot />
     <Footer site="blog" />
-    <script>
-      import Swup from "swup";
-      import SwupSlideTheme from "@swup/slide-theme";
-      import SwupHeadPlugin from "@swup/head-plugin";
-      import SwupScrollPlugin from "@swup/scroll-plugin";
-
-      const swup = new Swup({
-        plugins: [
-          new SwupScrollPlugin({
-            doScrollingRightAway: true,
-            offset: () => document.querySelector("header").offsetHeight,
-          }),
-          new SwupHeadPlugin(),
-          new SwupSlideTheme(),
-        ],
-      });
-    </script>
   </body>
 </html>
