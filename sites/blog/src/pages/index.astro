@@ -4,7 +4,7 @@ import { Icon } from "@noclaps/icons";
 ---
 
 <BaseLayout title="The Blog of Random">
-  <main id="swup">
+  <main>
     <Icon name="blog-icon" />
     <div>
       <h1>The Blog of Random</h1>
@@ -22,45 +22,43 @@ import { Icon } from "@noclaps/icons";
     </div>
   </main>
 
-  <style lang="scss">
+  <style>
     main {
       display: grid;
       grid-auto-flow: column;
       grid-template-columns: repeat(2, 1fr);
       grid-gap: 1rem;
 
-      div {
-        align-self: center;
-        justify-self: center;
-
-        h2 {
-          font-family: "Inter", sans-serif;
-
-          @supports (font-variation-settings: normal) {
-            font-family: "Inter var", sans-serif;
-          }
-        }
-      }
-    }
-
-    @media (max-width: 768px) {
-      main {
+      @media (max-width: 768px) {
         display: flex;
         flex-direction: column;
         grid-gap: 0;
         gap: 1rem;
         height: initial;
 
-        svg {
+        & svg {
           width: 50%;
           max-width: 425px;
           height: auto;
         }
 
-        h1,
+        & h1,
         h2 {
           text-align: center;
         }
+      }
+    }
+
+    div {
+      align-self: center;
+      justify-self: center;
+    }
+
+    h2 {
+      font-family: "Inter", sans-serif;
+
+      @supports (font-variation-settings: normal) {
+        font-family: "Inter var", sans-serif;
       }
     }
   </style>

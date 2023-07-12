@@ -7,9 +7,9 @@ import { Icon } from "@noclaps/icons";
   <Icon name="moon" />
 </button>
 
-<style lang="scss">
+<style>
   button {
-    display: none;
+    display: inline-flex;
     text-decoration: none;
     padding: 0.5rem;
     transition: all 0.25s;
@@ -59,13 +59,8 @@ import { Icon } from "@noclaps/icons";
   // Initialise theme
   theme.init();
 
-  const themeToggleButton = document.getElementById(
-    "theme-toggle"
-  ) as HTMLButtonElement;
-
-  // Display theme toggle only if JavaScript is enabled
-  themeToggleButton.style.display = "inline-flex";
-
   // Attach event listener to theme toggle
-  themeToggleButton.addEventListener("click", () => theme.toggle());
+  document
+    .querySelector("#theme-toggle")
+    ?.addEventListener("click", () => theme.toggle());
 </script>

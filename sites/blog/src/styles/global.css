@@ -1,6 +1,7 @@
-@use "colors";
+@import url("./colors.css");
+@import url("./components.css");
 
-// Fonts
+/* Fonts */
 h1,
 h2,
 h3:not(header h3),
@@ -20,13 +21,13 @@ code {
     }
 }
 
-// Root
+/* Root */
 body {
     justify-content: space-between;
 }
 
 main {
-    a {
+    & a {
         text-decoration: none;
         color: var(--link);
 

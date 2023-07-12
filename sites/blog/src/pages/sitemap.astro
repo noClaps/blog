@@ -6,7 +6,7 @@ const posts = await getCollection("posts");
 ---
 
 <BaseLayout title="Sitemap">
-  <main id="swup">
+  <main>
     <h1>Sitemap</h1>
     <ul>
       <li><a href="/about">About</a></li>
@@ -73,21 +73,21 @@ const posts = await getCollection("posts");
       </li>
     </ul>
   </main>
-  <style lang="scss">
+  <style>
     main {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+    }
 
-      li {
-        a {
-          white-space: nowrap;
-        }
+    li {
+      & a {
+        white-space: nowrap;
+      }
 
-        &:has(ul) {
-          list-style-type: none;
-        }
+      &:has(ul) {
+        list-style-type: none;
       }
     }
   </style>

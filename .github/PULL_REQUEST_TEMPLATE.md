@@ -7,8 +7,6 @@
 <!-- If you've solved an open issue, link it here so that it can automatically be resolved -->
 Resolves: #
 
-<!-- Do not have discussions in this PR, use the Discussions feature for that, linking the PR if needed. The only exception to this is suggesting changes in the PR. -->
-
 <!--
 If you are making changes that you have a conflict of interest with, disclose this. Conflicts of interest include: contributions about yourself, family, friends, clients, employers or other relationships.
 

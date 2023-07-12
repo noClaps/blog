@@ -1,23 +1,23 @@
-@mixin light-theme {
-    // Main
+@define-mixin light-theme {
+    /* Main */
     --link: #062;
     --image-bg: #fffc;
     --filter: blur(10px);
 
-    // Accents
+    /* Accents */
     --primary-bg: #6f8;
     --primary-text: #020;
     --selection-bg: #052;
     --selection-text: #6f8;
 }
 
-@mixin dark-theme {
-    // Main
+@define-mixin dark-theme {
+    /* Main */
     --link: #4e7;
     --image-bg: #111c;
     --filter: blur(10px);
 
-    // Accents
+    /* Accents */
     --primary-bg: #052;
     --primary-text: #6f8;
     --selection-bg: #6f8;
@@ -26,18 +26,18 @@
 
 body {
     @media (prefers-color-scheme: dark) {
-        @include dark-theme;
+        @mixin dark-theme;
     }
 
     @media (prefers-color-scheme: light) {
-        @include light-theme;
+        @mixin light-theme;
     }
 
     &.light {
-        @include light-theme;
+        @mixin light-theme;
     }
 
     &.dark {
-        @include dark-theme;
+        @mixin dark-theme;
     }
 }

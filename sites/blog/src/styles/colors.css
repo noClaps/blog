@@ -1,45 +1,45 @@
-@mixin light-theme {
-    // Main
+@define-mixin light-theme {
+    /* Main */
     --link: #05b;
 
-    // Accents
+    /* Accents */
     --primary-bg: #def;
     --primary-text: #013;
     --selection-bg: #048;
     --selection-text: #def;
 
-    // Details
+    /* Details */
     --details-bg: #9fb;
     --details-text: #021;
 
-    // Warning
+    /* Warning */
     --warning-bg: #fdd;
     --warning-text: #402;
 
-    // Note
+    /* Note */
     --note-bg: #fdf;
     --note-text: #212;
 }
 
-@mixin dark-theme {
-    // Main
+@define-mixin dark-theme {
+    /* Main */
     --link: #acf;
 
-    // Accents
+    /* Accents */
     --primary-bg: #048;
     --primary-text: #def;
     --selection-bg: #def;
     --selection-text: #013;
 
-    // Details
+    /* Details */
     --details-bg: #053;
     --details-text: #9fb;
 
-    // Warning
+    /* Warning */
     --warning-bg: #900;
     --warning-text: #fdd;
 
-    // Note
+    /* Note */
     --note-bg: #535;
     --note-text: #fdf;
 }
@@ -47,18 +47,18 @@
 
 body {
     @media (prefers-color-scheme: dark) {
-        @include dark-theme;
+        @mixin dark-theme;
     }
 
     @media (prefers-color-scheme: light) {
-        @include light-theme;
+        @mixin light-theme;
     }
 
     &.light {
-        @include light-theme;
+        @mixin light-theme;
     }
 
     &.dark {
-        @include dark-theme;
+        @mixin dark-theme;
     }
 }
