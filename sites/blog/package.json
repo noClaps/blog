@@ -23,7 +23,7 @@
     "@noclaps/common": "^1.0.1",
     "@noclaps/icons": "^1.0.1",
     "@noclaps/theme-toggle": "^1.0.2",
-    "astro": "^2.8.1",
+    "astro": "^2.8.2",
     "rehype-autolink-headings": "^6.1.1",
     "rehype-mathjax": "^4.0.2",
     "remark-math": "^5.1.1"

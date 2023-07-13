@@ -24,7 +24,7 @@
         "@noclaps/icons": "^1.0.1"
     },
     "devDependencies": {
-        "astro": "^2.8.1",
+        "astro": "^2.8.2",
         "postcss-mixins": "^9.0.4"
     },
     "peerDependencies": {
