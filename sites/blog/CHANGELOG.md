@@ -1,5 +1,26 @@
 # @noclaps/blog
 
+## 4.6.0
+
+### Minor Changes
+
+- [#56](https://github.com/noClaps/ZeroLimits.dev/pull/56) [`478ac47`](https://github.com/noClaps/ZeroLimits.dev/commit/478ac4703abc1bc8effd77b65a26f522fd8753f3) Thanks [@noClaps](https://github.com/noClaps)! - Add Inside of E2EE post
+
+### Patch Changes
+
+- [#51](https://github.com/noClaps/ZeroLimits.dev/pull/51) [`ca06792`](https://github.com/noClaps/ZeroLimits.dev/commit/ca067921dab4d8aaa0652576da70540e0e5a3576) Thanks [@noClaps](https://github.com/noClaps)! - Replace SCSS with Vanilla/PostCSS
+
+- [#54](https://github.com/noClaps/ZeroLimits.dev/pull/54) [`69b165b`](https://github.com/noClaps/ZeroLimits.dev/commit/69b165b891a9b4fe86e00cf502a140fd9f567017) Thanks [@noClaps](https://github.com/noClaps)! - Remove reading time feature
+
+- [#55](https://github.com/noClaps/ZeroLimits.dev/pull/55) [`3e992be`](https://github.com/noClaps/ZeroLimits.dev/commit/3e992bee9f4efb6bcbe8debfc3aa526be06eceba) Thanks [@noClaps](https://github.com/noClaps)! - Update code scrollbar style
+
+- [#47](https://github.com/noClaps/ZeroLimits.dev/pull/47) [`935ee83`](https://github.com/noClaps/ZeroLimits.dev/commit/935ee839f37a21313ffb916842c0889e31b4a4f0) Thanks [@noClaps](https://github.com/noClaps)! - Clean up blog navigation code
+
+- Updated dependencies [[`69767be`](https://github.com/noClaps/ZeroLimits.dev/commit/69767becd1828127a36d605512e0568e1ad57445), [`c83bc24`](https://github.com/noClaps/ZeroLimits.dev/commit/c83bc24f4bc6aa91856e12703d49de83996ff002), [`ca06792`](https://github.com/noClaps/ZeroLimits.dev/commit/ca067921dab4d8aaa0652576da70540e0e5a3576)]:
+  - @noclaps/theme-toggle@1.1.0
+  - @noclaps/common@1.0.2
+  - @noclaps/icons@1.0.2
+
 ## 4.5.2
 
 ### Patch Changes
