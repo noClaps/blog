@@ -1,5 +1,11 @@
 # @noclaps/homepage
 
+## 1.5.0
+
+### Minor Changes
+
+- [`b3b14ef`](https://github.com/noClaps/ZeroLimits.dev/commit/b3b14ef0011ae46cf3b0da99a8c10d80320a51e4) Thanks [@noClaps](https://github.com/noClaps)! - Add Inside of E2EE post to homepage
+
 ## 1.4.0
 
 ### Minor Changes
