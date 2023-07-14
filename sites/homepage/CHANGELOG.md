@@ -1,5 +1,11 @@
 # @noclaps/homepage
 
+## 1.6.0
+
+### Minor Changes
+
+- [#33](https://github.com/noClaps/ZeroLimits.dev/pull/33) [`3148940`](https://github.com/noClaps/ZeroLimits.dev/commit/3148940d22e0965c9cfe0211cc534f6d7f0dc4b5) Thanks [@noClaps](https://github.com/noClaps)! - Include Split-Brain in homepage links
+
 ## 1.5.0
 
 ### Minor Changes
