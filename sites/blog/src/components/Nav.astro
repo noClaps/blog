@@ -8,58 +8,62 @@ const posts = await getCollection("posts");
 <a href="/about">About</a>
 <div class="divider"></div>
 <div class="nav-menu">
-  <p>Science <Icon name="dropdown-arrow" /></p>
-  <menu>
-    {
-      posts.map(
-        (post) =>
-          post.slug.startsWith("science/") && (
-            <a href={`/${post.slug}`}>{post.data.title}</a>
-          )
-      )
-    }
-  </menu>
+    <p>Science <Icon name="dropdown-arrow" /></p>
+    <menu>
+        {
+            posts.map(
+                (post) =>
+                    post.slug.startsWith("science/") && (
+                        <a href={`/${post.slug}`}>
+                            {post.data.shortTitle ?? post.data.title}
+                        </a>
+                    )
+            )
+        }
+    </menu>
 </div>
 <div class="nav-menu">
-  <p>History <Icon name="dropdown-arrow" /></p>
-  <menu>
-    {
-      posts.map(
-        (post) =>
-          post.slug.startsWith("history/") && (
-            <a href={`/${post.slug}`}>{post.data.title}</a>
-          )
-      )
-    }
-  </menu>
+    <p>History <Icon name="dropdown-arrow" /></p>
+    <menu>
+        {
+            posts.map(
+                (post) =>
+                    post.slug.startsWith("history/") && (
+                        <a href={`/${post.slug}`}>
+                            {post.data.shortTitle ?? post.data.title}
+                        </a>
+                    )
+            )
+        }
+    </menu>
 </div>
 <div class="nav-menu">
-  <p>Tech <Icon name="dropdown-arrow" /></p>
-  <menu>
-    <b>Priv/Sec/Anon</b>
-    {
-      posts.map(
-        (post) =>
-          post.slug.startsWith("tech/psa/") && (
-            <a href={`/${post.slug}`}>
-              {post.data.shortTitle ? post.data.shortTitle : post.data.title}
-            </a>
-          )
-      )
-    }
-    <hr />
-    {
-      posts.map(
-        (post) =>
-          post.slug.startsWith("tech/") &&
-          !post.slug.startsWith("tech/psa/") && (
-            <a href={`/${post.slug}`}>
-              {post.data.shortTitle ? post.data.shortTitle : post.data.title}
-            </a>
-          )
-      )
-    }
-  </menu>
+    <p>Tech <Icon name="dropdown-arrow" /></p>
+    <menu>
+        <b>Priv/Sec/Anon</b>
+        {
+            posts.map(
+                (post) =>
+                    post.slug.startsWith("tech/psa/") && (
+                        <a href={`/${post.slug}`}>
+                            {post.data.shortTitle ?? post.data.title}
+                        </a>
+                    )
+            )
+        }
+        <hr />
+        {
+            posts.map(
+                (post) =>
+                    post.slug.startsWith("tech/") &&
+                    !post.slug.startsWith("tech/psa/") && (
+                        <a href={`/${post.slug}`}>
+                            {post.data.shortTitle ?? post.data.title}
+                        </a>
+                    )
+            )
+        }
+    </menu>
 </div>
 <div class="divider"></div>
 <a
