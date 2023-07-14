@@ -1,5 +1,17 @@
 # @noclaps/blog
 
+## 4.7.0
+
+### Minor Changes
+
+- [#33](https://github.com/noClaps/ZeroLimits.dev/pull/33) [`3148940`](https://github.com/noClaps/ZeroLimits.dev/commit/3148940d22e0965c9cfe0211cc534f6d7f0dc4b5) Thanks [@noClaps](https://github.com/noClaps)! - Add Split-Brain post
+
+### Patch Changes
+
+- [#33](https://github.com/noClaps/ZeroLimits.dev/pull/33) [`3148940`](https://github.com/noClaps/ZeroLimits.dev/commit/3148940d22e0965c9cfe0211cc534f6d7f0dc4b5) Thanks [@noClaps](https://github.com/noClaps)! - Add shortTitle to all nav items
+
+- [`0edbce5`](https://github.com/noClaps/ZeroLimits.dev/commit/0edbce548c2b063447a72ec308b189db0f6a2334) Thanks [@noClaps](https://github.com/noClaps)! - Update code scrollbar color
+
 ## 4.6.0
 
 ### Minor Changes
