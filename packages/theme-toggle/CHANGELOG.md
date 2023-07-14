@@ -1,5 +1,20 @@
 # @noclaps/theme-toggle
 
+## 1.1.0
+
+### Minor Changes
+
+- [#49](https://github.com/noClaps/ZeroLimits.dev/pull/49) [`69767be`](https://github.com/noClaps/ZeroLimits.dev/commit/69767becd1828127a36d605512e0568e1ad57445) Thanks [@noClaps](https://github.com/noClaps)! - Rewrite the code for the theme toggle. This should have little to no impact on actual user experience, but makes the code easier to understand.
+
+### Patch Changes
+
+- [#52](https://github.com/noClaps/ZeroLimits.dev/pull/52) [`c83bc24`](https://github.com/noClaps/ZeroLimits.dev/commit/c83bc24f4bc6aa91856e12703d49de83996ff002) Thanks [@noClaps](https://github.com/noClaps)! - Always show theme toggle, regardless of whether JavaScript is enabled
+
+- [#51](https://github.com/noClaps/ZeroLimits.dev/pull/51) [`ca06792`](https://github.com/noClaps/ZeroLimits.dev/commit/ca067921dab4d8aaa0652576da70540e0e5a3576) Thanks [@noClaps](https://github.com/noClaps)! - Replace SCSS with Vanilla/PostCSS
+
+- Updated dependencies [[`ca06792`](https://github.com/noClaps/ZeroLimits.dev/commit/ca067921dab4d8aaa0652576da70540e0e5a3576)]:
+  - @noclaps/icons@1.0.2
+
 ## 1.0.2
 
 ### Patch Changes

@@ -120,6 +120,17 @@
             ]
         },
         {
+            "url": "https://blog.zerolimits.dev/tech/psa/inside-e2ee",
+            "favicon": "https://blog.zerolimits.dev/icon/favicon.svg",
+            "title": "Inside of E2EE",
+            "desc": "Wait... that's illegal",
+            "tags": [
+                "posts",
+                "tech",
+                "security"
+            ]
+        },
+        {
             "url": "https://gallery.zerolimits.dev",
             "favicon": "https://gallery.zerolimits.dev/icon/favicon.svg",
             "title": "Aperturic Focus",

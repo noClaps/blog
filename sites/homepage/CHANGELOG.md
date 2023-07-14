@@ -1,5 +1,25 @@
 # @noclaps/homepage
 
+## 1.5.0
+
+### Minor Changes
+
+- [`b3b14ef`](https://github.com/noClaps/ZeroLimits.dev/commit/b3b14ef0011ae46cf3b0da99a8c10d80320a51e4) Thanks [@noClaps](https://github.com/noClaps)! - Add Inside of E2EE post to homepage
+
+## 1.4.0
+
+### Minor Changes
+
+- [#53](https://github.com/noClaps/ZeroLimits.dev/pull/53) [`6285924`](https://github.com/noClaps/ZeroLimits.dev/commit/6285924f3fcbb311845e5876dafa943eacd8f4d7) Thanks [@noClaps](https://github.com/noClaps)! - Use Fuse.js for search algorithm
+
+### Patch Changes
+
+- [#51](https://github.com/noClaps/ZeroLimits.dev/pull/51) [`ca06792`](https://github.com/noClaps/ZeroLimits.dev/commit/ca067921dab4d8aaa0652576da70540e0e5a3576) Thanks [@noClaps](https://github.com/noClaps)! - Replace SCSS with Vanilla/PostCSS
+
+- Updated dependencies [[`69767be`](https://github.com/noClaps/ZeroLimits.dev/commit/69767becd1828127a36d605512e0568e1ad57445), [`c83bc24`](https://github.com/noClaps/ZeroLimits.dev/commit/c83bc24f4bc6aa91856e12703d49de83996ff002), [`ca06792`](https://github.com/noClaps/ZeroLimits.dev/commit/ca067921dab4d8aaa0652576da70540e0e5a3576)]:
+  - @noclaps/theme-toggle@1.1.0
+  - @noclaps/common@1.0.2
+
 ## 1.3.2
 
 ### Patch Changes

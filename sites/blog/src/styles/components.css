@@ -8,11 +8,6 @@
         background-color: var(--note-text);
         color: var(--note-bg);
     }
-
-    ::-moz-selection {
-        background-color: var(--note-text);
-        color: var(--note-bg);
-    }
 }
 
 .quote {
@@ -25,11 +20,6 @@
         background-color: var(--primary-text);
         color: var(--primary-bg);
     }
-
-    ::-moz-selection {
-        background-color: var(--primary-text);
-        color: var(--primary-bg);
-    }
 }
 
 .warning {
@@ -39,11 +29,6 @@
     }
 
     ::selection {
-        background-color: var(--warning-text);
-        color: var(--warning-bg);
-    }
-
-    ::-moz-selection {
         background-color: var(--warning-text);
         color: var(--warning-bg);
     }
