@@ -4,7 +4,7 @@
 
 ### Minor Changes
 
-- [#56](https://github.com/noClaps/ZeroLimits.dev/pull/56) [`478ac47`](https://github.com/noClaps/ZeroLimits.dev/commit/478ac4703abc1bc8effd77b65a26f522fd8753f3) Thanks [@noClaps](https://github.com/noClaps)! - Add Inside of E2EE post
+- [#56](https://github.com/noClaps/ZeroLimits.dev/pull/56) [`478ac47`](https://github.com/noClaps/ZeroLimits.dev/commit/478ac4703abc1bc8effd77b65a26f522fd8753f3) Thanks [@MesterMan03](https://github.com/MesterMan03)! - Add Inside of E2EE post
 
 ### Patch Changes
 
