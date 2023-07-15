@@ -69,7 +69,7 @@ implementation of your suggestion by a lot.
 ### Getting started
 
 There are build instructions in the [README](../README.md) for this repository so that you can get started working on
-the website. The sites are made using [Astro](https://github.com/withastro/astro), and I recommend you go through
+the website. I also recommend going through the [documentation](https://docs.zerolimits.dev) to see how everything works. The sites are made using [Astro](https://github.com/withastro/astro), and I recommend you go through
 their [documentation](https://docs.astro.build) to see its features and limitations. Report any bugs you find in their
 site generator to their [issue tracker](https://github.com/withastro/astro/issues).
 
