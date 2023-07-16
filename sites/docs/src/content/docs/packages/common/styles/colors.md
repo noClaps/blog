@@ -1,5 +1,5 @@
 ---
-title: Colors
+title: Styles - Colors
 ---
 
 ## Code explanation
@@ -101,6 +101,10 @@ This applies the `--selection-bg` and `--selection-text` CSS variables to the [`
 
 - `--selection-bg`: The background color of the selected text.
 - `--selection-text`: The color of the selected text.
+
+## Usage
+
+See [Styles - Global](./global).
 
 ## Contributing
 

@@ -18,3 +18,6 @@ Add the `@noclaps/common` package to `package.json`.
 - [Head](./head)
 - [Page404](./page404)
 - [Sidebar](./sidebar)
+- Styles
+  - [Colors](./styles/colors)
+  - [Global](./styles/global)
