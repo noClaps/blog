@@ -10,11 +10,13 @@ export default defineConfig({
       },
       lastUpdated: true,
       title: 'Documentation',
+      logo: { src: "./src/assets/favicon.svg" },
       tableOfContents: {
         maxHeadingLevel: 6
       },
       social: {
         github: 'https://github.com/noClaps/ZeroLimits.dev',
+        mastodon: "https://mstdn.party/@noClaps"
       },
       sidebar: [
         {
@@ -40,15 +42,14 @@ export default defineConfig({
             rel: "stylesheet",
             href: "https://rsms.me/inter/inter.css"
           }
-        },
-        {
-          tag: "style",
-          content: ":root { --sl-font: 'Inter', sans-serif; } @supports(font-variation-settings: normal) {:root { --sl-font: 'Inter var', sans-serif; }}"
         }
+      ],
+      customCss: [
+        "./src/styles/style.css"
       ]
     }),
   ],
 
-// Process images with sharp: https://docs.astro.build/en/guides/assets/#using-sharp
-image: { service: { entrypoint: 'astro/assets/services/sharp' } },
+  // Process images with sharp: https://docs.astro.build/en/guides/assets/#using-sharp
+  image: { service: { entrypoint: 'astro/assets/services/sharp' } },
 });

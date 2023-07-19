@@ -1,0 +1,7 @@
+:root {
+    --sl-font: "Inter", sans-serif;
+
+    @supports (font-variation-settings: normal) {
+        --sl-font: "Inter var", sans-serif;
+    }
+}
