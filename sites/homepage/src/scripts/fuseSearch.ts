@@ -16,7 +16,7 @@ const response = await fetch("/links.json").then(r => r.json())
 const links = response["links"] as Links[]
 
 function generateResultsHTML(result: Links) {
-    const resultHTML = `<a href=${result.url} target="_blank">
+    const resultHTML = `<a href=${result.url} ${result.title === "Mastodon" ? "rel=me" : ""} target="_blank">
         <div>
             ${result.favicon.startsWith("https") ? `<img src=${result.favicon} />` : result.favicon}
             <p>${result.title}</p>
