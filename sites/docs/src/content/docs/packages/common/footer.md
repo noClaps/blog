@@ -62,6 +62,7 @@ This sets the option and allowed values that can be used in the component. This 
   <a href="https://github.com/noClaps/ZeroLimits.dev" title="Source Code">
     <Icon name="github" />
   </a>
+  <a rel="me" href="https://mstdn.party/@noClaps"><Icon name="mastodon"></a>
   {
     site === "blog" && (
       <>
@@ -77,7 +78,7 @@ This sets the option and allowed values that can be used in the component. This 
 </footer>
 ```
 
-This is the main HTML of the Footer component. There is a link to the GitHub repository on all of the sites where the Footer component is included, as well as the GitHub icon. If the `site` is set to `blog`, then a link to the RSS feed is also shown, as well as a sitemap if JavaScript is disabled.
+This is the main HTML of the Footer component. There is a link to the [GitHub repository](https://github.com/noClaps/ZeroLimits.dev) on all of the sites where the Footer component is included, as well as the GitHub icon. There is also a link to the [noClaps Mastodon account](https://mstdn.party/@noClaps). If the `site` is set to `blog`, then a link to the RSS feed is also shown, as well as a sitemap if JavaScript is disabled.
 
 ### Styles
 
