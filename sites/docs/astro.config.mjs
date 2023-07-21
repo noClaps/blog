@@ -9,7 +9,8 @@ export default defineConfig({
         baseUrl: "https://github.com/noClaps/ZeroLimits.dev/edit/main/sites/docs"
       },
       lastUpdated: true,
-      title: 'Documentation',
+      title: 'The Docs-ter',
+      description: "The documentation for the ZeroLimits.dev sites",
       logo: { src: "./src/assets/favicon.svg" },
       tableOfContents: {
         maxHeadingLevel: 6
