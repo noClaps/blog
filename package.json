@@ -27,7 +27,7 @@
     "preview:blog": "turbo preview --filter=blog",
     "preview:gallery": "turbo preview --filter=gallery",
     "preview:homepage": "turbo preview --filter=homepage",
-    "preview:docs": "turbo preview --filter=docs",
+    "preview:docs": "turbo preview --filter=docs"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.8",
