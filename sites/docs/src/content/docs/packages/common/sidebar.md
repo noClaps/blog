@@ -12,7 +12,7 @@ import { Icon } from "@noclaps/icons";
 ---
 ```
 
-This imports the Icon component from the `icons` package to be used in the component.
+This imports the Icon component from the [`icons` package](/packages/icons) to be used in the component.
 
 ### Button
 
