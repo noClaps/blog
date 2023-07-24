@@ -17,7 +17,7 @@ Add the `@noclaps/icons` package to `package.json`.
 
 ### `name`
 
-The name passed to the `<Icon />` component is the icon that is returned. For instance, if the name `moon` is passed to the component, then the following SVG is returned:
+The name passed to the Icon component is the icon that is returned. For instance, if the name `moon` is passed to the component, then the following SVG is returned:
 
 ```xml
 <svg
@@ -50,7 +50,7 @@ const { name } = Astro.props;
 ---
 ```
 
-This sets the options for the `<Icon />` component. These options are explained above.
+This sets the options for the Icon component. These options are explained above.
 
 ### Icons
 
@@ -74,7 +74,7 @@ This sets the options for the `<Icon />` component. These options are explained 
 ...
 ```
 
-These are the icons that are available in the `<Icon />` component. When the name is passed to the component, it checks which icon is requested, and returns the SVG for that icon.
+These are the icons that are available in the Icon component. When the name is passed to the component, it checks which icon is requested, and returns the SVG for that icon.
 
 ### Styles
 
