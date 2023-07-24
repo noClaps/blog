@@ -1,5 +1,5 @@
 ---
-title: Page404
+title: 404 Page
 ---
 
 ## Code explanation
