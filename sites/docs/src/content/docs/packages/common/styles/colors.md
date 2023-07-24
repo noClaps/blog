@@ -58,7 +58,7 @@ These are the common colors for all of the ZeroLimits.dev sites.
 }
 ```
 
-These are used to show and hide the theme toggle icons. In light mode, the moon icon is displayed and the sun icon is hidden. In dark mode, the sun icon is displayed and the moon icon is hidden.
+These are used to show and hide the [theme toggle](/packages/theme-toggle) icons. In light mode, the moon icon is displayed and the sun icon is hidden. In dark mode, the sun icon is displayed and the moon icon is hidden.
 
 ### Applying the styles
 
