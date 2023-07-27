@@ -21,12 +21,12 @@ importers:
   packages/common:
     dependencies:
       '@noclaps/icons':
-        specifier: ^1.0.2
+        specifier: workspace:^
         version: link:../icons
     devDependencies:
       astro:
-        specifier: ^2.9.1
-        version: 2.9.1(sharp@0.32.4)
+        specifier: ^2.9.3
+        version: 2.9.3(sharp@0.32.4)
       postcss-mixins:
         specifier: ^9.0.4
         version: 9.0.4(postcss@8.4.27)
@@ -34,24 +34,24 @@ importers:
   packages/icons:
     devDependencies:
       astro:
-        specifier: ^2.9.1
-        version: 2.9.1(sharp@0.32.4)
+        specifier: ^2.9.3
+        version: 2.9.3(sharp@0.32.4)
 
   packages/theme-toggle:
     dependencies:
       '@noclaps/icons':
-        specifier: ^1.0.2
+        specifier: workspace:^
         version: link:../icons
     devDependencies:
       astro:
-        specifier: ^2.9.1
-        version: 2.9.1(sharp@0.32.4)
+        specifier: ^2.9.3
+        version: 2.9.3(sharp@0.32.4)
 
   sites/blog:
     dependencies:
       '@astrojs/mdx':
         specifier: ^0.19.7
-        version: 0.19.7(astro@2.9.1)
+        version: 0.19.7(astro@2.9.3)
       '@astrojs/rss':
         specifier: ^2.4.3
         version: 2.4.3
@@ -65,17 +65,17 @@ importers:
         specifier: ^5.0.5
         version: 5.0.5
       '@noclaps/common':
-        specifier: ^1.0.2
+        specifier: workspace:^
         version: link:../../packages/common
       '@noclaps/icons':
-        specifier: ^1.0.2
+        specifier: workspace:^
         version: link:../../packages/icons
       '@noclaps/theme-toggle':
-        specifier: ^1.1.0
+        specifier: workspace:^
         version: link:../../packages/theme-toggle
       astro:
-        specifier: ^2.9.1
-        version: 2.9.1(sharp@0.32.4)
+        specifier: ^2.9.3
+        version: 2.9.3(sharp@0.32.4)
       rehype-autolink-headings:
         specifier: ^6.1.1
         version: 6.1.1
@@ -96,8 +96,8 @@ importers:
   sites/docs:
     dependencies:
       '@astrojs/starlight':
-        specifier: ^0.5.5
-        version: 0.5.5(astro@2.7.0)
+        specifier: ^0.5.6
+        version: 0.5.6(astro@2.7.0)
       astro:
         specifier: 2.7.0
         version: 2.7.0(sharp@0.32.4)
@@ -111,17 +111,17 @@ importers:
         specifier: ^1.4.0
         version: 1.4.0
       '@noclaps/common':
-        specifier: ^1.0.2
+        specifier: workspace:^
         version: link:../../packages/common
       '@noclaps/icons':
-        specifier: ^1.0.2
+        specifier: workspace:^
         version: link:../../packages/icons
       '@noclaps/theme-toggle':
-        specifier: ^1.1.0
+        specifier: workspace:^
         version: link:../../packages/theme-toggle
       astro:
-        specifier: ^2.9.1
-        version: 2.9.1(sharp@0.32.4)
+        specifier: ^2.9.3
+        version: 2.9.3(sharp@0.32.4)
       medium-zoom:
         specifier: ^1.0.8
         version: 1.0.8
@@ -139,14 +139,14 @@ importers:
         specifier: ^1.4.0
         version: 1.4.0
       '@noclaps/common':
-        specifier: ^1.0.2
+        specifier: workspace:^
         version: link:../../packages/common
       '@noclaps/theme-toggle':
-        specifier: ^1.1.0
+        specifier: workspace:^
         version: link:../../packages/theme-toggle
       astro:
-        specifier: ^2.9.1
-        version: 2.9.1(sharp@0.32.4)
+        specifier: ^2.9.3
+        version: 2.9.3(sharp@0.32.4)
     devDependencies:
       fuse.js:
         specifier: ^6.6.2
@@ -211,13 +211,13 @@ packages:
       - supports-color
     dev: false
 
-  /@astrojs/markdown-remark@2.2.1(astro@2.9.1):
+  /@astrojs/markdown-remark@2.2.1(astro@2.9.3):
     resolution: {integrity: sha512-VF0HRv4GpC1XEMLnsKf6jth7JSmlt9qpqP0josQgA2eSpCIAC/Et+y94mgdBIZVBYH/yFnMoIxgKVe93xfO2GA==}
     peerDependencies:
       astro: ^2.5.0
     dependencies:
       '@astrojs/prism': 2.1.2
-      astro: 2.9.1(sharp@0.32.4)
+      astro: 2.9.3(sharp@0.32.4)
       github-slugger: 1.5.0
       import-meta-resolve: 2.2.2
       rehype-raw: 6.1.1
@@ -260,11 +260,11 @@ packages:
       - supports-color
     dev: false
 
-  /@astrojs/mdx@0.19.7(astro@2.9.1):
+  /@astrojs/mdx@0.19.7(astro@2.9.3):
     resolution: {integrity: sha512-mfEbBD7oi8yBHhcJucEjnrquREkJ3os+jioURP8BR2B8tOV2rV2j8trvmLUgfS+P/+HevGObxCTjcRYxn6T7eg==}
     engines: {node: '>=16.12.0'}
     dependencies:
-      '@astrojs/markdown-remark': 2.2.1(astro@2.9.1)
+      '@astrojs/markdown-remark': 2.2.1(astro@2.9.3)
       '@astrojs/prism': 2.1.2
       '@mdx-js/mdx': 2.3.0
       acorn: 8.10.0
@@ -307,8 +307,8 @@ packages:
       zod: 3.21.4
     dev: false
 
-  /@astrojs/starlight@0.5.5(astro@2.7.0):
-    resolution: {integrity: sha512-pDmm18CKaxqtpE3LyqKvi8Ibl1ftoAecDeis8a4YQAycoDdChnqvgeqaBNW2t5Zhpk2n6QA6DLt6z5Mbh6NM3Q==}
+  /@astrojs/starlight@0.5.6(astro@2.7.0):
+    resolution: {integrity: sha512-gOM67MjKV8JJlhZSWj63C/hKLJs+k9DCL3k/n5jQ1pL3ZZYLpLk/dWFx03m0wBPvq1WwjI/WzvUL9r4j2lAYAg==}
     peerDependencies:
       astro: ^2.5.0
     dependencies:
@@ -318,7 +318,7 @@ packages:
       '@types/mdast': 3.0.12
       astro: 2.7.0(sharp@0.32.4)
       bcp-47: 2.1.0
-      execa: 7.1.1
+      execa: 7.2.0
       hast-util-select: 5.0.5
       hastscript: 7.2.0
       pagefind: 1.0.0-alpha.8
@@ -1360,8 +1360,8 @@ packages:
   /@types/json5@0.0.30:
     resolution: {integrity: sha512-sqm9g7mHlPY/43fcSNrCYfOeX9zkTTK+euO5E6+CVijSMm5tTjkVdwdqRkY3ljjIAf8679vps5jKUoJBCLsMDA==}
 
-  /@types/katex@0.16.1:
-    resolution: {integrity: sha512-cwglq2A63Yk082CQk0t8LIoDhZAVgJqkumLyk3grpg3K8sevaDW//Qsspmxj9Sf+97biqt79CfAlPrvizHlP0w==}
+  /@types/katex@0.16.2:
+    resolution: {integrity: sha512-dHsSjSlU/EWEEbeNADr3FtZZOAXPkFPUO457QCnoNqcZQXNqNEu/svQd0Nritvd3wNff4vvC/f4e6xgX3Llt8A==}
     dev: false
 
   /@types/mathjax@0.0.37:
@@ -1655,8 +1655,8 @@ packages:
       - terser
     dev: false
 
-  /astro@2.9.1(sharp@0.32.4):
-    resolution: {integrity: sha512-cY+ilz7zbKx21QA4LRJtE49NakkhUVh6kU9LqNMThz/Fqv1Rkz0uJBWIUJfJqpOmqnpFEW2G245gF4+bUA7aRQ==}
+  /astro@2.9.3(sharp@0.32.4):
+    resolution: {integrity: sha512-EcFYnJytMgDhBf1MxWIG1GNwfDL2yRvVt+4aguYbcFDNz8EjLKgpLYbbTzR2VlIQu1vpxImZZ0bmPy8Hd+tAfw==}
     engines: {node: '>=16.12.0', npm: '>=6.14.0'}
     hasBin: true
     peerDependencies:
@@ -1668,7 +1668,7 @@ packages:
       '@astrojs/compiler': 1.6.2
       '@astrojs/internal-helpers': 0.1.1
       '@astrojs/language-server': 1.0.8
-      '@astrojs/markdown-remark': 2.2.1(astro@2.9.1)
+      '@astrojs/markdown-remark': 2.2.1(astro@2.9.3)
       '@astrojs/telemetry': 2.1.1
       '@astrojs/webapi': 2.2.0
       '@babel/core': 7.22.9
@@ -1834,7 +1834,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001517
-      electron-to-chromium: 1.4.472
+      electron-to-chromium: 1.4.473
       node-releases: 2.0.13
       update-browserslist-db: 1.0.11(browserslist@4.21.9)
 
@@ -2180,7 +2180,7 @@ packages:
     dependencies:
       bundle-name: 3.0.0
       default-browser-id: 3.0.0
-      execa: 7.1.1
+      execa: 7.2.0
       titleize: 3.0.0
 
   /defaults@1.0.4:
@@ -2259,8 +2259,8 @@ packages:
   /eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
 
-  /electron-to-chromium@1.4.472:
-    resolution: {integrity: sha512-JL+vQaO4/3mnE68YLaO6tS61YFTlQp8/9JJj1kMP0CL9GHjLYt8t3T0aA3sW3PvdiXjnVeaZ6Kf0mGtt9+2j+Q==}
+  /electron-to-chromium@1.4.473:
+    resolution: {integrity: sha512-aVfC8+440vGfl06l8HKKn8/PD5jRfSnLkTTD65EFvU46igbpQRri1gxSzW9/+TeUlwYzrXk1sw867T96zlyECA==}
 
   /emmet@2.4.5:
     resolution: {integrity: sha512-xOiVNINJFh0dMik+KzXSEYbAnFLTnadEzanxj7+F15uIf6avQwu3uPa1wI/8AFtOWKZ8lHg7TjC83wXcPhgOPw==}
@@ -2546,8 +2546,8 @@ packages:
       signal-exit: 3.0.7
       strip-final-newline: 3.0.0
 
-  /execa@7.1.1:
-    resolution: {integrity: sha512-wH0eMf/UXckdUYnO21+HDztteVv05rq2GXksxT4fCGeHkBhw1DROXh40wcjMcRqDOWE7iPJ4n3M7e2+YFP+76Q==}
+  /execa@7.2.0:
+    resolution: {integrity: sha512-UduyVP7TLB5IcAQl+OzLyLcS/l32W/GLg+AhHJ+ow40FOk2U3SAllPwR44v4vmdFwIWqpdwxxpQbF1n5ta9seA==}
     engines: {node: ^14.18.0 || ^16.14.0 || >=18.0.0}
     dependencies:
       cross-spawn: 7.0.3
@@ -3889,7 +3889,7 @@ packages:
   /micromark-extension-math@2.1.2:
     resolution: {integrity: sha512-es0CcOV89VNS9wFmyn+wyFTKweXGW4CEvdaAca6SWRWPyYCbBisnjaHLjWO4Nszuiud84jCpkHsqAJoa768Pvg==}
     dependencies:
-      '@types/katex': 0.16.1
+      '@types/katex': 0.16.2
       katex: 0.16.8
       micromark-factory-space: 1.1.0
       micromark-util-character: 1.2.0

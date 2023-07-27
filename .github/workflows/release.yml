@@ -24,13 +24,18 @@ jobs:
         with:
           node-version: latest
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
       - name: Install Dependencies
-        run: npm ci
+        run: pnpm install
 
       - name: Create Release Pull Request
         uses: changesets/action@v1
         with:
-          publish: npx changeset tag
+          publish: pnpm changeset tag
           commit: Update version
           title: "[CI] Update version"
         env:
