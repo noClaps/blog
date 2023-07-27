@@ -114,6 +114,8 @@ function hideResults() {
 }
 ```
 
+The styles for the search results are in the `searchResults.css` stylesheet.
+
 ### Hints
 
 Random hints are shown on each page load in order to help those who may not know what to search for. This is done by having an array of hint strings, and using a random number generator to pick an index in the array.
@@ -140,7 +142,7 @@ Random hints are shown on each page load in order to help those who may not know
 
 ## Contributing
 
-The search function should not be modified without good reason. The hints array may be modified to add new strings, or remove old or irrelevant ones.
+The search function should not be modified without good reason. The hints array may be modified to add new strings, or remove old or irrelevant ones. The styles of the different elements of the search component may also be modified.
 
 ## Licenses
 
