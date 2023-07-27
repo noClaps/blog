@@ -35,3 +35,6 @@ This is the documentation for the code used in [Aperturic Focus](https://gallery
     This will build the site and place it in `sites/gallery/dist`.
 
 ## Components
+
+- [Photos](./photos)
+- [Gallery (component)](./gallery-component)
