@@ -33,7 +33,6 @@ For details on each, see the documentation:
     sites, use:
 
     ```bash
-    npm run dev -- --filter=homepage # for homepage
     npm run dev -- --filter=gallery # for gallery
     npm run dev -- --filter=blog # for blog
     ```
@@ -45,7 +44,6 @@ For details on each, see the documentation:
     ```
 
     This will build all 3 sites and place it into their respective `dist/` folders:
-    - `sites/homepage/dist/` for the homepage,
     - `sites/gallery/dist/` for the gallery,
     - `sites/blog/dist/` for the blog.
 
@@ -60,3 +58,5 @@ with `npm install`.
 the [MIT license](https://github.com/withastro/astro/blob/main/LICENSE).
 
 The [Inter](https://rsms.me/inter/) font is licensed under the [OFL-1.1 license](https://github.com/rsms/inter/blob/master/LICENSE.txt).
+
+Any additional licenses for the sites and packages are detailed in their respective [documentation](https://docs.zerolimits.dev).
