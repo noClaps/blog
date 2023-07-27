@@ -1,5 +1,6 @@
 ---
 title: Styles - Global
+description: The common styles for ZeroLimits.dev sites
 ---
 
 This, and the [`colors`](./colors) stylesheet are meant to create uniformity in the design of the ZeroLimits.dev sites. As many styles as possible should be written here, instead of repeating them in the individual stylesheets for the sites.

@@ -1,5 +1,6 @@
 ---
 title: Styles - Colors
+description: The common colors for ZeroLimits.dev sites
 ---
 
 ## Code explanation

@@ -1,5 +1,6 @@
 ---
 title: Head
+description: The head component used in the ZeroLimits.dev sites
 ---
 
 ## Options

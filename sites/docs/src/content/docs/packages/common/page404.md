@@ -1,5 +1,6 @@
 ---
 title: 404 Page
+description: The 404 page of all of the ZeroLimits.dev sites
 ---
 
 ## Code explanation

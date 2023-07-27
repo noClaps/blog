@@ -1,5 +1,6 @@
 ---
 title: Footer
+description: The footer used in the ZeroLimits.dev sites
 ---
 
 ## Options

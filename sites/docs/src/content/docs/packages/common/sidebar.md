@@ -1,5 +1,6 @@
 ---
 title: Sidebar
+description: The common sidebar used in the ZeroLimits.dev sites
 ---
 
 ## Code explanation
