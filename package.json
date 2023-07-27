@@ -8,10 +8,6 @@
   },
   "author": "noClaps",
   "license": "0BSD",
-  "workspaces": [
-    "packages/*",
-    "sites/*"
-  ],
   "scripts": {
     "dev": "turbo start",
     "dev:blog": "turbo start --filter=blog",
@@ -32,6 +28,6 @@
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.8",
     "@changesets/cli": "^2.26.2",
-    "turbo": "^1.10.9"
+    "turbo": "^1.10.12"
   }
 }
