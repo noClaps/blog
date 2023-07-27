@@ -1,6 +1,6 @@
 ---
 title: Homepage
-description: How to contribute to the homepage
+description: The most interesting boring homepage you've ever seen
 ---
 
 This is the documentation for all of the code used in the [homepage](https://zerolimits.dev) of ZeroLimits.dev.
