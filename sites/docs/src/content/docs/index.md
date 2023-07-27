@@ -1,5 +1,5 @@
 ---
-title: Documentation
+title: The Docs-ter
 description: This is the documentation for ZeroLimits.dev projects
 tableOfContents: false
 ---
