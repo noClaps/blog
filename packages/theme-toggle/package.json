@@ -20,10 +20,10 @@
   ],
   "scripts": {},
   "dependencies": {
-    "@noclaps/icons": "workspace:^"
+    "@noclaps/icons": "^1.0.2"
   },
   "devDependencies": {
-    "astro": "^2.9.3"
+    "astro": "^2.9.6"
   },
   "peerDependencies": {
     "astro": "^2.0.0-beta.0"

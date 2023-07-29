@@ -8,6 +8,10 @@
   },
   "author": "noClaps",
   "license": "0BSD",
+  "workspaces": [
+    "packages/*",
+    "sites/*"
+  ],
   "scripts": {
     "dev": "turbo start",
     "dev:blog": "turbo start --filter=blog",
