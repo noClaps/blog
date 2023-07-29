@@ -18,16 +18,11 @@
     "dev:gallery": "turbo start --filter=gallery",
     "dev:homepage": "turbo start --filter=homepage",
     "dev:docs": "turbo start --filter=docs",
-    "build": "turbo build",
-    "build:blog": "turbo build --filter=blog",
-    "build:gallery": "turbo build --filter=gallery",
-    "build:homepage": "turbo build --filter=homepage",
-    "build:docs": "turbo build --filter=docs",
-    "preview": "turbo preview",
-    "preview:blog": "turbo preview --filter=blog",
-    "preview:gallery": "turbo preview --filter=gallery",
-    "preview:homepage": "turbo preview --filter=homepage",
-    "preview:docs": "turbo preview --filter=docs"
+    "preview": "turbo build preview",
+    "preview:blog": "turbo build preview --filter=blog",
+    "preview:gallery": "turbo build preview --filter=gallery",
+    "preview:homepage": "turbo build preview --filter=homepage",
+    "preview:docs": "turbo build preview --filter=docs"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.8",
