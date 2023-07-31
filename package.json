@@ -14,12 +14,19 @@
   ],
   "scripts": {
     "dev": "turbo start",
-    "build": "turbo build",
-    "preview": "turbo preview"
+    "dev:blog": "turbo start --filter=blog",
+    "dev:gallery": "turbo start --filter=gallery",
+    "dev:homepage": "turbo start --filter=homepage",
+    "dev:docs": "turbo start --filter=docs",
+    "preview": "turbo build preview",
+    "preview:blog": "turbo build preview --filter=blog",
+    "preview:gallery": "turbo build preview --filter=gallery",
+    "preview:homepage": "turbo build preview --filter=homepage",
+    "preview:docs": "turbo build preview --filter=docs"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.8",
     "@changesets/cli": "^2.26.2",
-    "turbo": "^1.10.9"
+    "turbo": "^1.10.12"
   }
 }

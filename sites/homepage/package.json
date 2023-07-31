@@ -16,10 +16,10 @@
         "astro": "astro"
     },
     "dependencies": {
-        "@astrojs/sitemap": "^1.4.0",
+        "@astrojs/sitemap": "^2.0.1",
         "@noclaps/common": "^1.0.2",
         "@noclaps/theme-toggle": "^1.1.0",
-        "astro": "^2.9.0"
+        "astro": "^2.9.6"
     },
     "devDependencies": {
         "fuse.js": "^6.6.2",

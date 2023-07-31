@@ -69,7 +69,7 @@ implementation of your suggestion by a lot.
 ### Getting started
 
 There are build instructions in the [README](../README.md) for this repository so that you can get started working on
-the website. The sites are made using [Astro](https://github.com/withastro/astro), and I recommend you go through
+the website. I also recommend going through the [documentation](https://docs.zerolimits.dev) to see how everything works. The sites are made using [Astro](https://github.com/withastro/astro), and I recommend you go through
 their [documentation](https://docs.astro.build) to see its features and limitations. Report any bugs you find in their
 site generator to their [issue tracker](https://github.com/withastro/astro/issues).
 
@@ -89,19 +89,3 @@ If you open a draft PR, I will not suggest or modify anything without specifical
 responsibility of keeping up with changes in the main branch on you. If you have an open PR that's behind the main
 branch, I may merge and rebase your branch to match the main branch. If you want to avoid this, you can ask me to not
 rebase your branch and I will respect that.
-
-### Changesets
-
-You must add a changeset to the `.changeset` directory. This will be a markdown file in the format:
-
-```md
----
-@noClaps/[package name]: [type of change: "PATCH" | "MINOR" | "MAJOR"]
-// If you're modifying multiple packages
-@noClaps/[package name 2]: [type of change: "PATCH" | "MINOR" | "MAJOR"]
----
-
-A short description of your change, usually your commit message or PR title.
-```
-
-If you don't understand, don't worry. I will add a changeset if you don't add one.
