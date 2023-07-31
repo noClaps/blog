@@ -1,5 +1,15 @@
 # @noclaps/homepage
 
+## 1.7.0
+
+### Minor Changes
+
+- [#60](https://github.com/noClaps/ZeroLimits.dev/pull/60) [`4192e68`](https://github.com/noClaps/ZeroLimits.dev/commit/4192e682f0d6c60a16ae2f900a24f08777de7d7d) Thanks [@noClaps](https://github.com/noClaps)! - Add link to docs
+
+### Patch Changes
+
+- [`9c29b66`](https://github.com/noClaps/ZeroLimits.dev/commit/9c29b66617ebdf5c2c3a596f870625c97073bf8d) Thanks [@noClaps](https://github.com/noClaps)! - Add documentation tag to docs link
+
 ## 1.6.0
 
 ### Minor Changes
