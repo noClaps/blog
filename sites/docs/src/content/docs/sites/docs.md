@@ -102,7 +102,11 @@ The content of the documentation should be clear and concise. It should be split
 
 - Licenses
 
-  If any licenses other than those listed in the [documentation homepage](/#licenses) are used, then they should be detailed in this section.
+  If any licenses other than those listed in the [documentation homepage](/#licenses) are used, then they should be detailed in this section. Licenses should be added in the format:
+
+  ```md
+  [Tool name](https://link-to-tool-homepage.tld), [short description of tool] is licensed under [License name](https://link-to-tool-license.tld).
+  ```
 
 ## Licenses
 
