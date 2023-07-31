@@ -17,12 +17,10 @@
     "dev:blog": "turbo start --filter=blog",
     "dev:gallery": "turbo start --filter=gallery",
     "dev:homepage": "turbo start --filter=homepage",
-    "dev:docs": "turbo start --filter=docs",
     "preview": "turbo build preview",
     "preview:blog": "turbo build preview --filter=blog",
     "preview:gallery": "turbo build preview --filter=gallery",
-    "preview:homepage": "turbo build preview --filter=homepage",
-    "preview:docs": "turbo build preview --filter=docs"
+    "preview:homepage": "turbo build preview --filter=homepage"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.8",
