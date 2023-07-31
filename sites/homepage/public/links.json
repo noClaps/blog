@@ -194,6 +194,16 @@
                 "social",
                 "contact"
             ]
+        },
+        {
+            "url": "https://docs.zerolimits.dev",
+            "title": "The Docs-ter",
+            "favicon": "https://docs.zerolimits.dev/favicon.svg",
+            "desc": "This is the documentation for ZeroLimits.dev projects.",
+            "tags": [
+                "contribute",
+                "code"
+            ]
         }
     ]
 }
