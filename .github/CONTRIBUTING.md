@@ -89,19 +89,3 @@ If you open a draft PR, I will not suggest or modify anything without specifical
 responsibility of keeping up with changes in the main branch on you. If you have an open PR that's behind the main
 branch, I may merge and rebase your branch to match the main branch. If you want to avoid this, you can ask me to not
 rebase your branch and I will respect that.
-
-### Changesets
-
-You must add a changeset to the `.changeset` directory. This will be a markdown file in the format:
-
-```md
----
-@noClaps/[package name]: [type of change: "PATCH" | "MINOR" | "MAJOR"]
-// If you're modifying multiple packages
-@noClaps/[package name 2]: [type of change: "PATCH" | "MINOR" | "MAJOR"]
----
-
-A short description of your change, usually your commit message or PR title.
-```
-
-If you don't understand, don't worry. I will add a changeset if you don't add one.
