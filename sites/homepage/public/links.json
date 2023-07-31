@@ -193,7 +193,8 @@
             "desc": "This is the documentation for ZeroLimits.dev projects.",
             "tags": [
                 "contribute",
-                "code"
+                "code",
+                "documentation"
             ]
         }
     ]
