@@ -51,9 +51,9 @@ The [`schema.json` file](https://github.com/noClaps/ZeroLimits.dev/blob/main/sit
   }
   ```
 
-- `desc`: _string_
+- `desc`: _string (Optional)_
 
-  A short description of the site or link, usually about a sentence or so. This is an optional property. Example:
+  A short description of the site or link, usually about a sentence or so. Example:
 
   ```json
   {

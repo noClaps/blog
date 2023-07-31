@@ -36,6 +36,8 @@ This is the documentation for the code used in [The Blog of Random](https://blog
 
 ## Components
 
+- [Writing posts](./posts)
+
 ## Licenses
 
 The [Patua One](https://fonts.google.com/specimen/Patua+One) and [JetBrains Mono](https://www.jetbrains.com/lp/mono/) fonts are licensed under the [OFL-1.1 license](https://github.com/rsms/inter/blob/master/LICENSE.txt).
