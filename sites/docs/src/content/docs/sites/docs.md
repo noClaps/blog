@@ -110,4 +110,4 @@ The content of the documentation should be clear and concise. It should be split
 
 ## Licenses
 
-[Starlight], the documentation website framework used for this site is licensed under the [MIT license](https://github.com/withastro/starlight/blob/main/LICENSE).
+[Starlight](https://starlight.astro.build), the documentation website framework used for this site is licensed under the [MIT license](https://github.com/withastro/starlight/blob/main/LICENSE).
