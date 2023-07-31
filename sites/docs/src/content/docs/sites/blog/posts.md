@@ -85,6 +85,8 @@ The post you write should be in the appropriate section. If none of the current 
 
 - HTML should be avoided if a Markdown counterpart exists for it. Since the blog uses GitHub Flavored Markdown (GFM), most formatting features should be available. You can see the [GFM spec here](https://github.github.com/gfm/). Using HTML for superscript (`<sup></sup>`) or subscript (`<sub></sub>`) is allowed, as these features are not included in the GFM spec.
 
+- Instead of using regular blockquotes (`>`), the [`Quote` component](/sites/blog/components#quote) should be used. 
+
 To help with the layout and structuring of your content, you may also use [components](/sites/blog/components). You may also add a table of contents to help navigate the post, by adding:
 
 ```mdx

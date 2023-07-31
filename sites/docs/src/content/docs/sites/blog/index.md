@@ -37,6 +37,7 @@ This is the documentation for the code used in [The Blog of Random](https://blog
 ## Components
 
 - [Writing posts](./posts)
+- [Components](/sites/blog/components)
 
 ## Licenses
 
