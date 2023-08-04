@@ -1,5 +1,5 @@
 {
-  "name": "@noclaps/theme-toggle",
+  "name": "theme-toggle",
   "description": "A package that hosts the theme toggle used in the ZeroLimits.dev sites.",
   "version": "1.1.0",
   "type": "module",
@@ -20,7 +20,7 @@
   ],
   "scripts": {},
   "dependencies": {
-    "@noclaps/icons": "^1.0.2"
+    "icons": "*"
   },
   "devDependencies": {
     "astro": "^2.9.6"
