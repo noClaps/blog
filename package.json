@@ -13,18 +13,18 @@
     "sites/*"
   ],
   "scripts": {
-    "dev": "turbo start",
-    "dev:blog": "turbo start --filter=blog",
-    "dev:gallery": "turbo start --filter=gallery",
-    "dev:homepage": "turbo start --filter=homepage",
-    "preview": "turbo build preview",
-    "preview:blog": "turbo build preview --filter=blog",
-    "preview:gallery": "turbo build preview --filter=gallery",
-    "preview:homepage": "turbo build preview --filter=homepage"
+    "dev:blog": "cd sites/blog && astro dev",
+    "dev:gallery": "cd sites/gallery && astro dev",
+    "dev:homepage": "cd sites/homepage && astro dev",
+    "build:blog": "cd sites/blog && astro build",
+    "build:gallery": "cd sites/gallery && astro build",
+    "build:homepage": "cd sites/homepage && astro build",
+    "preview:blog": "cd sites/blog && astro build && astro preview",
+    "preview:gallery": "cd sites/gallery && astro build && astro preview",
+    "preview:homepage": "cd sites/homepage && astro build && astro preview"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.8",
-    "@changesets/cli": "^2.26.2",
-    "turbo": "^1.10.12"
+    "@changesets/cli": "^2.26.2"
   }
 }
