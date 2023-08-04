@@ -24,13 +24,18 @@ jobs:
         with:
           node-version: latest
 
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
       - name: Install Dependencies
-        run: npm ci
+        run: bun install
 
       - name: Create Release Pull Request
         uses: changesets/action@v1
         with:
-          publish: npx changeset tag
+          publish: bunx changeset tag
           commit: Update version
           title: "[CI] Update version"
         env:
