@@ -1,24 +1,7 @@
-@import url("./colors.css");
-@import url("./components.css");
-
 /* Fonts */
-h1,
-h2,
-h3:not(header h3),
-h4,
-h5,
-h6 {
-    font-family: "Patua One", sans-serif;
-    font-weight: normal;
-}
-
 code {
-    font-family: "JetBrains Mono", monospace;
     overflow-wrap: break-word;
-
-    @supports (font-variation-settings: normal) {
-        font-family: "JetBrains Mono Variable", monospace;
-    }
+    font-family: ui-monospace, monospace;
 }
 
 /* Root */
