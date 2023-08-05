@@ -4,11 +4,7 @@
 :root,
 input,
 button {
-    font-family: 'Inter', sans-serif;
-
-    @supports (font-variation-settings: normal) {
-        font-family: 'Inter var', sans-serif;
-    }
+    font-family: system-ui;
 }
 
 
