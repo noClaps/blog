@@ -9,8 +9,7 @@
     "directory": "packages/common"
   },
   "exports": {
-    ".": "./index.ts",
-    "./global.css": "./src/styles/global.css"
+    ".": "./index.ts"
   },
   "files": [
     "src",
