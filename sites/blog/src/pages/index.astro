@@ -21,45 +21,28 @@ import { Icon } from "@noclaps/icons";
       </noscript>
     </div>
   </main>
-
-  <style>
-    main {
-      display: grid;
-      grid-auto-flow: column;
-      grid-template-columns: repeat(2, 1fr);
-      grid-gap: 1rem;
-
-      @media (max-width: 768px) {
-        display: flex;
-        flex-direction: column;
-        grid-gap: 0;
-        gap: 1rem;
-        height: initial;
-
-        & svg {
-          width: 50%;
-          max-width: 425px;
-          height: auto;
-        }
-
-        & h1,
-        h2 {
-          text-align: center;
-        }
-      }
-    }
-
-    div {
-      align-self: center;
-      justify-self: center;
-    }
-
-    h2 {
-      font-family: "Inter", sans-serif;
-
-      @supports (font-variation-settings: normal) {
-        font-family: "Inter var", sans-serif;
-      }
-    }
-  </style>
 </BaseLayout>
+
+<style>
+  main {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+
+    @media (max-width: 768px) {
+      grid-auto-flow: row;
+      grid-template-columns: unset;
+
+      & h1,
+      h2 {
+        text-align: center;
+      }
+    }
+  }
+
+  h2 {
+    font-family: system-ui;
+    font-weight: normal;
+  }
+</style>
