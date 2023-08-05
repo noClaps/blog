@@ -1,6 +1,7 @@
 {
   "name": "blog",
-  "version": "4.7.0",
+  "description": "The Blog of Random",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/noClaps/ZeroLimits.dev.git",
@@ -11,20 +12,16 @@
     "@astrojs/rss": "latest",
     "@astrojs/sitemap": "latest",
     "astro": "latest",
-    "common": "*",
-    "icons": "*",
+    "components": "github:noclaps/components",
     "rehype-autolink-headings": "latest",
     "rehype-mathjax": "latest",
     "remark-math": "latest",
-    "remark-toc": "latest",
-    "theme-toggle": "*"
+    "remark-toc": "latest"
   },
-  "description": "The Blog of Random",
   "scripts": {
     "dev": "astro check --watch & astro dev",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview"
-  },
-  "type": "module"
+  }
 }
