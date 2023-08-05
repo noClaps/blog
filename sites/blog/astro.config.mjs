@@ -11,16 +11,17 @@ import remarkToc from "remark-toc";
 export default defineConfig({
     site: "https://blog.zerolimits.dev",
     markdown: {
-        remarkPlugins: [remarkMath, remarkToc],
+        remarkPlugins: [ remarkMath, remarkToc ],
         rehypePlugins: [
             rehypeHeadingIds,
             rehypeMathJax,
-            [rehypeAutolinkHeadings, { behavior: "wrap" }],
+            [ rehypeAutolinkHeadings, { behavior: "wrap" } ],
         ],
     },
-    integrations: [mdx(), sitemap()],
+    integrations: [ mdx(), sitemap() ],
     compressHTML: true,
     build: {
         inlineStylesheets: "auto"
-    }
+    },
+    scopedStyleStrategy: "class"
 });
