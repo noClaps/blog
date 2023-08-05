@@ -2,28 +2,27 @@
 import BaseLayout from "./BaseLayout.astro";
 import "../styles/post.css";
 import ScrollToTop from "../components/post-layout/ScrollToTop.astro";
+import PostHeader from "../components/post-layout/PostHeader.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  author: {
+    data: {
+      name: string;
+      link: string;
+    };
+  };
+  date: Date;
+  lastmod: Date;
+}
 
 const { title, description, author, date, lastmod } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout {title} {description}>
   <main>
-    <div class="header">
-      {
-        lastmod ? (
-          <time datetime={lastmod.toISOString()}>{lastmod.toDateString()}</time>
-        ) : (
-          <time datetime={date.toISOString()}>{date.toDateString()}</time>
-        )
-      }
-      <h1>{title}</h1>
-      <h3>{description}</h3>
-      <div class="post-info">
-        <p>
-          Written by <a href={author.data.link}>{author.data.name}</a>
-        </p>
-      </div>
-    </div>
+    <PostHeader {title} {description} {author} {date} {lastmod} />
     <article>
       <slot />
     </article>

@@ -1,0 +1,35 @@
+---
+interface Props {
+  author: {
+    data: {
+      name: string;
+      link: string;
+    };
+  };
+}
+
+const { author } = Astro.props;
+---
+
+<div>
+  <p>
+    Written by <a href={author.data.link}>{author.data.name}</a>
+  </p>
+</div>
+
+<style>
+  div {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+  }
+
+  p {
+    font-style: italic;
+    opacity: 0.75;
+  }
+
+  a {
+    color: var(--text);
+  }
+</style>
