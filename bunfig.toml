@@ -1,3 +1,5 @@
 [install.cache]
-disable = true
 disableManifest = true
+
+[install.scopes]
+"@noclaps" = {url = "https://npm.pkg.github.com", token = "$github_token"}

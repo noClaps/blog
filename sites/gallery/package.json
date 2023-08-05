@@ -17,8 +17,8 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "latest",
+    "@noclaps/components": "latest",
     "astro": "latest",
-    "components": "github:noclaps/components",
     "medium-zoom": "latest",
     "postcss-mixins": "latest",
     "sharp": "latest"
