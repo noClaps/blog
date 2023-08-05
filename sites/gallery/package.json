@@ -16,15 +16,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^2.0.1",
-    "common": "*",
-    "icons": "*",
-    "theme-toggle": "*",
-    "astro": "^2.9.6",
-    "medium-zoom": "^1.0.8",
-    "sharp": "^0.32.4"
-  },
-  "devDependencies": {
-    "postcss-mixins": "^9.0.4"
+    "@astrojs/sitemap": "latest",
+    "astro": "latest",
+    "components": "github:noclaps/components",
+    "medium-zoom": "latest",
+    "postcss-mixins": "latest",
+    "sharp": "latest"
   }
 }

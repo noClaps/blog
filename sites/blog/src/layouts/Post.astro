@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import "../styles/post.css";
-import { Icon } from "@noclaps/icons";
+import ScrollToTop from "../components/post-layout/ScrollToTop.astro";
 
 const { title, description, author, date, lastmod } = Astro.props;
 ---
@@ -27,26 +27,6 @@ const { title, description, author, date, lastmod } = Astro.props;
     <article>
       <slot />
     </article>
-    <button type="button" id="scrollToTop" title="Go to top">
-      <p><Icon name="arrow-up" />Back to top</p>
-    </button>
+    <ScrollToTop />
   </main>
 </BaseLayout>
-
-<script>
-  let button = document.getElementById("scrollToTop");
-
-  button?.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-
-  button!.style.display = "flex";
-
-  window.onscroll = function () {
-    if (window.scrollY > 64) {
-      button!.style.opacity = "1";
-    } else {
-      button!.style.opacity = "0";
-    }
-  };
-</script>

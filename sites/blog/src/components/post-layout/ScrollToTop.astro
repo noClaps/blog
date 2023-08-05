@@ -1,0 +1,57 @@
+---
+import { Icon } from "components";
+---
+
+<scroll-to-top>
+  <p><Icon name="arrow-up" />Back to top</p>
+</scroll-to-top>
+
+<style>
+  scroll-to-top {
+    display: flex;
+    width: fit-content;
+    margin: auto;
+    position: sticky;
+    bottom: 1rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.25s;
+    color: var(--primary-text);
+    background-color: var(--primary-bg);
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--link);
+      color: var(--variant);
+    }
+  }
+
+  p {
+    font: inherit;
+    font-size: 1rem;
+    margin: 0;
+    display: inline-flex;
+  }
+</style>
+
+<script>
+  class ScrollToTop extends HTMLElement {
+    constructor() {
+      super();
+
+      this.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      window.onscroll = () => {
+        if (window.scrollY > 64) {
+          this.style.opacity = "1";
+        } else {
+          this.style.opacity = "0";
+        }
+      };
+    }
+  }
+
+  customElements.define("scroll-to-top", ScrollToTop);
+</script>
