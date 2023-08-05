@@ -9,7 +9,6 @@
   "author": "noClaps",
   "license": "0BSD",
   "workspaces": [
-    "packages/*",
     "sites/*"
   ],
   "scripts": {
