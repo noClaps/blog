@@ -13,33 +13,14 @@ button {
     box-sizing: border-box;
 }
 
-body {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    min-height: -webkit-fill-available;
-    margin: 0;
-
-    @supports (scroll-behavior: smooth) {
-        scroll-behavior: smooth;
-    }
-}
-
-html {
-    height: -webkit-fill-available;
-}
-
 main {
     width: 88vw;
     max-width: 64rem;
-    margin: 0 auto;
+    place-self: center;
 }
 
 p,
 li {
-    line-height: 1.5rem;
     text-align: justify;
 }
 
