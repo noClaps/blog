@@ -1,16 +1,17 @@
 body.light {
-    /* Main */
-    --link: #05b;
+    --text: #061222;
+    --background: #f6f9fd;
+    --primary: #0066ff;
+    --secondary: #cbddf6;
+    --accent: #2569d0;
 
     /* Accents */
-    --primary-bg: #def;
-    --primary-text: #013;
     --selection-bg: #048;
     --selection-text: #def;
-
-    /* Details */
-    --details-bg: #9fb;
-    --details-text: #021;
+    
+    /* Quote */
+    --quote-bg: #def;
+    --quote-text: #013;
 
     /* Warning */
     --warning-bg: #fdd;
@@ -22,19 +23,20 @@ body.light {
 }
 
 body.dark {
-    /* Main */
-    --link: #acf;
+    --text: #f6f9fd;
+    --background: #061222;
+    --primary: #0066ff;
+    --secondary: #061223;
+    --accent: #a0bfee;
 
     /* Accents */
-    --primary-bg: #048;
-    --primary-text: #def;
     --selection-bg: #def;
     --selection-text: #013;
-
-    /* Details */
-    --details-bg: #053;
-    --details-text: #9fb;
-
+    
+    /* Quote */
+    --quote-bg: #048;
+    --quote-text: #def;
+    
     /* Warning */
     --warning-bg: #900;
     --warning-text: #fdd;

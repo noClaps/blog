@@ -8,62 +8,62 @@ const posts = await getCollection("posts");
 <a href="/about">About</a>
 <div class="divider"></div>
 <div class="nav-menu">
-    <p>Science <Icon name="dropdown-arrow" /></p>
-    <menu>
-        {
-            posts.map(
-                (post) =>
-                    post.slug.startsWith("science/") && (
-                        <a href={`/${post.slug}`}>
-                            {post.data.shortTitle ?? post.data.title}
-                        </a>
-                    )
-            )
-        }
-    </menu>
+  <p>Science <Icon name="dropdown-arrow" /></p>
+  <menu>
+    {
+      posts.map(
+        (post) =>
+          post.slug.startsWith("science/") && (
+            <a href={`/${post.slug}`}>
+              {post.data.shortTitle ?? post.data.title}
+            </a>
+          )
+      )
+    }
+  </menu>
 </div>
 <div class="nav-menu">
-    <p>History <Icon name="dropdown-arrow" /></p>
-    <menu>
-        {
-            posts.map(
-                (post) =>
-                    post.slug.startsWith("history/") && (
-                        <a href={`/${post.slug}`}>
-                            {post.data.shortTitle ?? post.data.title}
-                        </a>
-                    )
-            )
-        }
-    </menu>
+  <p>History <Icon name="dropdown-arrow" /></p>
+  <menu>
+    {
+      posts.map(
+        (post) =>
+          post.slug.startsWith("history/") && (
+            <a href={`/${post.slug}`}>
+              {post.data.shortTitle ?? post.data.title}
+            </a>
+          )
+      )
+    }
+  </menu>
 </div>
 <div class="nav-menu">
-    <p>Tech <Icon name="dropdown-arrow" /></p>
-    <menu>
-        <b>Priv/Sec/Anon</b>
-        {
-            posts.map(
-                (post) =>
-                    post.slug.startsWith("tech/psa/") && (
-                        <a href={`/${post.slug}`}>
-                            {post.data.shortTitle ?? post.data.title}
-                        </a>
-                    )
-            )
-        }
-        <hr />
-        {
-            posts.map(
-                (post) =>
-                    post.slug.startsWith("tech/") &&
-                    !post.slug.startsWith("tech/psa/") && (
-                        <a href={`/${post.slug}`}>
-                            {post.data.shortTitle ?? post.data.title}
-                        </a>
-                    )
-            )
-        }
-    </menu>
+  <p>Tech <Icon name="dropdown-arrow" /></p>
+  <menu>
+    <b>Priv/Sec/Anon</b>
+    {
+      posts.map(
+        (post) =>
+          post.slug.startsWith("tech/psa/") && (
+            <a href={`/${post.slug}`}>
+              {post.data.shortTitle ?? post.data.title}
+            </a>
+          )
+      )
+    }
+    <hr />
+    {
+      posts.map(
+        (post) =>
+          post.slug.startsWith("tech/") &&
+          !post.slug.startsWith("tech/psa/") && (
+            <a href={`/${post.slug}`}>
+              {post.data.shortTitle ?? post.data.title}
+            </a>
+          )
+      )
+    }
+  </menu>
 </div>
 <div class="divider"></div>
 <a
@@ -85,7 +85,7 @@ const posts = await getCollection("posts");
     font-weight: 550;
 
     &:hover {
-      color: var(--link);
+      color: var(--accent);
     }
   }
 
@@ -124,19 +124,19 @@ const posts = await getCollection("posts");
     align-items: center;
 
     &:hover {
-      color: var(--link);
+      color: var(--accent);
 
       &::after {
-        background-color: var(--link);
+        background-color: var(--accent);
       }
     }
   }
 
   menu {
     position: absolute;
-    background-color: var(--bg);
+    background-color: var(--background);
     color: var(--text);
-    border: solid 0.125rem var(--variant);
+    border: solid 0.125rem var(--accent);
     margin: 0;
     padding: 0.5rem;
     border-radius: 0.75rem;
@@ -158,8 +158,8 @@ const posts = await getCollection("posts");
       white-space: nowrap;
 
       &:hover {
-        color: var(--primary-text);
-        background-color: var(--primary-bg);
+        color: #f6f9fd;
+        background-color: var(--primary);
       }
     }
   }
@@ -174,7 +174,7 @@ const posts = await getCollection("posts");
 
   /* Homepage */
   .homepage {
-    transition-duration: 0.25s;
+    transition: all 0.25s;
     display: inline-flex;
     align-items: center;
 
@@ -193,13 +193,13 @@ const posts = await getCollection("posts");
 
   .divider {
     @media (min-width: 769px) {
-      border-left: 2px solid var(--variant);
+      border-left: 2px solid var(--accent);
       height: 1.5rem;
     }
 
     @media (max-width: 768px) {
       border-left: none;
-      border-top: 2px solid var(--variant);
+      border-top: 2px solid var(--accent);
       height: 1px;
     }
   }

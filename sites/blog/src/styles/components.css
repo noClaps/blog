@@ -12,13 +12,13 @@
 
 .quote {
     & a {
-        color: var(--primary-text);
+        color: var(--quote-text);
         text-decoration: underline;
     }
 
     ::selection {
-        background-color: var(--primary-text);
-        color: var(--primary-bg);
+        background-color: var(--quote-text);
+        color: var(--quote-bg);
     }
 }
 

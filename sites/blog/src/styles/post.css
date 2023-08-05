@@ -15,7 +15,7 @@ article {
     }
 
     & h2 {
-        border-top: solid 0.125rem var(--variant);
+        border-top: solid 0.125rem var(--accent);
         padding-top: 1.33rem;
         margin-top: 0.5rem;
     }
@@ -72,27 +72,8 @@ code:not(.astro-code code) {
 /* Checklist */
 .contains-task-list {
     list-style-type: none;
-}
 
-.task-list-item {
-    & input {
-        margin-left: -1.25rem;
-        visibility: hidden;
-
-        &[type=checkbox]::before {
-            position: absolute;
-            height: 1rem;
-            width: 1rem;
-            content: '';
-            -webkit-mask: url('/svg/unchecked.svg');
-            mask: url('/svg/unchecked.svg');
-            background-color: var(--text);
-            visibility: visible;
-        }
-
-        &[type=checkbox][checked]::before {
-            -webkit-mask: url('/svg/checked.svg');
-            mask: url('/svg/checked.svg');
-        }
+    & input:disabled {
+        appearance: none;
     }
 }

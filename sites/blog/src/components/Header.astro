@@ -23,11 +23,12 @@ import { Sidebar } from "components";
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--bg);
+    background-color: var(--background);
     top: 0;
     padding: 2vh 1vw;
     position: sticky;
     z-index: 2;
+    transition: all 0.25s;
   }
 
   h3 {
@@ -43,7 +44,7 @@ import { Sidebar } from "components";
     color: var(--text);
 
     &:hover {
-      color: var(--link);
+      color: var(--accent);
     }
   }
 

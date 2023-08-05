@@ -7,7 +7,7 @@ code {
 /* Root */
 main a {
     text-decoration: none;
-    color: var(--link);
+    color: var(--accent);
     white-space: break-spaces;
 
     &:hover {
@@ -22,5 +22,20 @@ li {
 
 hr {
     border: none;
-    border-top: solid 0.125rem var(--variant);
+    border-top: solid 0.125rem var(--accent);
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text);
+    transition: all 0.25s;
+}
+
+::-webkit-scrollbar {
+    background-color: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--primary);
+    border-color: var(--background);
 }
