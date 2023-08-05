@@ -1,4 +1,4 @@
-@define-mixin light-theme {
+body.light {
     /* Main */
     --link: #05b;
 
@@ -21,7 +21,7 @@
     --note-text: #212;
 }
 
-@define-mixin dark-theme {
+body.dark {
     /* Main */
     --link: #acf;
 
@@ -42,23 +42,4 @@
     /* Note */
     --note-bg: #535;
     --note-text: #fdf;
-}
-
-
-body {
-    @media (prefers-color-scheme: dark) {
-        @mixin dark-theme;
-    }
-
-    @media (prefers-color-scheme: light) {
-        @mixin light-theme;
-    }
-
-    &.light {
-        @mixin light-theme;
-    }
-
-    &.dark {
-        @mixin dark-theme;
-    }
 }
