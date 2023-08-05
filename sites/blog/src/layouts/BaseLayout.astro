@@ -1,8 +1,7 @@
 ---
 import Header from "../components/Header.astro";
 
-import { Head, Footer } from "@noclaps/common";
-import "@noclaps/common/global.css";
+import { Layout } from "@noclaps/common";
 
 import "../styles/global.css";
 
@@ -12,11 +11,7 @@ const {
 } = Astro.props;
 ---
 
-<html lang="en">
-  <Head site="blog" title={title} description={description} />
-  <body>
-    <Header />
-    <slot />
-    <Footer site="blog" />
-  </body>
-</html>
+<Layout site="blog" {title} {description}>
+  <Header />
+  <slot />
+</Layout>
