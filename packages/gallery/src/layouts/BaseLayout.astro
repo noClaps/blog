@@ -4,6 +4,7 @@ import Header from "../components/Header.astro";
 import { Layout } from "@noclaps/components";
 
 import "../styles/global.css";
+import "../styles/colors.css";
 
 const {
   title,
@@ -11,11 +12,7 @@ const {
 } = Astro.props;
 ---
 
-<html lang="en">
-  <Head site="gallery" title={title} description={description} />
-  <body>
-    <Header />
-    <slot />
-    <Footer site="gallery" />
-  </body>
-</html>
+<Layout site="gallery" {title} {description}>
+  <Header />
+  <slot />
+</Layout>
