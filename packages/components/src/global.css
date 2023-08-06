@@ -37,42 +37,22 @@ nav img {
 
 /* Theme toggle icons */
 body.light {
-    & theme-toggle:hover {
-        & .moon {
-            width: 1.25rem;
-        }
-
-        & .sun {
-            width: 0;
-        }
-    }
-
     & .moon {
-        width: 0;
+        width: 1.25rem;
     }
 
     & .sun {
-        width: 1.25rem;
+        width: 0;
     }
 }
 
 body.dark {
-    & theme-toggle:hover {
-        & .moon {
-            width: 0;
-        }
-
-        & .sun {
-            width: 1.25rem;
-        }
-    }
-
     & .moon {
-        width: 1.25rem;
+        width: 0;
     }
 
     & .sun {
-        width: 0;
+        width: 1.25rem;
     }
 }
 
