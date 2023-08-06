@@ -31,22 +31,42 @@ nav img {
 
 /* Theme toggle icons */
 body.light {
+    & theme-toggle:hover {
+        & .moon {
+            width: 1.25rem;
+        }
+
+        & .sun {
+            width: 0;
+        }
+    }
+
     & .moon {
-        display: inline-block;
+        width: 0;
     }
 
     & .sun {
-        display: none;
+        width: 1.25rem;
     }
 }
 
 body.dark {
+    & theme-toggle:hover {
+        & .moon {
+            width: 0;
+        }
+
+        & .sun {
+            width: 1.25rem;
+        }
+    }
+
     & .moon {
-        display: none;
+        width: 1.25rem;
     }
 
     & .sun {
-        display: inline-block;
+        width: 0;
     }
 }
 
