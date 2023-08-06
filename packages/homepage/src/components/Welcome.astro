@@ -1,0 +1,54 @@
+---
+import { Icon } from "@noclaps/components";
+---
+
+<welcome-button
+  >Welcome to ZeroLimits.dev <Icon name="arrow-right" /></welcome-button
+>
+
+<style is:global>
+  welcome-button {
+    display: inline-flex;
+    place-items: center;
+    gap: 0.5rem;
+    font-size: 1.25rem;
+    text-decoration: none;
+    color: var(--text);
+    font-weight: bold;
+    background-color: var(--secondary);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.25s;
+    width: fit-content;
+    cursor: pointer;
+
+    & svg {
+      width: 0;
+      transition: all 0.25s;
+    }
+
+    &:hover {
+      background-color: var(--primary);
+
+      & svg {
+        width: 1.5rem;
+      }
+    }
+  }
+</style>
+
+<script>
+  class WelcomeButton extends HTMLElement {
+    constructor() {
+      super();
+      this.addEventListener("click", () => {
+        document
+          .querySelector("main")
+          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+        document.body.style.overflow = "auto";
+      });
+    }
+  }
+
+  customElements.define("welcome-button", WelcomeButton);
+</script>

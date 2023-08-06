@@ -2,15 +2,12 @@ body {
     transition: all 0.25s;
     background-color: var(--background);
     color: var(--text);
+    scroll-behavior: smooth;
+    overflow: hidden;
 }
 
 ::-webkit-scrollbar {
-    background-color: var(--background);
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: var(--primary);
-    border-color: var(--background);
+    display: none;
 }
 
 p {

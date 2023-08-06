@@ -1,20 +1,13 @@
 ---
+import Landing from "../components/Landing.astro";
 import Link from "../components/Link.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="ZeroLimits.dev">
+  <Landing />
   <main>
-    <h1>Why hello there, fellow human</h1>
-    <p>
-      I'm noClaps, the most interesting boring person you've ever met. It's a
-      pleasure to make your acquaintance.
-    </p>
-    <h2>My Projects</h2>
-    <p>
-      I've usually got a number of projects going on at any given moment. Here's
-      some of them:
-    </p>
+    <h2 id="my-projects">My Projects</h2>
     <section>
       <Link
         title="The Blog of Random"
@@ -53,23 +46,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         icon="donate"
       />
     </section>
-    <h2>Contact me</h2>
-    <p>
-      I don't really have social media. That has its pros and cons (which is
-      actually <a href="https://blog.zerolimits.dev/tech/be-social"
-        >something I wrote about</a
-      > in my blog!), one of them being I can be a bit hard to contact
-    </p>
-    <p>
-      If you've got something to say about one of my projects, feel free to open
-      an issue on the repository. I have those enabled for most of my projects.
-      If issues aren't enabled, chances are I don't wanna hear what you have to
-      say about it anyway, no offence. Some things are just for me.
-    </p>
-    <p>
-      However, if it's about something else, or you just wanna hang out and
-      vibe, then you can find ways to contact me below:
-    </p>
+    <h2 id="contact-me">Contact me</h2>
     <section>
       <Link
         title="Email"
@@ -78,15 +55,19 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         description="contact@zerolimits.dev"
       />
     </section>
-    <h2>Fun facts about me</h2>
+    <h2 id="fun-facts-about-me">Fun facts about me</h2>
     <p>I like cats :)</p>
   </main>
 </BaseLayout>
 
 <style>
+  main {
+    padding-top: 5dvh;
+  }
+
   section {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 24rem), 1fr));
     grid-gap: 1rem;
     margin: 0.5rem 0;
   }
@@ -104,3 +85,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     margin-top: 2rem;
   }
 </style>
+
+<script>
+  history.scrollRestoration = "manual";
+</script>
