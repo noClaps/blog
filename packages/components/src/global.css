@@ -5,6 +5,12 @@ button {
     font-family: system-ui;
 }
 
+h1,
+h2,
+h3,
+h4 {
+    font-family: ui-serif;
+}
 
 /* Root */
 *,
@@ -79,9 +85,4 @@ body.dark {
     border-radius: 0.5rem;
     border-style: solid;
     border-width: 0.375rem;
-}
-
-/* Headings */
-h1, h2, h3, h4 {
-    font-family: ui-serif;
 }
