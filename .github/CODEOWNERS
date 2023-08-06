@@ -1,7 +1,7 @@
 * @noClaps
 
-sites/blog/public/files/basic-dh-example.ts @MesterMan03
-sites/blog/public/files/double-ratchet.ts @MesterMan03
-sites/blog/public/files/x3dh-example.ts @MesterMan03
-sites/blog/src/content/authors/Mester.json @MesterMan03
-sites/blog/src/content/posts/tech/psa/inside-e2ee.mdx @MesterMan03
+packages/blog/public/files/basic-dh-example.ts @MesterMan03
+packages/blog/public/files/double-ratchet.ts @MesterMan03
+packages/blog/public/files/x3dh-example.ts @MesterMan03
+packages/blog/src/content/authors/Mester.json @MesterMan03
+packages/blog/src/content/posts/tech/psa/inside-e2ee.mdx @MesterMan03
