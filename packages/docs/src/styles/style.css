@@ -1,8 +1,0 @@
-:root {
-    --sl-font: system-ui;
-}
-
-.contains-task-list {
-    list-style-type: none;
-    padding-left: 0.5rem;
-}

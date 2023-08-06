@@ -2,11 +2,6 @@
   "name": "@noclaps/blog",
   "description": "The Blog of Random",
   "type": "module",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/noClaps/ZeroLimits.dev.git",
-    "directory": "sites/blog"
-  },
   "dependencies": {
     "@astrojs/mdx": "^0.19.7",
     "@astrojs/rss": "^2.4.3",
