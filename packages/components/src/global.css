@@ -1,0 +1,62 @@
+/* Font */
+:root,
+input,
+button {
+    font-family: system-ui;
+}
+
+
+/* Root */
+*,
+:before,
+:after {
+    box-sizing: border-box;
+}
+
+main {
+    width: 88vw;
+    max-width: 64rem;
+    place-self: center;
+}
+
+p,
+li {
+    text-align: justify;
+}
+
+/* Nav */
+nav img {
+    margin: auto;
+}
+
+/* Theme toggle icons */
+body.light {
+    & .moon {
+        display: inline-block;
+    }
+
+    & .sun {
+        display: none;
+    }
+}
+
+body.dark {
+    & .moon {
+        display: none;
+    }
+
+    & .sun {
+        display: inline-block;
+    }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 1.25rem;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 0.5rem;
+    border-style: solid;
+    border-width: 0.375rem;
+}

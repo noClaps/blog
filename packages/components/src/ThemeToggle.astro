@@ -1,0 +1,61 @@
+---
+import Icon from "./Icon.astro";
+---
+
+<theme-toggle title="Theme toggle" >
+  <Icon name="sun" />
+  <Icon name="moon" />
+</theme-toggle>
+
+<style>
+  theme-toggle {
+    display: inline-flex;
+    text-decoration: none;
+    padding: 0.5rem;
+    transition: all 0.25s;
+    color: var(--text);
+    background-color: transparent;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+</style>
+
+<script>
+  class ThemeToggle extends HTMLElement {
+    value = "";
+
+    constructor() {
+      super();
+
+      this.value =
+        sessionStorage.getItem("theme") ??
+        (window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light");
+
+      document.body.className = this.value;
+
+      this.addEventListener("click", this.toggle);
+    }
+
+    toggle() {
+      // Switch between light and dark
+      if (this.value === "dark") {
+        this.value = "light";
+      } else {
+        this.value = "dark";
+      }
+
+      // Update value in sessionStorage
+      sessionStorage.setItem("theme", this.value);
+
+      // Set body class to be updated theme value
+      document.body.className = this.value;
+    }
+  }
+
+  customElements.define("theme-toggle", ThemeToggle)
+</script>

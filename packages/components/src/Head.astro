@@ -1,0 +1,29 @@
+---
+interface Props {
+  site: string;
+  title: string;
+  description: string;
+}
+
+const { site, title, description } = Astro.props;
+---
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark light" />
+  <link rel="icon" href="/icon/favicon.ico" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="generator" content={Astro.generator} />
+  {
+    site === "blog" && (
+      <link
+        rel="alternate"
+        href="/rss.xml"
+        type="application/rss+xml"
+        title="RSS"
+      />
+    )
+  }
+</head>

@@ -1,12 +1,12 @@
 {
-  "name": "homepage",
-  "description": "The ZeroLimits.dev homepage",
+  "name": "@noclaps/gallery",
+  "description": "Aperturic Focus",
   "type": "module",
-  "version": "1.7.0",
+  "version": "4.3.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/noClaps/ZeroLimits.dev.git",
-    "directory": "sites/homepage"
+    "directory": "sites/gallery"
   },
   "scripts": {
     "dev": "astro check --watch & astro dev",
@@ -16,10 +16,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/sitemap": "latest",
-    "@noclaps/components": "latest",
-    "astro": "latest",
-    "fuse.js": "latest",
-    "postcss-mixins": "latest"
+    "@astrojs/sitemap": "^2.0.1",
+    "astro": "^2.10.1",
+    "medium-zoom": "^1.0.8",
+    "postcss-mixins": "^9.0.4",
+    "sharp": "^0.32.4"
   }
 }

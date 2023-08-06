@@ -1,5 +1,5 @@
 {
-  "name": "blog",
+  "name": "@noclaps/blog",
   "description": "The Blog of Random",
   "type": "module",
   "repository": {
@@ -8,15 +8,14 @@
     "directory": "sites/blog"
   },
   "dependencies": {
-    "@astrojs/mdx": "latest",
-    "@astrojs/rss": "latest",
-    "@astrojs/sitemap": "latest",
-    "@noclaps/components": "latest",
-    "astro": "latest",
-    "rehype-autolink-headings": "latest",
-    "rehype-mathjax": "latest",
-    "remark-math": "latest",
-    "remark-toc": "latest"
+    "@astrojs/mdx": "^0.19.7",
+    "@astrojs/rss": "^2.4.3",
+    "@astrojs/sitemap": "^2.0.1",
+    "astro": "^2.10.1",
+    "rehype-autolink-headings": "^6.1.1",
+    "rehype-mathjax": "^4.0.3",
+    "remark-math": "^5.1.1",
+    "remark-toc": "^8.0.1"
   },
   "scripts": {
     "dev": "astro check --watch & astro dev",
