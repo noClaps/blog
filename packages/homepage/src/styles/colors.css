@@ -5,8 +5,6 @@
     /* Accents */
     --primary-bg: #fa0;
     --primary-text: #222;
-    --selection-bg: #fb6;
-    --selection-text: #222;
 }
 
 @define-mixin dark-theme {
@@ -16,8 +14,6 @@
     /* Accents */
     --primary-bg: #fb6;
     --primary-text: #222;
-    --selection-bg: #fa0;
-    --selection-text: #222;
 }
 
 body {

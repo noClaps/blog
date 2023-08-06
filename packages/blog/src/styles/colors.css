@@ -4,10 +4,6 @@ body.light {
     --primary: #0066ff;
     --secondary: #cbddf6;
     --accent: #2569d0;
-
-    /* Accents */
-    --selection-bg: #048;
-    --selection-text: #def;
     
     /* Quote */
     --quote-bg: #def;
@@ -28,10 +24,6 @@ body.dark {
     --primary: #0066ff;
     --secondary: #061223;
     --accent: #a0bfee;
-
-    /* Accents */
-    --selection-bg: #def;
-    --selection-text: #013;
     
     /* Quote */
     --quote-bg: #048;
