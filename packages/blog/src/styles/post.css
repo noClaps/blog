@@ -72,8 +72,4 @@ code:not(.astro-code code) {
 /* Checklist */
 .contains-task-list {
     list-style-type: none;
-
-    & input:disabled {
-        appearance: none;
-    }
 }
