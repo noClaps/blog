@@ -1,0 +1,23 @@
+{
+  "name": "@noclaps/docs",
+  "description": "The Docs-ter",
+  "type": "module",
+  "version": "1.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/noClaps/docs.git",
+    "directory": "sites/docs"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "latest",
+    "astro": "latest",
+    "sharp": "latest"
+  }
+}
