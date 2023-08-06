@@ -1,16 +1,19 @@
-body {
-    justify-content: space-between;
-}
-
-p {
-    margin: 1.25rem 0;
-}
-
 /* Zoomed images */
-.medium-zoom-overlay {
-    backdrop-filter: var(--filter);
-}
-
 .medium-zoom-image--opened {
     border-radius: 0.5rem;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text);
+    transition: all 0.25s;
+}
+
+::-webkit-scrollbar {
+    background-color: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--primary);
+    border-color: var(--background);
 }

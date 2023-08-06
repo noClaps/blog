@@ -1,39 +1,17 @@
-@define-mixin light-theme {
-    /* Main */
-    --link: #062;
-    --image-bg: #fffc;
-    --filter: blur(10px);
-
-    /* Accents */
-    --primary-bg: #6f8;
-    --primary-text: #020;
+body.light {
+    --image-bg: #f8fdedcc;
+    --text: #1a2504;
+    --background: #f8fded;
+    --primary: #195c0a;
+    --secondary: #c2f9d5;
+    --accent: #084f1f;
 }
 
-@define-mixin dark-theme {
-    /* Main */
-    --link: #4e7;
-    --image-bg: #111c;
-    --filter: blur(10px);
-
-    /* Accents */
-    --primary-bg: #052;
-    --primary-text: #6f8;
-}
-
-body {
-    @media (prefers-color-scheme: dark) {
-        @mixin dark-theme;
-    }
-
-    @media (prefers-color-scheme: light) {
-        @mixin light-theme;
-    }
-
-    &.light {
-        @mixin light-theme;
-    }
-
-    &.dark {
-        @mixin dark-theme;
-    }
+body.dark {
+    --image-bg: #1a2504cc;
+    --text: #f8fded;
+    --background: #1a2504;
+    --primary: #195c0a;
+    --secondary: #03200d;
+    --accent: #17d954;
 }
