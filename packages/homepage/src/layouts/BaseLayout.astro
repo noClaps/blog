@@ -1,9 +1,9 @@
 ---
-import { Head } from "@noclaps/common";
-import { ThemeToggle } from "@noclaps/theme-toggle";
-import "@noclaps/common/global.css";
+import { Layout } from "@noclaps/components";
+import Header from "../components/Header.astro";
 
 import "../styles/global.css";
+import "../styles/colors.css";
 
 const {
   title,
@@ -11,12 +11,7 @@ const {
 } = Astro.props;
 ---
 
-<html lang="en">
-  <Head site="homepage" title={title} description={description} />
-  <body>
-    <header>
-      <ThemeToggle />
-    </header>
-    <slot />
-  </body>
-</html>
+<Layout site="homepage" {title} {description}>
+  <Header />
+  <slot />
+</Layout>

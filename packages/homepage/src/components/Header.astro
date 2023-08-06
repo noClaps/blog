@@ -1,0 +1,41 @@
+---
+import { ThemeToggle } from "@noclaps/components";
+---
+
+<header>
+  <h3>
+    <a href="/">ZeroLimits.dev</a>
+  </h3>
+  <ThemeToggle />
+</header>
+
+<style>
+  header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    top: 0;
+    padding: 2vh 1vw;
+    position: sticky;
+    z-index: 2;
+    transition: all 0.25s;
+    background-color: var(--background);
+  }
+
+  h3 {
+    margin: 0;
+    display: inline-flex;
+  }
+
+  a {
+    text-decoration: none;
+    padding: 0.5rem;
+    transition: all 0.25s;
+    color: var(--text);
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+</style>

@@ -1,35 +1,15 @@
-@define-mixin light-theme {
-    /* Main */
-    --link: #fa0;
-
-    /* Accents */
-    --primary-bg: #fa0;
-    --primary-text: #222;
+body.light {
+    --text: #000000;
+    --background: #fddece;
+    --primary: #ff732e;
+    --secondary: #feebe2;
+    --accent: #762b05;
 }
 
-@define-mixin dark-theme {
-    /* Main */
-    --link: #fb6;
-
-    /* Accents */
-    --primary-bg: #fb6;
-    --primary-text: #222;
-}
-
-body {
-    @media (prefers-color-scheme: dark) {
-        @mixin dark-theme;
-    }
-
-    @media (prefers-color-scheme: light) {
-        @mixin light-theme;
-    }
-
-    &.light {
-        @mixin light-theme;
-    }
-
-    &.dark {
-        @mixin dark-theme;
-    }
+body.dark {
+    --text: #fddece;
+    --background: #000000;
+    --primary: #ff732e;
+    --secondary: #451903;
+    --accent: #f6661e;
 }

@@ -4,7 +4,7 @@
   "type": "module",
   "version": "1.7.0",
   "scripts": {
-    "dev": "astro check --watch & astro dev",
+    "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
@@ -12,8 +12,6 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^2.0.1",
-    "astro": "^2.10.1",
-    "fuse.js": "^6.6.2",
-    "postcss-mixins": "^9.0.4"
+    "astro": "^2.10.1"
   }
 }

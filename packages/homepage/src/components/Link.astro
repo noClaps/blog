@@ -1,0 +1,67 @@
+---
+import { Icon } from "@noclaps/components";
+
+interface Props {
+  title: string;
+  description?: string;
+  link: string;
+  icon: string;
+}
+
+const { title, description, link, icon } = Astro.props;
+---
+
+<a href={link}>
+  <div>
+    {
+      icon.startsWith("https://") ? (
+        <img src={icon} alt={title} />
+      ) : (
+        <Icon name={icon} />
+      )
+    }
+    <h3>{title}</h3>
+  </div>
+  {description && <p>{description}</p>}
+</a>
+
+<style>
+  a {
+    display: inline-grid;
+    grid-template-rows: auto 1fr;
+    grid-gap: 1rem;
+    text-decoration: none;
+    color: var(--text);
+    padding: 1rem;
+    background-color: var(--secondary);
+    border-radius: 0.5rem;
+    transition: all 0.25s;
+
+    &:hover {
+      background-color: var(--primary);
+      color: #000000;
+    }
+  }
+
+  h3,
+  p {
+    margin: 0;
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: min-content;
+  }
+
+  img {
+    height: 1.5rem;
+    place-self: center;
+    border-radius: 0.25em;
+  }
+
+  p {
+    text-align: left;
+  }
+</style>

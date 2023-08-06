@@ -1,8 +1,18 @@
-@import url("./colors.css");
+body {
+    transition: all 0.25s;
+    background-color: var(--background);
+    color: var(--text);
+}
 
-header {
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    margin: 2vh 1vw;
+::-webkit-scrollbar {
+    background-color: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--primary);
+    border-color: var(--background);
+}
+
+p {
+    line-height: 1.5rem;
 }
