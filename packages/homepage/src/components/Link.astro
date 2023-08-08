@@ -11,7 +11,7 @@ interface Props {
 const { title, description, link, icon } = Astro.props;
 ---
 
-<a href={link}>
+<link-element {link}>
   <div>
     {
       icon.startsWith("https://") ? (
@@ -23,10 +23,11 @@ const { title, description, link, icon } = Astro.props;
     <h3>{title}</h3>
   </div>
   {description && <p>{description}</p>}
-</a>
+</link-element>
 
 <style>
-  a {
+  link-element {
+    position: absolute;
     display: inline-grid;
     grid-template-rows: auto 1fr;
     grid-gap: 1rem;
@@ -35,7 +36,10 @@ const { title, description, link, icon } = Astro.props;
     padding: 1rem;
     background-color: var(--secondary);
     border-radius: 0.5rem;
-    transition: all 0.25s;
+    transition: background-color 0.25s, color 0.25s;
+    width: fit-content;
+    max-width: 20rem;
+    cursor: pointer;
 
     &:hover {
       background-color: var(--primary);
@@ -65,3 +69,65 @@ const { title, description, link, icon } = Astro.props;
     text-align: left;
   }
 </style>
+
+<script>
+  import SAT from "sat";
+  console.log(SAT);
+
+  const footer = document.body.querySelector("footer") as HTMLElement;
+  const header = document.body.querySelector("header") as HTMLElement;
+  const landing = document.body.querySelector("#landing") as HTMLElement;
+
+  class LinkElement extends HTMLElement {
+    constructor() {
+      super();
+
+      let attempts = 0;
+
+      while (this.checkIfOverlap() || attempts > 20) {
+        // Set random position
+        // The offsetHeight and offsetWidth are substracted to ensure that the link element is always on screen
+        this.style.top = `${
+          Math.random() * (innerHeight - this.offsetHeight)
+        }px`;
+        this.style.left = `${
+          Math.random() * (innerWidth - this.offsetWidth)
+        }px`;
+        attempts++;
+      }
+
+      this.addEventListener("click", () => {
+        open(this.getAttribute("link")!, "_blank");
+      });
+    }
+
+    checkIfOverlap() {
+      const link = this.getAttribute("link");
+      const linkBox = new SAT.Box(
+        new SAT.Vector(this.offsetLeft, this.offsetTop),
+        this.offsetWidth,
+        this.offsetHeight
+      ).toPolygon();
+
+      const otherElements = Array.from(
+        document.querySelectorAll(
+          `footer, header, #landing, link-element:not(link-element[link="${link}"]`
+        ) as NodeListOf<HTMLElement>
+      );
+
+      const overlapCheck = otherElements.map((el) => {
+        const elBox = new SAT.Box(
+          new SAT.Vector(el.offsetLeft, el.offsetTop),
+          el.offsetWidth,
+          el.offsetHeight
+        ).toPolygon();
+
+        return SAT.testPolygonPolygon(linkBox, elBox);
+      });
+
+      return overlapCheck.includes(true);
+    }
+  }
+
+  customElements.define("link-element", LinkElement);
+</script>

@@ -1,0 +1,38 @@
+[
+    {
+        "title": "The Blog of Random",
+        "description": "A blog about the most random things you can think of",
+        "icon": "https://blog.zerolimits.dev/icon/favicon.ico",
+        "link": "https://blog.zerolimits.dev"
+    },
+    {
+        "title": "Aperturic Focus",
+        "description": "A website to showcase some cool photos I've taken.",
+        "icon": "https://gallery.zerolimits.dev/icon/favicon.ico",
+        "link": "https://gallery.zerolimits.dev"
+    },
+    {
+        "title": "The Docs-ter",
+        "description": "This is the documentation for ZeroLimits.dev projects.",
+        "icon": "https://docs.zerolimits.dev/favicon.ico",
+        "link": "https://docs.zerolimits.dev"
+    },
+    {
+        "title": "GitHub",
+        "description": "noClaps",
+        "icon": "https://github.com/noClaps.png",
+        "link": "https://github.com/noClaps"
+    },
+    {
+        "title": "Sponsor",
+        "description": "Thank you for your contribution!",
+        "icon": "donate",
+        "link": "https://github.com/sponsors/noClaps"
+    },
+    {
+        "title": "Email",
+        "description": "contact@zerolimits.dev",
+        "icon": "email",
+        "link": "mailto:contact@zerolimits.dev"
+    }
+]
