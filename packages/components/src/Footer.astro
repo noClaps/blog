@@ -14,14 +14,9 @@ const { site } = Astro.props;
   </a>
   {
     site === "blog" && (
-      <>
-        <a href="/rss.xml" title="Atom Feed">
-          <Icon name="rss" />
-        </a>
-        <noscript>
-          <a href="/sitemap">Sitemap</a>
-        </noscript>
-      </>
+      <a href="/rss.xml" title="Atom Feed">
+        <Icon name="rss" />
+      </a>
     )
   }
 </footer>
