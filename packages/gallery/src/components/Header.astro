@@ -1,7 +1,13 @@
 ---
-import Nav from "./Nav.astro";
-import { ThemeToggle } from "@noclaps/components";
-import { Sidebar } from "@noclaps/components";
+import { ThemeToggle, Sidebar, GlobalNav } from "@noclaps/components";
+
+const links = [
+  {
+    slug: "Photos.zip",
+    title: "Download",
+    shortTitle: "",
+  },
+];
 ---
 
 <header>
@@ -11,11 +17,11 @@ import { Sidebar } from "@noclaps/components";
   </h3>
 
   <nav>
-    <Nav />
+    <GlobalNav {links} />
   </nav>
 
   <Sidebar>
-    <Nav />
+    <GlobalNav {links} />
   </Sidebar>
 </header>
 

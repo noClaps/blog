@@ -16,14 +16,15 @@ const tree = treeify(links)
       if (branch.title || branch.shortTitle) {
         return (
           <a href={`/${branch.slug}`}>
-            {branch.shortTitle ?? branch.title} {branch.title === "Download" && <Icon name="download" />}
+             {branch.title === "Download" && <Icon name="download" />}
+             {branch.shortTitle || branch.title}
           </a>
         )
       } else {
       return (
         <div class="nav-menu">
           <p>
-            {capitalise(branch.name!)} <Icon name="dropdown-arrow" />
+              {capitalise(branch.name!)} <Icon name="dropdown-arrow" />
           </p>
           <menu>
             {branch.children?.map((twig) => {
@@ -62,6 +63,8 @@ const tree = treeify(links)
   
   <style>
     a {
+      display: inline-flex;
+      gap: 0.125rem;
       text-decoration: none;
       padding: 0.5rem;
       border-radius: 0.5rem;
