@@ -1,0 +1,249 @@
+---
+import {type NavData, treeify, capitalise} from "./treeify"
+import Icon from "./Icon.astro"
+
+interface Props {
+    links: NavData[]
+}
+
+const {links} = Astro.props
+
+const tree = treeify(links)
+---
+
+{
+    tree.map((branch) => {
+      if (branch.title || branch.shortTitle) {
+        return (
+          <a href={`/${branch.slug}`}>
+            {branch.shortTitle ?? branch.title} {branch.title === "Download" && <Icon name="download" />}
+          </a>
+        )
+      } else {
+      return (
+        <div class="nav-menu">
+          <p>
+            {capitalise(branch.name!)} <Icon name="dropdown-arrow" />
+          </p>
+          <menu>
+            {branch.children?.map((twig) => {
+              if (twig.title || twig.shortTitle) {
+                return (
+                  <a href={`/${twig.slug}`}>{twig.shortTitle || twig.title}</a>
+                );
+              } else {
+                return (
+                  <hr />
+                  <b>{capitalise(twig.name === "psa" ? "Priv/Sec/Anon" : twig.name!)}</b>
+                  <Fragment>
+                    {twig.children?.map(item => {
+                      return (
+                        <a href={`/${item.slug}`}>{item.shortTitle || item.title}</a>
+                      )
+                    })}
+                  </Fragment>
+                )
+              }
+            })}
+          </menu>
+        </div>
+      );
+    }})
+  }
+  <div class="divider"></div>
+  <a
+    href="https://zerolimits.dev"
+    class="homepage"
+    target="_blank"
+    title="ZeroLimits.dev"
+  >
+    <img src="https://zerolimits.dev/icon/favicon.ico" alt="Favicon" />
+  </a>
+  
+  <style>
+    a {
+      text-decoration: none;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      transition: all 0.25s;
+      color: var(--text);
+      font-weight: 550;
+  
+      &:hover {
+        color: var(--accent);
+      }
+    }
+  
+    .nav-menu {
+      background-color: transparent;
+      position: relative;
+  
+      @media (max-width: 768px) {
+        padding: 0.5rem 0.1rem;
+      }
+  
+      &[open] menu {
+        opacity: 1;
+        visibility: visible;
+  
+        @media (max-width: 768px) {
+          transform: translate(-100%, -50%);
+        }
+  
+        @media (min-width: 769px) {
+          transform: translate(-37.5%, 0);
+        }
+      }
+    }
+  
+    p {
+      font-weight: 550;
+      color: var(--text);
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s;
+      padding: 0.5rem;
+      margin: 0;
+      display: inline-flex;
+      align-items: center;
+  
+      &:hover {
+        color: var(--accent);
+  
+        &::after {
+          background-color: var(--accent);
+        }
+      }
+    }
+  
+    menu {
+      position: absolute;
+      background-color: var(--background);
+      color: var(--text);
+      border: solid 0.125rem var(--accent);
+      margin: 0;
+      padding: 0.5rem;
+      border-radius: 0.75rem;
+      z-index: 9999;
+      transition: all 0.25s;
+      opacity: 0;
+      visibility: hidden;
+  
+      @media (max-width: 768px) {
+        transform: translate(-90%, -50%);
+      }
+  
+      @media (min-width: 769px) {
+        transform: translate(-37.5%, -10%);
+      }
+  
+      & a {
+        display: block;
+        white-space: nowrap;
+  
+        &:hover {
+          color: #f6f9fd;
+          background-color: var(--primary);
+        }
+      }
+    }
+  
+    b {
+      display: block;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      transition: all 0.25s;
+      color: var(--text);
+    }
+  
+    /* Homepage */
+    .homepage {
+      transition: all 0.25s;
+      display: inline-flex;
+      align-items: center;
+  
+      @media (max-width: 768px) {
+        text-align: center;
+      }
+  
+      &:hover {
+        filter: brightness(75%);
+      }
+    }
+  
+    img {
+      height: 1.25rem;
+    }
+  
+    .divider {
+      @media (min-width: 769px) {
+        border-left: 2px solid var(--accent);
+        height: 1.5rem;
+      }
+  
+      @media (max-width: 768px) {
+        border-left: none;
+        border-top: 2px solid var(--accent);
+        height: 1px;
+      }
+    }
+  </style>
+  
+  <script>
+    // Create menu object
+    const menu = {
+      open(menu: Element) {
+        // Open the menu
+        menu.setAttribute("open", "");
+      },
+  
+      close(menu: Element) {
+        // Close the menu
+        menu.removeAttribute("open");
+      },
+  
+      toggle(menuList: NodeListOf<Element>, targeted: Element) {
+        // Toggle opening and closing menu
+        // If one menu is opened, the others are closed
+        targeted.toggleAttribute("open");
+        for (const menu of menuList) {
+          if (menu !== targeted) {
+            this.close(menu);
+          }
+        }
+      },
+  
+      closeAll(menuList: NodeListOf<Element>) {
+        // Close all menus
+        for (const menu of menuList) {
+          this.close(menu);
+        }
+      },
+    };
+  
+    let navMenus = document.querySelectorAll(".nav-menu");
+    for (const targeted of navMenus) {
+      if (window.matchMedia("(min-width: 769px)").matches) {
+        targeted.addEventListener("mouseover", () => {
+          menu.open(targeted);
+        });
+        targeted.addEventListener("mouseleave", () => {
+          menu.close(targeted);
+        });
+      }
+  
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        targeted.addEventListener("click", () => {
+          menu.toggle(navMenus, targeted);
+        });
+  
+        document.addEventListener("click", (event) => {
+          if (!(event.target as HTMLElement).closest(".nav-menu")) {
+            menu.closeAll(navMenus);
+          }
+        });
+      }
+    }
+  </script>
+  
