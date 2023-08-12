@@ -1,0 +1,86 @@
+---
+import ThemeToggle from "./ThemeToggle.astro";
+import Nav from "./Nav.astro";
+import Sidebar from "./Sidebar.astro";
+import type { NavData } from "./treeify";
+
+interface Props {
+  site: string;
+  links: NavData[];
+}
+
+const { site, links } = Astro.props;
+---
+
+<header>
+{
+  site !== "homepage" ? (
+      <h3>
+        <a href="/">Aperturic Focus</a>
+        <ThemeToggle />
+      </h3>
+
+      <nav>
+        <Nav {links} />
+      </nav>
+
+      <Sidebar>
+        <Nav {links} />
+      </Sidebar>
+  ) : (
+  <h3>
+    <a href="/">ZeroLimits.dev</a>
+  </h3>
+  <ThemeToggle />
+  )
+}
+</header>
+
+<style>
+  header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--background);
+    top: 0;
+    padding: 2vh 1vw;
+    transition: all 0.25s;
+    position: sticky;
+  }
+
+  a {
+    text-decoration: none;
+    padding: 0.5rem;
+    transition: all 0.25s;
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+
+  /* Title */
+  h3 {
+    margin: 0;
+    display: inline-flex;
+
+    & a {
+      text-decoration: none;
+      color: var(--text);
+      position: relative;
+    }
+  }
+
+  /* Nav */
+  nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+</style>

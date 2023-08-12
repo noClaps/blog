@@ -1,6 +1,8 @@
 ---
 import Footer from "./Footer.astro";
 import Head from "./Head.astro";
+import Header from "./Header.astro";
+import type { NavData } from "./treeify";
 
 import "./global.css";
 
@@ -8,14 +10,16 @@ interface Props {
   site: string;
   title: string;
   description: string;
+  links: NavData[];
 }
 
-const { site, title, description } = Astro.props;
+const { site, title, description, links } = Astro.props;
 ---
 
 <html lang="en">
   <Head {site} {title} {description} />
   <body>
+    <Header {site} {links} />
     <slot />
     <Footer {site} />
     <style>
