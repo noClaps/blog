@@ -15,7 +15,7 @@ const tree = treeify(links)
     tree.map((branch) => {
       if (branch.title || branch.shortTitle) {
         return (
-          <a href={`/${branch.slug}`}>
+          <a href={!branch.slug?.startsWith("https://") ? `/${branch.slug}` : `${branch.slug}`}>
              {branch.title === "Download" && <Icon name="download" />}
              {branch.shortTitle || branch.title}
           </a>
@@ -30,7 +30,7 @@ const tree = treeify(links)
             {branch.children?.map((twig) => {
               if (twig.title || twig.shortTitle) {
                 return (
-                  <a href={`/${twig.slug}`}>{twig.shortTitle || twig.title}</a>
+                  <a href={!twig.slug?.startsWith("https://") ? `/${twig.slug}` : `${twig.slug}`}>{twig.shortTitle || twig.title}</a>
                 );
               } else {
                 return (
@@ -39,7 +39,7 @@ const tree = treeify(links)
                   <Fragment>
                     {twig.children?.map(item => {
                       return (
-                        <a href={`/${item.slug}`}>{item.shortTitle || item.title}</a>
+                        <a href={!item.slug?.startsWith("https://") ? `/${item.slug}` : `${item.slug}`}>{item.shortTitle || item.title}</a>
                       )
                     })}
                   </Fragment>

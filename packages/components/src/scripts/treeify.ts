@@ -16,7 +16,7 @@ export function treeify(data: NavData[]) {
     const map: TreeItem[] = [];
     let currentArr = map;
     data.forEach(link => {
-        const pathArr = link.slug.split("/");
+        const pathArr = !link.slug.startsWith("https://") ? link.slug.split("/") : [`${ link.slug }`];
 
         pathArr.forEach((part, index) => {
             if (index === pathArr.length - 1) {
