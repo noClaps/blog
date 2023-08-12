@@ -10,30 +10,33 @@ interface Props {
 }
 
 const { site, links } = Astro.props;
+
+const names: { [key: string]: string } = {
+  blog: "The Blog of Random",
+  gallery: "Aperturic Focus",
+  homepage: "ZeroLimits.dev",
+};
 ---
 
 <header>
-{
-  site !== "homepage" ? (
-      <h3>
-        <a href="/">Aperturic Focus</a>
-        <ThemeToggle />
-      </h3>
-
-      <nav>
-        <Nav {links} />
-      </nav>
-
-      <Sidebar>
-        <Nav {links} />
-      </Sidebar>
-  ) : (
   <h3>
-    <a href="/">ZeroLimits.dev</a>
+    <a href="/">{names[site]}</a>
+    {site !== "homepage" && <ThemeToggle />}
   </h3>
-  <ThemeToggle />
-  )
-}
+  {
+    site === "homepage" ? (
+      <ThemeToggle />
+    ) : (
+      <>
+        <nav>
+          <Nav {links} />
+        </nav>
+        <Sidebar>
+          <Nav {links} />
+        </Sidebar>
+      </>
+    )
+  }
 </header>
 
 <style>
