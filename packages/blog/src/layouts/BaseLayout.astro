@@ -1,11 +1,20 @@
 ---
-import Header from "../components/Header.astro";
-
 import { Layout } from "@noclaps/components";
+import { getCollection } from "astro:content";
 
 import "../styles/colors.css";
 import "../styles/components.css";
 import "../styles/global.css";
+
+const posts = await getCollection("posts");
+
+const links = posts.map((post) => {
+  return {
+    slug: post.slug,
+    title: post.data.title,
+    shortTitle: post.data.shortTitle || "",
+  };
+});
 
 const {
   title,
@@ -13,7 +22,6 @@ const {
 } = Astro.props;
 ---
 
-<Layout site="blog" {title} {description}>
-  <Header />
+<Layout site="blog" {title} {description} {links}>
   <slot />
 </Layout>

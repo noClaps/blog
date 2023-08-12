@@ -1,22 +1,39 @@
 ---
+import ThemeToggle from "../tools/ThemeToggle.astro";
 import Nav from "./Nav.astro";
-import { ThemeToggle } from "@noclaps/components";
-import { Sidebar } from "@noclaps/components";
+import Sidebar from "./Sidebar.astro";
+import type { NavData } from "../scripts/treeify";
+
+interface Props {
+  site: string;
+  links: NavData[];
+}
+
+const { site, links } = Astro.props;
 ---
 
 <header>
+{
+  site !== "homepage" ? (
+      <h3>
+        <a href="/">Aperturic Focus</a>
+        <ThemeToggle />
+      </h3>
+
+      <nav>
+        <Nav {links} />
+      </nav>
+
+      <Sidebar>
+        <Nav {links} />
+      </Sidebar>
+  ) : (
   <h3>
-    <a href="/">Aperturic Focus</a>
-    <ThemeToggle />
+    <a href="/">ZeroLimits.dev</a>
   </h3>
-
-  <nav>
-    <Nav />
-  </nav>
-
-  <Sidebar>
-    <Nav />
-  </Sidebar>
+  <ThemeToggle />
+  )
+}
 </header>
 
 <style>
