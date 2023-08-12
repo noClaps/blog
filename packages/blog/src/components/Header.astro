@@ -1,7 +1,16 @@
 ---
-import Nav from "./Nav.astro";
-import { ThemeToggle } from "@noclaps/components";
-import { Sidebar } from "@noclaps/components";
+import { getCollection } from "astro:content";
+import { ThemeToggle, Sidebar, GlobalNav } from "@noclaps/components";
+
+const posts = await getCollection("posts");
+
+const links = posts.map((post) => {
+  return {
+    slug: post.slug,
+    title: post.data.title,
+    shortTitle: post.data.shortTitle || "",
+  };
+});
 ---
 
 <header>
@@ -10,10 +19,10 @@ import { Sidebar } from "@noclaps/components";
     <ThemeToggle />
   </h3>
   <nav id="nav">
-    <Nav />
+    <GlobalNav {links} />
   </nav>
   <Sidebar>
-    <Nav />
+    <GlobalNav {links} />
   </Sidebar>
 </header>
 
