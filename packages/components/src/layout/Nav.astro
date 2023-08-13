@@ -22,7 +22,7 @@ const tree = treeify(links)
         )
       } else {
       return (
-        <div class="nav-menu">
+        <nav-menu>
           <p>
               {capitalise(branch.name!)} <Icon name="dropdown-arrow" />
           </p>
@@ -47,7 +47,7 @@ const tree = treeify(links)
               }
             })}
           </menu>
-        </div>
+        </nav-menu>
       );
     }})
   }
@@ -77,7 +77,7 @@ const tree = treeify(links)
       }
     }
   
-    .nav-menu {
+    nav-menu {
       background-color: transparent;
       position: relative;
   
@@ -194,59 +194,51 @@ const tree = treeify(links)
   </style>
   
   <script>
-    // Create menu object
-    const menu = {
-      open(menu: Element) {
-        // Open the menu
-        menu.setAttribute("open", "");
-      },
-  
-      close(menu: Element) {
-        // Close the menu
-        menu.removeAttribute("open");
-      },
-  
-      toggle(menuList: NodeListOf<Element>, targeted: Element) {
-        // Toggle opening and closing menu
-        // If one menu is opened, the others are closed
-        targeted.toggleAttribute("open");
-        for (const menu of menuList) {
-          if (menu !== targeted) {
-            this.close(menu);
-          }
+    class NavMenu extends HTMLElement {
+      constructor() {
+        super()
+
+        if (window.matchMedia("(min-width: 769px)").matches) {
+          this.addEventListener("mouseover", this.open)
+          this.addEventListener("mouseleave", () => {
+            this.close(this)
+          })
         }
-      },
-  
-      closeAll(menuList: NodeListOf<Element>) {
-        // Close all menus
-        for (const menu of menuList) {
-          this.close(menu);
+
+        if (window.matchMedia("(max-width: 768px)").matches) {
+          this.addEventListener("click", this.toggle)
         }
-      },
-    };
-  
-    let navMenus = document.querySelectorAll(".nav-menu");
-    for (const targeted of navMenus) {
-      if (window.matchMedia("(min-width: 769px)").matches) {
-        targeted.addEventListener("mouseover", () => {
-          menu.open(targeted);
-        });
-        targeted.addEventListener("mouseleave", () => {
-          menu.close(targeted);
-        });
-      }
-  
-      if (window.matchMedia("(max-width: 768px)").matches) {
-        targeted.addEventListener("click", () => {
-          menu.toggle(navMenus, targeted);
-        });
-  
+
         document.addEventListener("click", (event) => {
-          if (!(event.target as HTMLElement).closest(".nav-menu")) {
-            menu.closeAll(navMenus);
+          if (!(event.target as HTMLElement).closest("nav-menu")) {
+            this.closeAll()
           }
-        });
+        })
+      }
+
+      open() {
+        this.setAttribute("open", "")
+      }
+
+      close(menu: Element) {
+        menu.removeAttribute("open")
+      }
+
+      toggle() {
+        this.toggleAttribute("open")
+        document.querySelectorAll("nav-menu").forEach(menu => {
+          if (this !== menu) {
+            this.close(menu)
+          }
+        })
+      }
+
+      closeAll() {
+        document.querySelectorAll("nav-menu").forEach(menu => {
+          this.close(menu)
+        })
       }
     }
+
+    customElements.define("nav-menu", NavMenu)
   </script>
-  
