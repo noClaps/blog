@@ -55,14 +55,3 @@ body.dark {
         width: 1.25rem;
     }
 }
-
-/* Scrollbar */
-::-webkit-scrollbar {
-    width: 1.25rem;
-}
-
-::-webkit-scrollbar-thumb {
-    border-radius: 0.5rem;
-    border-style: solid;
-    border-width: 0.375rem;
-}

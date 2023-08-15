@@ -1,17 +1,13 @@
 body.light {
-    --image-bg: #f8fdedcc;
-    --text: #1a2504;
-    --background: #f8fded;
-    --primary: #195c0a;
-    --secondary: #c2f9d5;
-    --accent: #084f1f;
+    --image-bg: oklch(95% 0.05 135 / 75%);
+    --text: oklch(20% 0.25 135);
+    --background: oklch(95% 0.05 135);
+    --accent: oklch(57.5% 0.1 180);
 }
 
 body.dark {
-    --image-bg: #1a2504cc;
-    --text: #f8fded;
-    --background: #1a2504;
-    --primary: #195c0a;
-    --secondary: #03200d;
-    --accent: #17d954;
+    --image-bg: oklch(20% 0.25 135 / 75%);
+    --text: oklch(95% 0.05 135);
+    --background: oklch(20% 0.25 135);
+    --accent: oklch(57.5% 0.1 180);
 }
