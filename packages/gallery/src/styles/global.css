@@ -8,12 +8,3 @@ body {
     color: var(--text);
     transition: all 0.25s;
 }
-
-::-webkit-scrollbar {
-    background-color: var(--background);
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: var(--primary);
-    border-color: var(--background);
-}
