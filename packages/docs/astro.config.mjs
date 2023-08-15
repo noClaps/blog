@@ -7,7 +7,7 @@ export default defineConfig({
   integrations: [
     starlight({
       editLink: {
-        baseUrl: "https://github.com/noClaps/docs/edit/main/"
+        baseUrl: "https://github.com/noClaps/ZeroLimits.dev/packages/docs/edit/main/"
       },
       lastUpdated: true,
       title: 'The Docs-ter',
@@ -17,7 +17,7 @@ export default defineConfig({
         maxHeadingLevel: 6
       },
       social: {
-        github: 'https://github.com/noClaps/docs',
+        github: 'https://github.com/noClaps/ZeroLimits.dev',
       },
       customCss: [
         "./src/styles/style.css"
