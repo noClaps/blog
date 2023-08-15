@@ -20,7 +20,6 @@ This is the documentation for the code used in [Aperturic Focus](https://gallery
     Then open `localhost:3000` in your browser to see the live preview of the site.
 
 3.  ```sh
-    # Run from the root directory (ZeroLimits.dev/)
     bun build:gallery
     ```
     
