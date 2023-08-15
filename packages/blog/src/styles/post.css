@@ -50,11 +50,6 @@ th {
 .astro-code {
     border-radius: 0.5rem;
     padding: 1rem;
-
-    ::selection {
-        background-color: #e1e4e8;
-        color: #24292e;
-    }
 }
 
 code:not(.astro-code code) {

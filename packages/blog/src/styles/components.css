@@ -1,35 +1,15 @@
-.note {
-    & a {
-        color: var(--note-text);
-        text-decoration: underline;
-    }
-
-    ::selection {
-        background-color: var(--note-text);
-        color: var(--note-bg);
-    }
+.note a {
+    color: var(--note-text);
+    text-decoration: underline;
 }
 
-.quote {
-    & a {
-        color: var(--quote-text);
-        text-decoration: underline;
-    }
 
-    ::selection {
-        background-color: var(--quote-text);
-        color: var(--quote-bg);
-    }
+.quote a {
+    color: var(--quote-text);
+    text-decoration: underline;
 }
 
-.warning {
-    & a {
-        color: var(--warning-text);
-        text-decoration: underline;
-    }
-
-    ::selection {
-        background-color: var(--warning-text);
-        color: var(--warning-bg);
-    }
+.warning a {
+    color: var(--warning-text);
+    text-decoration: underline;
 }
