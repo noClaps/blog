@@ -1,15 +1,18 @@
+body {
+    --primary: oklch(75% 0.25 45);
+    --on-primary: oklch(5% 0.25 45);
+}
+
 body.light {
-    --text: #000000;
-    --background: #fddece;
-    --primary: #ff732e;
-    --secondary: #feebe2;
-    --accent: #762b05;
+    --text: oklch(5% 0.25 45);
+    --background: oklch(95% 0.1 45);
+    --secondary: oklch(95% 0.25 45);
+    --accent: oklch(60% 0.175 45);
 }
 
 body.dark {
-    --text: #fddece;
-    --background: #000000;
-    --primary: #ff732e;
-    --secondary: #451903;
-    --accent: #f6661e;
+    --text: oklch(95% 0.1 45);
+    --background: oklch(5% 0.25 45);
+    --secondary: oklch(25% 0.1 45);
+    --accent: oklch(75% 0.175 45);
 }
