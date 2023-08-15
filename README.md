@@ -9,18 +9,11 @@ This is a monorepo containing all of the sites and packages for ZeroLimits.dev.
 
 For details on each, see the documentation:
 
-**Sites**:
-
-- [Homepage](https://docs.zerolimits.dev/sites/homepage/)
-- [Blog](https://docs.zerolimits.dev/sites/blog/)
-- [Gallery](https://docs.zerolimits.dev/sites/gallery/)
-- [Documentation](https://docs.zerolimits.dev/sites/docs/)
-
-**Packages**:
-
-- [icons](https://docs.zerolimits.dev/packages/icons/)
-- [theme-toggle](https://docs.zerolimits.dev/packages/theme-toggle/)
-- [common](https://docs.zerolimits.dev/packages/common/)
+- [Homepage](https://docs.zerolimits.dev/homepage/)
+- [Blog](https://docs.zerolimits.dev/blog/)
+- [Gallery](https://docs.zerolimits.dev/gallery/)
+- [Documentation](https://docs.zerolimits.dev/docs/)
+- [Icons](https://docs.zerolimits.dev/icons/)
 
 ## Licenses
 
