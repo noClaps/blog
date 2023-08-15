@@ -27,8 +27,7 @@ body:
           description: Which package is this bug for?
           multiple: false
           options:
-              - "icons"
-              - "theme-toggle"
+              - "components"
               - "gallery"
               - "blog"
               - "homepage"
