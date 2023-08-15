@@ -8,19 +8,19 @@ This is the documentation for the documentation. It's mostly about how to contri
 ## Build instructions
 
 1.  ```sh
-    git clone https://github.com/noClaps/docs.git
+    git clone https://github.com/noClaps/ZeroLimits.dev.git
     cd docs
     ```
 
 2.  ```sh
     bun install
-    bun run dev
+    bun dev:docs
     ```
 
     Then open `localhost:3000` in your browser to see the live preview of the site.
 
 3.  ```sh
-    bun run build
+    bun build:docs
     ```
 
     This will build the site and place it in `dist/`.
