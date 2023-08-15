@@ -12,12 +12,15 @@
     "dev:blog": "cd packages/blog && astro dev",
     "dev:gallery": "cd packages/gallery && astro dev",
     "dev:homepage": "cd packages/homepage && astro dev",
+    "dev:docs": "packages/docs && astro dev",
     "build:blog": "cd packages/blog && astro build",
     "build:gallery": "cd packages/gallery && astro build",
     "build:homepage": "cd packages/homepage && astro build",
+    "build:docs": "cd packages/docs && astro build",
     "preview:blog": "cd packages/blog && astro build && astro preview",
     "preview:gallery": "cd packages/gallery && astro build && astro preview",
     "preview:homepage": "cd packages/homepage && astro build && astro preview",
+    "preview:docs": "cd packages/homepage && astro build && astro preview",
     "update": "rm -rf node_modules && rm bun.lockb && ncu -uws && bun install -f"
   },
   "workspaces": [
