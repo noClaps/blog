@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^2.0.2",
-    "astro": "^2.10.8",
+    "astro": "^2.10.9",
     "medium-zoom": "^1.0.8"
   }
 }

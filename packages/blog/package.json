@@ -6,7 +6,7 @@
     "@astrojs/mdx": "^0.19.7",
     "@astrojs/rss": "^2.4.4",
     "@astrojs/sitemap": "^2.0.2",
-    "astro": "^2.10.8",
+    "astro": "^2.10.9",
     "rehype-autolink-headings": "^6.1.1",
     "rehype-mathjax": "^4.0.3",
     "remark-math": "^5.1.1",
