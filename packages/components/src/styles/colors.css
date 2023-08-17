@@ -1,9 +1,0 @@
-body.light {
-    --text: oklch(0% 0 0);
-    --background: oklch(100% 0 0);
-}
-
-body.dark {
-    --text: oklch(100% 0 0);
-    --background: oklch(0% 0 0);
-}

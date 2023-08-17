@@ -5,9 +5,13 @@ body {
 }
 
 body.light {
+    --background: oklch(95% 0.05 150);
+    --text: oklch(15% 0.05 150);
     --image-bg: oklch(95% 0.05 135 / 75%);
 }
 
 body.dark {
+    --background: oklch(15% 0.05 150);
+    --text: oklch(95% 0.05 150);
     --image-bg: oklch(20% 0.25 135 / 75%);
 }

@@ -6,8 +6,10 @@ body {
 }
 
 body.light {
+    --background: oklch(95% 0.05 256);
+    --text: oklch(15% 0.05 256);
     --accent: oklch(50% 0.25 256);
-    
+
     /* Quote */
     --quote-bg: oklch(90% 0.1 270);
     --quote-text: oklch(30% 0.1 270);
@@ -22,12 +24,14 @@ body.light {
 }
 
 body.dark {
+    --background: oklch(15% 0.05 256);
+    --text: oklch(95% 0.05 256);
     --accent: oklch(60% 0.25 256);
-    
+
     /* Quote */
     --quote-bg: oklch(30% 0.1 270);
     --quote-text: oklch(90% 0.1 270);
-    
+
     /* Warning */
     --warning-bg: oklch(30% 0.1 0);
     --warning-text: oklch(90% 0.1 0);
