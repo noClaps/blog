@@ -13,8 +13,8 @@ const { title, description, href, date, author } = Astro.props;
 <a href={href} title={title}>
   {
     date && (
-      <time datetime={date.toLocaleDateString()}>
-        {date.toLocaleDateString()}
+      <time datetime={date.toDateString()}>
+        {date.toDateString()}
       </time>
     )
   }
