@@ -1,6 +1,6 @@
 body {
     --primary: oklch(50% 0.25 256);
-    --on-primary: oklch(95% 0.1 270);
+    --on-primary: oklch(100% 0 0);
     --code-bg: #24292e;
     --code-text: #e1e4e8;
 }
