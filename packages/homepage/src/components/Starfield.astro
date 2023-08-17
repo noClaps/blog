@@ -1,52 +1,12 @@
 <div id="starfield">
   <canvas id="starfield-canvas"></canvas>
-  <div class="links">
-    <a id="projects-link" href="#my-projects">My Projects</a>
-    <a id="contact-link" href="#contact-me">Contact me</a>
-    <a id="fun-facts-link" href="#fun-facts-about-me">Fun facts about me</a>
-  </div>
 </div>
 
 <style>
-  @keyframes float {
-    0%,
-    100% {
-      padding-bottom: 2rem;
-    }
-
-    50% {
-      padding-bottom: 1.5rem;
-    }
-  }
-
   #starfield {
     position: absolute;
     inset: 0;
     z-index: 3;
-    background-blend-mode: multiply;
-  }
-
-  .links {
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-    display: flex;
-    gap: 1rem;
-    animation: float 5s ease-in-out infinite alternate;
-  }
-
-  a {
-    font-size: 1.125rem;
-    color: var(--starfield-text);
-    text-decoration: none;
-    transition: all 0.25s;
-    font-weight: bold;
-
-    &:hover {
-      color: var(--accent);
-    }
   }
 </style>
 

@@ -1,0 +1,56 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  href: string;
+  date?: Date;
+  author?: string;
+}
+
+const { title, description, href, date, author } = Astro.props;
+---
+
+<a href={href} title={title}>
+  {
+    date && (
+      <time datetime={date.toDateString()}>
+        {date.toDateString()}
+      </time>
+    )
+  }
+  <h3>{title}</h3>
+  {description && <p>{description}</p>}
+  {author && <p>Written by {author}</p>}
+</a>
+
+<style>
+  a {
+    color: var(--text);
+    border: 0.125rem solid var(--text);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.5rem;
+    transition: all 0.25s;
+
+    &:hover {
+      text-decoration: none;
+      background-color: var(--primary);
+      color: var(--on-primary);
+    }
+  }
+
+  h3,
+  p,
+  time {
+    margin: 0.25rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  time {
+    font-style: italic;
+  }
+</style>

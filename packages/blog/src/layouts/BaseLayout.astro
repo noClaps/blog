@@ -1,20 +1,10 @@
 ---
-import { Layout } from "@noclaps/components";
-import { getCollection } from "astro:content";
+import Slider from "../components/Slider.astro";
+import { Icon, Layout } from "@noclaps/components";
 
 import "../styles/colors.css";
 import "../styles/components.css";
 import "../styles/global.css";
-
-const posts = await getCollection("posts");
-
-const links = posts.map((post) => {
-  return {
-    slug: post.slug,
-    title: post.data.title,
-    shortTitle: post.data.shortTitle || "",
-  };
-});
 
 const {
   title,
@@ -22,6 +12,32 @@ const {
 } = Astro.props;
 ---
 
-<Layout site="blog" {title} {description} {links}>
+<Layout site="blog" {title} {description}>
+  <link
+    slot="head"
+    rel="alternate"
+    href="/rss.xml"
+    type="application/rss+xml"
+    title="RSS"
+  />
+  <Slider slot="header" />
   <slot />
+  <a slot="footer" href="/rss.xml" title="Atom Feed">
+    <Icon name="rss" />
+  </a>
 </Layout>
+
+<style>
+  a {
+    color: var(--text);
+    padding: 0.5rem;
+    margin: 0 0.25rem;
+    border-radius: 0.5rem;
+    display: grid;
+    transition: all 0.25s;
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+</style>

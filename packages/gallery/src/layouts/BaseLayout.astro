@@ -1,16 +1,8 @@
 ---
-import { Layout } from "@noclaps/components";
+import { Icon, Layout } from "@noclaps/components";
 
 import "../styles/global.css";
 import "../styles/colors.css";
-
-const links = [
-  {
-    slug: "https://github.com/noClaps/ZeroLimits.dev/releases/download/2023-08-13/Photos.zip",
-    title: "Download",
-    shortTitle: "",
-  },
-];
 
 const {
   title,
@@ -18,6 +10,28 @@ const {
 } = Astro.props;
 ---
 
-<Layout site="gallery" {title} {description} {links}>
+<Layout site="gallery" {title} {description}>
+  <a
+    href="https://github.com/noClaps/ZeroLimits.dev/releases/download/2023-08-13/Photos.zip"
+    slot="header"><Icon name="download" />Download</a
+  >
   <slot />
 </Layout>
+
+<style>
+  a {
+    display: flex;
+    gap: 0.125rem;
+    text-decoration: none;
+    transition: all 0.25s;
+    color: var(--text);
+    font-weight: 550;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+
+    &:hover {
+      background-color: var(--primary);
+      color: var(--on-primary);
+    }
+  }
+</style>
