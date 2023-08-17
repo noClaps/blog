@@ -2,14 +2,7 @@
 :root,
 input,
 button {
-    font-family: system-ui;
-}
-
-h1,
-h2,
-h3,
-h4 {
-    font-family: ui-serif, serif;
+    font-family: -apple-system, "Inter var", system-ui;
 }
 
 /* Root */
