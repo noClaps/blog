@@ -23,12 +23,15 @@ const { site, title, description, links } = Astro.props;
     <slot />
     <Footer {site} />
     <style>
+      html {
+        scroll-behavior: smooth;
+      }
+
       body {
         display: grid;
         grid-template-rows: auto 1fr auto;
         min-height: 100dvh;
         height: fit-content;
-        scroll-behavior: smooth;
         margin: 0;
       }
     </style>
