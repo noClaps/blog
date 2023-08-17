@@ -3,6 +3,7 @@ import { Layout } from "@noclaps/components";
 
 import "../styles/global.css";
 import "../styles/colors.css";
+import Starfield from "../components/Starfield.astro";
 
 const {
   title,
@@ -10,6 +11,7 @@ const {
 } = Astro.props;
 ---
 
+<Starfield />
 <Layout site="homepage" {title} {description} links={[]}>
   <slot />
 </Layout>

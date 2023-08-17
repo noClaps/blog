@@ -1,11 +1,21 @@
+body,
+h1,
+h2,
+h3 {
+    font-family: system-ui;
+}
+
 body {
     transition: all 0.25s;
     background-color: var(--background);
     color: var(--text);
-    scroll-behavior: smooth;
-    overflow: hidden;
 }
 
 p {
     line-height: 1.5rem;
+}
+
+.infinity {
+    filter: var(--brightness);
+    animation: colorwheel-svg 10s ease-in-out infinite alternate;
 }

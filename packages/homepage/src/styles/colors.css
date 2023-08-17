@@ -1,18 +1,31 @@
+@keyframes colorwheel-svg {
+
+    0%,
+    100% {
+        fill: oklch(50% 0.25 256);
+    }
+
+    50% {
+        fill: oklch(50% 0.25 135)
+    }
+}
+
 body {
-    --primary: oklch(75% 0.25 45);
-    --on-primary: oklch(5% 0.25 45);
+    --gradient: linear-gradient(to bottom right, oklch(50% 0.25 256), oklch(50% 0.25 135));
+    --link-text: oklch(0% 0 0);
+    --starfield-text: oklch(100% 0 0);
+    --brightness: brightness(150%);
+    --accent: oklch(75% 0.25 60);
 }
 
 body.light {
-    --text: oklch(5% 0.25 45);
-    --background: oklch(95% 0.1 45);
-    --secondary: oklch(95% 0.25 45);
-    --accent: oklch(60% 0.175 45);
+    --text: oklch(0% 0 0);
+    --background: oklch(100% 0 0);
+    --primary: oklch(92.5% 0 0);
 }
 
 body.dark {
-    --text: oklch(95% 0.1 45);
-    --background: oklch(5% 0.25 45);
-    --secondary: oklch(25% 0.1 45);
-    --accent: oklch(75% 0.175 45);
+    --text: oklch(100% 0 0);
+    --background: oklch(0% 0 0);
+    --primary: oklch(22.5% 0 0);
 }
