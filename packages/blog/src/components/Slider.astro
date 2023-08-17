@@ -1,0 +1,51 @@
+<page-slider>
+  <a href="/history">History</a>
+  <a href="/science">Science</a>
+  <a href="/tech">Tech</a>
+</page-slider>
+
+<style>
+  page-slider {
+    position: relative;
+    display: flex;
+    border: 0.125rem solid var(--text);
+    padding: 0.25rem;
+    border-radius: 0.5rem;
+    justify-content: space-evenly;
+  }
+
+  a {
+    color: var(--text);
+    text-decoration: none;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    transition: all 0.25s;
+
+    &:hover {
+      font-weight: bold;
+    }
+
+    &[current-page] {
+      font-weight: bold;
+      color: var(--on-primary);
+      background-color: var(--primary);
+    }
+  }
+</style>
+
+<script>
+  class Slider extends HTMLElement {
+    constructor() {
+      super();
+
+      const path = location.pathname;
+      const currentPathElem = this.querySelector(`a[href="${path}"]`);
+
+      if (currentPathElem) {
+        currentPathElem.setAttribute("current-page", "");
+      }
+    }
+  }
+
+  customElements.define("page-slider", Slider);
+</script>

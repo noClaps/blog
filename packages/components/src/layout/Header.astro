@@ -1,15 +1,11 @@
 ---
 import ThemeToggle from "../tools/ThemeToggle.astro";
-import Nav from "./Nav.astro";
-import Sidebar from "./Sidebar.astro";
-import type { NavData } from "../scripts/treeify";
 
 interface Props {
   site: string;
-  links: NavData[];
 }
 
-const { site, links } = Astro.props;
+const { site } = Astro.props;
 
 const names: { [key: string]: string } = {
   blog: "The Blog of Random",
@@ -19,30 +15,16 @@ const names: { [key: string]: string } = {
 ---
 
 <header>
-  <h3>
-    <a href="/">{names[site]}</a>
-    {site !== "homepage" && <ThemeToggle />}
-  </h3>
-  {
-    site === "homepage" ? (
-      <ThemeToggle />
-    ) : (
-      <>
-        <nav>
-          <Nav {links} />
-        </nav>
-        <Sidebar>
-          <Nav {links} />
-        </Sidebar>
-      </>
-    )
-  }
+  <a href="/">{names[site]}</a>
+  <div>
+    <slot name="header" />
+    <ThemeToggle />
+  </div>
 </header>
 
 <style>
   header {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     background-color: var(--background);
@@ -54,6 +36,8 @@ const names: { [key: string]: string } = {
   }
 
   a {
+    font-size: 1.25rem;
+    font-weight: bold;
     text-decoration: none;
     padding: 0.5rem;
     transition: all 0.25s;
@@ -64,22 +48,9 @@ const names: { [key: string]: string } = {
     }
   }
 
-  /* Title */
-  h3 {
-    margin: 0;
-    display: inline-flex;
-  }
-
-  /* Nav */
-  nav {
+  div {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     align-items: center;
-    gap: 0.5rem;
-
-    @media (max-width: 768px) {
-      display: none;
-    }
+    gap: 1rem;
   }
 </style>
