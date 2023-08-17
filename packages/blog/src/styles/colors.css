@@ -6,7 +6,6 @@ body {
 }
 
 body.light {
-    --secondary: oklch(80% 0.1 256);
     --accent: oklch(50% 0.25 256);
     
     /* Quote */
@@ -23,8 +22,7 @@ body.light {
 }
 
 body.dark {
-    --secondary: oklch(20% 0.1 256);
-    --accent: oklch(75% 0.25 256);
+    --accent: oklch(60% 0.25 256);
     
     /* Quote */
     --quote-bg: oklch(30% 0.1 270);
