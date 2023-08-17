@@ -1,0 +1,30 @@
+<div>
+  <a href="#my-projects">My Projects</a>
+  <a href="#contact-me">Contact Me</a>
+  <a href="#fun-facts-about-me">Fun facts about me</a>
+</div>
+
+<style>
+  div {
+    position: absolute;
+    bottom: 1rem;
+    display: flex;
+    border: 0.125rem solid var(--text);
+    padding: 0.25rem;
+    border-radius: 0.5rem;
+    justify-content: space-evenly;
+    gap: 0.75rem;
+  }
+
+  a {
+    color: var(--text);
+    text-decoration: none;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    transition: all 0.25s;
+
+    &:hover {
+      font-weight: bold;
+    }
+  }
+</style>

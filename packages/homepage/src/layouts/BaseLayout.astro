@@ -11,7 +11,7 @@ const {
 } = Astro.props;
 ---
 
-<Starfield />
-<Layout site="homepage" {title} {description} links={[]}>
+<Layout site="homepage" {title} {description}>
+  <Starfield />
   <slot />
 </Layout>
