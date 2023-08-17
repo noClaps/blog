@@ -27,6 +27,4 @@ This is the documentation for all of the code used in the [homepage](https://zer
 
 ## Licenses
 
-The favicon, [GitHub](https://github.com) and donate icons come from [Octicons](https://primer.style/octicons) and are licensed under the [MIT license](https://github.com/primer/octicons/blob/main/LICENSE).
-
 The Starfield animation comes from the [Astro Landing Page theme](https://astro-moon-landing.netlify.app) by [mhyfritz](https://github.com/mhyfritz) and is licensed under the [MIT license](https://github.com/mhyfritz/astro-landing-page/blob/main/LICENSE).

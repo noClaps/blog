@@ -110,8 +110,6 @@ If the new styles already exist for other icons, then the icon selector can just
   }
 
   .download,
-  .sidebar,
-  .dropdown-arrow,
   .arrow-up,
   .note,
   .quote,
@@ -132,8 +130,6 @@ to:
   }
 
   .download,
-  .sidebar,
-  .dropdown-arrow,
   .arrow-up,
   .note,
   .quote,
