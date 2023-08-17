@@ -1,9 +1,13 @@
+body {
+    --primary: oklch(50% 0.25 150);
+    --on-primary: oklch(100% 0 0);
+    --accent: oklch(60% 0.25 150);
+}
+
 body.light {
     --image-bg: oklch(95% 0.05 135 / 75%);
-    --accent: oklch(57.5% 0.1 180);
 }
 
 body.dark {
     --image-bg: oklch(20% 0.25 135 / 75%);
-    --accent: oklch(57.5% 0.1 180);
 }
