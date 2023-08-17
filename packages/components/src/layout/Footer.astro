@@ -1,24 +1,12 @@
 ---
 import Icon from "../Icon.astro";
-
-interface Props {
-  site: string;
-}
-
-const { site } = Astro.props;
 ---
 
 <footer>
   <a href="https://github.com/noClaps/ZeroLimits.dev" title="Source Code">
     <Icon name="github" />
   </a>
-  {
-    site === "blog" && (
-      <a href="/rss.xml" title="Atom Feed">
-        <Icon name="rss" />
-      </a>
-    )
-  }
+  <slot />
 </footer>
 
 <style>
@@ -33,7 +21,6 @@ const { site } = Astro.props;
   }
 
   a {
-    text-decoration: none;
     color: var(--text);
     padding: 0.5rem;
     margin: 0 0.25rem;

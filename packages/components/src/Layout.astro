@@ -24,7 +24,9 @@ const { site, title, description } = Astro.props;
     </Header>
 
     <slot />
-    <Footer {site} />
+    <Footer>
+      <slot name="footer" />
+    </Footer>
     <style>
       html {
         scroll-behavior: smooth;
