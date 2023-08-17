@@ -1,37 +1,22 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { Icon } from "@noclaps/components";
 ---
 
 <BaseLayout title="The Blog of Random">
   <main>
-    <Icon name="blog-icon" />
-    <div>
-      <h1>The Blog of Random</h1>
-      <h2>
-        A blog about the most random things you can think of, brought to you by
-        the most interesting boring person you've ever met.
-      </h2>
-    </div>
+    <h1>The Blog of Random</h1>
+    <h2>
+      A blog about the most random things you can think of, brought to you by
+      the most interesting boring person you've ever met.
+    </h2>
   </main>
 </BaseLayout>
 
 <style>
   main {
-    display: grid;
-    grid-auto-flow: column;
-    grid-template-columns: 1fr 1fr;
-    place-items: center;
-
-    @media (max-width: 768px) {
-      grid-auto-flow: row;
-      grid-template-columns: unset;
-
-      & h1,
-      h2 {
-        text-align: center;
-      }
-    }
+    display: flex;
+    flex-direction: column;
+    text-align: center;
   }
 
   h2 {
