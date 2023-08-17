@@ -1,0 +1,46 @@
+---
+import { getCollection } from "astro:content";
+import Link from "../components/Link.astro";
+import Topic from "../layouts/Topic.astro";
+
+const posts = await getCollection("posts");
+---
+
+<Topic title="Tech">
+  <section>
+    {
+      posts.map(
+        (post) =>
+          post.slug.startsWith("tech") &&
+          !post.slug.startsWith("tech/psa") && (
+            <Link
+              title={post.data.title}
+              description={post.data.description}
+              href={post.slug}
+              date={post.data.lastmod ?? post.data.date}
+              author={post.data.author.id}
+            />
+          )
+      )
+    }
+  </section>
+  <section>
+    <h2>Privacy, Security and Anonymity</h2>
+    <div class="links">
+      {
+        posts.map(
+          (post) =>
+            post.slug.startsWith("tech/psa") && (
+              <Link
+                title={post.data.title}
+                description={post.data.description}
+                href={post.slug}
+                date={post.data.lastmod ?? post.data.date}
+                author={post.data.author.id}
+              />
+            )
+        )
+      }
+    </div>
+  </section>
+</Topic>
