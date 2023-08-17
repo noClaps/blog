@@ -13,7 +13,7 @@ h4 {
 }
 
 /* Root */
-*,
+:root,
 :before,
 :after {
     box-sizing: border-box;

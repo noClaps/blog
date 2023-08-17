@@ -13,13 +13,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         title="The Blog of Random"
         description="A blog about the most random things you can think of, brought to you by the most interesting boring person you've ever met."
         link="https://blog.zerolimits.dev"
-        icon="https://blog.zerolimits.dev/icon/favicon.ico"
+        icon="https://blog.zerolimits.dev/favicon.ico"
       />
       <Link
         title="Aperturic Focus"
         description="A website to showcase some cool photos I've taken."
         link="https://gallery.zerolimits.dev"
-        icon="https://gallery.zerolimits.dev/icon/favicon.ico"
+        icon="https://gallery.zerolimits.dev/favicon.ico"
       />
       <Link
         title="The Docs-ter"
@@ -61,10 +61,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 </BaseLayout>
 
 <style>
-  main {
-    padding-top: 5dvh;
-  }
-
   section {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 24rem), 1fr));
@@ -83,9 +79,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
   h2 {
     margin-top: 2rem;
+    scroll-margin-top: 10dvh;
+    font-family: system-ui;
   }
 </style>
-
-<script>
-  history.scrollRestoration = "manual";
-</script>
