@@ -12,10 +12,16 @@ const names: { [key: string]: string } = {
   gallery: "Aperturic Focus",
   homepage: "ZeroLimits.dev",
 };
+
+const favicons: { [key: string]: string } = {
+  blog: "https://blog.zerolimits.dev/favicon.ico",
+  gallery: "https://gallery.zerolimits.dev/favicon.ico",
+  homepage: "https://www.zerolimits.dev/favicon.ico",
+};
 ---
 
 <header>
-  <a href="/">{names[site]}</a>
+  <a href="/"><img src={favicons[site]} alt={names[site]} />{names[site]}</a>
   <div>
     <slot />
     <ThemeToggle />
@@ -36,6 +42,9 @@ const names: { [key: string]: string } = {
   }
 
   a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     font-size: 1.25rem;
     font-weight: bold;
     text-decoration: none;
@@ -51,6 +60,10 @@ const names: { [key: string]: string } = {
   div {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
+  }
+
+  img {
+    height: 1.5rem;
   }
 </style>
