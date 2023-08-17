@@ -1,11 +1,10 @@
 ---
 interface Props {
-  site: string;
   title: string;
   description: string;
 }
 
-const { site, title, description } = Astro.props;
+const { title, description } = Astro.props;
 ---
 
 <head>
@@ -16,14 +15,7 @@ const { site, title, description } = Astro.props;
   <title>{title}</title>
   <meta name="description" content={description} />
   <meta name="generator" content={Astro.generator} />
-  {
-    site === "blog" && (
-      <link
-        rel="alternate"
-        href="/rss.xml"
-        type="application/rss+xml"
-        title="RSS"
-      />
-    )
-  }
+  <link rel="preconnect" href="https://rsms.me/" />
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+  <slot name="head" />
 </head>

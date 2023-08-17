@@ -15,7 +15,9 @@ const { site, title, description } = Astro.props;
 ---
 
 <html lang="en">
-  <Head {site} {title} {description} />
+  <Head {title} {description}>
+    <slot name="head" slot="head" />
+  </Head>
   <body>
     <Header {site}>
       <slot slot="header" name="header" />
