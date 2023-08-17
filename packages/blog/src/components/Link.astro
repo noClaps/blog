@@ -10,7 +10,7 @@ interface Props {
 const { title, description, href, date, author } = Astro.props;
 ---
 
-<a href={href} title={title}>
+<a href={`/${href}`} title={title}>
   {
     date && (
       <time datetime={date.toDateString()}>
