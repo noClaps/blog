@@ -9,10 +9,6 @@ All posts should go in the `src/content/posts/` directory, and should be in MDX 
 
 Each post should have frontmatter with the following properties:
 
-- `shortTitle`: _string (Optional)_
-
-  A shorter version of the title to use if the main title is too long to fit in the navigation bar.
-
 - `title`: _string_
 
   The title of the post being written.
@@ -39,7 +35,6 @@ Example:
 
 ```mdx
 ---
-shortTitle: Google
 title: "Google: A Misrepresented Evil"
 description: Don't be evil, sometimes.
 date: 2022-08-12
