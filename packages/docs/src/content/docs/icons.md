@@ -35,7 +35,7 @@ The name passed to the Icon component is the icon that is returned. For instance
 </svg>
 ```
 
-- **Allowed values**: `sun`, `moon`, `github`, `download`, `sidebar`, `infinity`, `rss`, `dropdown-arrow`, `arrow-up`, `note`, `quote`, `warning`, `donate`, `email`
+- **Allowed values**: `sun`, `moon`, `github`, `download`, `infinity`, `rss`, `arrow-up`, `note`, `quote`, `warning`, `donate`, `email`
 - **Optional**: No
 
 ## Contributing

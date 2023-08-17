@@ -48,16 +48,6 @@ const { name } = Astro.props;
   )
 }
 {
-  name === "sidebar" && (
-    <svg class="sidebar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-      <path
-        fill-rule="evenodd"
-        d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z"
-      />
-    </svg>
-  )
-}
-{
   name === "infinity" && (
     <svg
       class="infinity"
@@ -78,17 +68,6 @@ const { name } = Astro.props;
         fill-rule="evenodd"
         d="M2.002 2.725a.75.75 0 01.797-.699C8.79 2.42 13.58 7.21 13.974 13.201a.75.75 0 11-1.497.098 10.502 10.502 0 00-9.776-9.776.75.75 0 01-.7-.798zM2 13a1 1 0 112 0 1 1 0 01-2 0zm.84-5.95a.75.75 0 00-.179 1.489c2.509.3 4.5 2.291 4.8 4.8a.75.75 0 101.49-.178A7.003 7.003 0 002.838 7.05z"
       />
-    </svg>
-  )
-}
-{
-  name === "dropdown-arrow" && (
-    <svg
-      class="dropdown-arrow"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 16 16"
-    >
-      <path d="M4.427 7.427l3.396 3.396a.25.25 0 00.354 0l3.396-3.396A.25.25 0 0011.396 7H4.604a.25.25 0 00-.177.427z" />
     </svg>
   )
 }
@@ -168,8 +147,6 @@ const { name } = Astro.props;
   }
 
   .download,
-  .sidebar,
-  .dropdown-arrow,
   .arrow-up,
   .note,
   .quote,
