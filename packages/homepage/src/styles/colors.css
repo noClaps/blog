@@ -12,15 +12,7 @@
 
 body {
     --gradient: linear-gradient(to bottom right, oklch(50% 0.25 256), oklch(50% 0.25 135));
-    --link-text: oklch(0% 0 0);
-    --starfield-text: oklch(100% 0 0);
     --accent: oklch(75% 0.25 60);
-}
-
-body.light {
-    --primary: oklch(95% 0 0);
-}
-
-body.dark {
-    --primary: oklch(22.5% 0 0);
+    --primary: oklch(75% 0.25 60);
+    --on-primary: oklch(0% 0 0);
 }
