@@ -13,21 +13,18 @@ const {
 ---
 
 <Layout site="blog" {title} {description}>
-  <Fragment slot="head">
-    <link
-      rel="alternate"
-      href="/rss.xml"
-      type="application/rss+xml"
-      title="RSS"
-    />
-  </Fragment>
+  <link
+    slot="head"
+    rel="alternate"
+    href="/rss.xml"
+    type="application/rss+xml"
+    title="RSS"
+  />
   <Slider slot="header" />
   <slot />
-  <Fragment slot="footer">
-    <a href="/rss.xml" title="Atom Feed">
-      <Icon name="rss" />
-    </a>
-  </Fragment>
+  <a slot="footer" href="/rss.xml" title="Atom Feed">
+    <Icon name="rss" />
+  </a>
 </Layout>
 
 <style>
