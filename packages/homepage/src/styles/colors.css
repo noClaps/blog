@@ -14,7 +14,6 @@ body {
     --gradient: linear-gradient(to bottom right, oklch(50% 0.25 256), oklch(50% 0.25 135));
     --link-text: oklch(0% 0 0);
     --starfield-text: oklch(100% 0 0);
-    --brightness: brightness(150%);
     --accent: oklch(75% 0.25 60);
 }
 
