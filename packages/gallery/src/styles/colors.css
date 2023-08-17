@@ -1,13 +1,9 @@
 body.light {
     --image-bg: oklch(95% 0.05 135 / 75%);
-    --text: oklch(20% 0.25 135);
-    --background: oklch(95% 0.05 135);
     --accent: oklch(57.5% 0.1 180);
 }
 
 body.dark {
     --image-bg: oklch(20% 0.25 135 / 75%);
-    --text: oklch(95% 0.05 135);
-    --background: oklch(20% 0.25 135);
     --accent: oklch(57.5% 0.1 180);
 }

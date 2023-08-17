@@ -19,13 +19,9 @@ body {
 }
 
 body.light {
-    --text: oklch(0% 0 0);
-    --background: oklch(100% 0 0);
     --primary: oklch(95% 0 0);
 }
 
 body.dark {
-    --text: oklch(100% 0 0);
-    --background: oklch(0% 0 0);
     --primary: oklch(22.5% 0 0);
 }

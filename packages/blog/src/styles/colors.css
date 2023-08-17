@@ -6,8 +6,6 @@ body {
 }
 
 body.light {
-    --text: oklch(5% 0.1 270);
-    --background: oklch(95% 0.05 270);
     --secondary: oklch(80% 0.1 256);
     --accent: oklch(50% 0.25 256);
     
@@ -25,8 +23,6 @@ body.light {
 }
 
 body.dark {
-    --text: oklch(95% 0.1 270);
-    --background: oklch(5% 0.1 270);
     --secondary: oklch(20% 0.1 256);
     --accent: oklch(75% 0.25 256);
     
