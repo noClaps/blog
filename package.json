@@ -21,7 +21,7 @@
     "preview:gallery": "cd packages/gallery && astro build && astro preview",
     "preview:homepage": "cd packages/homepage && astro build && astro preview",
     "preview:docs": "cd packages/homepage && astro build && astro preview",
-    "update": "rm -rf node_modules && rm bun.lockb && ncu -uws && bun install -f"
+    "update": "rm -rf node_modules bun.lockb && ncu -uws && bun install -f"
   },
   "workspaces": [
     "packages/*"
