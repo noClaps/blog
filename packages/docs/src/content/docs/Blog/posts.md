@@ -33,7 +33,7 @@ The frontmatter should be in YAML format.
 
 Example:
 
-```mdx
+```md
 ---
 title: "Google: A Misrepresented Evil"
 description: Don't be evil, sometimes.
@@ -96,7 +96,7 @@ The post you write should be in the appropriate section. If none of the current 
 
 To help with the layout and structuring of your content, you may also use [components](/blog/components). You may also add a table of contents to help navigate the post, by adding:
 
-```mdx
+```md
 ## Table of contents
 ```
 
@@ -122,6 +122,6 @@ The instructions for previewing the site locally are [here](/blog#build-instruct
 
 If you need to add files, such as code, to support your post, you may do so in `public/files/`. This is recommended if you're writing a technical post. Any code you write, you should link the final, completed code as a download with:
 
-```mdx
+```md
 <a href="/files/[your-file-name]" download="[your-file-name]">Download the file (example text)</a>
 ```
