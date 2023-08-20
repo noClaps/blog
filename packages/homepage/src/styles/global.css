@@ -8,7 +8,3 @@ p {
     line-height: 1.5rem;
 }
 
-.infinity {
-    filter: brightness(150%);
-    animation: colorwheel-svg 10s ease-in-out infinite alternate;
-}

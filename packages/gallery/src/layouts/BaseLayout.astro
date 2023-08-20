@@ -1,5 +1,6 @@
 ---
-import { Icon, Layout } from "@noclaps/components";
+import { Layout } from "@noclaps/components";
+import { Icon } from "astro-icon";
 
 import "../styles/global.css";
 import "../styles/colors.css";
@@ -13,7 +14,7 @@ const {
 <Layout site="gallery" {title} {description}>
   <a
     href="https://github.com/noClaps/ZeroLimits.dev/releases/download/2023-08-13/Photos.zip"
-    slot="header"><Icon name="download" />Download</a
+    slot="header"><Icon name="octicon:download-16" />Download</a
   >
   <slot />
 </Layout>
@@ -33,5 +34,9 @@ const {
       background-color: var(--primary);
       color: var(--on-primary);
     }
+  }
+
+  [astro-icon] {
+    height: 1rem;
   }
 </style>

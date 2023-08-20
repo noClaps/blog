@@ -1,6 +1,7 @@
 ---
 import Slider from "../components/Slider.astro";
-import { Icon, Layout } from "@noclaps/components";
+import { Layout } from "@noclaps/components";
+import { Icon } from "astro-icon";
 
 import "../styles/colors.css";
 import "../styles/components.css";
@@ -23,7 +24,7 @@ const {
   <Slider slot="header" />
   <slot />
   <a slot="footer" href="/rss.xml" title="Atom Feed">
-    <Icon name="rss" />
+    <Icon name="octicon:rss-16" />
   </a>
 </Layout>
 
@@ -39,5 +40,9 @@ const {
     &:hover {
       color: var(--accent);
     }
+  }
+
+  [astro-icon] {
+    height: 1.25rem;
   }
 </style>

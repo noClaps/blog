@@ -1,12 +1,12 @@
 ---
-import { Icon } from "@noclaps/components";
+import { Icon } from "astro-icon";
 
 const { name, link } = Astro.props;
 ---
 
 <blockquote class="quote">
   <p>
-    <Icon name="quote" />
+    <Icon name="octicon:comment-16" />
     {
       link ? (
         <b>
@@ -37,6 +37,12 @@ const { name, link } = Astro.props;
   }
 
   b {
+    vertical-align: middle;
+  }
+
+  [astro-icon] {
+    height: 1rem;
+    margin-right: 0.5rem;
     vertical-align: middle;
   }
 </style>

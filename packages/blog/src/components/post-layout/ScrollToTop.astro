@@ -1,9 +1,9 @@
 ---
-import { Icon } from "@noclaps/components";
+import { Icon } from "astro-icon";
 ---
 
 <scroll-to-top>
-  <p><Icon name="arrow-up" />Back to top</p>
+  <p><Icon name="octicon:arrow-up-16" />Back to top</p>
 </scroll-to-top>
 
 <style>
@@ -30,6 +30,11 @@ import { Icon } from "@noclaps/components";
     font-size: 1rem;
     margin: 0;
     display: inline-flex;
+  }
+
+  [astro-icon] {
+    height: 1rem;
+    margin-right: 0.25rem;
   }
 </style>
 

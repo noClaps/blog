@@ -1,5 +1,5 @@
 ---
-import { Icon } from "@noclaps/components";
+import { Icon } from "astro-icon";
 
 interface Props {
   title: string;
@@ -17,7 +17,7 @@ const { title, description, link, icon } = Astro.props;
       icon.startsWith("https://") ? (
         <img src={icon} alt={title} />
       ) : (
-        <Icon name={icon} />
+        <Icon name={`octicon:${icon}-16`} />
       )
     }
     <h3>{title}</h3>
@@ -65,5 +65,9 @@ const { title, description, link, icon } = Astro.props;
 
   p {
     text-align: left;
+  }
+
+  [astro-icon] {
+    height: 1.5rem;
   }
 </style>
