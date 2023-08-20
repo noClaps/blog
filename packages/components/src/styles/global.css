@@ -28,27 +28,6 @@ nav img {
     margin: auto;
 }
 
-/* Theme toggle icons */
-body.light {
-    & .moon {
-        width: 1.25rem;
-    }
-
-    & .sun {
-        width: 0;
-    }
-}
-
-body.dark {
-    & .moon {
-        width: 0;
-    }
-
-    & .sun {
-        width: 1.25rem;
-    }
-}
-
 [astro-icon] {
     place-self: center;
     fill: currentColor;

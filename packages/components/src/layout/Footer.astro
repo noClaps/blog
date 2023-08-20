@@ -1,10 +1,10 @@
 ---
-import Icon from "../Icon.astro";
+import { Icon } from "astro-icon";
 ---
 
 <footer>
   <a href="https://github.com/noClaps/ZeroLimits.dev" title="Source Code">
-    <Icon name="github" />
+    <Icon name="octicon:mark-github-16" />
   </a>
   <slot />
 </footer>
@@ -31,5 +31,9 @@ import Icon from "../Icon.astro";
     &:hover {
       color: var(--accent);
     }
+  }
+
+  [astro-icon] {
+    height: 1.25rem;
   }
 </style>
