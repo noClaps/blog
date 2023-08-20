@@ -48,3 +48,8 @@ body.dark {
         width: 1.25rem;
     }
 }
+
+[astro-icon] {
+    place-self: center;
+    fill: currentColor;
+}
