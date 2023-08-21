@@ -33,7 +33,7 @@ The frontmatter should be in YAML format.
 
 Example:
 
-```mdx
+```md
 ---
 title: "Google: A Misrepresented Evil"
 description: Don't be evil, sometimes.
@@ -80,12 +80,40 @@ The post you write should be in the appropriate section. If none of the current 
 
 - HTML should be avoided if a Markdown counterpart exists for it. Since the blog uses GitHub Flavored Markdown (GFM), most formatting features should be available. You can see the [GFM spec here](https://github.github.com/gfm/). Using HTML for superscript (`<sup></sup>`) or subscript (`<sub></sub>`) is allowed, as these features are not included in the GFM spec.
 
-- Instead of using regular blockquotes (`>`), the [`Quote` component](/blog/components#quote) should be used. 
+- Instead of using regular blockquotes (`>`), the [`Quote` component](/blog/components#quote) should be used.
+
+- Content inside components should start on a new line. This is due to the way that Astro handles formatting components in MDX.
+
+  ```astro
+  <!-- Instead of this: -->
+  <Note>My note here</Note>
+
+  <!-- Use this: -->
+  <Note>
+  My note here
+  </Note>
+  ```
 
 To help with the layout and structuring of your content, you may also use [components](/blog/components). You may also add a table of contents to help navigate the post, by adding:
 
-```mdx
+```md
 ## Table of contents
+```
+
+Ensure that you do not place any content under the `## Table of contents` heading, as it will not be rendered. You may place the content under a different heading.
+
+```md
+## Previous heading
+
+Content can go here
+
+## Table of contents
+
+<!-- Content cannot go here -->
+
+## Next heading
+
+Content can go here
 ```
 
 The instructions for previewing the site locally are [here](/blog#build-instructions). On creating a PR, a preview deployment of the site will also be available to see the built version of the site.
@@ -94,6 +122,6 @@ The instructions for previewing the site locally are [here](/blog#build-instruct
 
 If you need to add files, such as code, to support your post, you may do so in `public/files/`. This is recommended if you're writing a technical post. Any code you write, you should link the final, completed code as a download with:
 
-```mdx
+```md
 <a href="/files/[your-file-name]" download="[your-file-name]">Download the file (example text)</a>
 ```
