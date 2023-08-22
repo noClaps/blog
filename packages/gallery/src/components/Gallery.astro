@@ -6,7 +6,7 @@ const images = await Astro.glob("../assets/*.{jpg,jpeg}");
 <div>
   {
     images.map((image) => (
-      <Image class="zoom" src={image.default} alt="" width="1008" />
+      <Image class="zoom" src={image.default} alt="" />
     ))
   }
 </div>
