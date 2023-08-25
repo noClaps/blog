@@ -20,6 +20,7 @@ body {
     --primary: oklch(75% 0.25 60);
     --on-primary: oklch(10% 0.25 60);
     --starfield-text: oklch(100% 0 0);
+    --starfield-shadow: oklch(0% 0 0);
 }
 
 body.light {
