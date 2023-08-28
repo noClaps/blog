@@ -13,7 +13,6 @@ For details on each, see the documentation:
 - [Blog](https://docs.zerolimits.dev/blog/)
 - [Gallery](https://docs.zerolimits.dev/gallery/)
 - [Documentation](https://docs.zerolimits.dev/docs/)
-- [Icons](https://docs.zerolimits.dev/icons/)
 
 ## Licenses
 
