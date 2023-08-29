@@ -10,38 +10,34 @@ import { Icon } from "astro-icon";
 <style>
   theme-toggle {
     display: inline-flex;
-    text-decoration: none;
     padding: 0.5rem;
     color: var(--text);
     background-color: transparent;
     cursor: pointer;
+    transition: all 0.25s;
 
     &:hover {
       color: var(--accent);
     }
+
+    &:active {
+      transform: scale(0.75);
+    }
   }
 
   [astro-icon] {
-    transition: all 0.25s;
+    width: 1.25rem;
   }
 
   :global(body.light) {
-    & [astro-icon="octicon:moon-16"] {
-      width: 1.25rem;
-    }
-
     & [astro-icon="octicon:sun-16"] {
-      width: 0;
+      display: none;
     }
   }
 
   :global(body.dark) {
     & [astro-icon="octicon:moon-16"] {
-      width: 0;
-    }
-
-    & [astro-icon="octicon:sun-16"] {
-      width: 1.25rem;
+      display: none;
     }
   }
 </style>
