@@ -5,7 +5,6 @@ body {
 
 body.light {
     --accent: oklch(50% 0.25 256);
-    --on-accent: oklch(100% 0 0);
 
     /* Components */
     --quote: oklch(50% 0.25 256);
@@ -15,7 +14,6 @@ body.light {
 
 body.dark {
     --accent: oklch(75% 0.25 256);
-    --on-accent: oklch(0% 0 0);
 
     /* Components */
     --quote: oklch(50% 0.25 256);
