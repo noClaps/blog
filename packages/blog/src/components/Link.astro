@@ -11,13 +11,7 @@ const { title, description, href, date, author } = Astro.props;
 ---
 
 <a href={`/${href}`} title={title}>
-  {
-    date && (
-      <time datetime={date.toDateString()}>
-        {date.toDateString()}
-      </time>
-    )
-  }
+  {date && <time datetime={date.toDateString()}>{date.toDateString()}</time>}
   <h3>{title}</h3>
   {description && <p>{description}</p>}
   {author && <p>Written by {author}</p>}
@@ -26,7 +20,7 @@ const { title, description, href, date, author } = Astro.props;
 <style>
   a {
     color: var(--text);
-    border: 0.125rem solid var(--text);
+    border: 0.125rem solid var(--accent);
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -35,8 +29,8 @@ const { title, description, href, date, author } = Astro.props;
 
     &:hover {
       text-decoration: none;
-      background-color: var(--accent);
-      color: var(--background);
+      border-color: var(--accent);
+      box-shadow: 0 0 0.5rem 0.25rem var(--accent);
     }
   }
 
