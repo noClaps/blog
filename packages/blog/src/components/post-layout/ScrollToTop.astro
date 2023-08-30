@@ -21,7 +21,8 @@ import { Icon } from "astro-icon";
     cursor: pointer;
 
     &:hover {
-      box-shadow: 0 0 1.5rem 0.125rem var(--accent);
+      translate: 0 -10%;
+      box-shadow: 0 0 1rem 0.125rem var(--accent);
     }
   }
 
@@ -50,8 +51,12 @@ import { Icon } from "astro-icon";
       window.onscroll = () => {
         if (window.scrollY > 64) {
           this.style.opacity = "1";
+          this.style.translate = "0";
+          this.inert = false;
         } else {
           this.style.opacity = "0";
+          this.style.translate = "0 100%";
+          this.inert = true;
         }
       };
     }
