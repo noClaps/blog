@@ -16,13 +16,27 @@ import { Icon } from "astro-icon";
     padding: 0.5rem;
     border-radius: 0.5rem;
     transition: all 0.25s;
-    color: var(--background);
+    color: var(--on-accent);
     background-color: var(--accent);
     cursor: pointer;
 
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      background-image: var(--accent-gradient);
+      border-radius: 0.5rem;
+      filter: blur(0.5rem);
+      inset: 0.25rem;
+      transition: inset 0.25s;
+    }
+
     &:hover {
       bottom: 1.25rem;
-      box-shadow: 0 0 1rem 0.125rem var(--accent);
+
+      &::before {
+        inset: -0.25rem;
+      }
     }
   }
 

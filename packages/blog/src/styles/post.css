@@ -75,7 +75,7 @@ article a:not(:is(h2, h3, h4, h5, h6) a) {
     &:hover {
         text-decoration: none;
         background-position-y: 100%;
-        color: var(--background);
+        color: var(--on-accent);
         transition: all 0.1s ease;
     }
 }

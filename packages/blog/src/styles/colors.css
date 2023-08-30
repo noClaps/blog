@@ -1,22 +1,10 @@
 body {
     --code-bg: #24292e;
     --code-text: #e1e4e8;
-}
-
-body.light {
-    --accent: oklch(50% 0.25 256);
-
-    /* Components */
-    --quote: oklch(50% 0.25 256);
-    --warning: oklch(50% 0.25 0);
-    --note: oklch(60% 0.25 300);
-}
-
-body.dark {
-    --accent: oklch(75% 0.25 256);
-
-    /* Components */
-    --quote: oklch(60% 0.25 256);
-    --warning: oklch(40% 0.25 0);
-    --note: oklch(40% 0.25 300);
+    --accent: oklch(62.5% 0.25 256);
+    --on-accent: oklch(100% 0 0);
+    --accent-gradient: linear-gradient(to right, oklch(50% 0.25 256), oklch(75% 0.25 256));
+    --note-gradient: linear-gradient(to top left, oklch(25% 0.25 300), oklch(50% 0.25 300), oklch(75% 0.25 300));
+    --quote-gradient: linear-gradient(to right, oklch(37.5% 0.25 256), oklch(50% 0.25 256), oklch(62.5% 0.25 256));
+    --warning-gradient: linear-gradient(to top left, oklch(37.5% 0.25 0), oklch(50% 0.25 0), oklch(62.5% 0.25 0));
 }

@@ -14,9 +14,21 @@
     justify-content: space-evenly;
     gap: 0.25rem;
     transition: box-shadow 0.25s;
+    background-color: var(--background);
 
-    &:hover {
-      box-shadow: 0 0 0.5rem 0.125rem var(--accent);
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      background-image: var(--accent-gradient);
+      border-radius: 0.5rem;
+      filter: blur(0.5rem);
+      inset: 0.25rem;
+      transition: inset 0.25s;
+    }
+
+    &:hover::before {
+      inset: -0.25rem;
     }
   }
 
@@ -33,7 +45,7 @@
 
     &[current-page] {
       font-weight: bold;
-      color: var(--background);
+      color: var(--on-accent);
       background-color: var(--accent);
     }
   }

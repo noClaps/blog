@@ -25,12 +25,27 @@ const { title, description, href, date, author } = Astro.props;
     display: flex;
     flex-direction: column;
     border-radius: 0.5rem;
-    transition: all 0.25s;
+    background-color: var(--background);
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      background-image: var(--accent-gradient);
+      border-radius: 0.5rem;
+      filter: blur(0.5rem);
+      inset: 0.25rem;
+      transition: inset 0.25s;
+      will-change: transform;
+    }
 
     &:hover {
       text-decoration: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0.5rem 0.25rem var(--accent);
+
+      &::before {
+        inset: -0.25rem;
+      }
     }
   }
 
