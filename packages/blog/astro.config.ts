@@ -18,10 +18,5 @@ export default defineConfig({
             [rehypeAutolinkHeadings, { behavior: "wrap" }],
         ],
     },
-    integrations: [mdx(), sitemap()],
-    compressHTML: true,
-    build: {
-        inlineStylesheets: "auto"
-    },
-    scopedStyleStrategy: "class"
+    integrations: [mdx(), sitemap()]
 });

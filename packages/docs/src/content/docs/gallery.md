@@ -17,7 +17,7 @@ This is the documentation for the code used in [Aperturic Focus](https://gallery
     bun dev:gallery
     ```
 
-    Then open `localhost:3000` in your browser to see the live preview of the site.
+    Then open `localhost:4321` in your browser to see the live preview of the site.
 
 3.  ```sh
     bun build:gallery

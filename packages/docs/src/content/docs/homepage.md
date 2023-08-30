@@ -17,7 +17,7 @@ This is the documentation for all of the code used in the [homepage](https://zer
     bun dev:homepage
     ```
 
-    Then open `localhost:3000` in your browser to see the live preview of the site.
+    Then open `localhost:4321` in your browser to see the live preview of the site.
 
 3.  ```sh
     bun build:homepage

@@ -1,10 +1,10 @@
 {
   "name": "@noclaps/blog",
   "dependencies": {
-    "@astrojs/mdx": "^0.19.7",
-    "@astrojs/rss": "^2.4.4",
-    "@astrojs/sitemap": "^2.0.2",
-    "astro": "^2.10.15",
+    "@astrojs/mdx": "^1.0.0",
+    "@astrojs/rss": "^3.0.0",
+    "@astrojs/sitemap": "^3.0.0",
+    "astro": "^3.0.2",
     "astro-icon": "^0.8.1",
     "rehype-autolink-headings": "^6.1.1",
     "rehype-mathjax": "^4.0.3",

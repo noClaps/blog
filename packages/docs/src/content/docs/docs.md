@@ -17,7 +17,7 @@ This is the documentation for the documentation. It's mostly about how to contri
     bun dev:docs
     ```
 
-    Then open `localhost:3000` in your browser to see the live preview of the site.
+    Then open `localhost:4321` in your browser to see the live preview of the site.
 
 3.  ```sh
     bun build:docs
