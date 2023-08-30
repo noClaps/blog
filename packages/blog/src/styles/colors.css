@@ -9,17 +9,10 @@ body.light {
     --accent: oklch(50% 0.25 256);
     --on-accent: oklch(100% 0 0);
 
-    /* Quote */
-    --quote-bg: oklch(90% 0.1 270);
-    --quote-text: oklch(30% 0.1 270);
-
-    /* Warning */
-    --warning-bg: oklch(90% 0.1 0);
-    --warning-text: oklch(30% 0.1 0);
-
-    /* Note */
-    --note-bg: oklch(90% 0.1 300);
-    --note-text: oklch(30% 0.1 300);
+    /* Components */
+    --quote: oklch(50% 0.25 256);
+    --warning: oklch(50% 0.25 0);
+    --note: oklch(60% 0.25 300);
 }
 
 body.dark {
@@ -28,15 +21,8 @@ body.dark {
     --accent: oklch(75% 0.2 256);
     --on-accent: oklch(0% 0 0);
 
-    /* Quote */
-    --quote-bg: oklch(30% 0.1 270);
-    --quote-text: oklch(90% 0.1 270);
-
-    /* Warning */
-    --warning-bg: oklch(30% 0.1 0);
-    --warning-text: oklch(90% 0.1 0);
-
-    /* Note */
-    --note-bg: oklch(30% 0.1 300);
-    --note-text: oklch(90% 0.1 300);
+    /* Components */
+    --quote: oklch(50% 0.25 256);
+    --warning: oklch(40% 0.25 0);
+    --note: oklch(40% 0.25 300);
 }
