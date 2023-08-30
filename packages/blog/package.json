@@ -13,7 +13,7 @@
   },
   "description": "The Blog of Random",
   "scripts": {
-    "dev": "astro check --watch & astro dev",
+    "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview"
