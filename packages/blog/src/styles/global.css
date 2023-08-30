@@ -24,9 +24,3 @@ hr {
     border: none;
     border-top: solid 0.125rem var(--accent);
 }
-
-body {
-    background-color: var(--background);
-    color: var(--text);
-    transition: all 0.25s;
-}

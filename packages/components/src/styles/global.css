@@ -1,3 +1,14 @@
+/* Colors */
+body.light {
+    --background: oklch(100% 0 0);
+    --text: oklch(15% 0 0);
+}
+
+body.dark {
+    --background: oklch(15% 0 0);
+    --text: oklch(95% 0 0);
+}
+
 /* Font */
 :root,
 input,
