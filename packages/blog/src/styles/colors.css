@@ -1,14 +1,13 @@
 body {
-    --primary: oklch(50% 0.25 256);
-    --on-primary: oklch(100% 0 0);
     --code-bg: #24292e;
     --code-text: #e1e4e8;
 }
 
 body.light {
-    --background: oklch(95% 0.05 256);
-    --text: oklch(15% 0.05 256);
+    --background: oklch(100% 0 0);
+    --text: oklch(10% 0 0);
     --accent: oklch(50% 0.25 256);
+    --on-accent: oklch(100% 0 0);
 
     /* Quote */
     --quote-bg: oklch(90% 0.1 270);
@@ -24,9 +23,10 @@ body.light {
 }
 
 body.dark {
-    --background: oklch(15% 0.05 256);
-    --text: oklch(95% 0.05 256);
-    --accent: oklch(60% 0.25 256);
+    --background: oklch(10% 0 0);
+    --text: oklch(100% 0 0);
+    --accent: oklch(75% 0.2 256);
+    --on-accent: oklch(0% 0 0);
 
     /* Quote */
     --quote-bg: oklch(30% 0.1 270);

@@ -57,9 +57,9 @@ code:not(.astro-code code) {
 }
 
 article a:not(:is(h2, h3, h4, h5, h6) a) {
-    color: var(--primary);
+    color: var(--accent);
     background-position-y: -0%;
-    background-image: linear-gradient(180deg, transparent 50%, var(--primary) 50%);
+    background-image: linear-gradient(180deg, transparent 50%, var(--accent) 50%);
     transition: all 0.25s;
     background-size: auto 200%;
     border-radius: 0.25rem;
@@ -71,7 +71,7 @@ article a:not(:is(h2, h3, h4, h5, h6) a) {
     &:hover {
         text-decoration: none;
         background-position-y: 100%;
-        color: var(--on-primary);
+        color: var(--on-accent);
         transition: all 0.1s ease;
     }
 }
