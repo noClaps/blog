@@ -8,10 +8,16 @@
   page-slider {
     position: relative;
     display: flex;
-    border: 0.125rem solid var(--text);
+    border: 0.125rem solid var(--accent);
     padding: 0.25rem;
     border-radius: 0.5rem;
     justify-content: space-evenly;
+    gap: 0.25rem;
+    transition: box-shadow 0.25s;
+
+    &:hover {
+      box-shadow: 0 0 0.5rem 0.125rem var(--accent);
+    }
   }
 
   a {
