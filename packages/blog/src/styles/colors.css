@@ -16,7 +16,7 @@ body.dark {
     --accent: oklch(75% 0.25 256);
 
     /* Components */
-    --quote: oklch(50% 0.25 256);
+    --quote: oklch(60% 0.25 256);
     --warning: oklch(40% 0.25 0);
     --note: oklch(40% 0.25 300);
 }
