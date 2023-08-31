@@ -26,6 +26,9 @@ importers:
       '@astrojs/sitemap':
         specifier: ^3.0.0
         version: 3.0.0
+      '@noclaps/components':
+        specifier: workspace:*
+        version: link:../components
       astro:
         specifier: ^3.0.5
         version: 3.0.5
@@ -71,6 +74,9 @@ importers:
       '@astrojs/sitemap':
         specifier: ^3.0.0
         version: 3.0.0
+      '@noclaps/components':
+        specifier: workspace:*
+        version: link:../components
       astro:
         specifier: ^3.0.5
         version: 3.0.5
@@ -89,6 +95,9 @@ importers:
       '@astrojs/sitemap':
         specifier: ^3.0.0
         version: 3.0.0
+      '@noclaps/components':
+        specifier: workspace:*
+        version: link:../components
       astro:
         specifier: ^3.0.5
         version: 3.0.5
