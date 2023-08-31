@@ -1,34 +1,16 @@
 ---
+import { Icon } from "astro-icon";
 import ThemeToggle from "../tools/ThemeToggle.astro";
-
-interface Props {
-  site: string;
-}
-
-const { site } = Astro.props;
-
-const names: { [key: string]: string } = {
-  blog: "The Blog of Random",
-  gallery: "Aperturic Focus",
-  homepage: "ZeroLimits",
-};
-
-const favicons: { [key: string]: string } = {
-  blog: "https://blog.zerolimits.dev/favicon.ico",
-  gallery: "https://gallery.zerolimits.dev/favicon.ico",
-  homepage: "https://www.zerolimits.dev/favicon.ico",
-};
 ---
 
 <header>
   {
     Astro.url.pathname !== "/" && Astro.url.pathname !== "" ? (
       <a href="/">
-        <img src={favicons[site]} alt={names[site]} />
-        {names[site]}
+        <Icon name="octicon:home-16" />
       </a>
     ) : (
-      <div></div>
+      <div />
     )
   }
   <div>
@@ -61,9 +43,14 @@ const favicons: { [key: string]: string } = {
     transition: all 0.25s;
     color: var(--text);
 
-    @media (max-width: 768px) {
-      font-size: 0;
+    &:hover {
+      color: var(--accent);
     }
+  }
+
+  [astro-icon] {
+    height: 1.25rem;
+    vertical-align: middle;
   }
 
   div {

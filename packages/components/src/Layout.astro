@@ -5,12 +5,11 @@ import Header from "./layout/Header.astro";
 import "./styles/global.css";
 
 interface Props {
-  site: string;
   title: string;
   description: string;
 }
 
-const { site, title, description } = Astro.props;
+const { title, description } = Astro.props;
 ---
 
 <html lang="en">
@@ -18,7 +17,7 @@ const { site, title, description } = Astro.props;
     <slot name="head" />
   </Head>
   <body>
-    <Header {site}>
+    <Header>
       <slot name="header" />
     </Header>
 
