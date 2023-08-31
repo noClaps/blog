@@ -20,7 +20,7 @@ const favicons: { [key: string]: string } = {
 };
 ---
 
-<header style={site === "homepage" ? "background-color: transparent;" : ""}>
+<header>
   {
     Astro.url.pathname !== "/" && Astro.url.pathname !== "" ? (
       <a href="/">
