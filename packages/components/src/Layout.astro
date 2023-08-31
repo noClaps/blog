@@ -1,5 +1,4 @@
 ---
-import Footer from "./layout/Footer.astro";
 import Head from "./layout/Head.astro";
 import Header from "./layout/Header.astro";
 
@@ -24,9 +23,6 @@ const { site, title, description } = Astro.props;
     </Header>
 
     <slot />
-    <Footer>
-      <slot name="footer" />
-    </Footer>
     <style>
       html {
         scroll-behavior: smooth;
@@ -34,7 +30,7 @@ const { site, title, description } = Astro.props;
 
       body {
         display: grid;
-        grid-template-rows: auto 1fr auto;
+        grid-template-rows: auto 1fr;
         min-height: 100dvh;
         height: fit-content;
         margin: 0;
