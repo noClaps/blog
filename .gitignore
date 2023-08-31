@@ -25,3 +25,5 @@ bun.lockb
 package-lock.json
 yarn.lock
 pnpm-lock.yaml
+
+.turbo
