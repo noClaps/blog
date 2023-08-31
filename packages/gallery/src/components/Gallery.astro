@@ -33,7 +33,11 @@ const images = await Astro.glob("../assets/*.{jpg,jpeg}");
     img {
         height: 20vmax;
         border-radius: 0.5rem 0.5rem 0 0;
-        z-index: 2;
+
+        &.medium-zoom-image--opened {
+            z-index: 2;
+            border-radius: 0.5rem;
+        }
     }
 
     @media (max-width: 768px) {
