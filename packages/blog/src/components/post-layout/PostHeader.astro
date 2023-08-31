@@ -14,16 +14,14 @@ interface Props {
 }
 
 const { lastmod, date, title, description, author } = Astro.props;
+
+const pubDate = lastmod ?? date;
 ---
 
 <div>
-  {
-    lastmod ? (
-      <time datetime={lastmod.toISOString()}>{lastmod.toDateString()}</time>
-    ) : (
-      <time datetime={date.toISOString()}>{date.toDateString()}</time>
-    )
-  }
+  <time datetime={pubDate.toISOString()}>
+    {pubDate.toDateString()}
+  </time>
   <h1>{title}</h1>
   <PostInfo {description} {author} />
 </div>
