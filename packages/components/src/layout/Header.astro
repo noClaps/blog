@@ -21,7 +21,16 @@ const favicons: { [key: string]: string } = {
 ---
 
 <header>
-  <a href="/"><img src={favicons[site]} alt={names[site]} />{names[site]}</a>
+  {
+    Astro.url.pathname !== "/" && Astro.url.pathname !== "" ? (
+      <a href="/">
+        <img src={favicons[site]} alt={names[site]} />
+        {names[site]}
+      </a>
+    ) : (
+      <div></div>
+    )
+  }
   <div>
     <slot />
     <ThemeToggle />
@@ -52,8 +61,8 @@ const favicons: { [key: string]: string } = {
     transition: all 0.25s;
     color: var(--text);
 
-    &:hover {
-      color: var(--accent);
+    @media (max-width: 768px) {
+      font-size: 0;
     }
   }
 

@@ -16,9 +16,20 @@ const { title } = Astro.props;
     display: grid;
     padding: 1rem;
     border-radius: 0.5rem;
-    background-color: var(--note-bg);
-    color: var(--note-text);
     margin: 0.5rem 0;
+    background-color: var(--background);
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      background-image: var(--note-gradient);
+      border-radius: 0.5rem;
+      filter: blur(0.5rem);
+      inset: -0.25rem;
+      transition: inset 0.25s;
+    }
   }
 
   p {

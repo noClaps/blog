@@ -13,14 +13,14 @@ This is the documentation for the code used in [Aperturic Focus](https://gallery
     ```
 
 2.  ```sh
-    bun install
-    bun dev:gallery
+    npm install
+    npm run dev:gallery
     ```
 
-    Then open `localhost:3000` in your browser to see the live preview of the site.
+    Then open `localhost:4321` in your browser to see the live preview of the site.
 
 3.  ```sh
-    bun build:gallery
+    npm run build:gallery
     ```
     
     This will build the site and place it in `packages/gallery/dist/`.

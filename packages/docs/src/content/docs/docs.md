@@ -13,14 +13,14 @@ This is the documentation for the documentation. It's mostly about how to contri
     ```
 
 2.  ```sh
-    bun install
-    bun dev:docs
+    npm install
+    npm run dev:docs
     ```
 
-    Then open `localhost:3000` in your browser to see the live preview of the site.
+    Then open `localhost:4321` in your browser to see the live preview of the site.
 
 3.  ```sh
-    bun build:docs
+    npm run build:docs
     ```
 
     This will build the site and place it in `dist/`.

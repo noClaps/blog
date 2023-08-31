@@ -13,7 +13,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <style>
   p {
-    font-size: 1.5rem;
+    font-size: 2rem;
     line-height: 1.25;
+    text-align: left;
+  }
+
+  h1 {
+    font-size: min(5rem, 15vmin);
+    background-image: var(--accent-gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 0;
   }
 </style>

@@ -16,12 +16,27 @@ import { Icon } from "astro-icon";
     padding: 0.5rem;
     border-radius: 0.5rem;
     transition: all 0.25s;
-    color: var(--on-primary);
-    background-color: var(--primary);
+    color: var(--on-accent);
+    background-color: var(--accent);
     cursor: pointer;
 
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      background-image: var(--accent-gradient);
+      border-radius: 0.5rem;
+      filter: blur(0.5rem);
+      inset: 0.25rem;
+      transition: inset 0.25s;
+    }
+
     &:hover {
-      filter: brightness(150%);
+      bottom: 1.25rem;
+
+      &::before {
+        inset: -0.25rem;
+      }
     }
   }
 
@@ -50,8 +65,12 @@ import { Icon } from "astro-icon";
       window.onscroll = () => {
         if (window.scrollY > 64) {
           this.style.opacity = "1";
+          this.style.translate = "0";
+          this.inert = false;
         } else {
           this.style.opacity = "0";
+          this.style.translate = "0 100%";
+          this.inert = true;
         }
       };
     }

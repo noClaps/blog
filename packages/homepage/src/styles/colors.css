@@ -2,33 +2,25 @@
 
     0%,
     100% {
-        fill: oklch(50% 0.25 256);
+        fill: var(--blog);
     }
 
     33% {
-        fill: oklch(50% 0.25 320);
+        fill: var(--docs);
     }
 
     66% {
-        fill: oklch(50% 0.25 150)
+        fill: var(--gallery);
     }
 }
 
-body {
-    --gradient: linear-gradient(to bottom right, oklch(50% 0.25 320), oklch(50% 0.25 256), oklch(50% 0.25 150));
+:root {
+    /* Site colors */
+    --blog: oklch(62.5% 0.25 256);
+    --gallery: oklch(50% 0.25 150);
+    --docs: oklch(50% 0.25 320);
+
+    --gradient: linear-gradient(to bottom right, var(--gallery), var(--blog), var(--docs));
     --accent: oklch(75% 0.25 60);
-    --primary: oklch(75% 0.25 60);
-    --on-primary: oklch(10% 0.25 60);
     --starfield-text: oklch(100% 0 0);
-    --starfield-shadow: oklch(0% 0 0);
-}
-
-body.light {
-    --background: oklch(100% 0 0);
-    --text: oklch(0% 0 0);
-}
-
-body.dark {
-    --background: oklch(0% 0 0);
-    --text: oklch(100% 0 0);
 }

@@ -4,12 +4,5 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
   site: "https://gallery.zerolimits.dev",
-  integrations: [ sitemap() ],
-  experimental: {
-    assets: true,
-  },
-  compressHTML: true,
-  build: {
-    inlineStylesheets: "auto"
-  }
+  integrations: [sitemap()]
 });

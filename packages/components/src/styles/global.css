@@ -1,3 +1,14 @@
+/* Colors */
+body.light {
+    --background: oklch(100% 0 0);
+    --text: oklch(15% 0 0);
+}
+
+body.dark {
+    --background: oklch(15% 0 0);
+    --text: oklch(95% 0 0);
+}
+
 /* Font */
 :root,
 input,
@@ -15,17 +26,12 @@ button {
 main {
     width: 88vw;
     max-width: 64rem;
-    place-self: center;
+    justify-self: center;
 }
 
 p,
 li {
     text-align: justify;
-}
-
-/* Nav */
-nav img {
-    margin: auto;
 }
 
 [astro-icon] {

@@ -4,12 +4,11 @@ import { Layout } from "@noclaps/components";
 import { Icon } from "astro-icon";
 
 import "../styles/colors.css";
-import "../styles/components.css";
 import "../styles/global.css";
 
 const {
   title,
-  description = "A blog about the most random things you can think of, brought to you by the most interesting boring person you've ever met.",
+  description = "A blog about the most random things you can think of.",
 } = Astro.props;
 ---
 
@@ -21,20 +20,19 @@ const {
     type="application/rss+xml"
     title="RSS"
   />
-  <Slider slot="header" />
+  <Fragment slot="header">
+    <Slider />
+    <a href="/rss.xml" title="Atom Feed">
+      <Icon name="octicon:rss-16" />
+    </a>
+  </Fragment>
   <slot />
-  <a slot="footer" href="/rss.xml" title="Atom Feed">
-    <Icon name="octicon:rss-16" />
-  </a>
 </Layout>
 
 <style>
   a {
     color: var(--text);
-    padding: 0.5rem;
-    margin: 0 0.25rem;
-    border-radius: 0.5rem;
-    display: grid;
+    padding-left: 0.5rem;
     transition: all 0.25s;
 
     &:hover {

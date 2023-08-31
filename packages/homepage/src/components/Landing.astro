@@ -11,30 +11,29 @@ import Nav from "./Nav.astro";
 
 <style>
   div {
-    z-index: 3;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 75dvh;
     margin-bottom: 25dvh;
+    z-index: 3;
   }
 
   h1 {
-    font-family: system-ui;
-    font-size: 4rem;
+    font-size: min(5rem, 15vmin);
     background: var(--gradient);
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
     margin: 0;
-    filter: brightness(150%);
+    filter: brightness(125%);
   }
 
   [astro-icon] {
     width: 50%;
     max-width: 16rem;
-    filter: brightness(150%);
+    filter: brightness(125%);
     animation: colorwheel-svg 10s ease-in-out infinite alternate;
 
     & :global(path) {

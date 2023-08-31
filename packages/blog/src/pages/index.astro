@@ -6,21 +6,23 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   <main>
     <h1>The Blog of Random</h1>
     <p>
-      A blog about the most random things you can think of, brought to you by
-      the most interesting boring person you've ever met.
+      A blog about the most random things you can think of.
     </p>
   </main>
 </BaseLayout>
 
 <style>
   h1 {
-    font-size: 2.5rem;
-    text-align: right;
+    font-size: min(5rem, 15vmin);
+    background-image: var(--accent-gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
   }
 
   p {
-    font-size: 1.75rem;
+    font-size: 2rem;
     line-height: 1.25;
-    text-align: right;
+    text-align: left;
   }
 </style>
