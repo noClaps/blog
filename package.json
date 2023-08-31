@@ -13,17 +13,14 @@
     "dev:blog": "turbo dev --filter=blog",
     "dev:gallery": "turbo dev --filter=gallery",
     "dev:homepage": "turbo dev --filter=homepage",
-    "dev:docs": "turbo dev --filter=docs",
     "build": "turbo build",
     "build:blog": "turbo build --filter=blog",
     "build:gallery": "turbo build --filter=gallery",
     "build:homepage": "turbo build --filter=homepage",
-    "build:docs": "turbo build --filter=docs",
     "preview": "turbo preview",
     "preview:blog": "turbo preview --filter=blog",
     "preview:gallery": "turbo preview --filter=gallery",
-    "preview:homepage": "turbo preview --filter=homepage",
-    "preview:docs": "turbo preview --filter=docs"
+    "preview:homepage": "turbo preview --filter=homepage"
   },
   "workspaces": [
     "packages/*"

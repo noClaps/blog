@@ -5,7 +5,7 @@ This is a monorepo containing all of the sites and packages for ZeroLimits.dev.
 - [ZeroLimits.dev](https://zerolimits.dev)
 - [The Blog of Random](https://blog.zerolimits.dev)
 - [Aperturic Focus](https://gallery.zerolimits.dev)
-- [The Docs-ter](https://docs.zerolimits.dev)
+- [The Docs-ter](https://docs.zerolimits.dev)([repo](https://github.com/noClaps/docs))
 
 For details on each, see the documentation:
 
