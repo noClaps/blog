@@ -1,6 +1,7 @@
 {
   "name": "@noclaps/blog",
   "dependencies": {
+    "@astrojs/markdown-remark": "^3.0.0",
     "@astrojs/mdx": "^1.0.0",
     "@astrojs/rss": "^3.0.0",
     "@astrojs/sitemap": "^3.0.0",
@@ -9,7 +10,8 @@
     "rehype-autolink-headings": "^6.1.1",
     "rehype-mathjax": "^4.0.3",
     "remark-math": "^5.1.1",
-    "remark-toc": "^8.0.1"
+    "remark-toc": "^8.0.1",
+    "@noclaps/components": "workspace:*"
   },
   "description": "The Blog of Random",
   "scripts": {
