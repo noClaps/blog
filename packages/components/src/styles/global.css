@@ -34,11 +34,6 @@ li {
     text-align: justify;
 }
 
-/* Nav */
-nav img {
-    margin: auto;
-}
-
 [astro-icon] {
     place-self: center;
     fill: currentColor;
