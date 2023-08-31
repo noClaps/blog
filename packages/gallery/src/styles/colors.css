@@ -1,17 +1,4 @@
-body {
-    --primary: oklch(50% 0.25 150);
-    --on-primary: oklch(100% 0 0);
-    --accent: oklch(60% 0.25 150);
-}
-
-body.light {
-    --background: oklch(95% 0.05 150);
-    --text: oklch(15% 0.05 150);
-    --image-bg: oklch(95% 0.05 150 / 75%);
-}
-
-body.dark {
-    --background: oklch(15% 0.05 150);
-    --text: oklch(95% 0.05 150);
-    --image-bg: oklch(15% 0.05 150 / 75%);
+:root {
+    --accent: oklch(50% 0.25 150);
+    --on-accent: oklch(100% 0 0);
 }
