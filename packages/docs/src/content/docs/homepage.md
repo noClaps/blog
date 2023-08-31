@@ -13,14 +13,14 @@ This is the documentation for all of the code used in the [homepage](https://zer
     ```
 
 2.  ```sh
-    bun install
-    bun dev:homepage
+    npm install
+    npm run dev:homepage
     ```
 
     Then open `localhost:4321` in your browser to see the live preview of the site.
 
 3.  ```sh
-    bun build:homepage
+    npm run build:homepage
     ```
 
     This will build the site and place it in `packages/homepage/dist/`.

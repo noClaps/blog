@@ -13,14 +13,14 @@ This is the documentation for the code used in [The Blog of Random](https://blog
     ```
 
 2.  ```sh
-    bun install
-    bun dev:blog
+    npm install
+    npm run dev:blog
     ```
 
     Then open `localhost:4321` in your browser to see the live preview of the site.
 
 3.  ```sh
-    bun build:blog
+    npm run build:blog
     ```
 
     This will build the site and place it in `packages/blog/dist/`.
