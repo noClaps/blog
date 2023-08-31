@@ -60,6 +60,10 @@ const favicons: { [key: string]: string } = {
     padding: 0.5rem;
     transition: all 0.25s;
     color: var(--text);
+
+    @media (max-width: 768px) {
+      font-size: 0;
+    }
   }
 
   div {
