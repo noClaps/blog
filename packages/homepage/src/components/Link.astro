@@ -37,10 +37,22 @@ const { title, description, link, icon } = Astro.props;
     border: 0.125rem solid var(--text);
     border-radius: 0.5rem;
     transition: all 0.25s;
+    background-color: var(--background);
 
-    &:hover {
-      background-color: var(--primary);
-      color: var(--on-primary);
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0.25rem;
+      background-image: var(--gradient);
+      z-index: -1;
+      filter: blur(0.5rem);
+      transition: inset 0.25s;
+      will-change: transform;
+      border-radius: 0.5rem;
+    }
+
+    &:hover::before {
+      inset: -0.25rem;
     }
   }
 
