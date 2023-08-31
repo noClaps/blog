@@ -3,3 +3,11 @@
     --on-accent: oklch(100% 0 0);
     --accent-gradient: linear-gradient(to right, oklch(50% 0.25 150), oklch(75% 0.25 150));
 }
+
+body.light {
+    --image-bg: oklch(100% 0 0 / 0.75);
+}
+
+body.dark {
+    --image-bg: oklch(0% 0 0 / 0.75);
+}
