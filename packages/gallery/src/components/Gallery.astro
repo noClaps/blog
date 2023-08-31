@@ -4,25 +4,51 @@ const images = await Astro.glob("../assets/*.{jpg,jpeg}");
 ---
 
 <div>
-  {images.map((image) => <Image class="zoom" src={image.default} alt="" />)}
+    {
+        images
+            .map((img) => <Image class="zoom" src={img.default} alt="" />)
+            .reverse()
+    }
 </div>
 
 <style>
-  div {
-    columns: 16rem auto;
-    column-gap: 0.5rem;
-  }
+    div {
+        display: flex;
+        gap: 0.5rem;
+        overflow-x: auto;
 
-  img {
-    border-radius: 0.5rem;
-    width: 100%;
-    height: fit-content;
-    margin-bottom: 0.5rem;
-    z-index: 2;
-  }
+        &::-webkit-scrollbar {
+            background-color: var(--background);
+            border-radius: 0 0 0.5rem 0.5rem;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-image: var(--accent-gradient);
+            border: 0.125rem solid var(--background);
+            border-radius: 100vmax;
+            width: 10rem;
+        }
+    }
+
+    img {
+        height: 20vmax;
+        border-radius: 0.5rem 0.5rem 0 0;
+        z-index: 2;
+    }
+
+    @media (max-width: 768px) {
+        div {
+            flex-direction: column;
+        }
+
+        img {
+            height: auto;
+            width: 50vmax;
+        }
+    }
 </style>
 
 <script>
-  import mediumZoom from "medium-zoom";
-  mediumZoom(".zoom", { background: "var(--image-bg)", margin: 8 });
+    import mediumZoom from "medium-zoom";
+    mediumZoom(".zoom", { background: "var(--image-bg)", margin: 8 });
 </script>
