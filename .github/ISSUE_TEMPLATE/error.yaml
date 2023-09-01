@@ -31,7 +31,6 @@ body:
               - "gallery"
               - "blog"
               - "homepage"
-              - "docs"
 
     - type: textarea
       attributes:

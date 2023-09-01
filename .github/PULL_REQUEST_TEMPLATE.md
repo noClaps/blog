@@ -3,10 +3,11 @@
 - [ ] I have tested my changes on my device and it is working.
 - [ ] I am not using insecure packages.
 - [ ] I am not adding malicious code that may harm the privacy or security of the reader.
-- [ ] I have updated the documentation (if it needs to be updated).
 
 <!-- If you've solved an open issue, link it here so that it can automatically be resolved -->
 Resolves: #
+
+Link to relevant docs PR (if needed): 
 
 <!--
 If you are making changes that you have a conflict of interest with, disclose this. Conflicts of interest include: contributions about yourself, family, friends, clients, employers or other relationships.
