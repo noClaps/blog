@@ -6,7 +6,9 @@ const images = await Astro.glob("../assets/*.{jpg,jpeg}");
 <div>
     {
         images
-            .map((img) => <Image class="zoom" src={img.default} alt="" />)
+            .map((img) => (
+                <Image class="zoom" src={img.default} alt="" format="avif" />
+            ))
             .reverse()
     }
 </div>
