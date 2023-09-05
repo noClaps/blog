@@ -24,6 +24,10 @@ const images = await Astro.glob("../assets/*.{jpg,jpeg}");
         border-radius: 0.5rem;
         height: auto;
         margin: 0.25rem 0;
+
+        &.medium-zoom-image--opened {
+            z-index: 2;
+        }
     }
 </style>
 
