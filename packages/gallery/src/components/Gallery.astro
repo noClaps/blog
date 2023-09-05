@@ -15,41 +15,15 @@ const images = await Astro.glob("../assets/*.{jpg,jpeg}");
 
 <style>
     div {
-        display: flex;
+        columns: 16rem auto;
         gap: 0.5rem;
-        overflow-x: auto;
-
-        &::-webkit-scrollbar {
-            background-color: var(--background);
-            border-radius: 0 0 0.5rem 0.5rem;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            background-image: var(--accent-gradient);
-            border: 0.125rem solid var(--background);
-            border-radius: 100vmax;
-            width: 10rem;
-        }
     }
 
     img {
-        height: 30vmax;
+        width: 100%;
         border-radius: 0.5rem;
-
-        &.medium-zoom-image--opened {
-            z-index: 2;
-        }
-    }
-
-    @media (max-width: 768px) {
-        div {
-            flex-direction: column;
-        }
-
-        img {
-            height: auto;
-            width: 100%;
-        }
+        height: auto;
+        margin: 0.25rem 0;
     }
 </style>
 
