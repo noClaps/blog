@@ -1,6 +1,9 @@
 import rss from "@astrojs/rss";
 import type { APIContext } from "astro";
 import { getCollection } from "astro:content";
+import sanitizeHtml from "sanitize-html";
+import MarkdownIt from "markdown-it";
+const parser = new MarkdownIt();
 
 export async function GET(context: APIContext) {
   const posts = await getCollection("posts");
@@ -15,6 +18,7 @@ export async function GET(context: APIContext) {
       title: post.data.title,
       pubDate: post.data.lastmod ? post.data.lastmod : post.data.date,
       description: post.data.description,
+      content: sanitizeHtml(parser.render(post.body))
     })),
   });
 }
