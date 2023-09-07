@@ -57,7 +57,9 @@
       super();
 
       const path = location.pathname;
-      const currentPathElem = this.querySelector(`a[href="${path}"]`);
+      const currentPathElem = this.querySelector<HTMLAnchorElement>(
+        `a[href="${path}"]`,
+      );
 
       if (currentPathElem) {
         currentPathElem.setAttribute("current-page", "");

@@ -63,13 +63,12 @@
   const stars = Array.from({ length: COUNT }, () => new Star(0, 0, 0));
   let rafId = 0;
 
-  const canvas = document.querySelector(
-    "#starfield-canvas"
-  ) as HTMLCanvasElement;
+  const canvas =
+    document.querySelector<HTMLCanvasElement>("#starfield-canvas")!;
   invariant(canvas, "canvas should not be null");
   const ctx = canvas.getContext("2d");
 
-  const container = document.querySelector("#starfield") as HTMLElement;
+  const container = document.querySelector<HTMLDivElement>("#starfield")!;
   invariant(container, "container should not be null");
   const resizeObserver = new ResizeObserver(setup);
   resizeObserver.observe(container);
