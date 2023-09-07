@@ -18,7 +18,8 @@ export async function GET(context: APIContext) {
       title: post.data.title,
       pubDate: post.data.lastmod ? post.data.lastmod : post.data.date,
       description: post.data.description,
-      content: sanitizeHtml(parser.render(post.body))
+      content: sanitizeHtml(parser.render(post.body)),
+      author: post.data.author.id
     })),
   });
 }
