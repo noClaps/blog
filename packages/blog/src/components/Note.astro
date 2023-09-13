@@ -1,12 +1,17 @@
 ---
 import { Icon } from "astro-icon";
-const { title } = Astro.props;
+
+interface Props {
+  title?: string;
+}
+
+const { title = "NOTE" } = Astro.props;
 ---
 
 <div class="note">
   <p>
     <Icon name="octicon:note-16" />
-    <b>{title ? title : "NOTE"}</b>
+    <b>{title}</b>
   </p>
   <slot />
 </div>

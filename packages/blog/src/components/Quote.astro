@@ -1,7 +1,12 @@
 ---
 import { Icon } from "astro-icon";
 
-const { name, link } = Astro.props;
+interface Props {
+  name?: string;
+  link?: string;
+}
+
+const { name = "QUOTE", link } = Astro.props;
 ---
 
 <blockquote class="quote">
@@ -15,7 +20,7 @@ const { name, link } = Astro.props;
           </a>
         </b>
       ) : (
-        <b>{name ? name : "QUOTE"}</b>
+        <b>{name}</b>
       )
     }
   </p>
