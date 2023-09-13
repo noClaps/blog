@@ -1,5 +1,4 @@
 import { defineConfig } from "astro/config";
-import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
 import remarkMath from "remark-math";
 import rehypeMathJax from "rehype-mathjax";
@@ -18,5 +17,5 @@ export default defineConfig({
             [rehypeAutolinkHeadings, { behavior: "wrap" }],
         ],
     },
-    integrations: [mdx(), sitemap()]
+    integrations: [mdx()]
 });

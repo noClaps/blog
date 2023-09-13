@@ -10,7 +10,6 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.0.0",
     "@astrojs/vercel": "^4.0.5",
     "@noclaps/components": "workspace:*",
     "astro": "^3.0.13"
