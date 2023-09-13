@@ -6,6 +6,11 @@ import { Icon } from "astro-icon";
 import "../styles/colors.css";
 import "../styles/global.css";
 
+interface Props {
+  title: string;
+  description?: string;
+}
+
 const {
   title,
   description = "A blog about the most random things you can think of.",
