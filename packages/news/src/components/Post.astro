@@ -1,0 +1,44 @@
+---
+interface Props {
+    title: string;
+    url: string;
+}
+
+const { title, url } = Astro.props;
+---
+
+<a href={url} {title} target="_blank">
+    <h3>{title}</h3>
+    <p>{new URL(url).origin}</p>
+</a>
+
+<style>
+    a {
+        display: flex;  
+        flex-direction: column;
+        gap: 1rem;
+        justify-content: space-evenly;
+        padding: 1rem;
+        border: 0.125rem solid var(--text);
+        color: var(--text);
+        text-decoration: none;
+        border-radius: 0.5rem;
+        transition: all 0.25s;
+
+        &:hover {
+            background-color: var(--accent);
+            color: var(--on-accent);
+        }
+    }
+
+    h3,
+    p {
+        margin: 0;
+    }
+
+    p {
+        hyphens: auto;
+        font-size: 0.75rem;
+        filter: opacity(50%);
+    }
+</style>

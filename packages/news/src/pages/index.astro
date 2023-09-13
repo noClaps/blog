@@ -1,0 +1,29 @@
+---
+import PostGrid from "../components/PostGrid.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+	<main>
+		<h1>The Rocket Times</h1>
+		<p>A Hacker News frontend made in Astro.</p>
+		<PostGrid />
+	</main>
+</BaseLayout>
+
+<style>
+	p {
+		font-size: 2rem;
+		line-height: 1.25;
+		text-align: left;
+	}
+
+	h1 {
+		font-size: min(5rem, 15vmin);
+		background-image: var(--accent-gradient);
+		background-clip: text;
+		-webkit-background-clip: text;
+		color: transparent;
+		margin-bottom: 0;
+	}
+</style>
