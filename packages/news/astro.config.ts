@@ -5,7 +5,5 @@ import vercel from "@astrojs/vercel/serverless";
 export default defineConfig({
     site: "https://news.zerolimits.dev",
     output: "server",
-    adapter: vercel({
-        functionPerRoute: false
-    })
+    adapter: vercel()
 });
