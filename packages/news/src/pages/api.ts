@@ -11,9 +11,7 @@ interface FilteredPostData extends PostData {
 
 export const GET: APIRoute = async () => {
     const postIds = await fetch("https://hacker-news.firebaseio.com/v0/newstories.json").then(r => r.json()) as number[];
-    const postPromises = postIds.map(async (id) => {
-        return await fetch(`https://hacker-news.firebaseio.com/v0/item/${ id }.json`).then(r => r.json());
-    }) as Promise<PostData>[];
+    const postPromises = postIds.map((id) => fetch(`https://hacker-news.firebaseio.com/v0/item/${ id }.json`).then(r => r.json())) as Promise<PostData>[];
 
     const posts = await Promise.all(postPromises).then(p => filter(p));
     const postsData = posts.map(post => {
