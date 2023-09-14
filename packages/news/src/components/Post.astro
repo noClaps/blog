@@ -1,44 +1,18 @@
 ---
 interface Props {
-    postId: number;
-}
-
-interface PostData {
-    by: string;
-    descendants: number;
-    id: number;
-    kids?: number[];
-    score: number;
-    text?: string;
-    time: number;
+    url: string;
+    domain: string;
     title: string;
-    type: "story";
-    url?: string;
 }
 
-const { postId } = Astro.props;
-
-async function getPost(postId: number) {
-    const post = (await fetch(
-        `https://hacker-news.firebaseio.com/v0/item/${postId}.json`,
-    ).then((r) => r.json())) as PostData;
-
-    if (post.url && !post.url.startsWith("https://twitter.com")) {
-        return { url: post.url, title: post.title };
-    }
-}
-
-const post = await getPost(postId);
+const { url, domain, title } = Astro.props;
 ---
 
-{
-    post && (
-        <a href={post.url} title={post.title} target="_blank">
-            <h3>{post.title}</h3>
-            <p>{new URL(post.url).origin}</p>
-        </a>
-    )
-}
+<a href={url} {title} target="_blank">
+    <h3>{title}</h3>
+    <p>{domain}</p>
+</a>
+
 <style>
     a {
         display: flex;

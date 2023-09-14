@@ -2,9 +2,13 @@
 import Post from "../components/Post.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const postIds = (await fetch(
-	"https://hacker-news.firebaseio.com/v0/newstories.json",
-).then((r) => r.json())) as number[];
+interface Posts {
+	url: string;
+	title: string;
+	domain: string;
+}
+
+const posts = (await fetch(`${Astro.url}api`).then((r) => r.json())) as Posts[];
 ---
 
 <BaseLayout>
@@ -12,7 +16,11 @@ const postIds = (await fetch(
 		<h1>The Rocket Times</h1>
 		<p>A Hacker News frontend made in Astro.</p>
 		<div>
-			{postIds.map((postId) => <Post {postId} />)}
+			{
+				posts.map(({ url, title, domain }) => (
+					<Post {url} {title} {domain} />
+				))
+			}
 		</div>
 	</main>
 </BaseLayout>
