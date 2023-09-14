@@ -13,7 +13,7 @@ export const GET: APIRoute = async () => {
     const postIds = await fetch("https://hacker-news.firebaseio.com/v0/newstories.json")
         .then(r => r.json()) as number[];
     const postPromises = postIds
-        .slice(0, 100)
+        .slice(0, 90)
         .map((id) => fetch(`https://hacker-news.firebaseio.com/v0/item/${ id }.json`)
             .then(r => r.json())) as Promise<PostData>[];
 
@@ -32,7 +32,7 @@ export const GET: APIRoute = async () => {
     );
 };
 
-const filter = (posts: PostData[]) => {
+function filter(posts: PostData[]) {
     return posts.filter(post =>
         post.url
         && !(new URL(post.url).hostname === "twitter.com")) as FilteredPostData[];
