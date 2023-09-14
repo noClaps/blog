@@ -33,4 +33,4 @@ const filter = (posts: PostData[]) => {
     return posts.filter(post =>
         post.url
         && !(new URL(post.url).hostname === "twitter.com")) as FilteredPostData[];
-}
+};
