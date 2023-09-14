@@ -1,9 +1,10 @@
 ---
 import Post from "../components/Post.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { fetchPosts } from "../scripts/fetchPosts";
 
-const posts = await fetchPosts();
+const postIds = (await fetch(
+	"https://hacker-news.firebaseio.com/v0/newstories.json",
+).then((r) => r.json())) as number[];
 ---
 
 <BaseLayout>
@@ -11,7 +12,7 @@ const posts = await fetchPosts();
 		<h1>The Rocket Times</h1>
 		<p>A Hacker News frontend made in Astro.</p>
 		<div>
-			{posts.map(({ title, url }) => <Post {title} {url} />)}
+			{postIds.map((postId) => <Post {postId} />)}
 		</div>
 	</main>
 </BaseLayout>
