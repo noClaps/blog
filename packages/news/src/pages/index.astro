@@ -1,13 +1,18 @@
 ---
-import PostGrid from "../components/PostGrid.astro";
+import Post from "../components/Post.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { fetchPosts } from "../scripts/fetchPosts";
+
+const posts = await fetchPosts();
 ---
 
 <BaseLayout>
 	<main>
 		<h1>The Rocket Times</h1>
 		<p>A Hacker News frontend made in Astro.</p>
-		<PostGrid />
+		<div>
+			{posts.map(({ title, url }) => <Post {title} {url} />)}
+		</div>
 	</main>
 </BaseLayout>
 
@@ -25,5 +30,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		-webkit-background-clip: text;
 		color: transparent;
 		margin-bottom: 0;
+	}
+
+	div {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+		grid-gap: 1rem;
 	}
 </style>
