@@ -30,7 +30,6 @@ body:
               - "components"
               - "gallery"
               - "blog"
-              - "homepage"
 
     - type: textarea
       attributes:
