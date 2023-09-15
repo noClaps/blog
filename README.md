@@ -4,7 +4,6 @@ This is a monorepo containing all of the sites and packages for ZeroLimits.dev.
 
 - [The Blog of Random](https://blog.zerolimits.dev)
 - [Aperturic Focus](https://gallery.zerolimits.dev)
-- [The Rocket Times](https://news.zerolimits.dev)
 
 ## Contributing
 
