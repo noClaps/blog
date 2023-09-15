@@ -1,5 +1,0 @@
-:root {
-    --accent: oklch(75% 0.25 45);
-    --on-accent: oklch(0% 0 0);
-    --accent-gradient: linear-gradient(to right, oklch(62.5% 0.25 45), oklch(87.5% 0.25 45));
-}
