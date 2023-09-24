@@ -18,13 +18,19 @@ const {
 ---
 
 <Layout {title} {description}>
-  <link
-    slot="head"
-    rel="alternate"
-    href="/rss.xml"
-    type="application/rss+xml"
-    title="RSS"
-  />
+  <Fragment slot="head">
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@latest/es5/tex-mml-chtml.js"
+    ></script>
+    <link
+      rel="alternate"
+      href="/rss.xml"
+      type="application/rss+xml"
+      title="RSS"
+    />
+  </Fragment>
   <Fragment slot="header">
     <Slider />
     <a href="/rss.xml" title="Atom Feed">

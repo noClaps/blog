@@ -1,7 +1,5 @@
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
-import remarkMath from "remark-math";
-import rehypeMathJax from "rehype-mathjax";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { rehypeHeadingIds } from "@astrojs/markdown-remark";
 import remarkToc from "remark-toc";
@@ -10,10 +8,9 @@ import remarkToc from "remark-toc";
 export default defineConfig({
     site: "https://blog.zerolimits.dev",
     markdown: {
-        remarkPlugins: [remarkMath, remarkToc],
+        remarkPlugins: [remarkToc],
         rehypePlugins: [
             rehypeHeadingIds,
-            rehypeMathJax,
             [rehypeAutolinkHeadings, { behavior: "wrap" }],
         ],
     },
