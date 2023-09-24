@@ -1,7 +1,7 @@
 ---
 import Slider from "../components/Slider.astro";
 import { Layout } from "@noclaps/components";
-import { Icon } from "astro-icon";
+import { Rss } from "lucide-astro";
 
 import "../styles/colors.css";
 import "../styles/global.css";
@@ -34,7 +34,7 @@ const {
   <Fragment slot="header">
     <Slider />
     <a href="/rss.xml" title="Atom Feed">
-      <Icon name="octicon:rss-16" />
+      <Rss />
     </a>
   </Fragment>
   <slot />
@@ -51,8 +51,9 @@ const {
     }
   }
 
-  [astro-icon] {
+  svg {
     height: 1.25rem;
+    width: 1.25rem;
     vertical-align: middle;
   }
 </style>

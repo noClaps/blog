@@ -33,8 +33,3 @@ p,
 li {
     text-align: justify;
 }
-
-[astro-icon] {
-    place-self: center;
-    fill: currentColor;
-}

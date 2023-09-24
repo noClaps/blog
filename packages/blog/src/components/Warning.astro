@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon";
+import { AlertTriangle } from "lucide-astro";
 
 interface Props {
   title?: string;
@@ -10,7 +10,7 @@ const { title = "WARNING" } = Astro.props;
 
 <div class="warning">
   <p>
-    <Icon name="octicon:alert-16" />
+    <AlertTriangle />
     <b>{title}</b>
   </p>
   <slot />
@@ -45,8 +45,9 @@ const { title = "WARNING" } = Astro.props;
     vertical-align: middle;
   }
 
-  [astro-icon] {
+  svg {
     height: 1rem;
+    width: 1rem;
     margin-right: 0.5rem;
     vertical-align: middle;
   }

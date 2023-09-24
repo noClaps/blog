@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon";
+import { Home } from "lucide-astro";
 import ThemeToggle from "../tools/ThemeToggle.astro";
 ---
 
@@ -7,7 +7,7 @@ import ThemeToggle from "../tools/ThemeToggle.astro";
   {
     Astro.url.pathname !== "/" && Astro.url.pathname !== "" ? (
       <a href="/">
-        <Icon name="octicon:home-16" />
+        <Home />
       </a>
     ) : (
       <div />
@@ -48,8 +48,9 @@ import ThemeToggle from "../tools/ThemeToggle.astro";
     }
   }
 
-  [astro-icon] {
+  svg {
     height: 1.25rem;
+    width: 1.25rem;
     vertical-align: middle;
   }
 

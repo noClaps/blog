@@ -1,6 +1,6 @@
 ---
 import { Layout } from "@noclaps/components";
-import { Icon } from "astro-icon";
+import { Download } from "lucide-astro";
 
 import "../styles/colors.css";
 
@@ -18,7 +18,7 @@ const {
 <Layout {title} {description}>
   <a
     href="https://github.com/noClaps/ZeroLimits.dev/releases/download/2023-09-05/Photos.zip"
-    slot="header"><Icon name="octicon:download-16" />Download</a
+    slot="header"><Download />Download</a
   >
   <slot />
 </Layout>
@@ -49,7 +49,7 @@ const {
     }
   }
 
-  [astro-icon] {
+  svg {
     height: 1rem;
   }
 </style>
