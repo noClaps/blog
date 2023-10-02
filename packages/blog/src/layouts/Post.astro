@@ -1,8 +1,7 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import "../styles/post.css";
-import ScrollToTop from "../components/post-layout/ScrollToTop.astro";
-import PostHeader from "../components/post-layout/PostHeader.astro";
+import ScrollToTop from "../components/ScrollToTop.astro";
 
 interface Props {
   title: string;
@@ -18,11 +17,24 @@ interface Props {
 }
 
 const { title, description, author, date, lastmod } = Astro.props;
+
+const pubDate = lastmod ?? date;
 ---
 
 <BaseLayout {title} {description}>
   <main>
-    <PostHeader {title} {description} {author} {date} {lastmod} />
+    <div class="post-header">
+      <time datetime={pubDate.toISOString()}>
+        {pubDate.toDateString()}
+      </time>
+      <h1>{title}</h1>
+      <div class="post-info">
+        <h3>{description}</h3>
+        <p>
+          Written by <a href={author.data.link}>{author.data.name}</a>
+        </p>
+      </div>
+    </div>
     <article>
       <slot />
     </article>
@@ -33,5 +45,54 @@ const { title, description, author, date, lastmod } = Astro.props;
 <style>
   main {
     margin-top: 4dvh;
+  }
+
+  div {
+    display: flex;
+  }
+
+  /* Post header */
+  .post-header {
+    flex-direction: column;
+  }
+
+  h1,
+  time {
+    margin: 0.5rem 0;
+  }
+
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 0;
+  }
+
+  time {
+    font-weight: bold;
+    opacity: 0.75;
+  }
+
+  /* Post info */
+  .post-info {
+    justify-content: space-between;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  p {
+    font-style: italic;
+    opacity: 0.75;
+  }
+
+  a {
+    color: var(--text);
+    transition: all 0.25s;
+  }
+
+  h3 {
+    opacity: 0.75;
+    font-size: 1.25rem;
+    margin: 1rem 0;
   }
 </style>
