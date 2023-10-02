@@ -1,13 +1,117 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Link from "../components/Link.astro";
+import Topic from "../components/Topic.astro";
+
+const posts = await getCollection("posts").then((posts) => {
+  return posts.sort((a, b) => {
+    const aDate = a.data.lastmod ?? a.data.date;
+    const bDate = b.data.lastmod ?? b.data.date;
+
+    if (aDate > bDate) return -1;
+    if (aDate < bDate) return 1;
+    return 0;
+  });
+});
 ---
 
 <BaseLayout title="The Blog of Random">
   <main>
     <h1>The Blog of Random</h1>
-    <p>
-      A blog about the most random things you can think of.
-    </p>
+    <p>A blog about the most random things you can think of.</p>
+    <Topic title="Law">
+      <section>
+        {
+          posts.map(
+            (post) =>
+              post.slug.startsWith("law") && (
+                <Link
+                  title={post.data.title}
+                  description={post.data.description}
+                  href={post.slug}
+                  date={post.data.lastmod ?? post.data.date}
+                  author={post.data.author.id}
+                />
+              ),
+          )
+        }
+      </section>
+    </Topic>
+    <Topic title="History">
+      <section>
+        {
+          posts.map(
+            (post) =>
+              post.slug.startsWith("history") && (
+                <Link
+                  title={post.data.title}
+                  description={post.data.description}
+                  href={post.slug}
+                  date={post.data.lastmod ?? post.data.date}
+                  author={post.data.author.id}
+                />
+              ),
+          )
+        }
+      </section>
+    </Topic>
+    <Topic title="Science">
+      <section>
+        {
+          posts.map(
+            (post) =>
+              post.slug.startsWith("science") && (
+                <Link
+                  title={post.data.title}
+                  description={post.data.description}
+                  href={post.slug}
+                  date={post.data.lastmod ?? post.data.date}
+                  author={post.data.author.id}
+                />
+              ),
+          )
+        }
+      </section>
+    </Topic>
+    <Topic title="Tech">
+      <section>
+        {
+          posts.map(
+            (post) =>
+              post.slug.startsWith("tech") &&
+              !post.slug.startsWith("tech/psa") && (
+                <Link
+                  title={post.data.title}
+                  description={post.data.description}
+                  href={post.slug}
+                  date={post.data.lastmod ?? post.data.date}
+                  author={post.data.author.id}
+                />
+              ),
+          )
+        }
+      </section>
+      <section>
+        <h3>Privacy, Security and Anonymity</h3>
+        <div class="links">
+          {
+            posts.map(
+              (post) =>
+                post.slug.startsWith("tech/psa") && (
+                  <Link
+                    title={post.data.title}
+                    description={post.data.description}
+                    href={post.slug}
+                    date={post.data.lastmod ?? post.data.date}
+                    author={post.data.author.id}
+                  />
+                ),
+            )
+          }
+        </div>
+      </section>
+    </Topic>
   </main>
 </BaseLayout>
 
@@ -24,5 +128,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     font-size: 2rem;
     line-height: 1.25;
     text-align: left;
+  }
+
+  section:not(section:has(.links)),
+  .links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr));
+    gap: 1rem;
+    grid-auto-rows: min-content;
+  }
+
+  h3 {
+    margin-top: 2rem;
   }
 </style>

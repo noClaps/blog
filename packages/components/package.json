@@ -16,7 +16,7 @@
   ],
   "scripts": {},
   "dependencies": {
-    "astro": "^3.1.2",
+    "astro": "^3.2.2",
     "lucide-astro": "^0.279.0"
   }
 }

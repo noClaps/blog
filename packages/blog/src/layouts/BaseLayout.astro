@@ -1,5 +1,4 @@
 ---
-import Slider from "../components/Slider.astro";
 import { Layout } from "@noclaps/components";
 import { Rss } from "lucide-astro";
 
@@ -31,12 +30,9 @@ const {
       title="RSS"
     />
   </Fragment>
-  <Fragment slot="header">
-    <Slider />
-    <a href="/rss.xml" title="Atom Feed">
-      <Rss />
-    </a>
-  </Fragment>
+  <a href="/rss.xml" title="Atom Feed" slot="header">
+    <Rss />
+  </a>
   <slot />
 </Layout>
 
