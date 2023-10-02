@@ -20,12 +20,13 @@ const posts = await getCollection("posts").then((posts) => {
   <main>
     <h1>The Blog of Random</h1>
     <p>A blog about the most random things you can think of.</p>
-    <Topic title="Law">
+    <hr />
+    <Topic title="History">
       <section>
         {
           posts.map(
             (post) =>
-              post.slug.startsWith("law") && (
+              post.slug.startsWith("history") && (
                 <Link
                   title={post.data.title}
                   description={post.data.description}
@@ -38,12 +39,12 @@ const posts = await getCollection("posts").then((posts) => {
         }
       </section>
     </Topic>
-    <Topic title="History">
+    <Topic title="Law">
       <section>
         {
           posts.map(
             (post) =>
-              post.slug.startsWith("history") && (
+              post.slug.startsWith("law") && (
                 <Link
                   title={post.data.title}
                   description={post.data.description}
@@ -140,5 +141,6 @@ const posts = await getCollection("posts").then((posts) => {
 
   h3 {
     margin-top: 2rem;
+    font-size: 1.5rem;
   }
 </style>
