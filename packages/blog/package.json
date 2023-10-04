@@ -6,7 +6,7 @@
     "@astrojs/rss": "^3.0.0",
     "@noclaps/components": "workspace:*",
     "astro": "^3.2.2",
-    "lucide-astro": "^0.279.0",
+    "lucide-astro": "^0.284.0",
     "markdown-it": "^13.0.2",
     "rehype-autolink-headings": "^7.0.0",
     "remark-toc": "^9.0.0",
