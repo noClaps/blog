@@ -3,6 +3,16 @@
     --background: canvas;
     --text: canvastext;
     --on-accent: oklch(100% 0 0);
+
+    color-scheme: dark light;
+
+    @media (prefers-color-scheme: dark) {
+        color-scheme: dark;
+    }
+
+    @media (prefers-color-scheme: light) {
+        color-scheme: light;
+    }
 }
 
 /* Font */
