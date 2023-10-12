@@ -1,7 +1,6 @@
 :root {
     --accent: oklch(50% 0.25 150);
     --on-accent: oklch(100% 0 0);
-    --accent-gradient: linear-gradient(to right, oklch(50% 0.25 150), oklch(75% 0.25 150));
 }
 
 body.light {
