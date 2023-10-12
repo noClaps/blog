@@ -1,7 +1,8 @@
 /* Colors */
-body {
+:root {
     --background: canvas;
     --text: canvastext;
+    --on-accent: oklch(100% 0 0);
 }
 
 /* Font */
