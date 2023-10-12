@@ -30,13 +30,13 @@ import { Sun, Moon } from "lucide-astro";
     height: 1.25rem;
   }
 
-  :root[style="color-scheme: light;"] {
+  :root.light {
     & .sun {
       display: none;
     }
   }
 
-  :root[style="color-scheme: dark;"] {
+  :root.dark {
     & .moon {
       display: none;
     }
@@ -57,6 +57,7 @@ import { Sun, Moon } from "lucide-astro";
           : "light");
 
       document.documentElement.style.colorScheme = this.value;
+      document.documentElement.className = this.value;
 
       this.addEventListener("click", this.toggle);
     }
@@ -74,6 +75,7 @@ import { Sun, Moon } from "lucide-astro";
 
       // Set body class to be updated theme value
       document.documentElement.style.colorScheme = this.value;
+      document.documentElement.className = this.value;
     }
   }
 
