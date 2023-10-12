@@ -1,9 +1,6 @@
 :root {
     --code-bg: #24292e;
     --code-text: #e1e4e8;
-    --accent: oklch(62.5% 0.25 256);
-    --on-accent: oklch(100% 0 0);
-    --accent-gradient: linear-gradient(to right, oklch(50% 0.25 256), oklch(75% 0.25 256));
 
     --quote: 50% 0.25 256;
     --note: 50% 0.25 300;

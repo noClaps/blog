@@ -1,12 +1,12 @@
 {
   "name": "@noclaps/blog",
   "dependencies": {
-    "@astrojs/markdown-remark": "^3.2.0",
-    "@astrojs/mdx": "^1.1.0",
+    "@astrojs/markdown-remark": "^3.3.0",
+    "@astrojs/mdx": "^1.1.2",
     "@astrojs/rss": "^3.0.0",
     "@noclaps/components": "workspace:*",
-    "astro": "^3.2.2",
-    "lucide-astro": "^0.284.0",
+    "astro": "^3.3.0",
+    "lucide-astro": "^0.286.0",
     "markdown-it": "^13.0.2",
     "rehype-autolink-headings": "^7.0.0",
     "remark-toc": "^9.0.0",
@@ -22,6 +22,6 @@
   "type": "module",
   "devDependencies": {
     "@types/markdown-it": "^13.0.2",
-    "@types/sanitize-html": "^2.9.1"
+    "@types/sanitize-html": "^2.9.2"
   }
 }

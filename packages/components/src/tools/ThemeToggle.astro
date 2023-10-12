@@ -30,13 +30,13 @@ import { Sun, Moon } from "lucide-astro";
     height: 1.25rem;
   }
 
-  :global(body.light) {
+  :root.light {
     & .sun {
       display: none;
     }
   }
 
-  :global(body.dark) {
+  :root.dark {
     & .moon {
       display: none;
     }
@@ -56,7 +56,8 @@ import { Sun, Moon } from "lucide-astro";
           ? "dark"
           : "light");
 
-      document.body.className = this.value;
+      document.documentElement.style.colorScheme = this.value;
+      document.documentElement.className = this.value;
 
       this.addEventListener("click", this.toggle);
     }
@@ -73,7 +74,8 @@ import { Sun, Moon } from "lucide-astro";
       sessionStorage.setItem("theme", this.value);
 
       // Set body class to be updated theme value
-      document.body.className = this.value;
+      document.documentElement.style.colorScheme = this.value;
+      document.documentElement.className = this.value;
     }
   }
 
