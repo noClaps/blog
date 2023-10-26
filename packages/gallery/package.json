@@ -17,8 +17,8 @@
   },
   "dependencies": {
     "@noclaps/components": "workspace:*",
-    "astro": "^3.3.0",
-    "lucide-astro": "^0.286.0",
+    "astro": "^3.4.0",
+    "lucide-astro": "^0.289.0",
     "medium-zoom": "^1.0.8",
     "sharp": "^0.32.6"
   }
