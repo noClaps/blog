@@ -24,6 +24,5 @@
   ],
   "devDependencies": {
     "turbo": "^1.10.16"
-  },
-  "pkgx": "node@20 pnpm"
+  }
 }
