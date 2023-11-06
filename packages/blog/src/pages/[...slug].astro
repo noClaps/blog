@@ -4,6 +4,7 @@ import Post from "../layouts/Post.astro";
 import Quote from "../components/Quote.astro";
 import Note from "../components/Note.astro";
 import Warning from "../components/Warning.astro";
+import Math from "../components/Math.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
@@ -25,5 +26,5 @@ const { Content } = await post.render();
   date={post.data.date}
   lastmod={post.data.lastmod}
 >
-  <Content components={{ Quote, Note, Warning }} />
+  <Content components={{ Quote, Note, Warning, Math }} />
 </Post>

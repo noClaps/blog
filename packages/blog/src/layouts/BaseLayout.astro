@@ -17,19 +17,13 @@ const {
 ---
 
 <Layout {title} {description}>
-  <Fragment slot="head">
-    <script
-      id="MathJax-script"
-      async
-      src="https://cdn.jsdelivr.net/npm/mathjax@latest/es5/tex-mml-chtml.js"
-    ></script>
-    <link
-      rel="alternate"
-      href="/rss.xml"
-      type="application/rss+xml"
-      title="RSS"
-    />
-  </Fragment>
+  <link
+    rel="alternate"
+    href="/rss.xml"
+    type="application/rss+xml"
+    title="RSS"
+    slot="head"
+  />
   <a href="/rss.xml" title="Atom Feed" slot="header">
     <Rss />
   </a>

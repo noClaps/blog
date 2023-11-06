@@ -206,3 +206,23 @@ While optional, both `name` and `link` are highly recommended to be provided.
   The title of the `<Warning>`. If no title is provided, then the default title for the `<Warning>` component is "WARNING".
 
 ---
+
+## `Math`
+
+```astro
+<Math>[LaTeX content]</Math>
+```
+
+### Options
+
+- `display`: `inline` | `block` _(Optional)_
+
+  How the `Math` element should be displayed. The default is `block`, so if the math should be displayed in a separate block, the `display` attribute can be left out. However, if the math is to be displayed inline, the `display="inline"` attribute must be included. Also be sure to keep the tag name in the same line as the content to prevent it from rendering the `<p>` tags.
+
+  ```diff
+  - <Math>
+  - [LaTeX content]
+  - </Math>
+
+  + <Math>[LaTeX content]</Math>
+  ```

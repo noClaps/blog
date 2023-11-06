@@ -1,0 +1,23 @@
+---
+import katex from "katex";
+import "katex/dist/katex.min.css";
+
+interface Props {
+    display: "inline" | "block";
+}
+
+const { display = "block" } = Astro.props;
+
+const Element = display === "block" ? "div" : "span";
+const math = await Astro.slots.render("default");
+
+---
+
+<Element class="math" set:html={katex.renderToString(math)} />
+
+<style>
+    div.math {
+        text-align: center;
+        padding: 0.5rem 0;
+    }
+</style>
