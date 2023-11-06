@@ -63,6 +63,9 @@ importers:
       astro:
         specifier: ^3.4.3
         version: 3.4.3
+      inter-ui:
+        specifier: ^3.19.3
+        version: 3.19.3
       lucide-astro:
         specifier: ^0.292.0
         version: 0.292.0(astro@3.4.3)
@@ -2104,6 +2107,10 @@ packages:
 
   /inline-style-parser@0.1.1:
     resolution: {integrity: sha512-7NXolsK4CAS5+xvdj5OMMbI962hU/wvwoxk+LWR9Ek9bVtyuuYScDN6eS0rUm6TxApFpw7CX1o4uJzcd4AyD3Q==}
+    dev: false
+
+  /inter-ui@3.19.3:
+    resolution: {integrity: sha512-5FG9fjuYOXocIfjzcCBhICL5cpvwEetseL3FU6tP3d6Bn7g8wODhB+I9RNGRTizCT7CUG4GOK54OPxqq3msQgg==}
     dev: false
 
   /is-alphabetical@2.0.1:

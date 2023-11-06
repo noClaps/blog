@@ -17,6 +17,7 @@
   "scripts": {},
   "dependencies": {
     "astro": "^3.4.3",
+    "inter-ui": "^3.19.3",
     "lucide-astro": "^0.292.0"
   }
 }
