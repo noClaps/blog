@@ -9,7 +9,7 @@ import { Sun, Moon } from "lucide-astro";
 
 <style>
   theme-toggle {
-    display: inline-flex;
+    display: none;
     padding: 0.5rem;
     color: var(--text);
     background-color: transparent;
@@ -80,4 +80,5 @@ import { Sun, Moon } from "lucide-astro";
   }
 
   customElements.define("theme-toggle", ThemeToggle);
+  document.querySelector<ThemeToggle>("theme-toggle")!.style.display = "inline-flex";
 </script>
