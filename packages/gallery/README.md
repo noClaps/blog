@@ -1,9 +1,6 @@
----
-title: Gallery
-description: A website to showcase some cool photos I've taken.
----
+# Aperturic Focus
 
-This is the documentation for the code used in [Aperturic Focus](https://gallery.zerolimits.dev), the ZeroLimits.dev photo gallery.
+A website to showcase some cool photos I've taken.
 
 ## Build instructions
 
