@@ -8,10 +8,26 @@
 
     @media (prefers-color-scheme: dark) {
         color-scheme: dark;
+
+        &:has(#theme-toggle:checked) {
+            color-scheme: light;
+        }
+
+        &:has(#theme-toggle:not(:checked)) {
+            color-scheme: dark;
+        }
     }
 
     @media (prefers-color-scheme: light) {
         color-scheme: light;
+
+        &:has(#theme-toggle:checked) {
+            color-scheme: dark;
+        }
+
+        &:has(#theme-toggle:not(:checked)) {
+            color-scheme: light;
+        }
     }
 }
 

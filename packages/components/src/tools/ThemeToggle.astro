@@ -2,14 +2,15 @@
 import { Sun, Moon } from "lucide-astro";
 ---
 
-<theme-toggle title="Theme toggle">
+<label title="Theme toggle">
+  <input type="checkbox" name="theme-toggle" id="theme-toggle" />
   <Sun class="sun" />
   <Moon class="moon" />
-</theme-toggle>
+</label>
 
 <style>
-  theme-toggle {
-    display: none;
+  label {
+    display: inline-flex;
     padding: 0.5rem;
     color: var(--text);
     background-color: transparent;
@@ -30,55 +31,27 @@ import { Sun, Moon } from "lucide-astro";
     height: 1.25rem;
   }
 
-  :root.light {
-    & .sun {
+  @media (prefers-color-scheme: light) {
+    input:not(:checked) ~ .sun {
+      display: none;
+    }
+
+    input:checked ~ .moon {
       display: none;
     }
   }
 
-  :root.dark {
-    & .moon {
+  @media (prefers-color-scheme: dark) {
+    input:not(:checked) ~ .moon {
       display: none;
     }
+
+    input:checked ~ .sun {
+      display: none;
+    }
+  }
+
+  input {
+    display: none;
   }
 </style>
-
-<script>
-  class ThemeToggle extends HTMLElement {
-    value = "";
-
-    constructor() {
-      super();
-
-      this.value =
-        sessionStorage.getItem("theme") ??
-        (window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "dark"
-          : "light");
-
-      document.documentElement.style.colorScheme = this.value;
-      document.documentElement.className = this.value;
-
-      this.addEventListener("click", this.toggle);
-    }
-
-    toggle() {
-      // Switch between light and dark
-      if (this.value === "dark") {
-        this.value = "light";
-      } else {
-        this.value = "dark";
-      }
-
-      // Update value in sessionStorage
-      sessionStorage.setItem("theme", this.value);
-
-      // Set body class to be updated theme value
-      document.documentElement.style.colorScheme = this.value;
-      document.documentElement.className = this.value;
-    }
-  }
-
-  customElements.define("theme-toggle", ThemeToggle);
-  document.querySelector<ThemeToggle>("theme-toggle")!.style.display = "inline-flex";
-</script>
