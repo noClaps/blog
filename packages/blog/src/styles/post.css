@@ -1,47 +1,22 @@
-article {
-    & a:not(:is(h2, h3, h4, h5, h6) a) {
-        color: var(--accent);
-        background-position-y: 0%;
-        background-image: linear-gradient(180deg, transparent 50%, var(--accent) 50%);
-        transition: all 0.25s;
-        background-size: auto 200%;
-        border-radius: 0.25rem;
-        padding: 0.125rem;
-        margin: 0 -0.125rem;
-        text-decoration: underline;
-        text-underline-offset: 0.25rem;
+article a:not(:is(h2, h3, h4, h5, h6) a) {
+    color: var(--accent);
+    background-position-y: 0%;
+    background-image: linear-gradient(180deg, transparent 50%, var(--accent) 50%);
+    transition: all 0.25s;
+    background-size: auto 200%;
+    border-radius: 0.25rem;
+    padding: 0.125rem;
+    margin: 0 -0.125rem;
+    text-decoration: underline;
+    text-underline-offset: 0.25rem;
 
-        &:hover {
-            text-decoration: none;
-            background-position-y: 100%;
-            color: var(--on-accent);
-        }
-    }
-
-    & :is(h2, h3, h4, h5, h6) {
-        scroll-margin-top: 4.5rem;
-
-        & a {
-            color: var(--text);
-
-            &:hover {
-                text-decoration: none;
-            }
-        }
+    &:hover {
+        text-decoration: none;
+        background-position-y: 100%;
+        color: var(--on-accent);
     }
 }
 
-
-h2 {
-    border-top: solid 0.125rem var(--accent);
-    padding-top: calc(4rem / 3);
-    margin-top: 0.5rem;
-}
-
-h3 {
-    margin-top: 2rem;
-    margin-bottom: 0;
-}
 
 /* Lists */
 li {

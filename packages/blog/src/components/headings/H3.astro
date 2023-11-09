@@ -1,0 +1,27 @@
+---
+interface Props {
+    id: string;
+}
+
+const { id } = Astro.props;
+---
+
+<h3 {id}>
+    <a href={`#${id}`}><slot /></a>
+</h3>
+
+<style>
+    h3 {
+        scroll-margin-top: 4.5rem;
+        margin-top: 2rem;
+        margin-bottom: 0;
+    }
+
+    a {
+        color: var(--text);
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+</style>
