@@ -19,7 +19,6 @@
     "@noclaps/components": "workspace:*",
     "astro": "^3.4.4",
     "lucide-astro": "^0.292.0",
-    "medium-zoom": "^1.0.8",
     "sharp": "^0.32.6"
   }
 }
