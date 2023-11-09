@@ -10,6 +10,7 @@ import H3 from "../components/headings/H3.astro";
 import H4 from "../components/headings/H4.astro";
 import H5 from "../components/headings/H5.astro";
 import H6 from "../components/headings/H6.astro";
+import TableOfContents from "../components/TableOfContents.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
@@ -21,7 +22,7 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content } = await post.render();
+const { Content, headings } = await post.render();
 ---
 
 <Post
@@ -31,6 +32,7 @@ const { Content } = await post.render();
   date={post.data.date}
   lastmod={post.data.lastmod}
 >
+  <TableOfContents {headings} />
   <Content
     components={{
       Quote,

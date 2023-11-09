@@ -115,27 +115,7 @@ The post you write should be in the appropriate section. If none of the current 
   </Note>
   ```
 
-To help with the layout and structuring of your content, you may also use [components](#components). You may also add a table of contents to help navigate the post, by adding:
-
-```md
-## Table of contents
-```
-
-Ensure that you do not place any content under the `## Table of contents` heading, as it will not be rendered. You may place the content under a different heading.
-
-```md
-## Previous heading
-
-Content can go here
-
-## Table of contents
-
-<!-- Content cannot go here -->
-
-## Next heading
-
-Content can go here
-```
+To help with the layout and structuring of your content, you may also use [components](#components).
 
 The instructions for previewing the site locally are [here](/blog#build-instructions). On creating a PR, a preview deployment of the site will also be available to see the built version of the site.
 
