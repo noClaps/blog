@@ -1,16 +1,6 @@
 ---
 import { getCollection, getEntry } from "astro:content";
 import Post from "../layouts/Post.astro";
-import Quote from "../components/Quote.astro";
-import Note from "../components/Note.astro";
-import Warning from "../components/Warning.astro";
-import Math from "../components/Math.astro";
-import H2 from "../components/headings/H2.astro";
-import H3 from "../components/headings/H3.astro";
-import H4 from "../components/headings/H4.astro";
-import H5 from "../components/headings/H5.astro";
-import H6 from "../components/headings/H6.astro";
-import TableOfContents from "../components/TableOfContents.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
@@ -32,18 +22,5 @@ const { Content, headings } = await post.render();
   date={post.data.date}
   lastmod={post.data.lastmod}
 >
-  <TableOfContents {headings} />
-  <Content
-    components={{
-      Quote,
-      Note,
-      Warning,
-      Math,
-      h2: H2,
-      h3: H3,
-      h4: H4,
-      h5: H5,
-      h6: H6,
-    }}
-  />
+  <Content toc={headings} />
 </Post>

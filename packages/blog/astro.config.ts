@@ -1,8 +1,8 @@
 import { defineConfig } from "astro/config";
-import mdx from "@astrojs/mdx";
+import markdoc from "@astrojs/markdoc";
 
 // https://astro.build/config
 export default defineConfig({
-    site: "https://blog.zerolimits.dev",
-    integrations: [mdx()]
+  site: "https://blog.zerolimits.dev",
+  integrations: [markdoc({ allowHTML: true })]
 });

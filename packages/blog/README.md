@@ -24,7 +24,7 @@ A blog about the most random things you can think of.
 
 # Writing posts
 
-All posts should go in the `src/content/posts/` directory, and should be in MDX format.
+All posts should go in the `src/content/posts/` directory, and should be in Markdoc format.
 
 ## Frontmatter
 
@@ -99,23 +99,27 @@ The post you write should be in the appropriate section. If none of the current 
 
 - If paragraphs are too long, they should be split up into smaller paragraphs, since it makes the content easier to read when there isn't a big block of text. A good way to judge this is to limit your paragraphs to 4-5 lines in your text editor. Also, try not to use line breaks (`<br />`), and instead use normal Markdown paragraph spacing.
 
-- HTML should be avoided if a Markdown counterpart exists for it. Since the blog uses GitHub Flavored Markdown (GFM), most formatting features should be available. You can see the [GFM spec here](https://github.github.com/gfm/). Using HTML for superscript (`<sup></sup>`) or subscript (`<sub></sub>`) is allowed, as these features are not included in the GFM spec.
+- HTML should be avoided if a Markdown counterpart exists for it. Since the blog uses Markdoc, most formatting features should be available. You can see the [Markdoc spec here](https://markdoc.dev/spec). Using HTML for superscript (`<sup></sup>`) or subscript (`<sub></sub>`) is allowed, as these features are not included in the Markdoc spec.
 
-- Instead of using regular blockquotes (`>`), the [`Quote` component](#quote) should be used.
+- Instead of using regular blockquotes (`>`), the [`quote` component](#quote) should be used.
 
-- Content inside components should start on a new line. This is due to the way that Astro handles formatting components in MDX.
+- Content inside components should start on a new line. This is due to the way that Markdoc handles formatting components.
 
   ```astro
   <!-- Instead of this: -->
-  <Note>My note here</Note>
+  {% note %}My note here{% /note %}
 
   <!-- Use this: -->
-  <Note>
+  {% note %}
   My note here
-  </Note>
+  {% /note %}
   ```
 
-To help with the layout and structuring of your content, you may also use [components](#components).
+To help with the layout and structuring of your content, you may also use [components](#components). You may also add a table of contents to help navigate the post, by adding:
+
+```astro
+{% toc headings=$toc /%}
+```
 
 The instructions for previewing the site locally are [here](/blog#build-instructions). On creating a PR, a preview deployment of the site will also be available to see the built version of the site.
 
@@ -133,28 +137,28 @@ This is the documentation for the components available to use when [writing post
 
 ---
 
-## `Note`
+## `note`
 
 ```astro
-<Note title="[note title]">
+{% note title="[note title]" %}
 [note content]
-</Note>
+{% /note %}
 ```
 
 ### Options
 
 - `title`: _string (Optional)_
 
-  The title of the `<Note>`. If no title is provided, then the default title for the `<Note>` component is "NOTE".
+  The title of the `note`. If no title is provided, then the default title for the `note` component is "NOTE".
 
 ---
 
-## `Quote`
+## `quote`
 
 ```astro
-<Quote name="[name of quote]" link="[link to quote source]">
+{% quote name="[name of quote]" link="[link to quote source]" %}
 [quote]
-</Quote>
+{% /quote %}
 ```
 
 ### Options
@@ -171,38 +175,38 @@ While optional, both `name` and `link` are highly recommended to be provided.
 
 ---
 
-## `Warning`
+## `warning`
 
 ```astro
-<Warning title="[warning title]">
+{% warning title="[warning title]" %}
 [warning content]
-</Warning>
+{% /warning %}
 ```
 
 ### Options
 
 - `title`: _string (Optional)_
 
-  The title of the `<Warning>`. If no title is provided, then the default title for the `<Warning>` component is "WARNING".
+  The title of the `warning`. If no title is provided, then the default title for the `warning` component is "WARNING".
 
 ---
 
-## `Math`
+## `math`
 
 ```astro
-<Math>[LaTeX content]</Math>
+{% math %}[LaTeX content]{% /math %}
 ```
 
 ### Options
 
 - `display`: `inline` | `block` _(Optional)_
 
-  How the `Math` element should be displayed. The default is `block`, so if the math should be displayed in a separate block, the `display` attribute can be left out. However, if the math is to be displayed inline, the `display="inline"` attribute must be included. Also be sure to keep the tag name in the same line as the content to prevent it from rendering the `<p>` tags.
+  How the `math` component should be displayed. The default is `block`, so if the math should be displayed in a separate block, the `display` attribute can be left out. However, if the math is to be displayed inline, the `display="inline"` attribute must be included. Also be sure to keep the tag name in the same line as the content to prevent it from rendering the `<p>` tags.
 
   ```diff
-  - <Math>
+  - {% math %}
   - [LaTeX content]
-  - </Math>
+  - {% /math %}
 
-  + <Math>[LaTeX content]</Math>
+  + {% math %}[LaTeX content]{% /math %}
   ```

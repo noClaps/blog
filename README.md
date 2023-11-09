@@ -7,7 +7,7 @@ This is a monorepo containing all of the sites and packages for ZeroLimits.dev.
 
 ## Contributing
 
-You should read the [contributing guidelines](./.github/CONTRIBUTING.md) for ZeroLimits.dev before contributing. Knowledge of Markdown, MDX, and basic HTML are recommended if you are writing a post. Knowledge of HTML, CSS, JavaScript, TypeScript (preferred over JavaScript) and Astro are recommended if you are contributing to the site in some other way.
+You should read the [contributing guidelines](./.github/CONTRIBUTING.md) for ZeroLimits.dev before contributing. Knowledge of Markdown, Markdoc, and basic HTML are recommended if you are writing a post. Knowledge of HTML, CSS, JavaScript, TypeScript (preferred over JavaScript) and Astro are recommended if you are contributing to the site in some other way.
 
 
 ## Licenses
