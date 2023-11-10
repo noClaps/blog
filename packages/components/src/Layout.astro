@@ -38,18 +38,13 @@ const { title, description } = Astro.props;
         color: var(--text);
         transition: all 0.25s;
         margin-bottom: 5dvh;
-        visibility: hidden;
-        opacity: 0;
+      }
+
+      :root {
+        --accent: oklch(62.5% 0.25 256);
       }
     </style>
     <script>
-      // Attempt at preventing FOUC
-      // Temporary until View Transitions is available in Safari
-      addEventListener("load", () => {
-        document.body.style.visibility = "visible";
-        document.body.style.opacity = "1";
-      });
-
       let hue = Math.floor(Math.random() * 360);
 
       // Add accessibility for those who may not want changing colors
@@ -70,17 +65,5 @@ const { title, description } = Astro.props;
         );
       }
     </script>
-    <noscript>
-      <style>
-        body {
-          visibility: visible;
-          opacity: 1;
-        }
-
-        :root {
-          --accent: oklch(62.5% 0.25 256);
-        }
-      </style>
-    </noscript>
   </body>
 </html>
