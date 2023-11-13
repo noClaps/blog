@@ -3,7 +3,11 @@
     --background: canvas;
     --text: canvastext;
     --on-accent: oklch(100% 0 0);
-    --accent: accentcolor;
+    --accent: oklch(62.5% 0.25 256);
+
+    @supports (color: accentcolor) {
+        --accent: accentcolor;
+    }
 
     color-scheme: dark light;
 
