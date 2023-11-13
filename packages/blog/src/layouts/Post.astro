@@ -19,18 +19,26 @@ interface Props {
 const { title, description, author, date, lastmod } = Astro.props;
 
 const pubDate = lastmod ?? date;
+
+const titleString = title.toLowerCase().split(" ").join("");
+const timeString = `${pubDate
+  ?.toDateString()
+  .split(" ")
+  .join("")}-${titleString}`;
+const descriptionString = description?.toLowerCase().split(" ").join("");
+const authorString = `${author.data.name}-${titleString}`;
 ---
 
 <BaseLayout {title} {description}>
   <main>
     <div class="post-header">
-      <time datetime={pubDate.toISOString()}>
+      <time transition:name={timeString} datetime={pubDate.toISOString()}>
         {pubDate.toDateString()}
       </time>
-      <h1>{title}</h1>
+      <h1 transition:name={titleString}>{title}</h1>
       <div class="post-info">
-        <h3>{description}</h3>
-        <p>
+        <h3 transition:name={descriptionString}>{description}</h3>
+        <p transition:name={authorString}>
           Written by <a href={author.data.link}>{author.data.name}</a>
         </p>
       </div>
