@@ -1,7 +1,0 @@
-body.light {
-    --image-bg: oklch(100% 0 0 / 0.75);
-}
-
-body.dark {
-    --image-bg: oklch(0% 0 0 / 0.75);
-}

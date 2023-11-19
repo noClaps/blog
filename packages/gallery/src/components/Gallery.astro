@@ -7,7 +7,7 @@ const images = await Astro.glob("../assets/*.{jpg,jpeg}");
     {
         images
             .map((img) => (
-                <Image class="zoom" src={img.default} alt="" format="avif" />
+                <Image src={img.default} alt="" format="avif" />
             ))
             .reverse()
     }
@@ -24,14 +24,5 @@ const images = await Astro.glob("../assets/*.{jpg,jpeg}");
         border-radius: 0.5rem;
         height: auto;
         margin: 0.25rem 0;
-
-        &.medium-zoom-image--opened {
-            z-index: 2;
-        }
     }
 </style>
-
-<script>
-    import mediumZoom from "medium-zoom";
-    mediumZoom(".zoom", { background: "var(--image-bg)", margin: 8 });
-</script>

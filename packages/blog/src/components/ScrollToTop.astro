@@ -2,13 +2,11 @@
 import { ArrowUp } from "lucide-astro";
 ---
 
-<scroll-to-top>
-  <p><ArrowUp />Back to top</p>
-</scroll-to-top>
+<a href="#"><ArrowUp />Back to top</a>
 
 <style>
-  scroll-to-top {
-    display: none;
+  a {
+    display: flex;
     width: fit-content;
     margin: auto;
     position: sticky;
@@ -19,21 +17,13 @@ import { ArrowUp } from "lucide-astro";
     color: var(--on-accent);
     background-color: var(--accent);
     cursor: pointer;
-    opacity: 0;
-    translate: 0 100%;
+    align-items: center;
 
     &:hover {
       bottom: 1.25rem;
       box-shadow: 0 0 0.5rem 0.25rem var(--accent);
+      text-decoration: none;
     }
-  }
-
-  p {
-    font: inherit;
-    font-size: 1rem;
-    margin: 0;
-    display: inline-flex;
-    align-items: center;
   }
 
   svg {
@@ -42,30 +32,3 @@ import { ArrowUp } from "lucide-astro";
     margin-right: 0.25rem;
   }
 </style>
-
-<script>
-  class ScrollToTop extends HTMLElement {
-    constructor() {
-      super();
-
-      this.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
-
-      window.onscroll = () => {
-        if (window.scrollY > 64) {
-          this.style.opacity = "1";
-          this.style.translate = "0";
-          this.inert = false;
-        } else {
-          this.style.opacity = "0";
-          this.style.translate = "0 100%";
-          this.inert = true;
-        }
-      };
-    }
-  }
-
-  customElements.define("scroll-to-top", ScrollToTop);
-  document.querySelector<ScrollToTop>("scroll-to-top")!.style.display = "flex";
-</script>

@@ -1,0 +1,45 @@
+import { component, defineMarkdocConfig, nodes } from "@astrojs/markdoc/config";
+import shiki from "@astrojs/markdoc/shiki";
+
+export default defineMarkdocConfig({
+    tags: {
+        quote: {
+            render: component("./src/components/Quote.astro"),
+            attributes: {
+                name: { type: String },
+                link: { type: String }
+            }
+        },
+        note: {
+            render: component("./src/components/Note.astro"),
+            attributes: {
+                title: { type: String }
+            }
+        },
+        warning: {
+            render: component("./src/components/Warning.astro"),
+            attributes: {
+                title: { type: String }
+            }
+        },
+        math: {
+            render: component("./src/components/Math.astro"),
+            attributes: {
+                display: { type: String }
+            }
+        },
+        toc: {
+            render: component("./src/components/TableOfContents.astro"),
+            attributes: {
+                headings: { type: String }
+            }
+        }
+    },
+    nodes: {
+        heading: {
+            ...nodes.heading,
+            render: component("./src/components/Heading.astro")
+        }
+    },
+    extends: [shiki()]
+});

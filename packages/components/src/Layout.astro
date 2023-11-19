@@ -38,49 +38,7 @@ const { title, description } = Astro.props;
         color: var(--text);
         transition: all 0.25s;
         margin-bottom: 5dvh;
-        visibility: hidden;
-        opacity: 0;
       }
     </style>
-    <script>
-      // Attempt at preventing FOUC
-      // Temporary until View Transitions is available in Safari
-      addEventListener("load", () => {
-        document.body.style.visibility = "visible";
-        document.body.style.opacity = "1";
-      });
-
-      let hue = Math.floor(Math.random() * 360);
-
-      // Add accessibility for those who may not want changing colors
-      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        // Starts with a random accent color and continues gradient from there
-        setInterval(() => {
-          document.documentElement.style.setProperty(
-            "--accent",
-            `oklch(62.5% 0.25 ${hue})`,
-          );
-          hue = hue === 360 ? 0 : hue + 1;
-        }, 60000 / 360);
-      } else {
-        // Sets a random accent color on load
-        document.documentElement.style.setProperty(
-          "--accent",
-          `oklch(62.5% 0.25 ${hue})`,
-        );
-      }
-    </script>
-    <noscript>
-      <style>
-        body {
-          visibility: visible;
-          opacity: 1;
-        }
-
-        :root {
-          --accent: oklch(62.5% 0.25 256);
-        }
-      </style>
-    </noscript>
   </body>
 </html>

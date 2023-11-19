@@ -9,11 +9,11 @@ author: Mester
 
 Dear readers, I welcome you all to my Inside of E2EE post. As you can guess from the title, it's going to be about E2EE and how, where, and why it's used. If you're developing your new web app in JS, you're in luck! The post will also include a bunch of example JS code that uses browser native APIs, so you can pretty much implement E2EE anywhere you want.
 
-<Note>
+{% note %}
 The example codes are actually going to be in TypeScript, but it's not trivial to turn it into pure JavaScript. And besides, nobody uses vanilla JS anyway...
-</Note>
+{% /note %}
 
-## Table of contents
+{% toc headings=$toc /%}
 
 ## What is E2EE?
 
@@ -46,7 +46,7 @@ Continuing with the Apple example, with Advanced Data Protection almost all of y
 
 Since this section is going to mention a lot of advanced cryptographic terms, I'd like to quickly mention some.
 * [DH (Diffie-Hellman)](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange): The DH key exchange was [created in 1977](https://worldwide.espacenet.com/patent/search/family/025257633/publication/US4200770A?q=pn%3DUS4200770) by [Bailey Diffie](https://en.wikipedia.org/wiki/Whitfield_Diffie) and [Martin Hellman](https://en.wikipedia.org/wiki/Martin_Hellman), with some help from [Ralph Merkle](https://en.wikipedia.org/wiki/Ralph_Merkle). This post is not going to get into the mathematical details, but basically DH works by mixing a random private key you generate with the public key of the person you want to perform the key exchange. They do the same, but with their private key and your public key. (Note that the public and private keys are mathematically linked together, they aren't completely random)
-* [Elliptic curve](https://en.wikipedia.org/wiki/Elliptic_curve): An elliptic curve is a mathematical algebraic curve, usually written in the form of <Math display="inline">y^2 = x^3 + ax + b</Math>, where a and b are random numbers. In cryptography, they're used for:
+* [Elliptic curve](https://en.wikipedia.org/wiki/Elliptic_curve): An elliptic curve is a mathematical algebraic curve, usually written in the form of {% math display="inline" %}y^2 = x^3 + ax + b{% /math %}, where a and b are random numbers. In cryptography, they're used for:
   * [Elliptic-curve cryptography (ECC)](https://en.wikipedia.org/wiki/Elliptic-curve_cryptography): ECC is a type of [public-key cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography) using the powers of elliptic curves. They're usually harder to break even with smaller key sizes, because of the [Elliptic Curve Discrete Logarithm Problem](https://link.springer.com/referenceworkentry/10.1007/978-1-4419-5906-5_246). If you don't understand any of this (I don't), then here is an [easy to understand video from Computerphile](https://www.youtube.com/watch?v=NF1pwjL9-DE).
   * [Elliptic-curve Diffie-Hellman (ECDH)](https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman): ECDH is just the Diffie-Hellman key exchange, but with elliptic curves. When the implementation mentions DH, ECDH is meant, since I'm going to use elliptic curves for everything anyway. Here, it's going to be used as part of the X3DH algorithm to perform the DH key exchanges.
   * [Elliptic Curve Digital Signature Algorithm (ECDSA)](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm): ECDSA is - similar to ECDH - a variant of the [Digital Signature Algorithm (DSA)](https://en.wikipedia.org/wiki/Digital_Signature_Algorithm), using ellipctic curves. DSA is used to [digitally sign](https://en.wikipedia.org/wiki/Digital_signature) arbitary data using public and private keys ([asymmetric cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography)). I'm going to use it for the X3DH algorithm.
@@ -85,9 +85,9 @@ After your double ratchet system has been set up, you can finally use the genera
 
 We're finally doing it! Get ready, because this is about to get heavy.
 
-<Note>
+{% note %}
 If you're only here for the explanation of how these systems work, you're in luck, the implementation also has explanation baked into it! :)
-</Note>
+{% /note %}
 
 ### Quick information
 
@@ -107,9 +107,9 @@ So let's start!!!
 
 For a DH key exchange to happen, we need 2 things: Alice's and Bob's keypair. We can then mix the recipient's public key with our private key and get a shared secret.
 
-<Warning>
+{% warning %}
 Make sure the following code is served from a server with HTTPS, because the Web Crypto API only works in secure contexts!
-</Warning>
+{% /warning %}
 
 ```typescript
 const crypto = window.crypto.subtle;
@@ -187,9 +187,9 @@ For the third time, do not **ever** use a single key for encryption, but just to
 
 Since you've already set up the final secret keys with the `encrypt` and `decrypt` key usages, you just need to provide the [IV (initialization vector)](https://en.wikipedia.org/wiki/Initialization_vector) and the data to encrypt.
 
-<Note>
+{% note %}
 The initialization vector should be completely random every time you encrypt something. You also need to transmit it to the recipient, but it does not need to be kept secret.
-</Note>
+{% /note %}
 
 ```typescript
 const data = new TextEncoder().encode("Hello, world!");
@@ -281,9 +281,9 @@ async function setupX3DH(): Promise<X3DHObject> { // everything happens on devic
 
 First we set up some interfaces for TypeScript. If you're implementing this in pure JavaScript, you can skip this step. Then we create the `toHex` function, which we've already used earlier. The `setupX3DH` function starts off easy: we generate the identity key and prekey. They're both using the P-256 curve with key usages set to `deriveBits`, because later we're going to use them to generate a byte sequence, not a new key (if it was `deriveKey`, we could only use to generate a new AES key for example, but X3DH expects a byte sequence, not a key). Note that `setupX3DH` is an async function, since we'll need to use `await` for `SubtleCrypto`'s functions.
 
-<Note>
+{% note %}
 Indented lines are part of a function
-</Note>
+{% /note %}
 
 ```typescript
     // setupX3DH
@@ -614,9 +614,9 @@ Obviously if you want to have a *double* ratchet, you'll logically need a *singl
 
 There are actually a lot of different ways to create a ratchet. After all, it really just needs a function that can "turn" one way, but never in the other. We will use HKDF, a type of key derivation function supercharged by HMAC.
 
-<Note>
+{% note %}
 HMAC is basically a version of MAC that also uses a hash function.
-</Note>
+{% /note %}
 
 This single ratchet will take in an initial key as its state, and provide a function to perform a turn. When the ratchet is turned, the ratchet's state is fed into the HKDF algorithm with some constants and we get a new key. We split this key in half, the first part is going to be the new state and the second half is what we actually use for message encryption/decryption. This is also called a symmetric ratchet, because it just keeps feeding a state into itself, there are no other parameters that would change the output. Later we'll create a DH ratchet which will no longer be symmetric, since it uses a combination of different inputs.
 
@@ -657,9 +657,9 @@ class SymRatchet {
 }
 ```
 
-<Note>
+{% note %}
 The # symbol in #state marks it as a private member which cannot be accessed outside the class
-</Note>
+{% /note %}
 
 There is a lot to unpack here (fortunately the comments help explain a lot).
 
@@ -831,9 +831,9 @@ When Alice sees Bob has accepted the message request and provided his own public
 
 Now, if Bob gets Alice's public key, the whole cycle repeats: Bob generates a receive ratchet, and a send ratchet with a new DH keypair, then sends his public key to Alice. Here, it's important to note: **A party can only turn their root ratchet, if they have received a new public key from the other party.** In other words, after Alice generates her receive and send ratchet, she cannot generate a new send ratchet again, because Bob has not yet received her public key and returned a new public key of his own. This is important to keep in mind, otherwise it could lead to desynchronisation of the root ratchets. Also, after the initial setup (which happens when Bob receives Alice's message request), every time a party turns their root ratchet, they must do it twice to generate a new send and receive ratchet.
 
-<Note>
+{% note %}
 Every message contains the party's public key (this will be used later for out-of-order messages), so the other party must decide if that key is new or not. This is not needed in the examples below, since we control the root turning manually, but in an actual application, this check should be automated.
-</Note>
+{% /note %}
 
 If you didn't understand any of that, don't worry, me neither. I basically just turned the images [here](https://signal.org/docs/specifications/doubleratchet/#diffie-hellman-ratchet) to text.
 

@@ -3,15 +3,36 @@
     --background: canvas;
     --text: canvastext;
     --on-accent: oklch(100% 0 0);
+    --accent: oklch(62.5% 0.25 256);
+
+    @supports (color: accentcolor) {
+        --accent: accentcolor;
+    }
 
     color-scheme: dark light;
 
     @media (prefers-color-scheme: dark) {
         color-scheme: dark;
+
+        &:has(#theme-toggle:checked) {
+            color-scheme: light;
+        }
+
+        &:has(#theme-toggle:not(:checked)) {
+            color-scheme: dark;
+        }
     }
 
     @media (prefers-color-scheme: light) {
         color-scheme: light;
+
+        &:has(#theme-toggle:checked) {
+            color-scheme: dark;
+        }
+
+        &:has(#theme-toggle:not(:checked)) {
+            color-scheme: light;
+        }
     }
 }
 

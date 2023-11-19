@@ -6,13 +6,13 @@ lastmod: 2023-02-05
 author: noClaps
 ---
 
-<Note title="DISCLAIMERS">
+{% note title="DISCLAIMERS" %}
 1. This post is based on my own personal experience using Windows and various Linux distributions, and may not reflect your experience with it.
 2. Many of the things I talk about here might be possible to change by messing around with different configurations and system files in the OSes, but that's not something I am willing to do, and neither are most people. Default settings matter a lot, and that is what I'm going to focus on.
 3. I may mention certain things that certain OSes do well, and that others don't. This doesn't mean I'm biased towards or against something. I'm not sponsored by any companies or organisations, and there is no reason for me to praise something unless I really believe it's good, or point out concerns I don't think are valid.
 4. This post may be a bit more technical than my other ones, so if you're feeling a bit lost with what I'm talking about, don't worry it's not your fault.
 5. I don't care if you think it's Linux or GNU/Linux, I'm saying Linux.
-</Note>
+{% /note %}
 
 When I'm looking for an OS to use for every day of my life for the next few years, there's certain criteria I want it to meet. It should be:
 - simple,
@@ -30,7 +30,7 @@ Linux itself isn't an OS, it's a kernel, which is just the core of an OS and hel
 
 Hence, for an OS to be usable, there needs to be tools and software surrounding the kernel, such as a UI. In the world of Linux, this is known as a [distribution](https://www.suse.com/suse-defines/definition/linux-distribution/), or distro. As Linux is [free and open source](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git), this allows anyone to build upon it and create their own distro. However, when you give people that much freedom, [you get a mess](https://en.wikipedia.org/wiki/Linux_distribution#/media/File:Linux_Distribution_Timeline_21_10_2021.svg) of everyone forking each other to create distros that each solve one particular problem they had with the original.
 
-As an example of that, here's a small list of distros available to you[^1]:
+As an example of that, here's a small list of distros available to you<sup>1</sup>:
 - [Debian](https://www.debian.org/)
   - [Ubuntu](https://ubuntu.com/)
     - [Kubuntu](https://kubuntu.org/)
@@ -59,9 +59,9 @@ So you've chosen a distro that you're happy with. This will usually bring with i
 
 However, there are [many, many package managers](#linux-1) out there, and none are compatible with each other. In the Debian family, you have dpkg. The Red Hat distros use RPM, while Arch uses Pacman. Even Windows has their own package manager, called [winget](https://learn.microsoft.com/en-us/windows/package-manager/). And that's not even mentioning the third-party package managers, like Flatpak and Snap on Linux, Scoop and Chocolatey on Windows, and Homebrew on macOS. Within package managers, you also have both first-party repositories, which come from the OS itself, and [third-party repositories](https://www.ubuntubuzz.com/2017/01/ubuntu-package-management-part-4-ppa-and-third-party-repository.html), like the Arch User Repository (AUR) and Personal Package Archives (PPA) on Ubuntu, which bring about their own benefits and drawbacks.
 
-<Quote name="Bjørn Erik Pedersen, Hugo developer" link="https://discourse.gohugo.io/t/add-flatpak-support/13734/3">
+{% quote name="Bjørn Erik Pedersen, Hugo developer" link="https://discourse.gohugo.io/t/add-flatpak-support/13734/3" %}
 It would be cool if the Linux world would agree on 1 app manager.
-</Quote>
+{% /quote %}
 
 This is one of the main reasons Linux can be so complicated. Furthermore, the GUI software stores, like GNOME Software or KDE Discover are often [clunky](https://bugzilla.redhat.com/show_bug.cgi?id=2022755) and [difficult to use](https://www.reddit.com/r/kde/comments/qoo7gv/why_is_discover_so_unresponsive_and_buggy/), and sometimes don't have all of the packages available in the repositories.
 
@@ -163,15 +163,17 @@ The inherent problem with package management on Linux is that every package mana
 What's needed is a level of standardisation to bring everything together, and organise the community into actually building solutions that can be usable by the average person. I'm not suggesting that a closed environment like iOS or Windows is needed, those go too far in the other direction. Android strikes a good middle ground, allowing for vast customisation and user choice for those who want it, but being simple enough to use out-of-the-box, and being one of the most secure OSes in the world, as well as being stable but up to date. 
 
 ## Final results
-|      OS      | Simple | Stable | Secure | Up to date |
-|:------------:|:------:|:------:|:------:|:----------:|
-|    Windows   |    ✓   |   ~    |    ✓   |     ✓      |
-|     macOS    |    ✓   |   ✓    |    ✓   |     ✓      |
-|    Android   |    ✓   |   ✓    |    ✓   |     ✓      |
-|      iOS     |    ✓   |   ✓    |    ✓   |     ✓      |
-|   Linux[^2]  |    ~   |   ✓    |    ✕   |     ~      |
-| ChromeOS[^3] |    ✓   |   ✓    |    ✓   |     ✓      |
+| OS                   | Simple | Stable | Secure | Up to date |
+|:--------------------:|:------:|:------:|:------:|:----------:|
+| Windows              |    ✓   |   ~    |    ✓   |     ✓      |
+| macOS                |    ✓   |   ✓    |    ✓   |     ✓      |
+| Android              |    ✓   |   ✓    |    ✓   |     ✓      |
+| iOS                  |    ✓   |   ✓    |    ✓   |     ✓      |
+| Linux<sup>2</sup>    |    ~   |   ✓    |    ✕   |     ~      |
+| ChromeOS<sup>3</sup> |    ✓   |   ✓    |    ✓   |     ✓      |
 
-[^1]: The indentations mean that the indented distro is based off of the parent. For instance, Ubuntu is based on Debian. This is also a very small list compared to the total number of distributions out there.
-[^2]: This doesn't target any one distribution, but instead is a representation of the Linux ecosystem as a whole. Some distros like Fedora may be more secure but not as up to date, while others like Arch are more up to date but not simple, and some like Ubuntu or Linux Mint are simple, but not up to date or secure.
-[^3]: This excludes usage of the Linux dev environment. For results for that, refer to the Linux row of the table.
+## Footnotes
+
+1. The indentations mean that the indented distro is based off of the parent. For instance, Ubuntu is based on Debian. This is also a very small list compared to the total number of distributions out there.
+2. This doesn't target any one distribution, but instead is a representation of the Linux ecosystem as a whole. Some distros like Fedora may be more secure but not as up to date, while others like Arch are more up to date but not simple, and some like Ubuntu or Linux Mint are simple, but not up to date or secure.
+3. This excludes usage of the Linux dev environment. For results for that, refer to the Linux row of the table.
