@@ -1,0 +1,85 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import ScrollToTop from "../components/ScrollToTop.astro";
+import "../styles/note.css";
+
+interface Props {
+    title: string;
+    author: {
+        data: {
+            name: string;
+            link: string;
+        };
+    };
+    date: Date;
+    lastmod?: Date;
+}
+
+const { title, author, date, lastmod } = Astro.props;
+
+const pubDate = lastmod ?? date;
+const titleString = title.toLowerCase().split(" ").join("");
+const timeString = `${pubDate
+    ?.toDateString()
+    .split(" ")
+    .join("")}-${titleString}`;
+const authorString = `${author.data.name}-${titleString}`;
+---
+
+<BaseLayout {title}>
+    <main>
+        <div class="note-header">
+            <time transition:name={timeString} datetime={pubDate.toISOString()}
+                >{pubDate.toDateString()}</time
+            >
+            <h1 transition:name={titleString}>{title}</h1>
+            <p transition:name={authorString}>
+                Written by <a href={author.data.link}>{author.data.name}</a>
+            </p>
+        </div>
+        <article>
+            <slot />
+        </article>
+        <ScrollToTop />
+    </main>
+</BaseLayout>
+
+<style>
+    main {
+        margin-top: 4dvh;
+    }
+
+    div {
+        display: flex;
+    }
+
+    /* Note header */
+    .note-header {
+        flex-direction: column;
+    }
+
+    h1,
+    time {
+        margin: 0.5rem 0;
+    }
+
+    h1 {
+        font-size: 3rem;
+        margin-bottom: 0;
+    }
+
+    time {
+        font-weight: bold;
+        opacity: 0.75;
+    }
+
+    p {
+        font-style: italic;
+        opacity: 0.75;
+    }
+
+    a {
+        color: var(--text);
+        transition: all 0.25s;
+    }
+</style>

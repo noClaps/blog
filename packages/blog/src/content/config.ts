@@ -19,7 +19,18 @@ const authors = defineCollection({
   }),
 });
 
+const notes = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    date: z.date(),
+    lastmod: z.date().optional(),
+    author: reference("authors")
+  })
+});
+
 export const collections = {
   posts: posts,
   authors: authors,
+  notes: notes
 };
