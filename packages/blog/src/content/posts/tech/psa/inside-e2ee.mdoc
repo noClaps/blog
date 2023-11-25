@@ -304,20 +304,20 @@ Indented lines are part of a function
 {% /note %}
 
 ```typescript
-// setupX3DH
-const identitySigningKey = await crypto.importKey(
-    "pkcs8",
-    await crypto.exportKey("pkcs8", identityKeyPair.privateKey),
-    { name: "ECDSA", namedCurve: "P-256" },
-    false,
-    ["sign"]
-);
+    // setupX3DH
+    const identitySigningKey = await crypto.importKey(
+        "pkcs8",
+        await crypto.exportKey("pkcs8", identityKeyPair.privateKey),
+        { name: "ECDSA", namedCurve: "P-256" },
+        false,
+        ["sign"]
+    );
 
-const preKeySignature = await crypto.sign(
-    { name: "ECDSA", hash: "SHA-512" },
-    identitySigningKey,
-    await crypto.exportKey("raw", preKeyPair.publicKey)
-);
+    const preKeySignature = await crypto.sign(
+        { name: "ECDSA", hash: "SHA-512" },
+        identitySigningKey,
+        await crypto.exportKey("raw", preKeyPair.publicKey)
+    );
 ```
 
 This is another quirk of `SubtleCrypto`. You cannot use a key generated with `ECDH` for the `ECDSA` algorithm, even though they're completely interchangable. To counter this, we're using a "hack" which exports the private identity key, then re-imports it with `ECDSA`, so we can use the `sign` key usage on it. Note that the exported key format is set to [`pkcs8`](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#pkcs_8), since we're exporting a private key.
