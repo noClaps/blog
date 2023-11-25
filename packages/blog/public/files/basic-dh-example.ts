@@ -1,4 +1,4 @@
-const crypto = window.crypto.subtle;
+const crypto = globalThis.crypto.subtle;
 
 const alice = await crypto.generateKey(
     { name: "ECDH", namedCurve: "P-256" }, true, ["deriveKey"]
@@ -10,8 +10,8 @@ const bob = await crypto.generateKey(
 
 console.log("Generated keypairs!");
 
-function toHex(buffer: ArrayBuffer) {
-    return Array.from(new Uint8Array(buffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+function toHex(buffer: ArrayBufferLike) {
+    return Array.from(new Uint8Array(buffer)).map(b => b.toString(16).padStart(2, "0")).join("");
 }
 
 console.log(`Alice's private key: ${toHex(await crypto.exportKey("pkcs8", alice.privateKey))}, public key: ${toHex(await crypto.exportKey("raw", alice.publicKey))}`);
@@ -34,7 +34,7 @@ console.log(`Bob's secret: ${toHex(await crypto.exportKey("raw", bobSecret))}`);
 
 const data = new TextEncoder().encode("Hello, world!");
 
-const iv = window.crypto.getRandomValues(new Uint8Array(16));
+const iv = globalThis.crypto.getRandomValues(new Uint8Array(16));
 const encrypted = await crypto.encrypt({ name: "AES-GCM", iv }, aliceSecret, data);
 
 console.log(`Encrypted data: ${toHex(encrypted)}`);
@@ -42,3 +42,6 @@ console.log(`Encrypted data: ${toHex(encrypted)}`);
 const decrypted = await crypto.decrypt({ name: "AES-GCM", iv }, aliceSecret, encrypted);
 
 console.log(`Decrypted data: ${new TextDecoder().decode(decrypted)}`);
+
+// mark this file as a module
+export {};

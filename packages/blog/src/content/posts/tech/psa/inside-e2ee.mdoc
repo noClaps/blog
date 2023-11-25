@@ -2,15 +2,16 @@
 title: Inside of E2EE
 description: Wait... that's illegal
 date: 2023-07-13
+lastmod: 2023-11-25
 author: Mester
 ---
 
 ## Welcome
 
-Dear readers, I welcome you all to my Inside of E2EE post. As you can guess from the title, it's going to be about E2EE and how, where, and why it's used. If you're developing your new web app in JS, you're in luck! The post will also include a bunch of example JS code that uses browser native APIs, so you can pretty much implement E2EE anywhere you want.
+Dear readers, I welcome you all to my Inside of E2EE post. As you can guess from the title, it's going to be about E2EE and how, where, and why it's used. If you're developing your new web app in JavaScript, you're in luck! The post will also include a bunch of example JS code that uses browser native APIs, so you can pretty much implement E2EE anywhere you want.
 
 {% note %}
-The example codes are actually going to be in TypeScript, but it's not trivial to turn it into pure JavaScript. And besides, nobody uses vanilla JS anyway...
+The example codes are actually going to be in TypeScript instead of JavaScript, don't get confused about that.
 {% /note %}
 
 {% toc headings=$toc /%}
@@ -18,43 +19,52 @@ The example codes are actually going to be in TypeScript, but it's not trivial t
 ## What is E2EE?
 
 Obviously, some of you may have only heard of E2EE, but never actually understood what it means.
-E2EE stands for "End-to-End-Encryption", which gives a hint on what it does: it encrypts data (which can be anything, text, images, videos, voice calls) between the ends (clients, or the people).
+E2EE stands for "End-to-End-Encryption", which gives a hint on what it does: it encrypts data (which can be anything, text, images, videos, voice calls) between the ends (also called clients, basically the people).
 
-"But Sir, I heard that HTTPS already encrypts my data online, so why would I need E2EE?" Great question, Pete. [HTTPS](https://en.wikipedia.org/wiki/HTTPS) is just an encrypted version of [HTTP](https://en.wikipedia.org/wiki/HTTP), which is the main protocol you use to connect with websites. It's **only used to encrypt the data between you and the website (server)**, so it [the website] can still read your plans for your next date, or see that embarassing picture your mother sent you last week. Actually, they can't just *read* the message, but **change it entirely**. Not just the message itself, but the recipient too for example. So in short, if you use a messaging app which only uses HTTPS for encryption, you're trusting the server to do exactly what you say. With E2EE, control is entirely in your hands.
+"But Sir, I heard that HTTPS already encrypts my data online, so why would I need E2EE?" Great question, Pete. [HTTPS](https://en.wikipedia.org/wiki/HTTPS) is just an encrypted version of [HTTP](https://en.wikipedia.org/wiki/HTTP), which is the main protocol you use to connect with websites. It **only encrypts the data between you and the website (server)**, which means the website can still read your plans for your next date, or see that embarrassing picture your mother sent you last week. Actually, they can't just _read_ the message, but **change it entirely**. Not just the message itself, but the recipient too for example. In short, if you use a messaging app which only uses HTTPS for encryption, you're trusting the server to do exactly what you say. With E2EE, control is entirely in your hands.
 
 E2EE solves this issue by encrypting the data before sending it to the server **in a way the server cannot access the plain-text (in other words, unencrypted) data**. This design makes sure that only you and your recipient(s) have access to the data. This also means that any form of "E2EE" which does the encryption on the server and not in the client is **NOT** E2EE.
 
 ### So is HTTPS unsecure?
 
-No, not at all. In fact, HTTPS can be more secure than the E2EE in an app you use, depending on the implementation. But it [HTTPS] only prevents third parties from reading your communication between the server.
+No, not at all. In fact, HTTPS can be more secure than the E2EE in an app you use, depending on the implementation. But HTTPS only prevents third parties from reading your communication between the server.
 
-Here is an analogy: there is a very high-tech post office that uses letters which self-destruct if anybody touches them, and only the post office can open them safely (that's HTTPS). You send "Hi, please tell Alexa I love her" to this post office. Neither the post deliver guy or that creepy neighbour can read it, but the post office can process it and execute the instruction. 5 years later, you're married. Now, you send a message again, but this time it's "Hi, please tell Alexa `eyAiY29udGVudCI6ICJJIGxvdmUgeW91IOKdpO+4jyIgfQ==`". The post office has no idea what you're trying to tell her, but they'll forward this letter to her anyway who can actually read it, because she owns a device you gave her as a gift (the E2EE app). This is the difference between HTTPS and E2EE.
+Imagine you're organizing a surprise birthday party for a friend and you want to send out invitations discreetly. You opt for a reliable delivery service (akin to HTTPS) that boasts of its secure envelopes which cannot be tampered with by outsiders. You trust this service to deliver your party invitations without letting the secret out. While anyone trying to intercept the invitiations would be foiled, the delivery service does have the key to open these envelopes and could potentially read the details of the party if they wanted to.
+
+Now let's take it a step further with E2EE. This time, you write your invitations using a special code that only you and your invited friends are privy to. You still use the same trustworthy delivery service, and your invitation still arrives in its secure envelope. However, when the delivery service inevitably opens the envelope to check the contents, all they find is a jumble of letters and numbers like "4FmpL3XC7Q" that makes no sense to them. Unphased, they deliver the coded message to your friend. Your friend, who knows the secret code, easily decodes the message and learns about the surprise party without the delivery service or anyone else being the wiser.
+
+In this scenario, the use of a secret code is an analogy for E2EE, making sure that only your intended recipients—the friends you've invited—know about the party plans, no matter who handles the invites in between.
 
 ### Do I need it?
 
-No.
-
-Oh, you'd like to have an extra layer of security and make sure nobody except you and the recipients can access your messages? Sure thing then.
+Depends on your mentality really. Some people just want something that's easy to use, and don't care much about security. Others want to be as secure as possible, even if it means sacrificing some features. If you're the first type, you probably don't need E2EE. If you're the second type, you probably already use E2EE apps.
 
 ### Where is it used?
 
-E2EE is used mainly in messaging apps that are designed to be, well... secure. Examples are [Matrix](https://matrix.org/) (DMs are always E2EE, group chats are only if you enable it), [Session](https://getsession.org/), [Signal](https://signal.org/), even Apple's [iMessage](https://www.apple.com/privacy/features#imessage) if you have [Advanced Data Protection](https://support.apple.com/en-us/HT212520) enabled, because the iCloud **backups** of your messages are [not E2EE](https://support.apple.com/en-gb/HT202303) without it. With ADP, only your devices can decrypt your conversations, not even Apple.
+E2EE is used mainly in messaging apps that are designed to be, well... secure. Examples are [Matrix](https://matrix.org/), [Session](https://getsession.org/), [Signal](https://signal.org/), even Apple's [iMessage](https://www.apple.com/privacy/features#imessage) if you have [Advanced Data Protection](https://support.apple.com/en-us/HT212520) enabled, because the iCloud **backups** of your messages are [not E2EE](https://support.apple.com/en-gb/HT202303) without it. With ADP, only your devices can decrypt your conversations, not even Apple.
+
+{% note %}
+On Matrix, direct one-on-one conversations are always E2EE, for group chats it's an opt-in feature.
+{% /note %}
 
 Continuing with the Apple example, with Advanced Data Protection almost all of your iCloud data is stored using E2EE, so only you can access it. Point is: E2EE is not just for messages, it's just a way of encrypting any arbitary data, even if it's just for a single recipient (you).
 
 ## Cryptographic terms
 
 Since this section is going to mention a lot of advanced cryptographic terms, I'd like to quickly mention some.
-* [DH (Diffie-Hellman)](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange): The DH key exchange was [created in 1977](https://worldwide.espacenet.com/patent/search/family/025257633/publication/US4200770A?q=pn%3DUS4200770) by [Bailey Diffie](https://en.wikipedia.org/wiki/Whitfield_Diffie) and [Martin Hellman](https://en.wikipedia.org/wiki/Martin_Hellman), with some help from [Ralph Merkle](https://en.wikipedia.org/wiki/Ralph_Merkle). This post is not going to get into the mathematical details, but basically DH works by mixing a random private key you generate with the public key of the person you want to perform the key exchange. They do the same, but with their private key and your public key. (Note that the public and private keys are mathematically linked together, they aren't completely random)
-* [Elliptic curve](https://en.wikipedia.org/wiki/Elliptic_curve): An elliptic curve is a mathematical algebraic curve, usually written in the form of {% math display="inline" %}y^2 = x^3 + ax + b{% /math %}, where a and b are random numbers. In cryptography, they're used for:
-  * [Elliptic-curve cryptography (ECC)](https://en.wikipedia.org/wiki/Elliptic-curve_cryptography): ECC is a type of [public-key cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography) using the powers of elliptic curves. They're usually harder to break even with smaller key sizes, because of the [Elliptic Curve Discrete Logarithm Problem](https://link.springer.com/referenceworkentry/10.1007/978-1-4419-5906-5_246). If you don't understand any of this (I don't), then here is an [easy to understand video from Computerphile](https://www.youtube.com/watch?v=NF1pwjL9-DE).
-  * [Elliptic-curve Diffie-Hellman (ECDH)](https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman): ECDH is just the Diffie-Hellman key exchange, but with elliptic curves. When the implementation mentions DH, ECDH is meant, since I'm going to use elliptic curves for everything anyway. Here, it's going to be used as part of the X3DH algorithm to perform the DH key exchanges.
-  * [Elliptic Curve Digital Signature Algorithm (ECDSA)](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm): ECDSA is - similar to ECDH - a variant of the [Digital Signature Algorithm (DSA)](https://en.wikipedia.org/wiki/Digital_Signature_Algorithm), using ellipctic curves. DSA is used to [digitally sign](https://en.wikipedia.org/wiki/Digital_signature) arbitary data using public and private keys ([asymmetric cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography)). I'm going to use it for the X3DH algorithm.
-* [Hashing](https://en.wikipedia.org/wiki/Hash_function): Hashing is the process of turning any arbitary data into a fixed-length block. The length is defined by the hash algorithm, and is usually 256 bits (32 bytes). Hashes are mainly used for verifying data integrity, since even the slightest change (for example, replace a dot with a comma) has drastic impacts on the derived hash.
-* [AES (sometimes called Rijndael)](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard): AES (Advanced Encryption Standard) is probably the most widely used [symmetric-key encryption algorithm](https://en.wikipedia.org/wiki/Symmetric-key_algorithm) (this means that the same key decrypts and encrypts the data, unlike in [RSA](https://en.wikipedia.org/wiki/RSA_(cryptosystem)) for example). It's a variant of the Rijndael algorithm and works with a fixed key size of 128, 192 or 256 bits (16, 24 and 32 bytes respectively) and processes 128 bits (16 bytes) of data at a time, this is also called the block size. I'll use its variant called [AES-GCM](https://en.wikipedia.org/wiki/AES-GCM-SIV) with a 256 bits long key for the actual (en/de)cryption.
-* [HKDF](https://en.wikipedia.org/wiki/HKDF): HKDF is a [key derivation function](https://en.wikipedia.org/wiki/Key_derivation_function) (which basically takes in some parameters and returns a cryptographically secure key, other examples are [PBKDF2](https://en.wikipedia.org/wiki/PBKDF2) and [Argon2](https://en.wikipedia.org/wiki/Argon2)) with some [HMAC](https://en.wikipedia.org/wiki/HMAC) sprinkled on top of it, to ensure integry and authenticity. It's going to be the main function I'll use for the Double Ratchet implementation, since it is essentially a ratchet function.
-* [Forward secrecy](https://en.wikipedia.org/wiki/Forward_secrecy): forward secrecy (also called perfect forward secrecy) means that when a secret is revealed, it cannot be used to crack previous sessions or messages for example. Let's say I use a single key to encrypt all of my messages. In that case, if an attacker cracks the message once, they get access to all past and future messages.
-* [Future secrecy (or backward secrecy)](https://users.ece.cmu.edu/~adrian/projects/sec/node6.html): future secrecy is the opposite of forward secrecy: when a secret is compromised, it cannot be used to crack future sessions. The previous example with the single key had no forward or future secrecy. If the key was replaced a ratchet function that uses key derivation functions to always generate new keys based on a starting key, cracking one key would mean you cannot crack previous keys, but it would still not have future secrecy, since you could input the compromised key into the ratchet and it'll generate all the future keys for you.
+
+-   Integrity and authenticity: These are two important terms in cryptography. Integrity means a message hasn't been changed during transmit, and authenticity means the message comes from the stated sender. For example, if you get a message from your online bank, you can be sure that the message actually came from your bank and it's really what they sent you.
+-   [DH (Diffie-Hellman)](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange): The DH key exchange was [created in 1977](https://worldwide.espacenet.com/patent/search/family/025257633/publication/US4200770A?q=pn%3DUS4200770) by [Bailey Diffie](https://en.wikipedia.org/wiki/Whitfield_Diffie) and [Martin Hellman](https://en.wikipedia.org/wiki/Martin_Hellman), with some help from [Ralph Merkle](https://en.wikipedia.org/wiki/Ralph_Merkle). This post is not going to get into the mathematical details, but basically DH works by mixing a random private key you generate with the public key of the person you want to perform the key exchange with. They do the same, but with their private key and your public key. (Note that the public and private keys are mathematically linked together, they aren't completely random)
+-   [Elliptic curve](https://en.wikipedia.org/wiki/Elliptic_curve): An elliptic curve is a mathematical algebraic curve, usually written in the form of {% math display="inline" %}y^2 = x^3 + ax + b{% /math %}, where a and b are random numbers. In cryptography, they're used for:
+    -   [Elliptic-curve cryptography (ECC)](https://en.wikipedia.org/wiki/Elliptic-curve_cryptography): ECC is a type of [public-key cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography) using the powers of elliptic curves. They're usually harder to break even with smaller key sizes, because of the [Elliptic Curve Discrete Logarithm Problem](https://link.springer.com/referenceworkentry/10.1007/978-1-4419-5906-5_246). If you don't understand any of this (I don't), then here is an [easy to understand video from Computerphile](https://www.youtube.com/watch?v=NF1pwjL9-DE).
+    -   [Elliptic-curve Diffie-Hellman (ECDH)](https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman): ECDH is just the Diffie-Hellman key exchange, but with elliptic curves. When the implementation mentions DH, ECDH is meant, since I'm going to use elliptic curves for everything anyway. Here, it's going to be used as part of the X3DH algorithm to perform the DH key exchanges.
+    -   [Elliptic Curve Digital Signature Algorithm (ECDSA)](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm): ECDSA is - similar to ECDH - a variant of the [Digital Signature Algorithm (DSA)](https://en.wikipedia.org/wiki/Digital_Signature_Algorithm), using ellipctic curves. DSA is used to [digitally sign](https://en.wikipedia.org/wiki/Digital_signature) arbitary data using public and private keys ([asymmetric cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography)). I'm going to use it for the X3DH algorithm.
+-   [Hashing](https://en.wikipedia.org/wiki/Hash_function): Hashing is the process of turning any arbitary data into a fixed-length block. The length is defined by the hash algorithm, and is usually 256 bits (32 bytes). Hashes are mainly used for verifying data integrity, since even the slightest change (for example, replace a dot with a comma) has drastic impacts on the derived hash.
+-   [AES (sometimes called Rijndael)](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard): AES (Advanced Encryption Standard) is probably the most widely used [symmetric-key encryption algorithm](https://en.wikipedia.org/wiki/Symmetric-key_algorithm) (this means that the same key decrypts and encrypts the data, unlike in [RSA](https://en.wikipedia.org/wiki/RSA_(cryptosystem)) for example). It's a variant of the Rijndael algorithm and works with a fixed key size of 128, 192 or 256 bits (16, 24 and 32 bytes respectively) and processes 128 bits (16 bytes) of data at a time, this is also called the block size. I'll use its variant called [AES-GCM](https://en.wikipedia.org/wiki/AES-GCM-SIV) with a 256 bits long key for the actual (en/de)cryption.
+-   [MAC](https://en.wikipedia.org/wiki/Message_authentication_code): MAC stands for message authentication code and is used for ensuring authenticity and integrity. It's similar to a digital signature, but uses a single key instead of a keypair. To verify a MAC signature, you need the key used to generate it. The term MAC is rather generic, meanwhile [HMAC](https://en.wikipedia.org/wiki/HMAC) is a specific MAC implementation using a hash function.
+-   [HKDF](https://en.wikipedia.org/wiki/HKDF): HKDF is a [key derivation function](https://en.wikipedia.org/wiki/Key_derivation_function) which takes in some parameters and returns a cryptographically secure key - other examples are [PBKDF2](https://en.wikipedia.org/wiki/PBKDF2) and [Argon2](https://en.wikipedia.org/wiki/Argon2) - with some HMAC sprinkled on top of it, to ensure integry and authenticity. It's going to be the main function I'll use for the Double Ratchet implementation, since it is essentially a ratchet function.
+-   [Forward secrecy](https://en.wikipedia.org/wiki/Forward_secrecy): Forward secrecy (sometimes called perfect forward secrecy) means that when a secret is revealed, it cannot be used to crack previous sessions or messages for example. Let's say I use a single key to encrypt all of my messages. In that case, if an attacker cracks the key once, they get access to all past and future messages.
+-   [Future secrecy (or backward secrecy)](https://users.ece.cmu.edu/~adrian/projects/sec/node6.html): future secrecy is the opposite of forward secrecy: when a secret is compromised, it cannot be used to crack future sessions. The previous example with the single key had no forward or future secrecy. If the key was replaced a ratchet function that uses key derivation functions to always generate new keys based on a starting key, cracking one key would mean you cannot crack previous keys, but it would still not have future secrecy, since you could input the compromised key into the ratchet and it'll generate all the future keys for you.
 
 ## Main concepts for E2EE
 
@@ -69,12 +79,12 @@ Since all encryption algorithms need some sort of secret key (a key that's meant
 Luckily, smart people have already figured out some pretty good ways of doing that (proof: the URL of this website starts with `https://`), two of which we're going to discuss and implement later: the [Diffie-Hellman key exchange](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange), and Signal's [Extended Triple Diffie-Hellman](https://www.signal.org/docs/specifications/x3dh/) key agreement protocol (X3DH), which is a beast and my personal favourite.
 
 ### Encryption algorithm
- 
-Great, you've shared a random secret key with your recipient, time to encrypt messages! So let's just put that key into an AES algorithm, and we're don- ***NO!!!***
 
-See, AES is nice and all, but think about what happens if a hacker breaks the key: oops, they just got access to all past and future messages, my bad! This is where forward secrecy comes in handy, something I've already [mentioned previously](#cryptographic-terms).
+Great, you've shared a random secret key with your recipient, time to encrypt messages! So let's just put that key into an AES algorithm, and we're don- **_NO!!!_**
 
-To implement this, we can use "ratchet" functions. These functions work like a real [ratchet](https://en.wikipedia.org/wiki/Ratchet_(device)): they only go forward, but not backwards. If you know what [hashing](https://en.wikipedia.org/wiki/Hash_function) is, you might recognise that it is also a ratchet function: you cannot revert a hash to get the original input data.
+See, AES is nice and all, but think about what happens if a hacker breaks the key: oops, they just got access to all past and future messages, my bad! This is where forward secrecy comes in handy.
+
+To implement this, we can use "ratchet" functions. These functions work like a real [ratchet](https://en.wikipedia.org/wiki/Ratchet_(device)): they only go forward, but not backwards. If you think about hashing, you might recognise that it is also a ratchet function: you cannot revert a hash to get the original input data.
 
 Alright, you've updated your app so it uses a ratchet function to generate a new key for each message, and this ratchet is synchronised on the recipient's and your devices (since otherwise they wouldn't be able to decrypt your messages). I think you can figure out the next problem: if hackers can't read past keys, can't they just use the ratchet to generate all future keys after compromising one? They can, you're absolutely correct. Solution: add another ratchet, 2 > 1!
 
@@ -85,21 +95,16 @@ After your double ratchet system has been set up, you can finally use the genera
 
 We're finally doing it! Get ready, because this is about to get heavy.
 
-{% note %}
-If you're only here for the explanation of how these systems work, you're in luck, the implementation also has explanation baked into it! :)
-{% /note %}
+### Environment setup
 
-### Quick information
+Before you start implementing anything, you need to set up your environment. This is what I'm going to use, but you may use anything you want:
 
-Before doing anything crazy, you should know some important stuff (you can change anything mentioned here, but these are what I'm going to make the example codes with).
-
-For anything cryptography related, I'm going to use a browser API called [Web Crypto API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API). This API contains a bunch of useful cryptographical functions that can be used to implement cryptographical stuff. (Logic Lv. 9999).
+For anything cryptography related, I'm going to use the [Web Crypto API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API). This API contains a bunch of useful cryptographical functions.
 
 Unfortunately it has some caveats:
-* Since it hasn't been approved yet as a [W3C standard](https://wicg.github.io/webcrypto-secure-curves/), safe curves e.g. [Curve25519](https://en.wikipedia.org/wiki/Curve25519) are not available. Why this matters will be explained below.
-* Because of the lack of Curve25519, I'm going to use the [NIST P-256](https://neuromancer.sk/std/nist/P-256) curve instead. Yes, I know it's [not really secure](https://miracl.com/blog/backdoors-in-nist-elliptic-curves/), but it's only for the purposes of showcasing, feel free to use any custom library with stronger curves for anything I'm about to do.
 
-So let's start!!!
+-   Since it hasn't been approved yet as a [W3C standard](https://wicg.github.io/webcrypto-secure-curves/), safe curves e.g. [Curve25519](https://en.wikipedia.org/wiki/Curve25519) are not available. Why this matters will be explained below.
+-   Because of the lack of Curve25519, I'm going to use the [NIST P-256](https://neuromancer.sk/std/nist/P-256) curve instead. Yes, I know about its [controversies](https://miracl.com/blog/backdoors-in-nist-elliptic-curves/), but it's only for the purposes of showcasing, feel free to use any custom library with stronger curves for anything I'm about to do.
 
 ## Implementing a basic DH key exchange
 
@@ -108,40 +113,47 @@ So let's start!!!
 For a DH key exchange to happen, we need 2 things: Alice's and Bob's keypair. We can then mix the recipient's public key with our private key and get a shared secret.
 
 {% warning %}
-Make sure the following code is served from a server with HTTPS, because the Web Crypto API only works in secure contexts!
+Make sure the following code is served from a server with HTTPS, because the Web Crypto API only works in secure contexts! Otherwise you can run it in Node.js.
 {% /warning %}
 
 ```typescript
-const crypto = window.crypto.subtle;
+const crypto = globalThis.crypto.subtle;
 ```
 
-We declare a variable called "crypto", and set it to the Window's [SubtleCrypto](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto) object. SubtleCrypto is part of the Web Crypto API and has all the cool stuff we want.
+We declare a variable called "crypto", and set it to [SubtleCrypto](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto) object of `globalThis`. SubtleCrypto is part of the Web Crypto API and has all the cool stuff we want. `globalThis` is used, to make sure the code can be executed in both the browser and Node.js.
 
 ```typescript
-const alice = await crypto.generateKey(
-    { name: "ECDH", namedCurve: "P-256" }, true, ["deriveKey"]
-);
+const alice = await crypto.generateKey({ name: "ECDH", namedCurve: "P-256" }, true, ["deriveKey"]);
 
-const bob = await crypto.generateKey(
-    { name: "ECDH", namedCurve: "P-256" }, true, ["deriveKey"]
-);
+const bob = await crypto.generateKey({ name: "ECDH", namedCurve: "P-256" }, true, ["deriveKey"]);
 ```
 
 This should be pretty self explanatory: we create two variables named `alice` and `bob` using the [`SubtleCrypto.generateKey()`](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/generateKey) method with the required parameters:
-1. the algorithm we want to use: (ECDH with the [P-256](https://neuromancer.sk/std/nist/P-256) curve),
-2. if we'd like to export the key later. If we set it to false, [`SubtleCrypto.exportKey()`](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/exportKey) will not work on the keys, so we cannot store them later, which is usually not what you'd want.
+
+1. The algorithm we want to use: (ECDH with the [P-256](https://neuromancer.sk/std/nist/P-256) curve),
+2. If we'd like to export the key later. If we set it to false, [`SubtleCrypto.exportKey()`](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/exportKey) will not work on the keys, so we cannot store them later, which is usually not what you'd want.
 3. An array of key usages. `deriveKey` means that we'll use this keypair later to create a new key.
 
 ```typescript
-function toHex(buffer: ArrayBuffer) {
-    return Array.from(new Uint8Array(buffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+function toHex(buffer: ArrayBufferLike) {
+    return Array.from(new Uint8Array(buffer))
+        .map((b) => b.toString(16).padStart(2, "0"))
+        .join("");
 }
 
-console.log(`Alice's private key: ${toHex(await crypto.exportKey("pkcs8", alice.privateKey))}, public key: ${toHex(await crypto.exportKey("raw", alice.publicKey))}`);
-console.log(`Bob's private key: ${toHex(await crypto.exportKey("pkcs8", bob.privateKey))}, public key: ${toHex(await crypto.exportKey("raw", bob.publicKey))}`);
+console.log(
+    `Alice's private key: ${toHex(await crypto.exportKey("pkcs8", alice.privateKey))}, public key: ${toHex(
+        await crypto.exportKey("raw", alice.publicKey)
+    )}`
+);
+console.log(
+    `Bob's private key: ${toHex(await crypto.exportKey("pkcs8", bob.privateKey))}, public key: ${toHex(
+        await crypto.exportKey("raw", bob.publicKey)
+    )}`
+);
 ```
 
-This is a bit more complicated. First, we define a new function called `toHex`, which takes in an [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer) object and turns it into its hex representation. We need this because right after it we're going to display the generated keys using [`SubtleCrypto.exportKey()`](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/exportKey), which returns an [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer) object that we cannot just `console.log()`. So we first define a utility function that makes the keys human-readable. And then we actually export the keys and display them to the console. Notice how with private keys the type is set to `pkcs8`, while public keys use `raw`. This is just a [quirk of SubtleCrypto](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#supported_formats), you cannot use the raw format on private keys and the pkcs8 format on public and AES secret keys.
+This is a bit more complicated. First, we define a new function called `toHex`, which takes in an [`ArrayBufferLike`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer) object and turns it into its hex representation. (ArrayBufferLike is the `ArrayBuffer` and `SharedArrayBuffer` types combined). We need this because right after it we're going to display the generated keys using [`SubtleCrypto.exportKey()`](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/exportKey), which returns an `ArrayBuffer` object that we cannot just `console.log()`. So we first define a utility function that makes the keys human-readable. And then we actually export the keys and display them to the console. Notice how with private keys the type is set to `pkcs8`, while public keys use `raw`. This is just a [quirk of SubtleCrypto](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#supported_formats), you cannot use the raw format on private keys and the pkcs8 format on public and AES secret keys.
 
 ### Deriving the secret key
 
@@ -149,17 +161,23 @@ Time to do a DH key exchange!
 
 ```typescript
 const aliceSecret = await crypto.deriveKey(
-    { name: "ECDH", public: bob.publicKey }, alice.privateKey,
-    { name: "AES-GCM", length: 256 }, true, ["encrypt", "decrypt"]
+    { name: "ECDH", public: bob.publicKey },
+    alice.privateKey,
+    { name: "AES-GCM", length: 256 },
+    true,
+    ["encrypt", "decrypt"]
 );
 
 const bobSecret = await crypto.deriveKey(
-    { name: "ECDH", public: alice.publicKey }, bob.privateKey,
-    { name: "AES-GCM", length: 256 }, true, ["encrypt", "decrypt"]
+    { name: "ECDH", public: alice.publicKey },
+    bob.privateKey,
+    { name: "AES-GCM", length: 256 },
+    true,
+    ["encrypt", "decrypt"]
 );
 ```
 
-Because we've previously set the key usage to `deriveKey`, we can use [`SubtleCrypto.deriveKey()`](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/deriveKey) on the keypairs. First we define the algorithm, in this case "ECDH" with the public component, our private key, the type of key we want to generate (we'll use 256 bits long AES-GCM), and finally the already known export and key usage values. `encrypt` and `decrypt` mean exactly what you think: only keys with these usages are accepted in [`SubtleCrypto.encrypt()`](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/encrypt) and [`SubtleCrypto.decrypt()`](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/decrypt). Notice how Alice uses Bob's public key and her private key, while Bob does the exact opposite. If all turns out fine, we should get the same exact keys, so let's check!
+Because we've previously set the key usage to `deriveKey`, we can use [`SubtleCrypto.deriveKey()`](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/deriveKey) on the keypairs. First we define the algorithm, in this case `ECDH` with the public component, our private key, the type of key we want to generate (we'll use 256 bits long AES-GCM), and finally the already known export and key usage values. `encrypt` and `decrypt` mean exactly what you think: only keys with these usages are accepted in [`SubtleCrypto.encrypt()`](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/encrypt) and [`SubtleCrypto.decrypt()`](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/decrypt). Notice how Alice uses Bob's public key and her private key, while Bob does the exact opposite. If all turns out fine, we should get the same exact keys, so let's check!
 
 ```typescript
 console.log("Derived shared secrets!");
@@ -168,7 +186,7 @@ console.log(`Alice's secret: ${toHex(await crypto.exportKey("raw", aliceSecret))
 console.log(`Bob's secret: ${toHex(await crypto.exportKey("raw", bobSecret))}`);
 ```
 
-`SubtleCrypto.exportKey()` - as the name suggests - turns a `CryptoKey` object into a format that we can then read/write, because you cannot just read a `CryptoKey` object (if you put it into `console.log()` it'd only tell you the key usages, if it's a secret or part of a keypair, the algorithm used to generate the key and if it's extractable). We also know what `toHex` does, so let's look at the results!
+`SubtleCrypto.exportKey()` - as the name suggests - turns a `CryptoKey` object into a format that we can then read/write, because you cannot just read a `CryptoKey` object (if you put it into `console.log()` it'd only tell you the key usages, if it's a secret or part of a keypair, the algorithm used to generate the key and if it's extractable). Let's see the console output!
 
 ```
 Generated keypairs!
@@ -181,7 +199,7 @@ Bob's secret: a49977f16b7ca79faedb98eac5abebabed687da2ccc4a27e63480afefb213a4c
 
 They match, which means we've done a great job! We could now theoretically use this key to perform symmetric AES encryption, but I've already explained why a single key is a bad idea, so let's not do that yet.
 
-### Actually, can I test some encryption?
+### Actually, a little testing never hurts...
 
 For the third time, do not **ever** use a single key for encryption, but just to see how it works in `SubtleCrypto`, I'll show you how to use the generated secret from earlier to encrypt a simple "Hello World" message.
 
@@ -200,9 +218,9 @@ const encrypted = await crypto.encrypt({ name: "AES-GCM", iv }, aliceSecret, dat
 console.log(`Encrypted data: ${toHex(encrypted)}`);
 ```
 
-The [`TextEncoder`](https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder) class is used to convert the [`UTF-8`](https://en.wikipedia.org/wiki/UTF-8) string into a [`Uint8Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array). Then we define `iv` using the [`Crypto.getRandomValues()`](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues) function, which does pretty much what it says: you provide it with a [`TypedArray`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray) (in this case, [`Uint8Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)), and it fills up every byte with a [random value](https://en.wikipedia.org/wiki/Random_number_generation). It is not a truly random number generator (TRNG), but a pseudorandom number generator (PRNG) with high enough entropy that is suitable for cryptographic purposes.
+The [`TextEncoder`](https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder) class is used to convert the [`UTF-8`](https://en.wikipedia.org/wiki/UTF-8) string into a [`Uint8Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array). Then we define `iv` using the [`Crypto.getRandomValues()`](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues) function, which does pretty much what it says: you give it a [`TypedArray`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray) object - a `Uint8Array` in this case - and it fills up every byte with a [random value](https://en.wikipedia.org/wiki/Random_number_generation). It is not a truly random number generator (TRNG), but a pseudorandom number generator (PRNG) with high enough entropy that is suitable for cryptographic purposes.
 
-After the initial setup, you can run [`SubtleCrypto.encrypt()`](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/encrypt), with the specified algorithm, in this case `"AES-GCM"` which also needs the IV, the key to encrypt with and the actual data. This method returns an [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer), which is then hexified and logged to the console.
+After the initial setup, you can run [`SubtleCrypto.encrypt()`](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/encrypt), with the specified algorithm, in this case `AES-GCM` which also needs the IV, the key to encrypt with and the actual data. This method returns an `ArrayBuffer`, which is then hexified and logged to the console.
 
 Let's see the result (it's going to be completely different for you)!
 
@@ -218,7 +236,7 @@ const decrypted = await crypto.decrypt({ name: "AES-GCM", iv }, aliceSecret, enc
 console.log(`Decrypted data: ${new TextDecoder().decode(decrypted)}`);
 ```
 
-At this point you should be able to understand everything. As mentioned previously, AES uses the same key for en- and decryption, so you'll need to use `aliceSecret` (or `bobSecret`, since we know they're the same) again. [`TextDecoder`](https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder) is just the opposite of [`TextEncoder`](https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder): it turns any buffer source (in this case an [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)) into `UTF-8`.
+As mentioned previously, AES uses the same key for en- and decryption, so you'll need to use `aliceSecret` (or `bobSecret`, since we know they're the same) again. [`TextDecoder`](https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder) is just the opposite of `TextEncoder`: it turns any buffer source (in this case an `ArrayBuffer`) into `UTF-8`.
 
 Result:
 
@@ -232,9 +250,9 @@ Download the entire code for this example <a href="/files/double-ratchet.ts" dow
 
 ### Hold up, wait a minute...
 
-If you look really closely at this code, and I mean extremely closely, you might realise something: these keypairs are generated locally on the same exact device, in the same JS script. Obviously that makes no sense for an E2EE app, and you're right, you're supposed to transmit the public keys via the Internet, which raises a problem: how can I make sure the server is not messing with the public keys?
+If you look really closely at this code, and I mean extremely closely, you might realise something: these keypairs are generated locally on the same exact device, in the same JS script. Obviously that makes no sense for an E2EE app, and you're right, you're supposed to transmit the public keys via the Internet, which raises a problem: how can I make sure the server is not changing the public keys?
 
-If you've ever used a platform like Matrix or Signal, you might have noticed that both have a verification system (Matrix uses emojis, Signal uses "safety numbers"). The verification panel also says that you're supposed to verify via a safe channel (so basically not the same app you want to verify in) that the same exact emojis/numbers are shown on both devices. This verification solves the problem described earlier: it verifies that the server is not trying to perform a [MITM](https://en.wikipedia.org/wiki/Man-in-the-middle_attack) attack. Matrix uses [SAS (Short Authentication String)](https://matrix.org/docs/guides/implementing-more-advanced-e-2-ee-features-such-as-cross-signing#1-implement-emoji-verification-sas), which performs a DH key exchange described above, applies HKDF to the derived secret and converts the result into an emoji or number. That way, if the emojis don't match on both devices, you know that the server has **modified** at least one of the public keys during transit. The secret is then authenticated with [MAC](https://en.wikipedia.org/wiki/Message_authentication_code) (another type of digital signature, but it uses a single key instead of private and public keys), verified on both devices and the process ends. Signal on the other hand just generates a [safety number](https://signal.org/blog/safety-number-updates/) using your and the recipient's public key. The idea is the same: if the numbers don't match on both devices, the server is doing shady stuff.
+If you've ever used a platform like Matrix or Signal, you might have noticed that both have a verification system (Matrix uses emojis, Signal uses "safety numbers"). The verification panel also says that you're supposed to verify via a safe channel (so basically not the same app you want to verify in) that the same exact emojis/numbers are shown on both devices. This verification solves the problem described earlier: it verifies that the server is not trying to perform an [MITM](https://en.wikipedia.org/wiki/Man-in-the-middle_attack) attack. Matrix uses [SAS (Short Authentication String)](https://matrix.org/docs/guides/implementing-more-advanced-e-2-ee-features-such-as-cross-signing#1-implement-emoji-verification-sas), which performs a DH key exchange described above, applies HKDF to the derived secret and converts the result into an emoji or number. That way, if the emojis don't match on both devices, you know that the server has **modified** at least one of the public keys during transit. The secret is then authenticated with MAC, verified on both devices and the process ends. Signal on the other hand just generates a [safety number](https://signal.org/blog/safety-number-updates/) using your and the recipient's public key. The idea is the same: if the numbers don't match on both devices, the server is doing shady stuff.
 
 ## Implementing X3DH
 
@@ -242,34 +260,34 @@ DH is cool, but X3DH has X in its name, which makes it even cooler. So how about
 
 ### Initial setup
 
-X3DH needs a bunch of [other keypairs](https://www.signal.org/docs/specifications/x3dh#keys) to work (we're going to use the P-256 curve for all of them). These key(pair)s include: identity key (this never changes), prekey (this can change depending on the implementation to provide forward-secrecy, we're not going to implement that here) and a list of one-time prekeys (these should all be discarded after they're used, and refreshed when their amount falls below a certain threshold, for this example we're going to generate 20 random keys and just choose one during the protocol run). The public prekey is signed with ECDSA, with the signing key being the private identity key (this means that the recipient can verify the digital signature with the public identity key).
+X3DH needs a bunch of [other keypairs](https://www.signal.org/docs/specifications/x3dh#keys) to work (we're going to use the P-256 curve for all of them). These key(pair)s include: identity key (this never changes), prekey (this may be renewed, usually once per week, depending on the implementation to provide forward-secrecy, we're not going to implement that here) and a list of one-time prekeys (these should all be discarded after they're used, and refreshed when their amount falls below a certain threshold, for this example we're going to generate 20 random keys and just choose one during the protocol run). The public prekey is signed with ECDSA, with the signing key being the private identity key (this means that the recipient can verify the digital signature with the public identity key).
 
-Because there are going to be lot of key generations involved, let's simplify the setup process into a single function.
-
-This example is going to get very big and complicated, so I'll try to comment the code to explain what some of the stuff means and to show what's happening on-device and on the server.
+{% warning %}
+There is a very important thing to note: all private key components must be only available to the user they belong to, other users and especially the server must never learn them. This can be achieved in 2 ways: either only store them on device, or encrypt them before storing it on the server, both depend massively on your app's implementation. Because we're not dealing with servers here, we assume that everything is stored the safest way possible.
+{% /warning %}
 
 ```typescript
-const crypto = window.crypto.subtle;
+const crypto = globalThis.crypto.subtle;
 
 interface X3DHObject {
-    identityKeyPair: CryptoKeyPair; // Stored on server with the private key being protected (encrypted). Client may verify integrity of keys.
-    preKeyPair: CryptoKeyPair; // Same as before.
-    preKeySignature: ArrayBuffer; // Stored on server, client may verify integrity.
-    onetimeKeys: Array<OneTimeKey>; // Same as before.
+    identityKeyPair: CryptoKeyPair;
+    preKeyPair: CryptoKeyPair;
+    preKeySignature: ArrayBufferLike; // The ECDSA signature of the public prekey, signed with the private identity key.
+    onetimeKeys: Array<OneTimeKey>;
 }
 
 interface OneTimeKey {
-    public: CryptoKey; // Public to everyone (including server).
-    private: CryptoKey; // Protected from the server.
-    id: number; // A random identifier, client may verify integrity, in case the server tries to alter it.
-    used: boolean; // In a real-world implementation, the private keys would be stored safely on the device, and the second someone requests a one-time prekey, it's completely deleted from the server. This is only used here to make the code easier to understand, and just tells you if the key has been used.
+    public: CryptoKey;
+    private: CryptoKey;
+    id: number; // A random identifier, client may verify integrity in case the server tries to alter it.
 }
 
-function toHex(buffer: ArrayBuffer) {
-    return Array.from(new Uint8Array(buffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+function toHex(buffer: ArrayBufferLike) {
+    return Array.from(new Uint8Array(buffer)).map(b => b.toString(16).padStart(2, "0")).join("");
 }
 
-async function setupX3DH(): Promise<X3DHObject> { // everything happens on device
+async function setupX3DH(): Promise<X3DHObject> { 
+    // everything happens on device
     const identityKeyPair = await crypto.generateKey(
         { name: "ECDH", namedCurve: "P-256" }, true, ["deriveBits"]
     );
@@ -288,17 +306,25 @@ Indented lines are part of a function
 ```typescript
     // setupX3DH
     const identitySigningKey = await crypto.importKey(
-        "pkcs8", await crypto.exportKey("pkcs8", identityKeyPair.privateKey),
-        { name: "ECDSA", namedCurve: "P-256" }, false, ["sign"]
+        "pkcs8",
+        await crypto.exportKey("pkcs8", identityKeyPair.privateKey),
+        { name: "ECDSA", namedCurve: "P-256" },
+        false,
+        ["sign"]
     );
 
     const preKeySignature = await crypto.sign(
-        { name: "ECDSA", hash: "SHA-512" }, identitySigningKey,
+        { name: "ECDSA", hash: "SHA-512" },
+        identitySigningKey,
         await crypto.exportKey("raw", preKeyPair.publicKey)
     );
 ```
 
-This is another quirk of `SubtleCrypto`. You cannot use a key generated with `ECDH` for the `ECDSA` algorithm, even though they're completely interchangable. So we're using this hack which exports the private identity key, then re-imports it with `ECDSA`, so we can use the `sign` key usage on it. Note that the exported key format is set to [`pkcs8`](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#pkcs_8), since we're exporting a private key.
+This is another quirk of `SubtleCrypto`. You cannot use a key generated with `ECDH` for the `ECDSA` algorithm, even though they're completely interchangable. To counter this, we're using a "hack" which exports the private identity key, then re-imports it with `ECDSA`, so we can use the `sign` key usage on it. Note that the exported key format is set to [`pkcs8`](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#pkcs_8), since we're exporting a private key.
+
+{% note %}
+The keys are only interchangeable because we're using the P-256 curve. If you're using a third-party library for, e.g., Curve25519, note that X25519 for ECDH and Ed25519 for ECDSA are not directly interchangeable, look up your library's documentation for more information.
+{% /note %}
 
 After the private identity key has been modified that `SubtleCrypto` can accept it, it is used by `SubtleCrypto.sign()` to create a digital signature of the public prekey, which only the public identity key can verify.
 
@@ -310,14 +336,13 @@ Next we'll set up 20 random one-time prekeys.
 
     for(let i = 0; i < 20; i++) {
         const keyPair = await crypto.generateKey(
-            { name: "ECDH", namedCurve: "P-256" }, true, ["deriveKey"]
+            { name: "ECDH", namedCurve: "P-256" }, true, ["deriveBits"]
         )
 
         onetimeKeys.push({
             public: keyPair.publicKey,
             private: keyPair.privateKey,
-            id: i,
-            used: false
+            id: i
         });
     }
 
@@ -332,11 +357,11 @@ Next we'll set up 20 random one-time prekeys.
 }
 ```
 
-We create a new array called `onetimeKeys`, which we instantly populate with 20 completely random P-256 keys. The `id` can be a completely random number, but to avoid collisions, I just used a linearly increasing number, so they're all unique. Initially, `used` is set to `false`, this will change when a party initiates a protocol run. Finally, we finish the key generation by returning the identity key, prekey, the prekey signature and an array of 20 one-time prekeys.
+We create a new array called `onetimeKeys`, which we instantly populate with 20 completely random P-256 keys. The `id` can be a completely random number, but to avoid collisions, I just used a linearly increasing number, so they're all unique. Finally, we finish the key generation by returning the identity key, prekey, the prekey signature and an array of 20 one-time prekeys.
 
 ### Fetching a prekey bundle
 
-The next step is to start a protocol run. For this we'll of course use Alice and Bob. Assume that they've both already generated a X3DH object, and uploaded them to the server with the safety precautions mentioned earlier. Now let's see how would it look like if Alice wanted to create a shared secret with Bob using X3DH.
+The next step is to start a protocol run. For this we'll of course use Alice and Bob. Assume that they've both already generated an X3DH object, and uploaded them to the server with the safety precautions mentioned earlier. Now let's see how would it look like if Alice wanted to create a shared secret with Bob using X3DH. The first step is to fetch Bob's so called "prekey bundle".
 
 ```typescript
 interface PrekeyBundle {
@@ -347,112 +372,121 @@ interface PrekeyBundle {
     oneTimeID: number; // the ID of the one-time prekey
 }
 
-function getPrekeyBundle(user: X3DHObject): PrekeyBundle { // happens on server
-    const oneTimeKey = user.onetimeKeys.filter(key => !key.used)?.[Math.floor(Math.random() * user.onetimeKeys.length)];
-    if (oneTimeKey) user.onetimeKeys[user.onetimeKeys.indexOf(oneTimeKey)].used = true;
+function getPrekeyBundle(user: X3DHObject): PrekeyBundle {
+    // happens on server
+    const oneTimeKey = user.onetimeKeys[Math.floor(Math.random() * user.onetimeKeys.length)];
 
-    return { // return as a response to a HTTP request or some other protocol
+    // the server should somehow mark the one-time key as used, so it cannot be used again
+
+    return {
+        // this would be the response to an HTTP request or similar
         identityKey: user.identityKeyPair.publicKey,
         preKey: user.preKeyPair.publicKey,
         preKeySignature: user.preKeySignature,
         oneTimeKey: oneTimeKey?.public ?? undefined,
-        oneTimeID: oneTimeKey?.id ?? undefined
-    }
+        oneTimeID: oneTimeKey?.id ?? undefined,
+    };
 }
 ```
 
-We declare another utility interface for X3DH, then create a `getPrekeyBundle` function, which takes a `X3DHObject` as parameter. Note that all of the code inside this function is performed on the server, so it's not dependent on the other party's online status. As you could guess from the code, the one-time prekey might not exist, this could happen if too many users have tried to get a prekey bundle for a party, and the said party wasn't online to regenerate the one-time keys. The X3DH documention mentions that in this case the protocol may still be continued, but security will be reduced.
+We declare another utility interface for X3DH, then create a `getPrekeyBundle` function, which takes a `X3DHObject` as parameter. Note that all of the code inside this function is executed on the server, which means it's asynchronous - it doesn't depend on the other user's online status.
+
+The prekey bundle contains the user's public identity and prekey, the signature for the prekey, and the public component of a random one-time prekey. Sometimes, the one-time prekey might not exist, this could happen if too many users have tried to get a prekey bundle for a user and they weren't online to regenerate the one-time prekeys. The X3DH documention mentions that in this case the protocol may still be continued, but security will be reduced.
 
 ### Generating the secret key
 
 Great, so Alice has fetched a prekey bundle of Bob and prepared her own private keys. This is where it gets complicated.
 
 Basically, Alice first verifies that Bob's prekey is valid using the signature and his public key. If that succeedes, she creates a completely new ephemeral key, this will be used for this protocol run only (basically it's a one-time prekey, but for Alice). Then she needs to calculate 4 (3 if the one-time prekey is missing) DH exchanges:
-1. DH1 = private identity key + public prekey
-2. DH2 = private ephemeral key + public identity key
-3. DH3 = private ephemeral key + public prekey
-4. (DH4 = private ephemeral key + public one-time prekey)
-   
+
+1. DH1 = Alice's private identity key + Bob's public prekey
+2. DH2 = A's private ephemeral key + B's public identity key
+3. DH3 = A's private ephemeral key + B's public prekey
+4. (DH4 = A's private ephemeral key + B's public one-time prekey)
+
 Remember, all of these DH key exchanges will return a random sequence of bytes (in our implementation, they'll be 32 bytes long). To compress them into a single shared secret key, Alice concatenates all of these byte sequences together, then passes it to the HKDF algorithm.
 
-The HKDF function needs a `salt` and `info` extra parameter, both can be public. The former will be a randomly generated 32-bytes long sequence, the latter just the UTF-8 encoding of "E2EE is amazing!" (this can be anything you'd like).
+The HKDF function needs a `salt` and `info` extra parameter, both can be public. The former will just be an empty `Uint8Array`, the latter the UTF-8 encoding of "E2EE is amazing!" - this can be anything you'd like, you might even want to use context-based information.
 
 ```typescript
 interface X3DHRequest {
     identityKey: CryptoKey; // the public identity key of the user who requested a protocol run
     ephemeralKey: CryptoKey; // the public ephemeral key of the user
-    oneTimeID: number; // the ID of the one-time key the user used
-    ciphertext: Uint8Array; // the initial ciphertext
+    oneTimeID: number | undefined; // the ID of the one-time prekey the user used
+    ciphertext: Uint8Array; // the initial ciphertext, encrypted with the shared secret
 }
 
-async function createX3DHRequest(user: X3DHObject, bundle: PrekeyBundle): Promise<X3DHRequest> { // happens on client
+async function createX3DHRequest(user: X3DHObject, bundle: PrekeyBundle): Promise<X3DHRequest> {
+    // happens on device
     // verify the prekey signature
     const identitySigningKey = await crypto.importKey(
-        "raw", await crypto.exportKey("raw", bundle.identityKey),
-        { name: "ECDSA", namedCurve: "P-256" }, false, ["verify"]
+        "raw",
+        await crypto.exportKey("raw", bundle.identityKey),
+        { name: "ECDSA", namedCurve: "P-256" },
+        false,
+        ["verify"]
     );
 
     const verified = await crypto.verify(
-        { name: "ECDSA", hash: "SHA-512" }, identitySigningKey,
-        bundle.preKeySignature, await crypto.exportKey("raw", bundle.preKey)
+        { name: "ECDSA", hash: "SHA-512" },
+        identitySigningKey,
+        bundle.preKeySignature,
+        await crypto.exportKey("raw", bundle.preKey)
     );
 
     if (!verified) throw new Error("Prekey signature invalid.");
 ```
 
-We start by creating yet another interface for a X3DHRequest. This object will be used by Alice after she's derived the shared secret: she'll populate this object with the required data that Bob needs to calculate the same secret. Then, we define an async function called `createX3DHRequest`, which takes in the user and prekey bundle. Note that everything in this function happens on the device.
+We start by creating yet another interface to represent an X3DH request. This object will be used by Alice after she's derived the shared secret: she'll populate this object with the required data that Bob needs to calculate the same secret. Then, we define an async function called `createX3DHRequest`, which takes in the user and prekey bundle. Note that everything in this function happens on the device.
 
-We do the weird export-import hack (note that we're using type `raw` here, because `bundle.identityKey` is a public key!), but this time on the public identity key. If this was real code, the keys would be transmitted with a Base64, hex etc. encoding, so you wouldn't need this SubtleCrypto mess, you only have to do this if you're trying to use an already existing `CryptoKey` object. Then it is used to verify the prekey signature. If it fails, the protocol run is instantly aborted.
+We do the weird export-import hack again, but this time on the public identity key (note that we're using type `raw` here, because `bundle.identityKey` is a public key!). If this was real code, the keys would be transmitted with a Base64, hex etc. encoding, so you wouldn't need this SubtleCrypto mess, you only have to do this if you're trying to use an already existing `CryptoKey` object. Finally, it is used to verify the prekey signature. If it fails, the protocol run is instantly aborted.
 
 ```typescript
     // createX3DHRequest
     // derive the shared secret
-    const ephemeralKey = await crypto.generateKey(
-        { name: "ECDH", namedCurve: "P-256" }, true, ["deriveBits"]
-    );
+    const ephemeralKey = await crypto.generateKey({ name: "ECDH", namedCurve: "P-256" }, true, ["deriveBits"]);
 
     // generate the 4 DH values
-    const DH1 = await crypto.deriveBits(
-        { name: "ECDH", public: bundle.preKey }, user.identityKeyPair.privateKey, 256);
-    const DH2 = await crypto.deriveBits(
-        { name: "ECDH", public: bundle.identityKey }, ephemeralKey.privateKey, 256);
-    const DH3 = await crypto.deriveBits(
-        { name: "ECDH", public: bundle.preKey }, ephemeralKey.privateKey, 256);
-    const DH4 = bundle.oneTimeKey ? await crypto.deriveBits(
-        { name: "ECDH", public: bundle.oneTimeKey }, ephemeralKey.privateKey, 256) : undefined;
+    const DH1 = await crypto.deriveBits({ name: "ECDH", public: bundle.preKey }, user.identityKeyPair.privateKey, 256);
+    const DH2 = await crypto.deriveBits({ name: "ECDH", public: bundle.identityKey }, ephemeralKey.privateKey, 256);
+    const DH3 = await crypto.deriveBits({ name: "ECDH", public: bundle.preKey }, ephemeralKey.privateKey, 256);
+    const DH4 = bundle.oneTimeKey
+        ? await crypto.deriveBits({ name: "ECDH", public: bundle.oneTimeKey }, ephemeralKey.privateKey, 256)
+        : undefined;
 
     // concatenate the DH values
     const DH = new Uint8Array(bundle.oneTimeKey ? 128 : 96);
     DH.set(new Uint8Array(DH1), 0);
     DH.set(new Uint8Array(DH2), 32);
     DH.set(new Uint8Array(DH3), 64);
-    if (bundle.oneTimeKey) DH.set(new Uint8Array(DH4), 96);
+    if (DH4) DH.set(new Uint8Array(DH4), 96);
 ```
 
-After verifying the prekey signature, we generate a new ephemeral key (key usage set to `deriveBits` again), then perform the 4 DH key exchanges, each time setting the length to the maximal 256, to indicate we want the result to be 32 bytes long (because 256 bits = 32 bytes). `DH4` is set to undefined if the one-time prekey doesn't exist. Then, these 4 DH results are concatenated together into a single Uint8Array, which can either be 128 or 96 bytes long, depending on the one-time prekey again.
+After verifying the prekey signature, we generate a new ephemeral key (key usage set to `deriveBits`), then perform the 4 DH key exchanges, each time setting the length to 256, indicating we want the result to be 32 bytes long (256 bits = 32 bytes). `DH4` is set to undefined if the one-time prekey doesn't exist. Then, these 4 DH results are concatenated together into a single Uint8Array, which can either be 128 or 96 bytes long, depending on the one-time prekey.
 
 ```typescript
     // createX3DHRequest
     // derive the secret key
     const info = new TextEncoder().encode("E2EE is amazing!");
 
-    const secretKeyInput = await crypto.importKey(
-        "raw", DH, "HKDF", false, ["deriveKey"]
-    );
+    const secretKeyInput = await crypto.importKey("raw", DH, "HKDF", false, ["deriveKey"]);
 
     const secretKey = await crypto.deriveKey(
-        { name: "HKDF", salt: new Uint8Array([0]), info, hash: "SHA-512" }, secretKeyInput,
-        { name: "AES-GCM", length: 256 }, true, ["encrypt", "decrypt"]
+        { name: "HKDF", salt: new Uint8Array(), info, hash: "SHA-512" },
+        secretKeyInput,
+        { name: "AES-GCM", length: 256 },
+        true,
+        ["encrypt", "decrypt"]
     );
 
-    console.log(`Secret key derived: ${await crypto.digest("SHA-256", await crypto.exportKey("raw", secretKey))}`);
+    console.log(`Secret key derived: ${toHex(await crypto.exportKey("raw", secretKey))}`);
 ```
 
-At the end, we import our byte sequence and set its algorithm to `HKDF` and key usage to `deriveKey` (since we're going to derive a key in the next step), and finally perform `SubtleCrypto.deriveKey()` to turn our input key material into a AES key we can use. The salt is just a single 0 byte, which fortunately doesn't compromise security. For debugging purposes, I logged the [SHA-256](https://en.wikipedia.org/wiki/SHA-2) result to the console, but for obvious reasons do not ever do this in production code, even if it's a hash.
+Finally, we import our byte sequence and set its algorithm to `HKDF` and key usage to `deriveKey` (since we're going to derive a key in the next step), and finally perform `SubtleCrypto.deriveKey()` to turn our input key material into an AES key we can use. The salt is just an empty `Uint8Array`, which fortunately doesn't compromise security. For debugging purposes, I logged secret key to the console, but for obvious reasons do not ever do this in production code.
 
 ### Constructing the request object
 
-We're not done yet though, we'll also need to generate a request object for Bob, so he can also perform the calculations we've done earlier. Fortunately this is really simple.
+We're not done yet though, we'll also need to generate a request object for Bob, so he can also perform the calculations we've done earlier. Fortunately, this is really simple.
 
 ```typescript
     // createX3DHRequest
@@ -462,90 +496,95 @@ We're not done yet though, we'll also need to generate a request object for Bob,
     AD.set(new Uint8Array(await crypto.digest("SHA-256", await crypto.exportKey("raw", bundle.identityKey))), 32);
 
     // create the initial ciphertext
-    const iv = window.crypto.getRandomValues(new Uint8Array(16));
-    const message = new TextEncoder().encode(JSON.stringify({
-        identityKey: toHex(await crypto.exportKey("raw", user.identityKeyPair.publicKey)),
-        ephemeralKey: toHex(await crypto.exportKey("raw", ephemeralKey.publicKey)),
-        oneTimeID: bundle.oneTimeID
-    }));
+    const iv = globalThis.crypto.getRandomValues(new Uint8Array(16));
+    const message = new TextEncoder().encode(
+        JSON.stringify({
+            identityKey: toHex(await crypto.exportKey("raw", user.identityKeyPair.publicKey)),
+            ephemeralKey: toHex(await crypto.exportKey("raw", ephemeralKey.publicKey)),
+            oneTimeID: bundle.oneTimeID,
+        })
+    );
 ```
 
-First we create an AD (associated data) by hashing the requesting user's public key and the requested user's public key and concatenating them together (we use their hash to make sure they're exactly 32 bytes long). The requested user has to reconstruct this to be able to read the initial ciphertext. A new IV is also generated along with the plaintext of the initial ciphertext. What this message contains is completely up to the application, but my implementation has the keys transmitted in plaintext stored here too, so in case the server tries to mess with the keys, the message will contain completely different ones, which can be used to verify the integrity of a X3DH request.
+First we create an AD (associated data) by hashing the requesting user's public key and the requested user's public key and concatenating them together (we use a hash to make sure we get exactly 32 bytes per key). The requested user has to reconstruct this to be able to read the initial ciphertext. A new IV is also generated along with the plaintext of the initial ciphertext. What this message contains is completely up to the application, my implementation has a copy of the keys in the request object, so in case the server tries to mess with the keys, the message will contain completely different ones, which can be used to verify the integrity of an X3DH request.
 
 ```typescript
     // createX3DHRequest
-    const ciphertextBase = await crypto.encrypt(
-        { name: "AES-GCM", iv, additionalData: AD }, secretKey, message
-    );
+    const ciphertextBase = await crypto.encrypt({ name: "AES-GCM", iv, additionalData: AD }, secretKey, message);
 
     // concatenate the iv and ciphertext
     const ciphertext = new Uint8Array(16 + ciphertextBase.byteLength);
     ciphertext.set(iv, 0);
     ciphertext.set(new Uint8Array(ciphertextBase), 16);
 
-    // the secret key is discarded after this point, but in a real implementation it may be stored
+    // the secret key is discarded after this point, but in a real implementation it may be stored for later use
     return {
         identityKey: user.identityKeyPair.publicKey,
         ephemeralKey: ephemeralKey.publicKey,
         oneTimeID: bundle.oneTimeID ?? undefined,
-        ciphertext
-    }
+        ciphertext,
+    };
 }
 ```
 
-Finally we use `SubtleCrypto.encrypt()` on the message (note that there is another parameter added to the AES function, namely `additionalData`), create a new variable called `ciphertext` which is a concatenation of the iv and the encrypted message, then return the request object. This object contains all the keys Bob needs for the calculation of the secret key: the public ephemeral key, public identity key and the ID of the one-time prekey, all in plaintext (!). The ciphertext is encoded in Base64, and the function returns. Alice can now send the request object to Bob, who does the final calculations and finally ends the X3DH run.
+Finally we use `SubtleCrypto.encrypt()` on the message (note that there is another parameter added to the AES function, `additionalData`), create a new variable called `ciphertext` which is a concatenation of the iv and the encrypted message, then return the request object. This object contains all the keys Bob needs for the calculation of the secret key: the public ephemeral key, public identity key and the ID of the one-time prekey, all in plaintext (!). The ciphertext is encoded in Base64, and the function returns. Alice can now send the request object to Bob, who does the final calculations and finally ends the X3DH run.
 
 ### Accepting the request object
 
-So now Alice has uploaded her request object to the server, which (hopefully) forwarded it to the now online Bob. Let's see what he has to do.
+Alice has uploaded her request object to the server, which (hopefully) forwarded it to the now online Bob. Let's see what he has to do.
 
-Because we don't have to verify our own prekey's signature, accepting the request simplifies a lot, and we can get straight to calculating the 4 DH values. Remember, the public keys Alice has used now became the private keys of Bob and vice versa. So the calculations change to the following:
-1. DH1 = public identity key + private prekey
-2. DH2 = public ephemeral key + private identity key
-3. DH3 = public ephemeral key + private prekey
-4. (DH4 = public ephemeral key + private one-time prekey)
+Because we don't have to verify our own prekey's signature, accepting the request simplifies a lot, and we can get straight to calculating the 4 DH values. Remember, instead of the public keys Alice has used, we now have to use the respective private component and vice versa. The calculations therefore change to the following:
+
+1. DH1 = Alice's public identity key + Bob's private prekey
+2. DH2 = A's public ephemeral key + B's private identity key
+3. DH3 = A's public ephemeral key + B's private prekey
+4. (DH4 = A's public ephemeral key + B's private one-time prekey)
 
 ```typescript
-async function acceptX3DHRequest(user: X3DHObject, request: X3DHRequest) { // happens on device
+async function acceptX3DHRequest(user: X3DHObject, request: X3DHRequest) {
+    // happens on device
     // calculate the DH values
-    const DH1 = await crypto.deriveBits(
-        { name: "ECDH", public: request.identityKey }, user.preKeyPair.privateKey, 256);
-    const DH2 = await crypto.deriveBits(
-        { name: "ECDH", public: request.ephemeralKey }, user.identityKeyPair.privateKey, 256);
-    const DH3 = await crypto.deriveBits(
-        { name: "ECDH", public: request.ephemeralKey }, user.preKeyPair.privateKey, 256);
-    const DH4 = request.oneTimeID ? await crypto.deriveBits(
-        { name: "ECDH", public: request.ephemeralKey },
-        user.onetimeKeys.find(key => key.id === request.oneTimeID).private, 256) : undefined;
+    const DH1 = await crypto.deriveBits({ name: "ECDH", public: request.identityKey }, user.preKeyPair.privateKey, 256);
+    const DH2 = await crypto.deriveBits({ name: "ECDH", public: request.ephemeralKey }, user.identityKeyPair.privateKey, 256);
+    const DH3 = await crypto.deriveBits({ name: "ECDH", public: request.ephemeralKey }, user.preKeyPair.privateKey, 256);
+    const oneTimeKey = user.onetimeKeys.find((key) => key.id === request.oneTimeID);
+    const DH4 = oneTimeKey
+        ? await crypto.deriveBits(
+              { name: "ECDH", public: request.ephemeralKey },
+              oneTimeKey.private,
+              256
+          )
+        : undefined;
 
     // concatenate the DH values
     const DH = new Uint8Array(request.oneTimeID ? 128 : 96);
     DH.set(new Uint8Array(DH1), 0);
     DH.set(new Uint8Array(DH2), 32);
     DH.set(new Uint8Array(DH3), 64);
-    if (request.oneTimeID) DH.set(new Uint8Array(DH4), 96);
+    if (DH4) DH.set(new Uint8Array(DH4), 96);
 ```
 
-If you've done everything correctly, the resulting `DH` buffer ***should*** have the same exact values as the one Alice generated. In that case, the HKDF will create the same key:
+If you've done everything correctly, the resulting `DH` buffer **_should_** have the same exact values as the one Alice has generated. If that's true, the HKDF will create the same key:
 
 ```typescript
     // acceptX3DHRequest
     // derive the secret key
     const info = new TextEncoder().encode("E2EE is amazing!");
 
-    const secretKeyInput = await crypto.importKey(
-        "raw", DH, "HKDF", false, ["deriveKey"]
-    );
+    const secretKeyInput = await crypto.importKey("raw", DH, "HKDF", false, ["deriveKey"]);
 
     const secretKey = await crypto.deriveKey(
-        { name: "HKDF", salt: new Uint8Array([0]), info, hash: "SHA-512" }, secretKeyInput,
-        { name: "AES-GCM", length: 256 }, true, ["encrypt", "decrypt"]
+        { name: "HKDF", salt: new Uint8Array([0]), info, hash: "SHA-512" },
+        secretKeyInput,
+        { name: "AES-GCM", length: 256 },
+        true,
+        ["encrypt", "decrypt"]
     );
 
-    console.log(`Secret key derived: ${await crypto.digest("SHA-256", await crypto.exportKey("raw", secretKey))}`);
+    console.log(`Secret key derived: ${toHex(await crypto.exportKey("raw", secretKey))}`);
 ```
 
-As you can see, this code is basically the same thing as the `generateX3DH` function, the only exception is that the salt is not randomly generated, it's in the `request` object. Also, because the `info` parameter is always a constant, we don't have to include it in the request, you can just generate it again. Anyway, let's finish up this code and test it for good!
+As you can see, this code is basically the same as the `generateX3DH`. Also, because the `info` parameter is always a constant, we don't have to include it in the request, you can just generate it again. Anyway, let's finish up this code and test it for good!
 
 ```typescript
     // acceptX3DHRequest
@@ -559,16 +598,13 @@ As you can see, this code is basically the same thing as the `generateX3DH` func
     const ciphertext = request.ciphertext.slice(16);
 
     // decipher the ciphertext
-    const message = await crypto.decrypt(
-        { name: "AES-GCM", iv, additionalData: AD }, secretKey,
-        ciphertext
-    );
+    const message = await crypto.decrypt({ name: "AES-GCM", iv, additionalData: AD }, secretKey, ciphertext);
 
     console.log(`Deciphered message: ${new TextDecoder().decode(message)}`);
 }
 ```
 
-First we need to reconstruct the AD. Note that it's **Alice's** + **Bob's** public identity key, not the other way around! After that we extract the iv and ciphertext with the `Uint8Array.slice()` method and perform the final `SubtleCrypto.decrypt()` function using the secret key we've derived earlier with X3DH. If we've done everything correctly, it should decrypt without an error and we can print the decoded message to the console.
+First we need to reconstruct the AD. Note that it's **Alice's** + **Bob's** public identity key, not the other way around! After that we extract the IV and ciphertext using the `Uint8Array.slice()` function and perform the final `SubtleCrypto.decrypt()` call with the secret key we've derived earlier. If we've done everything correctly, it should decrypt without an error and we can print the decoded message to the console.
 
 Anyway, I'm sure you're eager to finally test this code, so let's perform our first X3DH protocol run!
 
@@ -577,12 +613,12 @@ Anyway, I'm sure you're eager to finally test this code, so let's perform our fi
 const alice = await setupX3DH();
 const bob = await setupX3DH();
 
-// keys are uploaded to server, with private keys secured in some way (they could also be stored only on the device)
+// keys are uploaded to server, with private keys secured in some way
 
 // Alice fetches Bob's bundle (response comes from server)
-const bobBundle = await getPrekeyBundle(bob);
+const bobBundle = getPrekeyBundle(bob);
 
-// Alice creates a request (happens on device, then sent to server)
+// Alice creates a request (happens on device, then request is sent to server)
 const aliceRequest = await createX3DHRequest(alice, bobBundle);
 
 // Bob accepts the request (happens on device)
@@ -590,12 +626,13 @@ await acceptX3DHRequest(bob, aliceRequest);
 ```
 
 Output of the console:
+
 ```
 X3DH setup complete.
 X3DH setup complete.
-Secret key derived: 7dbfad7f7730f7acbb5f702148e9f95a6b462bcf623732db47e38ac61dcd9f1f
-Secret key derived: 7dbfad7f7730f7acbb5f702148e9f95a6b462bcf623732db47e38ac61dcd9f1f
-Deciphered message: {"identityKey":"04277c29172c8b193a8a11a657efd49117de0c4ca5cf5313780d5b54ef5df1a949ee918d84b0902be80f9bc60ceb9902e7efe35889cac9c994f70992a8edeaeb4a","ephemeralKey":"04267f2986140ffe0cdaf29dd2a284c2e0a733617530abf428cc4cb9913927029b0745ad6dbbd033180e7b0b9b1d50c1d3b7f03afa18e97eb24db8b4637bb8e1d2","oneTimeID":11}
+Secret key derived: 1145516af95e6c484674f51eaf4a0384f4db491a711486e4fec0c8f25644ba2e
+Secret key derived: 1145516af95e6c484674f51eaf4a0384f4db491a711486e4fec0c8f25644ba2e
+Deciphered message: {"identityKey":"040e221ca977e8c54363024d482b959c2c51ea9d6f7f3a3e682ee101d5c683da9afeefa3edb5bd85bb405e655ef5f4aa8ea91697ba9a415d6b3bac8c9b50cd08c6","ephemeralKey":"0408f3677d4f4b5a63015829e6bef8282395ee7acc7843665c38af70f87eccf632a7d796b16825d0a82972c1ef3983abd897b2486d2954ee123a3f1b3a92485a71","oneTimeID":6}
 ```
 
 Congratulations, you've successfully learned how to implement the X3DH key exchange protocol using `SubtleCrypto`. Go and show this to your friends or something.
@@ -610,28 +647,26 @@ With that out of the way, let's do this! :)
 
 ### Creating a single ratchet
 
-Obviously if you want to have a *double* ratchet, you'll logically need a *single* ratchet first.
+Obviously if you want to have a _double_ ratchet, you'll logically need a _single_ ratchet first.
 
 There are actually a lot of different ways to create a ratchet. After all, it really just needs a function that can "turn" one way, but never in the other. We will use HKDF, a type of key derivation function supercharged by HMAC.
-
-{% note %}
-HMAC is basically a version of MAC that also uses a hash function.
-{% /note %}
 
 This single ratchet will take in an initial key as its state, and provide a function to perform a turn. When the ratchet is turned, the ratchet's state is fed into the HKDF algorithm with some constants and we get a new key. We split this key in half, the first part is going to be the new state and the second half is what we actually use for message encryption/decryption. This is also called a symmetric ratchet, because it just keeps feeding a state into itself, there are no other parameters that would change the output. Later we'll create a DH ratchet which will no longer be symmetric, since it uses a combination of different inputs.
 
 ```typescript
-const crypto = window.crypto.subtle;
+const crypto = globalThis.crypto.subtle;
 
 // global hkdf info constant, can be anything
 const hkdfInfo = new TextEncoder().encode("Created by Mester");
 
-function toHex(buffer: ArrayBuffer) {
-    return Array.from(new Uint8Array(buffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+function toHex(buffer: ArrayBufferLike) {
+    return Array.from(new Uint8Array(buffer))
+        .map((b) => b.toString(16).padStart(2, "0"))
+        .join("");
 }
 
-/** 
- * A single symmetric ratchet that can turn and return a message key
+/**
+ * A single symmetric ratchet that can turn and return a message key.
  */
 class SymRatchet {
     // set the state to a private member, so it cannot be accessed from outside
@@ -646,7 +681,11 @@ class SymRatchet {
         const state = await crypto.importKey("raw", this.#state, "HKDF", false, ["deriveBits"]);
 
         // create a new state, the salt is just a single 0 byte
-        const newState = await crypto.deriveBits({ name: "HKDF", hash: "SHA-512", salt: new Uint8Array([0]), info: hkdfInfo }, state, 64 * 8);
+        const newState = await crypto.deriveBits(
+            { name: "HKDF", hash: "SHA-512", salt: new Uint8Array([0]), info: hkdfInfo },
+            state,
+            64 * 8
+        );
 
         // set the state to the first 32 bytes
         this.#state = new Uint8Array(newState, 0, 32);
@@ -663,25 +702,30 @@ The # symbol in #state marks it as a private member which cannot be accessed out
 
 There is a lot to unpack here (fortunately the comments help explain a lot).
 
-We define a global `hkdfInfo` variable, this is a constant used for the HKDF algorithm (it was already used once in the X3DH protocol). Then, a class called `SymRatchet` is created, this will server as our symmetric ratchet. It has a constructor which just sets the private state to the initial `Uint8Array` seed its given.
+We define a global `hkdfInfo` variable, this is a constant used for the HKDF algorithm (it was already used once in the X3DH protocol). Then, a class called `SymRatchet` is created, this will serve as our symmetric ratchet. It has a constructor which just sets the private state to the initial `Uint8Array` seed its given.
 
 The `turn` function does multiple things:
-1. Creates a random `Uint8Array` that holds a single 0 byte, this serves as the salt for HKDF. If a random salt was given for every turn, it'd get out of sync with our chat partner, since they don't know this random salt we generated.
-2. We import the state as a `CryptoKey`, which is marked to be used in the `HKDF` algorithm for deriving bits. `SubtleCrypto.deriveBits()` works like `SubtleCrypto.deriveKey()` but it returns raw bytes instead of a `CryptoKey`.
-3. The state key is then used to derive 64 bytes (512 bits) using HKDF. The `SHA-512` hash algorithm is used, because it generates a 64 bytes hash, so it's the most compatible with our ratchet.
+
+1. Creates an empty `Uint8Array`, this is the salt for HKDF. If a random salt was given for every turn, it'd get out of sync with our chat partner, since they don't know this random salt we generated.
+2. We import the state as a `CryptoKey`, which is marked to be used in the `HKDF` algorithm for deriving bits.
+3. The state key is then used to derive 64 bytes (512 bits) using HKDF. The `SHA-512` hash algorithm is used, because it generates a 64 bytes hash, therefore it's the most compatible with our ratchet.
 4. The first 32 bytes become the state key and we return the rest.
 
-Because only the first 32 bytes are used to perform a next turn, the data the `turn` function returns (also called the message key) can be stored, since it cannot be used to break into the ratchet. The preservation of message keys are not part of this post.
+Because only the first 32 bytes are used to perform a next turn, the data the `turn` function returns (also called the message key) can be stored, since it cannot be used to break into the ratchet.
 
 To test if it works, let's set up two ratchets, but with different starting seeds.
 
 #### Example 1
+
 ```typescript
-const ratchet = new SymRatchet(new Uint8Array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]));
-for(let i = 0; i < 5; i ++) console.log(toHex(await ratchet.turn()));
+const ratchet = new SymRatchet(
+    new Uint8Array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31])
+);
+for (let i = 0; i < 5; i++) console.log(toHex(await ratchet.turn()));
 ```
 
 Output:
+
 ```
 e67b48f096bdebb50e0ae6ea1e37c9ec128bbc37424d27a87f3ef3697d00b1b6
 38c1319aa2caca2f17000f99129ad98c44ac82fcc9402a817e790d06757c7e1f
@@ -691,45 +735,49 @@ ba98c268b3518dddb107d080f6e98963b71d28c1191ae6fbc7e21ebcd2b6bccc
 ```
 
 #### Example 2
+
 ```typescript
-const ratchet = new SymRatchet(new Uint8Array([31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]));
+const ratchet = new SymRatchet(
+    new Uint8Array([1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31])
+);
 for (let i = 0; i < 5; i++) console.log(toHex(await ratchet.turn()));
 ```
 
 Output:
+
 ```
-1851171a68bea0f961ec8ed4b930059c2de32c2b4c8397cac2b2b739b9fffa82
-af5a2f888e74a3c614816b677744d902cebbc3ba0e32e851c44cdaf7fa388c97
-756cef3a87d542a95e9f1db20297897eb234ec86adaa23e8aac8870d8543aba2
-290f0e96953281c5a6c333975d35985e5035f815da78cbae8afdc93782e33ee1
-4dbc392fbc40af14fd9a51310ef8fd2cf87a433e1b2b3ed40999444748dc941a
+20798bf7dec3d096dcac43eec9673b500126c5a10cc86efd26196a4ff4c5a4a0
+ac46b9da114b5ebf4eeb859d63fa0d4d69eee3a5c535adfa8c26969a3b3ea6fd
+67a4c91239e5677dc04bfd52fdc75eb3114fc2e896f128fee25026996251a2d2
+46cce5a3ff4da3a895af6a1cd57ae8708b32579c4c3cf645f5ad12f3f66e4024
+9d7f3788798a4601338885cc063a6b2207759f8346dffd611d311f0e1224ecab
 ```
 
-As you can see, a relatively minor change of the seed (just reversing it) had huge impacts on the output keys. Yay, encryption!
+As you can see, a relatively minor change of the seed (simply making the first byte 1 instead of 0) had huge impacts on the output keys. Yay, encryption!
 
 ### Creating the double ratchet
 
 Great, now let's put two of these together to create a double ratchet. But wait... how exactly do we use these message keys?
 
 Basically, we need to somehow create ratchets for Alice and Bob that are synchronised with each other (= their seed are the same). That way, if Alice encrypts a message, Bob will be able to read it, because he can generate the same exact key Alice used to encrypt a message. So both of them will get a send and receive ratchet: Alice's send ratchet is the same as Bob's receive ratchet and vice versa. So sending a message would look like this:
+
 1. Alice turns her send ratchet, uses key to encrypt message.
 2. Sends message to Bob.
 3. Bob turns his receive ratchet, uses key to decrypt message.
 4. Party 🎉
 
-To manage these ratchets, Alice and Bob will both create a root ratchet using a shared secret key (which can come from the previously implemented X3DH protocol). These keys are the basic single ratchets we created earlier, but this time, their output will be used to create new ratchets instead of encrypting messages.
+To manage these ratchets, Alice and Bob will both create a root ratchet using a shared secret key (which can come from the previously implemented X3DH protocol). The output of the root ratchets will then be used to create the send and receive ratchets.
 
-There is something important to remember: if Alice and Bob create their root ratchets (which will produce the same keys!), and turn them once to create their send ratchets, then the send ratchets will be synchronised, which is not what we want. So in a real-world app, there has to be a system that decides who should use their root ratchet's first turn as their send ratchet and who should use it as their receive ratchet. In this implementation, we'll just include a boolean parameter in a class constructor, but a live code should figure it out automatically.
-
+There is something important to remember: if Alice and Bob create their root ratchets using the same seed (which will produce the same keys!) and turn them once to create their send ratchets, then the send ratchets will be synchronised, which is not what we want - we want the send-receive pairs to be synchronised. This means, there has to be a system that decides who should use their root ratchet's first turn as their send ratchet and who should use it as their receive ratchet. For now, we'll simply use a boolean called `firstSend` to decide this, but later we'll use a more sophisticated system.
 
 ```typescript
 /**
- * a double ratchet that can encrypt and decrypt messages
+ * A double ratchet that can encrypt and decrypt messages.
  */
 class DoubleRatchet {
     #root: SymRatchet;
-    #send: SymRatchet;
-    #receive: SymRatchet;
+    #send: SymRatchet | undefined;
+    #receive: SymRatchet | undefined;
 
     firstSend: boolean = true;
 
@@ -739,8 +787,8 @@ class DoubleRatchet {
         this.firstSend = firstSend;
     }
 
-    async init() {
-        if(this.firstSend) {
+    async #init() {
+        if (this.firstSend) {
             this.#send = new SymRatchet(await this.#root.turn());
             this.#receive = new SymRatchet(await this.#root.turn());
         } else {
@@ -750,102 +798,115 @@ class DoubleRatchet {
     }
 
     async encrypt(message: ArrayBuffer) {
+        if (!this.#send) throw new Error("DoubleRatchet not initialized");
+
         // generate random IV
-        const iv = window.crypto.getRandomValues(new Uint8Array(12));
+        const iv = globalThis.crypto.getRandomValues(new Uint8Array(12));
 
         // turn the send ratchet to create a message key
-        const messageKey = await crypto.importKey("raw", await this.#send.turn(), { name: "AES-GCM", }, false, ["encrypt"]);
+        const messageKey = await crypto.importKey("raw", await this.#send.turn(), { name: "AES-GCM" }, false, ["encrypt"]);
         const ciphertext = await crypto.encrypt({ name: "AES-GCM", iv }, messageKey, message);
 
         return { iv, ciphertext };
     }
 
     async decrypt(ciphertext: ArrayBuffer, iv: ArrayBuffer) {
+        if (!this.#receive) throw new Error("DoubleRatchet not initialized");
+
         // turn the receive ratchet to create a message key
-        const messageKey = await crypto.importKey("raw", await this.#receive.turn(), { name: "AES-GCM", }, false, ["decrypt"]);
+        const messageKey = await crypto.importKey("raw", await this.#receive.turn(), { name: "AES-GCM" }, false, ["decrypt"]);
         const message = await crypto.decrypt({ name: "AES-GCM", iv }, messageKey, ciphertext);
 
         return message;
     }
+
+    static async build(seed: Uint8Array, firstSend: boolean = true) {
+        const dr = new DoubleRatchet(seed, firstSend);
+        await dr.#init();
+        return dr;
+    }
 }
 ```
 
-That's basically it, although we haven't implemented the turning mechanism of the root ratchets yet. So let's take a look:
-
-* The `init` function of the `DoubleRatchet` class is used to create the send and receive ratchets (the order is based on the previously mentioned `firstSend` boolean).
-* `encrypt` takes in some bytes, generates a 12 bytes initialization vector and encrypts it with the message key from the send ratchet.
-* `decrypt` does this in reverse, and turns the receive ratchet instead.
+That's basically it, the only thing missing is the turning mechanism - we'll add that later. For now, let's see what we have here:
+-   The `#init` function of the `DoubleRatchet` class is used to create the send and receive ratchets (the order is based on the previously mentioned `firstSend` boolean).
+-   `encrypt` takes in some bytes, generates a 12 bytes initialization vector and encrypts it with the message key from the send ratchet.
+-   `decrypt` does this in reverse, and turns the receive ratchet instead.
+-   We also have a static `build` function, which is a simple wrapper around the constructor and `#init` function.
 
 Now let's see if we can use it to send some messages between Alice and Bob! To make the secret sharing simpler, we'll just generate a random secret on the fly instead of using the X3DH code from earlier.
 
 ```typescript
-const secret = window.crypto.getRandomValues(new Uint8Array(32));
+const secret = globalThis.crypto.getRandomValues(new Uint8Array(32));
 
-const alice = new DoubleRatchet(secret);
-const bob = new DoubleRatchet(secret, false);
+const alice = await DoubleRatchet.build(secret, true);
+const bob = await DoubleRatchet.build(secret, false);
 
-await alice.init();
-await bob.init();
+const message1 = new TextEncoder().encode("Hello, Bob!");
+const { iv: iv1, ciphertext: ciphertext1 } = await alice.encrypt(message1);
 
-const message = new TextEncoder().encode("Hello, Bob!");
-let { iv, ciphertext } = await alice.encrypt(message);
+console.log("Alice sends:", toHex(iv1), toHex(ciphertext1));
 
-console.log("Alice sends:", toHex(iv), toHex(ciphertext));
+const decrypted1 = await bob.decrypt(ciphertext1, iv1);
 
-let decrypted = await bob.decrypt(ciphertext, iv);
-
-console.log("Bob receives:", new TextDecoder().decode(decrypted));
+console.log("Bob received:", new TextDecoder().decode(decrypted1));
 
 const message2 = new TextEncoder().encode("Hello, Alice!");
-// the parentheses around the assignment are necessary, otherwise it will be interpreted as a block
-({ iv, ciphertext } = await bob.encrypt(message2));
+const { iv: iv2, ciphertext: ciphertext2 } = await bob.encrypt(message2);
 
-console.log("Bob sends:", toHex(iv), toHex(ciphertext));
+console.log("Bob sends:", toHex(iv2), toHex(ciphertext2));
 
-decrypted = await alice.decrypt(ciphertext, iv);
+const decrypted2 = await alice.decrypt(ciphertext2, iv2);
 
-console.log("Alice receives:", new TextDecoder().decode(decrypted));
+console.log("Alice received:", new TextDecoder().decode(decrypted2));
 ```
 
 Output (will be different every time you run the script, since the secret is random):
+
 ```
-Alice sends: 7e899e4fa28adbff971c3bf0 dc90e5c268b0c9916501cd6ba4842d4f81ae7fdb06940afd0371e5
-Bob receives: Hello, Bob!
-Bob sends: 195567797a43afcb9aab6039 e44970b853800a74004da171d26ccf93527883a8662f841b1961b45af3
-Alice receives: Hello, Alice!
+Alice sends: ccd3341549bc92565d15d811 415b350824d0d93acf134341903bddb6271ef25b42aa3d722c125b
+Bob received: Hello, Bob!
+Bob sends: a9eb63fdd2e06a09a5399b7e db7929a69b4b67ac9c23c236eafddb2b9035a0a03a35bf3f4da6e734a5
+Alice received: Hello, Alice!
 ```
 
 ### Updating the double ratchet
 
 If you've read everything in this post carefully, you might realise something: the ratchets as of right now don't provide future secrecy. Sure, the message keys cannot be used to break in, but what if someone cracks a ratchet state key? Then the attacker can (and probably will) use that state key to get all future keys. Fortunately they cannot go backwards, but even if a 2 days-old key is cracked, all the messages that are younger than 2 days are cracked too, and that is bad - don't forget the attacker can just keep turning his own compromised ratchet, so it might take you months or years to figure out you've been spied on all the time.
 
-To fix that, we'll use the root ratchets to generate new send and receive ratchets after a certain limit has passed (the most secure option is after every single message). This however, does not solve our problems on their own, since right now the root ratchet is just a simple ratchet which has the same exact problems as the send and receive ratchets. So to truly make it recover from break-in attacks, instead of turning it the "conventional" way, we'll just refresh it with completely new, random DH keys.
+To fix that, we'll use the root ratchets to generate new send and receive ratchets after a certain limit has passed (the most secure option is after every single message). However, this doesn't solve the problem yet, since the root ratchet is just a symmetric ratchet which has the same exact problems as the send and receive ratchets. So to truly make it recover from break-in attacks, instead of turning it the "conventional" way, we'll just refresh it with completely new, random DH keys.
 
-For that to work though, we'll need to change the code a little, because our root ratchet is just a simple symmetric ratchet, like the send and receive ones. We want the root ratchet to be a Diffie-Hellman ratchet, which will provide us future secrecy (and happiness). Under the hood, it'll act similarly to a symmetric ratchet, but instead of the salt being a single 0 byte, we'll use the output of DH key exchanges as the HKDF salt.
+For that to work though, we'll need to change the code a little. We want the root ratchet to be a Diffie-Hellman ratchet, which will provide us future secrecy (and happiness). Under the hood, it'll act similarly to a symmetric ratchet, but instead of the salt being a single 0 byte, we'll use the output of DH key exchanges as the HKDF salt.
 
 Hold up... so how does it work?
 
-Let's say Alice wants to chat with Bob. She generates a DH keypair and sends a message request to Bob, which contains a random seed for the root ratchet and her public key. Now Alice needs to wait for a response from Bob. Until that happens, all messages she tries to send must be put into a queue (or discarded completely). When Bob sees the request, he generates his own DH keypair and turns his root ratchet: he calculates the DH output of his private key and Alice's public key to generate a DH output, which will be the salt inside a symmteric ratchet (this randomises the output, providing future secrecy). The output of the symmteric ratchet will be used as the seed for his send ratchet. Now, Bob can send back his public key, and because he already has a send ratchet, he can already start sending messages to Alice, even if she's offline at the time.
+Let's say Alice wants to chat with Bob. She generates a DH keypair and sends a message request to Bob, which contains a random seed for the root ratchet and her public key. Now Alice needs to wait for a response from Bob. Until that happens, all messages she tries to send must be put into a queue (or discarded completely). When Bob sees the request, he generates his own DH keypair and turns his root ratchet: he calculates the DH output of his private key and Alice's public key to generate a DH output, which will be the salt inside a symmteric ratchet (this randomises the output, providing future secrecy). The output of the symmteric ratchet will be used as the seed for his send ratchet. Now, Bob can send back his public key, and because he already has a send ratchet, he can start sending messages to Alice, even if she's offline at the time.
 
-When Alice sees Bob has accepted the message request and provided his own public ratchet, she can do a root ratchet turn too: because we know Bob has used the public key of Alice's first DH keychain, Alice can use his private key and Bob's public key to generate the same DH output for her symmetric ratchet. This output will be used to create Alice's receive ratchet which will be equal to Bob's send ratchet (she can read Bob's messages that he sent earlier with it). She now needs a send ratchet, so she generates a new DH keychain (discarding the old one) and uses the same public key she got from Bob to generate her send ratchet. Then she sends it to Bob.
+When Alice sees Bob has accepted the message request and provided his own public key, she can do a root ratchet turn too: because we know Bob has used the public key of Alice's first DH keychain, Alice can use his private key and Bob's public key to generate the same DH output for her symmetric ratchet. This output will be used to create Alice's receive ratchet which will be equal to Bob's send ratchet (she can read Bob's messages that he sent earlier with it). She now needs a send ratchet, so she generates a new DH keychain (discarding the old one) and uses the same public key she got from Bob to generate her send ratchet. Then she sends it to Bob.
 
-Now, if Bob gets Alice's public key, the whole cycle repeats: Bob generates a receive ratchet, and a send ratchet with a new DH keypair, then sends his public key to Alice. Here, it's important to note: **A party can only turn their root ratchet, if they have received a new public key from the other party.** In other words, after Alice generates her receive and send ratchet, she cannot generate a new send ratchet again, because Bob has not yet received her public key and returned a new public key of his own. This is important to keep in mind, otherwise it could lead to desynchronisation of the root ratchets. Also, after the initial setup (which happens when Bob receives Alice's message request), every time a party turns their root ratchet, they must do it twice to generate a new send and receive ratchet.
+Now, if Bob gets Alice's public key, the whole cycle repeats: Bob generates a receive ratchet using his current private key and the provided public key and a send ratchet with a new DH keypair, then sends his public key to Alice. It's important to note: **a party can only turn their root ratchet, if they have received a new public key from the other party**. 
+
+In other words, after Alice generates her receive and send ratchet, she cannot generate a new send ratchet again, because Bob has not yet received her public key and returned a new public key of his own. This is important to keep in mind, otherwise it could lead to desynchronization of the root ratchets. Also, every root ratchet turn follows the following steps:
+1. Calculate a DH exchange, use the output in the symmetric turn to create the new receiving ratchet.
+2. Generate a new DH keypair, discard the old one.
+3. Calculate a DH exchange with the new keys, use the output in the symmetric turn to create the new send ratchet.
+The only exception is the initial setup (when Bob receives Alice's message request), where the first step is skipped.
 
 {% note %}
-Every message contains the party's public key (this will be used later for out-of-order messages), so the other party must decide if that key is new or not. This is not needed in the examples below, since we control the root turning manually, but in an actual application, this check should be automated.
+Every message contains the party's public key (this will be used later for out-of-order messages), therefore the other party must decide if that key is new or not. You'll see how this might be implemented soon.
 {% /note %}
 
 If you didn't understand any of that, don't worry, me neither. I basically just turned the images [here](https://signal.org/docs/specifications/doubleratchet/#diffie-hellman-ratchet) to text.
 
-So let's code.
+But enough talk, let's code.
 
 ```typescript
 /**
- * A Diffie-Hellman ratchet used to provide future secrecy
+ * A Diffie-Hellman ratchet used to provide future secrecy.
  */
 class DHRatchet {
     #state: Uint8Array = new Uint8Array();
-    #keyChain: CryptoKeyPair;
+    #keyChain: CryptoKeyPair | undefined;
 
     async init(seed: Uint8Array) {
         if (seed.byteLength !== 32) throw new Error("Invalid seed length");
@@ -856,10 +917,14 @@ class DHRatchet {
     }
 
     getPubkey() {
+        if (!this.#keyChain) throw new Error("DHRatchet not initialized");
+
         return crypto.exportKey("raw", this.#keyChain.publicKey);
     }
 
     async turn(pubkey: ArrayBuffer, newKey: boolean = false) {
+        if (!this.#keyChain) throw new Error("DHRatchet not initialized");
+
         // if needed, generate a new key pair
         if (newKey) {
             this.#keyChain = await crypto.generateKey({ name: "ECDH", namedCurve: "P-256" }, true, ["deriveBits"]);
@@ -891,7 +956,7 @@ class DHRatchet {
 }
 ```
 
-That's basically it! We create a `DHRatchet` class which has a private keyChain and state property, a function to set up the keychain, a function to get the public component of the keychain and our `turn` function, which requires a public key and a boolean that tells it if it's time to generate a new key. The `turn` function is almost identical to the one in the symmetric ratchet, but instead of the salt just being a bunch of 0s, it's actually the DH output now. In practice, you'd also implement a function that could save the private key component, but it must be done securely, although losing it doesn't cause much damage. There is also a static `build` function to help us create a DH ratchet easier.
+That's basically it! We create a `DHRatchet` class which has a private `keyChain` and `state` property, a function to set up the keychain, a function to get the public component of the keychain and our `turn` function, which requires a public key and a boolean that tells it if it's time to generate a new key. The `turn` function is almost identical to the one in the symmetric ratchet, but instead of the salt just being an empty array, it's actually the DH output now. In practice, you'd also implement a function that could save the private key component, but it must be done securely. There is also a static `build` function to help us create a DH ratchet easier.
 
 We also need to change how our `DoubleRatchet` class works, since the root ratchet is not a simple symmetric ratchet anymore.
 
@@ -909,111 +974,106 @@ class DoubleRatchet {
 
     // init function removed
 
-    async setup(ratchet: "send" | "receive", pubkey: ArrayBuffer, newKey: boolean = false) {
-        const dhOutput = await this.root.turn(pubkey, newKey);
+    async turn(pubkey: ArrayBuffer) {
+        // step 1: turn the root ratchet and use it for the receiving ratchet's seed
+        const receiveSeed = await this.root.turn(pubkey);
+        this.#receive = new SymRatchet(receiveSeed);
 
-        if (ratchet === "send") this.#send = new SymRatchet(dhOutput);
-        else this.#receive = new SymRatchet(dhOutput);
+        // step 2: turn the root ratchet again - this time with a new key - and use it for the sending ratchet's seed
+        const sendSeed = await this.root.turn(pubkey, true);
+        this.#send = new SymRatchet(sendSeed);
     }
 
     ...
 
-    static async build(seed: Uint8Array) {
+    static async build(seed: Uint8Array, pubkey?: ArrayBuffer) {
         const dr = new DoubleRatchet();
         dr.root = await DHRatchet.build(seed);
+
+        if (pubkey) {
+            // a new keychain is not needed, since DHRatchet.build() automatically creates a new key pair
+            const dhOutput = await dr.root.turn(pubkey);
+            dr.#send = new SymRatchet(dhOutput);
+        }
 
         return dr;
     }
 }
 ```
 
-This is what has changed:
-1. The root ratchet is not a private member anymore, so its functions are more easily accessible (this does not compromise security, since the keychain of the root ratchet is still private).
+Let's look at the changes:
+
+1. The `root` property is no longer private, since it has some methods that we'd like to access from outside the class. This fortunately doesn't compromise the security of the ratchet, since the state and keychain is still a private property.
 2. firstSend has been removed.
-3. The constructor doesn't need a seed anymore and the root ratchet has been replaced by a DH ratchet.
-4. Replacing the `init` function, a new `setup` function has been added, which needs the ratchet you're setting up (from the perspective of the root ratchet) and the rest of the parameters of the DH ratchet's `turn` function.
-5. The `DoubleRatchet` class has now got a static `build` function to help initialisation easier.
+3. The constructor doesn't need any arguments anymore and the root ratchet has been replaced by a DH ratchet.
+4. Replacing the `init` function, a new `turn` function has been added, which performs a full root ratchet turn and creates new send and receive ratchets.
+5. The `build` function now also accepts an optional initial public key and has been updated to set up the send ratchet if it gets one. To use it, Alice will call `DoubleRatchet.build(secret)` and Bob will call `DoubleRatchet.build(secret, alicePubkey)`.
 
 So can we use it? Sure!
 
 #### Alice and Bob send 1 message after each other
 
 ```typescript
-const seed = window.crypto.getRandomValues(new Uint8Array(32));
+const seed = globalThis.crypto.getRandomValues(new Uint8Array(32));
 
+// set up the double ratchet objects
 const alice = await DoubleRatchet.build(seed);
-const bob = await DoubleRatchet.build(seed);
+const bob = await DoubleRatchet.build(seed, await alice.root.getPubkey());
 
-// setup the ratchets
-// Alice sends her public key to Bob
-await bob.setup("send", await alice.root.getPubkey());
-// Bob sends his public key to Alice
-await alice.setup("receive", await bob.root.getPubkey());
-await alice.setup("send", await bob.root.getPubkey(), true);
+// Bob informs Alice about his new public key, Alice turns her ratchet
+await alice.turn(await bob.root.getPubkey());
 
-// encrypt a message (message contains Alice's new public key)
-const message = new TextEncoder().encode("Hello Bob!");
-let { iv, ciphertext } = await alice.encrypt(message);
+// Alice and Bob send a single message after each other
+const aliceMessage = await alice.encrypt(new TextEncoder().encode("Hello Bob!"));
+console.log("Alice's message:", toHex(aliceMessage.iv), toHex(aliceMessage.ciphertext));
 
-console.log("Alice sends:", toHex(ciphertext), toHex(iv));
+// Bob receives Alice's message, turns his ratchet and decrypts the message
+await bob.turn(await alice.root.getPubkey());
 
-// Bob receives Alice's public key
-await bob.setup("receive", await alice.root.getPubkey());
-await bob.setup("send", await alice.root.getPubkey(), true);
+const aliceMessageDec = await bob.decrypt(aliceMessage.ciphertext, aliceMessage.iv);
+console.log("Bob received:", new TextDecoder().decode(aliceMessageDec));
 
-// decrypt the message
-let decrypted = await bob.decrypt(ciphertext, iv);
+const bobMessage = await bob.encrypt(new TextEncoder().encode("Hello Alice!"));
+console.log("Bob's message:", toHex(bobMessage.iv), toHex(bobMessage.ciphertext));
 
-console.log("Bob receives:", new TextDecoder().decode(decrypted));
-
-// encrypt a message (contains Bob's new public key)
-const message2 = new TextEncoder().encode("Hello Alice!");
-({ iv, ciphertext } = await bob.encrypt(message2));
-
-console.log("Bob sends:", toHex(ciphertext), toHex(iv));
-
-// Alice receives Bob's public key
-await alice.setup("receive", await bob.root.getPubkey());
-await alice.setup("send", await bob.root.getPubkey(), true);
-
-// decrypt the message
-decrypted = await alice.decrypt(ciphertext, iv);
-
-console.log("Alice receives:", new TextDecoder().decode(decrypted));
+// Alice receives Bob's message, turns her ratchet and decrypts the message
+await alice.turn(await bob.root.getPubkey());
+console.log("Alice received:", new TextDecoder().decode(await alice.decrypt(bobMessage.ciphertext, bobMessage.iv)));
 ```
 
 Output:
+
 ```
-Alice sends: 988c7a13a3b58955f4ba05de12fcad6a80d366b6c1366b51ed6c f6e8d92aa06475e9cd7fc59c
-Bob receives: Hello Bob!
-Bob sends: 4bb1ec908d0922f0f3f18c33067645297735a8525313ec98698e7d14 4c1a0d9f46ccda19363280ce
-Alice receives: Hello Alice!
+Alice's message: 11d616f57c55d6f6de5d7247 4e12cc2908b3826584e49c948fade4b53f08f51addb6b8ea1547
+Bob received: Hello Bob!
+Bob's message: 3421685842620804ce8f3024 3db62dda1b679fd055f27a2bfc523111b27c779ae791f1a0a17b6804
+Alice received: Hello Alice!
 ```
 
-So that's basically how it works: the messages contain the party's public key which the other party can use to turn their root ratchet. 
+You might have noticed that we need to turn the ratchet before we can decrypt a message. This is because the ratchet is not turned automatically yet, we'll add that later.
 
 #### Alice sends 2 messages
 
-In the previous example, Alice and Bob both sent one message after each other, but that's not usually a case. Let's see what happens when Alice wants to send 2 messages.
+In the previous example, Alice and Bob both sent one message after each other, but that's not usually what happens in an online chat. Let's see what happens when Alice wants to send 2 messages.
 
 ```typescript
 ... // ratchet setup same as before
 
 // Bob is offline
 
-const message = new TextEncoder().encode("Hello Bob!");
-let { iv: iv1, ciphertext: ciphertext1 } = await alice.encrypt(message);
-console.log("Alice sends:", toHex(ciphertext1), toHex(iv1));
+// Alice sends a message to Bob
+const message1 = await alice.encrypt(new TextEncoder().encode("Hello Bob, this is message 1!"));
+const { iv: iv1, ciphertext: ciphertext1 } = message1;
+console.log("Message 1:", toHex(iv1), toHex(ciphertext1));
 
-// Alice cannot turn the send ratchet again, we don't know Bob's new public key yet
+// Alice cannot generate a new send ratchet yet, we must wait for Bob to respond
 
-const message2 = new TextEncoder().encode("Come on Bob, reply!");
-let { iv: iv2, ciphertext: ciphertext2 } = await alice.encrypt(message2);
-console.log("Alice sends:", toHex(ciphertext2), toHex(iv2));
+const message2 = await alice.encrypt(new TextEncoder().encode("Hello Bob, this is message 2!"));
+const { iv: iv2, ciphertext: ciphertext2 } = message2;
+console.log("Message 2:", toHex(iv2), toHex(ciphertext2));
 
-// Bob is back online and has received the messages with Alice's new public key
-await bob.setup("receive", await alice.root.getPubkey());
-await bob.setup("send", await alice.root.getPubkey(), true);
+// Bob is online again, he turns his ratchet
+await bob.turn(await alice.root.getPubkey());
 
 const decrypted1 = await bob.decrypt(ciphertext1, iv1);
 console.log("Bob receives:", new TextDecoder().decode(decrypted1));
@@ -1022,78 +1082,78 @@ console.log("Bob receives:", new TextDecoder().decode(decrypted2));
 ```
 
 Output:
+
 ```
-Alice sends: 604e647a8bb4f61e9aa7a27803edf88ef15c2eef780a89ec36b5 79c2dfef93f91045a998ced5
-Alice sends: 002c5604f5142994085466c444d501eede203e18a156da5b021147129d1d42c1d6f256 ed4834780375a84a0429e43f
-Bob receives: Hello Bob!
-Bob receives: Come on Bob, reply!
+Message 1: ba62e4596c9fd951a241a519 db8fe04ea26d7bf6883496613eef636b70dc04575b02f7b6663334f91e36c90171242c3cc4e58359e824f87685
+Message 2: fe5df85d8f75f2b7d2d47d9b 71f5ad31807d0dce2694a2a60499a4393ed8b9e7ce75539bbb9b8381f1dcf65f4a4bcf6d3c0b2e9fd15c062cad
+Bob receives: Hello Bob, this is message 1!
+Bob receives: Hello Bob, this is message 2!
 ```
 
 Because Alice has already used Bob's public key for turning her root ratchet, she cannot do that again with the same public key, therefore Alice must wait until Bob sends her his new public key. But that's no problem, because Alice can just turn her send ratchet to encrypt another message, and when Bob receives both messages, he turns his root ratchet to generate a new receive ratchet and can then decrypt both messages.
-
 
 #### Bob sends a message first
 
 In our examples, Alice was always the first to send a message, but obviously that might not always be the case. The code still works of course if Bob sends a message first, it's even simpler in that case!
 
 ```typescript
-... // ratchet setup code same
+const seed = globalThis.crypto.getRandomValues(new Uint8Array(32));
 
-// Bob has already used Alice's public key for setting up his send ratchet, so he cannot turn his root ratchet again
-const message = new TextEncoder().encode("first");
-let { iv, ciphertext } = await bob.encrypt(message);
-console.log("Bob sends:", toHex(ciphertext), toHex(iv));
+// set up the double ratchet objects
+const alice = await DoubleRatchet.build(seed);
+const bob = await DoubleRatchet.build(seed, await alice.root.getPubkey());
 
-// Bob sends the message and his public key
+// Bob sends Alice a message
+const message1 = new TextEncoder().encode("Hello Alice!");
+const { iv: iv1, ciphertext: ciphertext1 } = await bob.encrypt(message1);
 
-// Alice decrypts the message
-let decrypted = await alice.decrypt(ciphertext, iv);
-console.log("Alice receives:", new TextDecoder().decode(decrypted));
+// Alice receives the message, turns root ratchet
+await alice.turn(await bob.root.getPubkey());
 
-// Bob hasn't created a new DH keypair, so Alice does not turn her root ratchet again
-const message2 = new TextEncoder().encode("second");
-({ iv, ciphertext } = await alice.encrypt(message2));
-console.log("Alice sends:", toHex(ciphertext), toHex(iv));
+const message1Dec = await alice.decrypt(ciphertext1, iv1);
+console.log(`Alice receives 1: ${new TextDecoder().decode(message1Dec)}`);
 
-// Alice sends the message and her public key
+// Alice sends a message
+const message2 = new TextEncoder().encode("Hello Bob!");
+const { iv: iv2, ciphertext: ciphertext2 } = await alice.encrypt(message2);
 
-// Bob has not received Alice's public key yet, so he turns his root ratchet
-await bob.setup("receive", await alice.root.getPubkey());
-await bob.setup("send", await alice.root.getPubkey(), true);
+// Bob receives the message, turns root ratchet
+await bob.turn(await alice.root.getPubkey());
 
-// Bob decrypts the message
-decrypted = await bob.decrypt(ciphertext, iv);
-console.log("Bob receives:", new TextDecoder().decode(decrypted));
+const message2Dec = await bob.decrypt(ciphertext2, iv2);
+console.log(`Bob receives: ${new TextDecoder().decode(message2Dec)}`);
 ```
 
 Output:
+
 ```
-Bob sends: 904851b6e8ccd4c84e14c6d3d26f619247052172d8 a7a2bda259f11e3d2ab56c4a
-Alice receives: first
-Alice sends: fd8ae90e288a7c86867a38a3698c160a8c89d3e5c1c0 0ee8682f5deafb559da7dca5
-Bob receives: second
+Alice receives: Hello Alice!
+Bob receives: Hello Bob!
 ```
-Awesome, we've mastered Double Ratchet. There is just one last thing we need to solve: internet problems.
+
+You might have noticed that in our previous examples, there was always a line that said "Bob informs Alice about his new public key", now why is that? If you remember how the DH ratchet turns, you might realise that after the initial setup, Bob has his send ratchet, but Alice doesn't have any ratchets yet. If Alice wants to send a message, she first needs to learn Bob's public key. Usually what happens is Bob (the only person who can send messages at the time) automatically sends Alice a dummy message, which contains his public key. Alice can then turn her root ratchet and start sending messages too. This process depends on the protocol the application uses and is completely transparent to the user, but it's usually something like this.
+
+Great, now that we've mastered Double Ratchet, let's fix internet problems.
 
 ### Error correction
 
-Imagine this situation: Alice sends 2 messages after each other really fast. Her internet is a bit unstable, and message 1 takes 2 seconds to reach Bob, but message 2 takes only 1 second. So now Bob has got message 2 before message 1, he turns his receive ratchet and... error. Because message 2 requires 2 turns, but Bob doesn't know that, he only turns his receive ratchet once, which generates the key for message 1. Then, Bob receives message 1, turns his receive ratchet and gets the key for message 2. Complete madness, which has its own name: out-of-order messages.
+Imagine this situation: Alice sends 2 messages after each other really fast. Her internet is a bit unstable, and message 1 takes 2 seconds to reach Bob, but message 2 takes only 1 second. Bob has now got message 2 before message 1, he turns his receive ratchet and... error. Because message 2 requires 2 turns, but Bob doesn't know that, he only turns his receive ratchet once, which generates the key for message 1. Then, Bob receives message 1, turns his receive ratchet and gets the key for message 2. Complete madness, which has its own name: out-of-order messages.
 
 So how do we fix that?
 
 #### Setting up message headers
 
-For the send and receive ratchets, we track the number of messages (starting from 0), call it N. So the first message will be message 0, the second message will be message 1 etc. We'll also store the number of messages in the previous ratchet (the ratchet before a root turn), call it PN. This will also be transmitted with the message in a so called message header. Speaking of message headers, let's implement that too, so we can automate the root ratchet's turning.
+For the send and receive ratchets, we track the number of messages that ratchet has processed (starting from 0), call it N. The first message will be message 0, the second message will be message 1 etc. We'll also store the number of messages in the previous ratchet (the ratchet before a root turn), call it PN. This will also be transmitted with the message in a so called message header. Speaking of message headers, let's implement that too, so we can automate the root ratchet's turning.
 
 ```typescript
 // utility interfaces
 interface RawMessage {
-    iv: ArrayBuffer;
-    ciphertext: ArrayBuffer;
+    iv: ArrayBufferLike;
+    ciphertext: ArrayBufferLike;
 }
 
 interface Header {
-    pubkey: ArrayBuffer;
+    pubkey: ArrayBufferLike;
     N: number;
     PN: number;
 }
@@ -1104,13 +1164,13 @@ interface MessageBundle {
 }
 
 /**
- * A double ratchet that can encrypt and decrypt messages
+ * A double ratchet that can encrypt and decrypt messages.
  */
 class DoubleRatchet {
     ...
 
     /**
-     * Remove/receive key
+     * Remote/receive key
      */
     #RK: string = "";
 
@@ -1127,44 +1187,50 @@ class DoubleRatchet {
     async turn(pubkey: ArrayBuffer) {
         this.#RK = toHex(pubkey);
 
-        // create a receive ratchet
-        let dhOutput = await this.root.turn(pubkey);
-        this.#receive = new SymRatchet(dhOutput);
+        // step 1: turn the root ratchet and use it for the receiving ratchet's seed
+        const receiveSeed = await this.root.turn(pubkey);
+        this.#receive = new SymRatchet(receiveSeed);
         this.#RPN = this.#RN;
         this.#RN = 0;
 
-        // create a send ratchet (always with a new key)
-        dhOutput = await this.root.turn(pubkey, true);
-        this.#send = new SymRatchet(dhOutput);
+        // step 2: turn the root ratchet again - this time with a new key - and use it for the sending ratchet's seed
+        const sendSeed = await this.root.turn(pubkey, true);
+        this.#send = new SymRatchet(sendSeed);
         this.#SPN = this.#SN;
         this.#SN = 0;
     }
 
     async encrypt(message: ArrayBuffer): Promise<MessageBundle> {
+        if (!this.#send) throw new Error("DoubleRatchet not initialized");
+
         // generate random IV
-        const iv = window.crypto.getRandomValues(new Uint8Array(12));
+        const iv = globalThis.crypto.getRandomValues(new Uint8Array(12));
 
         // turn the send ratchet to create a message key
-        const messageKey = await crypto.importKey("raw", await this.#send.turn(), { name: "AES-GCM", }, false, ["encrypt"]);
+        const messageKey = await crypto.importKey("raw", await this.#send.turn(), { name: "AES-GCM" }, false, ["encrypt"]);
         const ciphertext = await crypto.encrypt({ name: "AES-GCM", iv }, messageKey, message);
 
         const header: Header = {
             pubkey: await this.root.getPubkey(),
             N: this.#SN,
             PN: this.#SPN,
-        }
+        };
 
         this.#SN++;
 
-        return { header, rawMessage: { iv, ciphertext } };
+        return { rawMessage: { iv, ciphertext }, header };
     }
 
-    async decrypt(rawMessage: RawMessage) {
+    async decrypt(rawMessage: RawMessage): Promise<ArrayBuffer> {
+        if (!this.#receive) throw new Error("DoubleRatchet not initialized");
+
         const { iv, ciphertext } = rawMessage;
 
         // turn the receive ratchet to create a message key
-        const messageKey = await crypto.importKey("raw", await this.#receive.turn(), { name: "AES-GCM", }, false, ["decrypt"]);
+        const messageKey = await crypto.importKey("raw", await this.#receive.turn(), { name: "AES-GCM" }, false, ["decrypt"]);
         const message = await crypto.decrypt({ name: "AES-GCM", iv }, messageKey, ciphertext);
+
+        this.#RN++;
 
         return message;
     }
@@ -1185,59 +1251,66 @@ class DoubleRatchet {
 ```
 
 Let's take a look at the changes:
+
 1. There are 3 new utility interfaces: `RawMessage`, `Header` and `MessageBundle`. `RawMessage` contains the ciphertext and the IV, `Header` contains the sender's public key, and the N and PN values of their send ratchet.
 2. The `DoubleRatchet` class has now got a bunch of new properties:
-    * RK = Remote/receive key, it is the current public key of the other party, stored as its hex representation.
-    * The N and PN values for both the send (SN, SPN) and receive (RN, RPN) ratchets.
-3. The `setup` function has been massively changed to prepare future code refactors.
-    * It has been renamed to `turn`.
-    * It only accepts a public key, which it stores in the `RK` variable.
-    * Because of the way the root ratchet turns, the receive ratchet is always the first one to get updated turing a root turn. The only exception is the very first root turn, made by the person who accepted a message request (in our example, it's Bob). In that case, the party only needs to generate a send ratchet. This is solved in the `build` function which will automatically create the first send ratchet.
-    * After the send and receive ratchets have been replaced, it updates the N and PN values of both ratchets.
+    - RK = Remote/receive key, it is the current public key of the other party, stored as its hex representation.
+    - The N and PN values for both the send (SN, SPN) and receive (RN, RPN) ratchets.
+3. The `setup` function is updated to change the RK value and reset the N and PN values.
 4. The `encrypt` function now generates a message header and updates `SN` (note that it is updated after the send ratchet has been turned!).
-5. The `decrypt` function now accepts a `RawMessage` object. Note that it should also update `RN`, but we're later going to completely refactor this function, so it doesn't matter anyway.
-6. The `build` function now takes in an optional public key (in case it is receiving a message request). If that public key is set, it automatically creates the send ratchet.
+5. The `decrypt` function now accepts a `RawMessage` object and updates `RN`.
 
-Using the double ratchet now simplifies a lot.
+Using the double ratchet now doesn't change much, we still need to add the error correction mechanism.
 
 ```typescript
-const seed = window.crypto.getRandomValues(new Uint8Array(32));
+const seed = globalThis.crypto.getRandomValues(new Uint8Array(32));
 
 const alice = await DoubleRatchet.build(seed);
 const bob = await DoubleRatchet.build(seed, await alice.root.getPubkey());
 
 // Bob sends a message to Alice
 const message = await bob.encrypt(new TextEncoder().encode("Hello Alice!"));
-console.log("Bob sends:");
 console.dir(message);
 
-// Alice receives the message
-const decrypted = await alice.processMessage(message);
-console.log("Alice receives:", new TextDecoder().decode(decrypted));
+// Alice receives the message, turns the ratchet and decrypts the message
+await alice.turn(await bob.root.getPubkey());
+const decrypted = await alice.decrypt(message.rawMessage);
+
+console.log(`Decrypted message: ${new TextDecoder().decode(decrypted)}`);
 ```
 
 Output
+
 ```
-Bob sends:
-Object
-    header: {pubkey: ArrayBuffer(65), N: 0, PN: 0}
-    rawMessage: {iv: Uint8Array(12), ciphertext: ArrayBuffer(28)}
-Alice receives: Hello Alice!
+{
+  rawMessage: {
+    iv: Uint8Array(12) [ 112, 159, 115, 15, 254, 53, 131, 159, 1, 139, 195, 167 ],
+    ciphertext: ArrayBuffer(28) [ 137, 35, 241, 31, 120, 62, 125, 220, 122, 177, 78, 73, 153, 128, 18, 182, 18, 101, 93, 16, 185, 96, 163, 16, 228, 173, 133, 230 ]
+  },
+  header: {
+    pubkey: ArrayBuffer(65) [ 4, 150, 108, 87, 46, 231, 181, 66, 51, 62, 15, 203, 7, 159, 187, 136, 250, 97, 15, 211, 253, 180, 168, 161, 148, 178, 43, 29, 32, 140, 20, 41, 16, 142, 44, 219, 88, 225, 237, 31, 25, 141, 122, 20, 184, 169, 151, 26, 133, 229, 238, 194, 155, 127, 133, 64, 22, 212, 77, 233, 176, 110, 1, 232, 238 ],
+    N: 0,
+    PN: 0
+  }
+}
+Decrypted message: Hello Alice!
 ```
 
 ### Automating message processing
 
-So let's talk about how we can use these N and PN parameters. Let's say Bob sends us 4 messages, message 1 arrives correctly, but message 2 and 3 get skipped and we only get message 4. If we take a look at the headers, this is what we should see: message 1 has a `N` of 0, but message 4 has a `N` of 3. Don't forget that every time we receive a message, we also increase `RN` by one. So when receiving message 4, `RN` is 1. Based on Signal's document, there are 2 possible options here:
-1. A root ratchet turn was NOT triggered (= both messages come from the same send ratchet, PN is irrelevant): the count of messages skipped = `N` - `RN` = 3 - 1 = 2. This is true: we've skipped 2 messages: message 2 and 3.
-2. A root ratchet turn was triggered (= the latest message does not come from the same send ratchet): this is a bit trickier. Imagine Bob sent message 1, we sent back another message which triggers a root ratchet turn for Bob. Now he sends message 2 and 3 again, but they get skipped and we only receive message 4. Message 4's header will have a `N` of 2 (it's the 3rd message in Bob's new send ratchet) and a `PN` of 1 (= Bob's previous send ratchet had 1 message, which was message 1). In this case, the count of messages skipped *in Bob's previous send ratchet* = `PN` - `RN` = 1 - 1 = 0. This is true, we have not skipped any messages in Bob's previous send ratchet. The count of messages skipped *in Bob's new send ratchet* = `N` = 2. This is true, we've skipped 2 messages: message 2 and 3.
+Let's take a look at how we can use these N and PN parameters. Let's say Bob sends us 4 messages, message 1 arrives correctly, but message 2 and 3 get skipped and we only get message 4. If we take a look at the headers, this is what we should see: message 1 has a `N` of 0, but message 4 has a `N` of 3. Don't forget that every time we receive a message, we also increase `RN` by one. So when receiving message 4, Alice's `RN` is 1. Based on Signal's document, there are 2 possible options here:
 
-To make sure we can decrypt skipped messages, we'll store every message key which wasn't used right away in a list. This list will use the public key and `N` variable of the message to identify it.
+1. The message comes from the current ratchet: when Alice gets message 1, she stores the public key attached to it as her `RK` value. Message 4 will have the same public key, so Alice calculates `N` - `RN` = 3 - 1 = 2, which is going to be the count of skipped messages. This is true: we've skipped 2 messages: message 2 and 3.
+2. The message comes from an older ratchet: this is a bit trickier. Imagine Bob sends message 1 and message 2, but message 2 is delayed. We send back message 3 which triggers a root ratchet turn for Bob. He sends message 4, which would trigger a root turn for us. Before a root turn actually happens, we must calculate if we're missing any messages. Our `RN` value is 1 (we've decrypted 1 message - message 1 - so far). Message 4's header will have a `N` of 0 (it's the 1st message in Bob's new send rathcet) and a `PN` of 2 (= Bob's previous send ratchet had 2 messages, message 1 and 2). In this case, the count of messages skipped _in Bob's previous send ratchet_ = `PN` - `RN` = 2 - 1 = 1. This is true, we have skipped 1 message in Bob's previous ratchet. The count of messages skipped _in Bob's new send ratchet_ = `N` = 0. This is true, we've not skipped any messages in the current ratchet.
 
-This is the pseudocode of what we'll do when receiving a message:
+When we know we've skipped a message, we'll generate the message keys for it and store them in a list. This list will use the public key and `N` variable of the message to uniquely identify it. When the skipped message arrives, we'll use the stored key to decrypt it.
+
+When we receive any message, the following happens:
+
 1. We look at the list of skipped message keys, mapped by the message's public key and `N` value. If a corresponding message key was found, we use that to decrypt the message, then delete that key.
-2. We calculate if we've skipped any messages in the previous send ratchet. We turn our receive ratchet that many times and store all keys in our list (we can use the stored `RK` to correctly identify these messages).
-3. If needed, we turn our root ratchet.
-4. We calculate if we've skipped any messages in the current send ratchet. We store the message keys like before.
+2. We calculate if we've skipped any messages in the previous ratchet. We turn our receive ratchet that many times and store all keys in our list (we know that those messages will have our stored `RK` as the public key).
+3. If needed, we turn our root ratchet. (this is where our `RK`, `N` and `PN` values get reset)
+4. We calculate if we've skipped any messages in the current ratchet. We store the message keys just like before.
 5. We decrypt and return the message.
 
 I'm super excited, so let's do it!
@@ -1248,38 +1321,38 @@ class DoubleRatchet {
 
     #skippedKeys = new Array<{ pubkey: string, N: number, key: ArrayBuffer }>();
 
-    ...
-
     async #turn(pubkey: ArrayBuffer) {
         ...
     }
 
-    async #decrypt(rawMessage: RawMessage, messageKey: CryptoKey) {
+    ...
+
+    async #decrypt(rawMessage: RawMessage, messageKey: CryptoKey): Promise<ArrayBuffer> {
         const { iv, ciphertext } = rawMessage;
 
         // decrypt the message
-        const message = await crypto.decrypt({ name: "AES-GCM", iv }, messageKey, ciphertext);
-
-        return message;
+        return crypto.decrypt({ name: "AES-GCM", iv }, messageKey, ciphertext);
     }
 
     async processMessage(message: MessageBundle) {
         // check if we already have a key for this message
-        const skippedKey = this.#skippedKeys.find(k => k.pubkey === toHex(message.header.pubkey) && k.N === message.header.N)?.key;
+        const skippedKey = this.#skippedKeys.find(k => k.pubkey === toHex(message.header.pubkey) && k.N === message.header.N);
         if (skippedKey) {
-            const messageKey = await crypto.importKey("raw", skippedKey, { name: "AES-GCM" }, false, ["decrypt"]);
-            this.#skippedKeys.splice(this.#skippedKeys.findIndex(k => toHex(k.key) === toHex(skippedKey)), 1); // remove the key from the skipped keys array
+            const messageKey = await crypto.importKey("raw", skippedKey.key, { name: "AES-GCM" }, false, ["decrypt"]);
+            this.#skippedKeys.splice(this.#skippedKeys.indexOf(skippedKey), 1); // remove the key from the skipped keys array
             return this.#decrypt(message.rawMessage, messageKey);
         }
 
         const doTurn = this.#RK !== toHex(message.header.pubkey);
 
-        // calculate the number of skipped messages in the previous ratchet
+        // calculate the number of skipped messages in the previous ratchet if we're about to do a root turn
         if (doTurn) {
             const skippedPrev = message.header.PN - this.#RN;
+            const offset = this.#RN; // this is needed to correctly calculate the skipped keys
+
             for (let i = 0; i < skippedPrev; i++) {
-                const key = await this.#receive.turn();
-                this.#skippedKeys.push({ pubkey: toHex(message.header.pubkey), N: i, key });
+                const key = await this.#receive!.turn();
+                this.#skippedKeys.push({ pubkey: this.#RK, N: i + offset, key });
             }
         }
 
@@ -1289,8 +1362,9 @@ class DoubleRatchet {
         // calculate the number of skipped messages in the current ratchet
         const skipped = doTurn ? message.header.N : message.header.N - this.#RN;
         const offset = doTurn ? 0 : this.#RN; // this is needed to correctly calculate the skipped keys
+
         for (let i = 0; i < skipped; i++) {
-            const key = await this.#receive.turn();
+            const key = await this.#receive!.turn();
             this.#skippedKeys.push({ pubkey: toHex(message.header.pubkey), N: i + offset, key });
         }
 
@@ -1298,7 +1372,7 @@ class DoubleRatchet {
         this.#RN = message.header.N + 1;
 
         // decrypt the message
-        const messageKey = await crypto.importKey("raw", await this.#receive.turn(), { name: "AES-GCM" }, false, ["decrypt"]);
+        const messageKey = await crypto.importKey("raw", await this.#receive!.turn(), { name: "AES-GCM" }, false, ["decrypt"]);
         return this.#decrypt(message.rawMessage, messageKey);
     }
 
@@ -1306,33 +1380,52 @@ class DoubleRatchet {
 }
 ```
 
-Functions `decrypt` and `turn` have become a private function and `decrypt` no longer turns the receive ratchet manually, it requires the correct message key. The `processMessage` function is basically just what the pseudocode says, but as actual code. Note that `RN` has to be set to the message's `N` value + 1 (it's basically `RN` = `N` -> decrypt -> `RN++` simplied). There is also a new `skippedKeys` property which is an array that holds all the skipped keys (I had to use an array, because the JavaScript Map doesn't like keys that are objects and not a primitive).
+{% note %}
+The bunch of ! operators are there because I'm using strict null checks in TypeScript. You may remove them if you don't use that option.
+{% /note %}
+
+Functions `decrypt` and `turn` have become private and `decrypt` no longer turns the receive ratchet manually, it requires the correct message key. The `processMessage` function is basically just what the pseudocode says, but as actual code. Note that `RN` has to be set to the message's `N` value + 1 (it's basically `RN` = `N` -> decrypt -> `RN++` simplied). There is also a new `skippedKeys` property which is an array that holds all the skipped keys.
+
+{% note %}
+You might have noticed there are these offset values. They're very important, otherwise we'd store message keys for the wrong messages. Imagine we got message 1 and 2 from the previous ratchet, but skipped 3, 4 and 5. If we didn't use the offset, we'd store message keys for messages with N of 0, 1 and 2 - message 1, 2 and 3. But we've already received message 1 and 2 (N = 0 and 1), therefore we need to store keys for message 3, 4 and 5. The offset is the number of messages we've already decrypted, we can use that to calculate the correct message number. The same logic applies for skipped messages in the current ratchet.
+{% /note %}
 
 #### Basic example
 
 Sending messages now becomes stupidly simple.
 
 ```typescript
-const seed = window.crypto.getRandomValues(new Uint8Array(32));
+const seed = globalThis.crypto.getRandomValues(new Uint8Array(32));
 
 const alice = await DoubleRatchet.build(seed);
 const bob = await DoubleRatchet.build(seed, await alice.root.getPubkey());
 
-// Bob sends a message to Alice
-const message = await bob.encrypt(new TextEncoder().encode("Hello Alice!"));
-console.log("Bob sends:", JSON.stringify({ header: { N: message.header.N, PN: message.header.PN, pubkey: toHex(message.header.pubkey) }, rawMessage: { iv: toHex(message.rawMessage.iv), ciphertext: toHex(message.rawMessage.ciphertext) } }));
+// Bob sends a message
+const message1 = await bob.encrypt(new TextEncoder().encode("Hello Alice!"));
+console.dir(message1);
 
 // Alice receives the message
-const decrypted = await alice.processMessage(message);
-console.log("Alice receives:", new TextDecoder().decode(decrypted));
+const plaintext1 = await alice.processMessage(message1);
+console.log("Decrypted message:", new TextDecoder().decode(plaintext1));
 ```
 
 All the root turning and stuff we had to do previously is now compressed into a single function.
 
 Output:
+
 ```
-Bob sends: {"header":{"N":0,"PN":0,"pubkey":"044d9223578506aaf81ea3963227f98bf4ac3a18e98491ea39dac98ce88594648179a40d8a2d00eea74fb2078251f79b2d160d2fa3e86d07374f9907d7f5740472"},"rawMessage":{"iv":"619774accecaed2a4a619d11","ciphertext":"b826eac99309d27dfef772c185b6af36cc82bed3ba354a814fa1e10e"}}
-Alice receives: Hello Alice!
+{
+  rawMessage: {
+    iv: Uint8Array(12) [ 152, 149, 99, 169, 122, 245, 89, 94, 100, 164, 100, 3 ],
+    ciphertext: ArrayBuffer(28) [ 18, 79, 247, 158, 46, 245, 157, 196, 243, 102, 188, 109, 139, 89, 255, 44, 229, 141, 81, 241, 89, 232, 110, 110, 23, 45, 50, 195 ]
+  },
+  header: {
+    pubkey: ArrayBuffer(65) [ 4, 91, 187, 115, 171, 98, 137, 209, 108, 62, 53, 30, 43, 107, 129, 116, 187, 112, 77, 52, 168, 210, 40, 73, 82, 54, 48, 184, 231, 143, 239, 111, 112, 243, 65, 39, 175, 132, 66, 250, 214, 11, 67, 230, 18, 160, 110, 1, 185, 143, 241, 163, 187, 44, 196, 24, 227, 225, 155, 202, 211, 188, 219, 83, 199 ],
+    N: 0,
+    PN: 0
+  }
+}
+Decrypted message: Hello Alice!
 ```
 
 #### Skipping messages
@@ -1368,6 +1461,7 @@ console.log("Alice receives:", new TextDecoder().decode(decrypted3));
 ```
 
 Output:
+
 ```
 Alice receives: Hello Alice, this is message 1!
 Alice receives: Hello Alice, this is message 4!
@@ -1378,50 +1472,41 @@ Alice receives: Hello Alice, this is message 3!
 Let's also test skipping messages in the previous chain!
 
 ```typescript
-const seed = window.crypto.getRandomValues(new Uint8Array(32));
+const seed = globalThis.crypto.getRandomValues(new Uint8Array(32));
 
 const alice = await DoubleRatchet.build(seed);
 const bob = await DoubleRatchet.build(seed, await alice.root.getPubkey());
 
-// Bob sends a message to Alice
-const message1 = await bob.encrypt(new TextEncoder().encode("Hello Alice, this is message 1!"));
+// Bob sends message 1 and 2 to Alice
+const message1 = await bob.encrypt(new TextEncoder().encode("This is message 1!"));
+const message2 = await bob.encrypt(new TextEncoder().encode("This is message 2!"));
 
-// Alice receives the message
+// message 1 arrives, 2 is delayed
 const decrypted1 = await alice.processMessage(message1);
 console.log("Alice receives:", new TextDecoder().decode(decrypted1));
 
-// Alice sends a message to Bob to trigger a DH ratchet turn
-const message2 = await alice.encrypt(new TextEncoder().encode("Hello Bob, this is message 2!"));
+// Alice sends message 3
+const message3 = await alice.encrypt(new TextEncoder().encode("This is message 3!"));
 
-// Bob receives the message
-const decrypted2 = await bob.processMessage(message2);
-console.log("Bob receives:", new TextDecoder().decode(decrypted2));
+const decrypted3 = await bob.processMessage(message3);
+console.log("Bob receives:", new TextDecoder().decode(decrypted3));
 
-// Bob sends message 3, 4 and 5
-const message3 = await bob.encrypt(new TextEncoder().encode("Hello Alice, this is message 3!"));
-const message4 = await bob.encrypt(new TextEncoder().encode("Hello Alice, this is message 4!"));
-const message5 = await bob.encrypt(new TextEncoder().encode("Hello Alice, this is message 5!"));
+// Bob sends message 4, message 2 also arrives
+const message4 = await bob.encrypt(new TextEncoder().encode("This is message 4!"));
 
-// Messages 3 and 4 are skipped
-
-// Alice receives message 5
-const decrypted5 = await alice.processMessage(message5);
-console.log("Alice receives:", new TextDecoder().decode(decrypted5));
-
-// Messages 3 and 4 are received
-const decrypted3 = await alice.processMessage(message3);
-console.log("Alice receives:", new TextDecoder().decode(decrypted3));
 const decrypted4 = await alice.processMessage(message4);
 console.log("Alice receives:", new TextDecoder().decode(decrypted4));
+const decrypted2 = await alice.processMessage(message2);
+console.log("Alice receives:", new TextDecoder().decode(decrypted2));
 ```
 
 Output:
+
 ```
-Alice receives: Hello Alice, this is message 1!
-Bob receives: Hello Bob, this is message 2!
-Alice receives: Hello Alice, this is message 5!
-Alice receives: Hello Alice, this is message 3!
-Alice receives: Hello Alice, this is message 4!
+Alice receives: This is message 1!
+Bob receives: This is message 3!
+Alice receives: This is message 4!
+Alice receives: This is message 2!
 ```
 
 The final code can be viewed <a href="/files/double-ratchet.ts" download="double-ratchet.ts">here</a>.
@@ -1431,9 +1516,10 @@ The final code can be viewed <a href="/files/double-ratchet.ts" download="double
 Well congratulations, you've finally completed implementing the Double Ratchet algorithm, give yourself a hug or something.
 
 There are still some final stuff you could improve on:
-1. Currently, there is no limit to how many skipped message keys can be stored. The Signal document recommends creating one, since an attacker could send a bunch of fake messages that would just steal computational power. In practice, this limit is around 1000.
+
+1. Currently, there is no limit to how many skipped message keys can be stored. The Signal document recommends creating one, since an attacker could send a bunch of fake messages which would just steal computational power. In practice, this limit is around 1000.
 2. In our controlled environment the messages sent between Alice and Bob are supervised, but in a real world attackers could try sending random fake messages to the parties. This won't cause problems, but the code doesn't handle decryption problems yet. This means, that if a fake (or even corrupted) message is received, it'll just throw an uncatched error.
-3. The headers are not encrypted. This could theoretically give the option for attackers (or the server itself) to modify the header, which can cause unwanted effects. Signal's document [mentions how you could encrypt the headers](https://signal.org/docs/specifications/doubleratchet/#double-ratchet-with-header-encryption), but I haven't mentioned that here, since the code is already too complicated. The easiest solution is to just include a digital signature for the header anyway, although in some cases it might be required to not only prevent modification, but also reading.
+3. The headers are not encrypted. This could theoretically give the option for attackers (or the server itself) to modify the header, which can cause unwanted effects. Signal's document [mentions how you could encrypt the headers](https://signal.org/docs/specifications/doubleratchet/#double-ratchet-with-header-encryption). This is fortunately comming soon, so make sure to check back later! 
 
 Anyway, have fun!
 
@@ -1446,4 +1532,4 @@ This thing is complicated.
 1. Matrix's Megolm algorithm for group communication
 2. Signal's Sesame algorithm for managing sessions between multiple devices
 
-Check back later!
+Have a nice day!
