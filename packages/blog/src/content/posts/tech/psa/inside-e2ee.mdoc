@@ -84,7 +84,7 @@ Great, you've shared a random secret key with your recipient, time to encrypt me
 
 See, AES is nice and all, but think about what happens if a hacker breaks the key: oops, they just got access to all past and future messages, my bad! This is where forward secrecy comes in handy.
 
-To implement this, we can use "ratchet" functions. These functions work like a real [ratchet]https://en.wikipedia.org/wiki/Ratchet_(device)): they only go forward, but not backwards. If you think about hashing, you might recognise that it is also a ratchet function: you cannot revert a hash to get the original input data.
+To implement this, we can use "ratchet" functions. These functions work like a real [ratchet](https://en.wikipedia.org/wiki/Ratchet_(device)): they only go forward, but not backwards. If you think about hashing, you might recognise that it is also a ratchet function: you cannot revert a hash to get the original input data.
 
 Alright, you've updated your app so it uses a ratchet function to generate a new key for each message, and this ratchet is synchronised on the recipient's and your devices (since otherwise they wouldn't be able to decrypt your messages). I think you can figure out the next problem: if hackers can't read past keys, can't they just use the ratchet to generate all future keys after compromising one? They can, you're absolutely correct. Solution: add another ratchet, 2 > 1!
 
