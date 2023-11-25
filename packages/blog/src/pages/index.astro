@@ -1,12 +1,16 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Topic from "../components/Topic.astro";
+import { Rss } from "lucide-astro";
 ---
 
 <BaseLayout title="The Blog of Random">
   <main>
     <h1>The Blog of Random</h1>
-    <p>A blog about the most random things you can think of.</p>
+    <span>
+      <p>A blog about the most random things you can think of.</p>
+      <a href="/blog.rss"><Rss /></a>
+    </span>
     <div>
       <Topic section="history" />
       <Topic section="law" />
@@ -20,6 +24,7 @@ import Topic from "../components/Topic.astro";
   h1 {
     font-size: min(5rem, 15vmin);
     color: var(--accent);
+    margin-bottom: 0.5rem;
   }
 
   p {
@@ -31,5 +36,22 @@ import Topic from "../components/Topic.astro";
   div {
     columns: 24rem auto;
     gap: 1rem;
+  }
+
+  a {
+    color: var(--text);
+    transition: all 0.25s;
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+
+  span {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
   }
 </style>
