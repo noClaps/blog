@@ -309,10 +309,9 @@ class DoubleRatchet {
                 const key = await this.#receive!.turn();
                 this.#skippedKeys.push({ headerKey: toHex(this.#RHK!), N: i + offset, messageKey: key });
             }
-        }
 
-        // do a turn if needed
-        if (doTurn) await this.#turn(header.pubkey);
+            await this.#turn(header.pubkey);
+        }
 
         // calculate the number of skipped messages in the current ratchet
         const skipped = doTurn ? header.N : header.N - this.#RN;
