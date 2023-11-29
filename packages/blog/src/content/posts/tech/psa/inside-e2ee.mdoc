@@ -651,7 +651,7 @@ Obviously if you want to have a _double_ ratchet, you'll logically need a _singl
 
 There are actually a lot of different ways to create a ratchet. After all, it really just needs a function that can "turn" one way, but never in the other. We will use HKDF, a type of key derivation function supercharged by HMAC.
 
-This single ratchet will take in an initial key as its state, and provide a function to perform a turn. When the ratchet is turned, the ratchet's state is fed into the HKDF algorithm with some constants and we get a new key. We split this key in half, the first part is going to be the new state and the second half is what we actually use for message encryption/decryption. This is also called a symmetric ratchet, because it just keeps feeding a state into itself, there are no other parameters that would change the output. Later we'll create a DH ratchet which will no longer be symmetric, since it uses a combination of different inputs.
+This single ratchet will take in 32 random bytes as its first state, and provide a function to perform a turn. When the ratchet is turned, the ratchet's state is fed into the HKDF algorithm with some constants and we get a new key. We split this key in half, the first part is going to be the new state and the second half is what we actually use for message encryption/decryption - essentially the output of the turn function. This is also called a symmetric ratchet, because it just keeps feeding a state into itself, there are no other parameters that would change the output. Later we'll create a DH ratchet which will no longer be symmetric, since it uses a combination of different inputs.
 
 ```typescript
 const crypto = globalThis.crypto.subtle;
@@ -759,16 +759,16 @@ As you can see, a relatively minor change of the seed (simply making the first b
 
 Great, now let's put two of these together to create a double ratchet. But wait... how exactly do we use these message keys?
 
-Basically, we need to somehow create ratchets for Alice and Bob that are synchronised with each other (= their seed are the same). That way, if Alice encrypts a message, Bob will be able to read it, because he can generate the same exact key Alice used to encrypt a message. So both of them will get a send and receive ratchet: Alice's send ratchet is the same as Bob's receive ratchet and vice versa. So sending a message would look like this:
+Basically, we need to somehow create ratchets for Alice and Bob that are synchronised with each other (= their seed are the same). That way, if Alice encrypts a message, Bob will be able to read it, because he can generate the same exact key Alice used to encrypt a message. So both of them will get a sending and receiving ratchet: Alice's sending ratchet is the same as Bob's receiving ratchet and vice versa. So sending a message would look like this:
 
-1. Alice turns her send ratchet, uses key to encrypt message.
+1. Alice turns her sending ratchet, uses key to encrypt message.
 2. Sends message to Bob.
-3. Bob turns his receive ratchet, uses key to decrypt message.
+3. Bob turns his receiving ratchet, uses key to decrypt message.
 4. Party 🎉
 
-To manage these ratchets, Alice and Bob will both create a root ratchet using a shared secret key (which can come from the previously implemented X3DH protocol). The output of the root ratchets will then be used to create the send and receive ratchets.
+To manage these ratchets, Alice and Bob will both create a root ratchet using a shared secret key (which can come from the previously implemented X3DH protocol). The output of the root ratchets will then be used to create the sending and receiving ratchets.
 
-There is something important to remember: if Alice and Bob create their root ratchets using the same seed (which will produce the same keys!) and turn them once to create their send ratchets, then the send ratchets will be synchronised, which is not what we want - we want the send-receive pairs to be synchronised. This means, there has to be a system that decides who should use their root ratchet's first turn as their send ratchet and who should use it as their receive ratchet. For now, we'll simply use a boolean called `firstSend` to decide this, but later we'll use a more sophisticated system.
+There is something important to remember: if Alice and Bob create their root ratchets using the same seed (which will produce the same keys!) and turn them once to create their sending ratchets, then the sending ratchets will be synchronised, which is not what we want - we want the send-receive pairs to be synchronised. This means, there has to be a system that decides who should use their root ratchet's first turn as their sending ratchet and who should use it as their receiving ratchet. For now, we'll simply use a boolean called `firstSend` to decide this, but later we'll use a more sophisticated system.
 
 ```typescript
 /**
@@ -797,27 +797,25 @@ class DoubleRatchet {
         }
     }
 
-    async encrypt(message: ArrayBuffer) {
+    async encrypt(message: Uint8Array) {
         if (!this.#send) throw new Error("DoubleRatchet not initialized");
 
         // generate random IV
         const iv = globalThis.crypto.getRandomValues(new Uint8Array(12));
 
-        // turn the send ratchet to create a message key
+        // turn the sending ratchet to create a message key
         const messageKey = await crypto.importKey("raw", await this.#send.turn(), { name: "AES-GCM" }, false, ["encrypt"]);
-        const ciphertext = await crypto.encrypt({ name: "AES-GCM", iv }, messageKey, message);
+        const ciphertext = new Uint8Array(await crypto.encrypt({ name: "AES-GCM", iv }, messageKey, message));
 
         return { iv, ciphertext };
     }
 
-    async decrypt(ciphertext: ArrayBuffer, iv: ArrayBuffer) {
+    async decrypt(ciphertext: Uint8Array, iv: Uint8Array) {
         if (!this.#receive) throw new Error("DoubleRatchet not initialized");
 
-        // turn the receive ratchet to create a message key
+        // turn the receiving ratchet to create a message key
         const messageKey = await crypto.importKey("raw", await this.#receive.turn(), { name: "AES-GCM" }, false, ["decrypt"]);
-        const message = await crypto.decrypt({ name: "AES-GCM", iv }, messageKey, ciphertext);
-
-        return message;
+        return crypto.decrypt({ name: "AES-GCM", iv }, messageKey, ciphertext).then(pt => new Uint8Array(pt));
     }
 
     static async build(seed: Uint8Array, firstSend: boolean = true) {
@@ -829,9 +827,9 @@ class DoubleRatchet {
 ```
 
 That's basically it, the only thing missing is the turning mechanism - we'll add that later. For now, let's see what we have here:
--   The `#init` function of the `DoubleRatchet` class is used to create the send and receive ratchets (the order is based on the previously mentioned `firstSend` boolean).
--   `encrypt` takes in some bytes, generates a 12 bytes initialization vector and encrypts it with the message key from the send ratchet.
--   `decrypt` does this in reverse, and turns the receive ratchet instead.
+-   The `#init` function of the `DoubleRatchet` class is used to create the sending and receiving ratchets (the order is based on the previously mentioned `firstSend` boolean).
+-   `encrypt` takes in some bytes, generates a 12 bytes initialization vector and encrypts it with the message key from the sending ratchet.
+-   `decrypt` does this in reverse, and turns the receiving ratchet instead.
 -   We also have a static `build` function, which is a simple wrapper around the constructor and `#init` function.
 
 Now let's see if we can use it to send some messages between Alice and Bob! To make the secret sharing simpler, we'll just generate a random secret on the fly instead of using the X3DH code from earlier.
@@ -874,22 +872,22 @@ Alice received: Hello, Alice!
 
 If you've read everything in this post carefully, you might realise something: the ratchets as of right now don't provide future secrecy. Sure, the message keys cannot be used to break in, but what if someone cracks a ratchet state key? Then the attacker can (and probably will) use that state key to get all future keys. Fortunately they cannot go backwards, but even if a 2 days-old key is cracked, all the messages that are younger than 2 days are cracked too, and that is bad - don't forget the attacker can just keep turning his own compromised ratchet, so it might take you months or years to figure out you've been spied on all the time.
 
-To fix that, we'll use the root ratchets to generate new send and receive ratchets after a certain limit has passed (the most secure option is after every single message). However, this doesn't solve the problem yet, since the root ratchet is just a symmetric ratchet which has the same exact problems as the send and receive ratchets. So to truly make it recover from break-in attacks, instead of turning it the "conventional" way, we'll just refresh it with completely new, random DH keys.
+To fix that, we'll use the root ratchets to generate new sending and receiving ratchets after a certain limit has passed (the most secure option is after every single message). However, this doesn't solve the problem yet, since the root ratchet is just a symmetric ratchet which has the same exact problems as the sending and receiving ratchets. So to truly make it recover from break-in attacks, instead of turning it the "conventional" way, we'll just refresh it with completely new, random DH keys.
 
 For that to work though, we'll need to change the code a little. We want the root ratchet to be a Diffie-Hellman ratchet, which will provide us future secrecy (and happiness). Under the hood, it'll act similarly to a symmetric ratchet, but instead of the salt being a single 0 byte, we'll use the output of DH key exchanges as the HKDF salt.
 
 Hold up... so how does it work?
 
-Let's say Alice wants to chat with Bob. She generates a DH keypair and sends a message request to Bob, which contains a random seed for the root ratchet and her public key. Now Alice needs to wait for a response from Bob. Until that happens, all messages she tries to send must be put into a queue (or discarded completely). When Bob sees the request, he generates his own DH keypair and turns his root ratchet: he calculates the DH output of his private key and Alice's public key to generate a DH output, which will be the salt inside a symmteric ratchet (this randomises the output, providing future secrecy). The output of the symmteric ratchet will be used as the seed for his send ratchet. Now, Bob can send back his public key, and because he already has a send ratchet, he can start sending messages to Alice, even if she's offline at the time.
+Let's say Alice wants to chat with Bob. She generates a DH keypair and sends a message request to Bob, which contains a random seed for the root ratchet and her public key. Now Alice needs to wait for a response from Bob. Until that happens, all messages she tries to send must be put into a queue (or discarded completely). When Bob sees the request, he generates his own DH keypair and turns his root ratchet: he calculates the DH output of his private key and Alice's public key to generate a DH output, which will be the salt inside a symmteric ratchet (this randomises the output, providing future secrecy). The output of the symmteric ratchet will be used as the seed for his sending ratchet. Now, Bob can send back his public key, and because he already has a sending ratchet, he can start sending messages to Alice, even if she's offline at the time.
 
-When Alice sees Bob has accepted the message request and provided his own public key, she can do a root ratchet turn too: because we know Bob has used the public key of Alice's first DH keychain, Alice can use his private key and Bob's public key to generate the same DH output for her symmetric ratchet. This output will be used to create Alice's receive ratchet which will be equal to Bob's send ratchet (she can read Bob's messages that he sent earlier with it). She now needs a send ratchet, so she generates a new DH keychain (discarding the old one) and uses the same public key she got from Bob to generate her send ratchet. Then she sends it to Bob.
+When Alice sees Bob has accepted the message request and provided his own public key, she can do a root ratchet turn too: because we know Bob has used the public key of Alice's first DH keychain, Alice can use his private key and Bob's public key to generate the same DH output for her symmetric ratchet. This output will be used to create Alice's receiving ratchet which will be equal to Bob's sending ratchet (she can read Bob's messages that he sent earlier with it). She now needs a sending ratchet, so she generates a new DH keychain (discarding the old one) and uses the same public key she got from Bob to generate her sending ratchet. Then she sends it to Bob.
 
-Now, if Bob gets Alice's public key, the whole cycle repeats: Bob generates a receive ratchet using his current private key and the provided public key and a send ratchet with a new DH keypair, then sends his public key to Alice. It's important to note: **a party can only turn their root ratchet, if they have received a new public key from the other party**. 
+Now, if Bob gets Alice's public key, the whole cycle repeats: Bob generates a receiving ratchet using his current private key and the provided public key and a sending ratchet with a new DH keypair, then sends his public key to Alice. It's important to note: **a party can only turn their root ratchet, if they have received a new public key from the other party**. 
 
-In other words, after Alice generates her receive and send ratchet, she cannot generate a new send ratchet again, because Bob has not yet received her public key and returned a new public key of his own. This is important to keep in mind, otherwise it could lead to desynchronization of the root ratchets. Also, every root ratchet turn follows the following steps:
+In other words, after Alice generates her receive and sending ratchet, she cannot generate a new sending ratchet again, because Bob has not yet received her public key and returned a new public key of his own. This is important to keep in mind, otherwise it could lead to desynchronization of the root ratchets. Also, every root ratchet turn follows the following steps:
 1. Calculate a DH exchange, use the output in the symmetric turn to create the new receiving ratchet.
 2. Generate a new DH keypair, discard the old one.
-3. Calculate a DH exchange with the new keys, use the output in the symmetric turn to create the new send ratchet.
+3. Calculate a DH exchange with the new keys, use the output in the symmetric turn to create the new sending ratchet.
 The only exception is the initial setup (when Bob receives Alice's message request), where the first step is skipped.
 
 {% note %}
@@ -916,13 +914,14 @@ class DHRatchet {
         this.#keyChain = await crypto.generateKey({ name: "ECDH", namedCurve: "P-256" }, true, ["deriveBits"]);
     }
 
-    getPubkey() {
+    async getPubkey() {
         if (!this.#keyChain) throw new Error("DHRatchet not initialized");
 
-        return crypto.exportKey("raw", this.#keyChain.publicKey);
+        const k = await crypto.exportKey("raw", this.#keyChain.publicKey);
+        return new Uint8Array(k);
     }
 
-    async turn(pubkey: ArrayBuffer, newKey: boolean = false) {
+    async turn(pubkey: Uint8Array, newKey: boolean = false) {
         if (!this.#keyChain) throw new Error("DHRatchet not initialized");
 
         // if needed, generate a new key pair
@@ -974,7 +973,7 @@ class DoubleRatchet {
 
     // init function removed
 
-    async turn(pubkey: ArrayBuffer) {
+    async turn(pubkey: Uint8Array) {
         // step 1: turn the root ratchet and use it for the receiving ratchet's seed
         const receiveSeed = await this.root.turn(pubkey);
         this.#receive = new SymRatchet(receiveSeed);
@@ -1006,8 +1005,8 @@ Let's look at the changes:
 1. The `root` property is no longer private, since it has some methods that we'd like to access from outside the class. This fortunately doesn't compromise the security of the ratchet, since the state and keychain is still a private property.
 2. firstSend has been removed.
 3. The constructor doesn't need any arguments anymore and the root ratchet has been replaced by a DH ratchet.
-4. Replacing the `init` function, a new `turn` function has been added, which performs a full root ratchet turn and creates new send and receive ratchets.
-5. The `build` function now also accepts an optional initial public key and has been updated to set up the send ratchet if it gets one. To use it, Alice will call `DoubleRatchet.build(secret)` and Bob will call `DoubleRatchet.build(secret, alicePubkey)`.
+4. Replacing the `init` function, a new `turn` function has been added, which performs a full root ratchet turn and creates new sending and receiving ratchets.
+5. The `build` function now also accepts an optional initial public key and has been updated to set up the sending ratchet if it gets one. To use it, Alice will call `DoubleRatchet.build(secret)` and Bob will call `DoubleRatchet.build(secret, alicePubkey)`.
 
 So can we use it? Sure!
 
@@ -1066,7 +1065,7 @@ const message1 = await alice.encrypt(new TextEncoder().encode("Hello Bob, this i
 const { iv: iv1, ciphertext: ciphertext1 } = message1;
 console.log("Message 1:", toHex(iv1), toHex(ciphertext1));
 
-// Alice cannot generate a new send ratchet yet, we must wait for Bob to respond
+// Alice cannot generate a new sending ratchet yet, we must wait for Bob to respond
 
 const message2 = await alice.encrypt(new TextEncoder().encode("Hello Bob, this is message 2!"));
 const { iv: iv2, ciphertext: ciphertext2 } = message2;
@@ -1090,7 +1089,7 @@ Bob receives: Hello Bob, this is message 1!
 Bob receives: Hello Bob, this is message 2!
 ```
 
-Because Alice has already used Bob's public key for turning her root ratchet, she cannot do that again with the same public key, therefore Alice must wait until Bob sends her his new public key. But that's no problem, because Alice can just turn her send ratchet to encrypt another message, and when Bob receives both messages, he turns his root ratchet to generate a new receive ratchet and can then decrypt both messages.
+Because Alice has already used Bob's public key for turning her root ratchet, she cannot do that again with the same public key, therefore Alice must wait until Bob sends her his new public key. But that's no problem, because Alice can just turn her sending ratchet to encrypt another message, and when Bob receives both messages, he turns his root ratchet to generate a new receiving ratchet and can then decrypt both messages.
 
 #### Bob sends a message first
 
@@ -1131,29 +1130,37 @@ Alice receives: Hello Alice!
 Bob receives: Hello Bob!
 ```
 
-You might have noticed that in our previous examples, there was always a line that said "Bob informs Alice about his new public key", now why is that? If you remember how the DH ratchet turns, you might realise that after the initial setup, Bob has his send ratchet, but Alice doesn't have any ratchets yet. If Alice wants to send a message, she first needs to learn Bob's public key. Usually what happens is Bob (the only person who can send messages at the time) automatically sends Alice a dummy message, which contains his public key. Alice can then turn her root ratchet and start sending messages too. This process depends on the protocol the application uses and is completely transparent to the user, but it's usually something like this.
+You might have noticed that in our previous examples, there was always a line that said "Bob informs Alice about his new public key", now why is that? If you remember how the DH ratchet turns, you might realise that after the initial setup, Bob has his sending ratchet, but Alice doesn't have any ratchets yet. If Alice wants to send a message, she first needs to learn Bob's public key. Usually what happens is Bob (the only person who can send messages at the time) automatically sends Alice a dummy message, which contains his public key. Alice can then turn her root ratchet and start sending messages too. This process depends on the protocol the application uses and is completely transparent to the user, but it's usually something like this.
 
-Great, now that we've mastered Double Ratchet, let's fix internet problems.
+### Ratchet recap
 
-### Error correction
+Let's quickly recap all these ratchets we're using before we continue, because it can get confusing.
+* Sending and receiving ratchets: they're both symmetric ratchets (they feed their own state into themselves), the sending ratchet is used to encrypt messages and the receiving ratchet is used to decrypt messages.
+* Root ratchet (DH ratchet): the root ratchet is at its core a symmetric ratchet, but it's seeded by a series of DH key exchanges (that's why it's called a DH ratchet). Its output is used to generate the starting seeds of the sending and receiving ratchets.
 
-Imagine this situation: Alice sends 2 messages after each other really fast. Her internet is a bit unstable, and message 1 takes 2 seconds to reach Bob, but message 2 takes only 1 second. Bob has now got message 2 before message 1, he turns his receive ratchet and... error. Because message 2 requires 2 turns, but Bob doesn't know that, he only turns his receive ratchet once, which generates the key for message 1. Then, Bob receives message 1, turns his receive ratchet and gets the key for message 2. Complete madness, which has its own name: out-of-order messages.
+In this document, the terms DH ratchet and root ratchet are used interchangeably.
+
+### Automated message processing
+
+Our code works already, but it's a lot of manual work. To finish up the code, we'll make the message processing automatic, which will include decryption, DH ratchet turning etc. This will also allow us to fix something very common and annoying: internet problems.
+
+#### Error correction + message headers
+
+Imagine this situation: Alice sends 2 messages after each other really fast. Her internet is a bit unstable, and message 1 takes 2 seconds to reach Bob, but message 2 takes only 1 second. Bob has now got message 2 before message 1, he turns his receiving ratchet and... error. Because message 2 requires 2 turns, but Bob doesn't know that, he only turns his receiving ratchet once, which generates the key for message 1. Then, Bob receives message 1, turns his receiving ratchet and gets the key for message 2. Complete madness, which has its own name: out-of-order messages.
 
 So how do we fix that?
 
-#### Setting up message headers
-
-For the send and receive ratchets, we track the number of messages that ratchet has processed (starting from 0), call it N. The first message will be message 0, the second message will be message 1 etc. We'll also store the number of messages in the previous ratchet (the ratchet before a root turn), call it PN. This will also be transmitted with the message in a so called message header. Speaking of message headers, let's implement that too, so we can automate the root ratchet's turning.
+For the sending and receiving ratchets, we track the number of messages that ratchet has processed (starting from 0), call it `N`. The first message will have a `N` of 0, the second message 1 etc. We'll also store the number of messages in the previous ratchet (the ratchet before a root turn), call it `PN`. This will also be transmitted with the message in a so called message header. Speaking of message headers, let's implement that too, so we can automate the root ratchet's turning.
 
 ```typescript
 // utility interfaces
 interface RawMessage {
-    iv: ArrayBufferLike;
-    ciphertext: ArrayBufferLike;
+    iv: Uint8Array;
+    ciphertext: Uint8Array;
 }
 
 interface Header {
-    pubkey: ArrayBufferLike;
+    pubkey: Uint8Array;
     N: number;
     PN: number;
 }
@@ -1175,7 +1182,7 @@ class DoubleRatchet {
     #RK: string = "";
 
     /**
-     * Message and previous message numbers for send and receive ratchets
+     * Message and previous message numbers for sending and receiving ratchets
      */
     #SN: number = 0;
     #RN: number = 0;
@@ -1184,7 +1191,7 @@ class DoubleRatchet {
 
     ...
 
-    async turn(pubkey: ArrayBuffer) {
+    async turn(pubkey: Uint8Array) {
         this.#RK = toHex(pubkey);
 
         // step 1: turn the root ratchet and use it for the receiving ratchet's seed
@@ -1200,15 +1207,15 @@ class DoubleRatchet {
         this.#SN = 0;
     }
 
-    async encrypt(message: ArrayBuffer): Promise<MessageBundle> {
+    async encrypt(message: Uint8Array): Promise<MessageBundle> {
         if (!this.#send) throw new Error("DoubleRatchet not initialized");
 
         // generate random IV
         const iv = globalThis.crypto.getRandomValues(new Uint8Array(12));
 
-        // turn the send ratchet to create a message key
+        // turn the sending ratchet to create a message key
         const messageKey = await crypto.importKey("raw", await this.#send.turn(), { name: "AES-GCM" }, false, ["encrypt"]);
-        const ciphertext = await crypto.encrypt({ name: "AES-GCM", iv }, messageKey, message);
+        const ciphertext = new Uint8Array(await crypto.encrypt({ name: "AES-GCM", iv }, messageKey, message));
 
         const header: Header = {
             pubkey: await this.root.getPubkey(),
@@ -1226,9 +1233,9 @@ class DoubleRatchet {
 
         const { iv, ciphertext } = rawMessage;
 
-        // turn the receive ratchet to create a message key
+        // turn the receiving ratchet to create a message key
         const messageKey = await crypto.importKey("raw", await this.#receive.turn(), { name: "AES-GCM" }, false, ["decrypt"]);
-        const message = await crypto.decrypt({ name: "AES-GCM", iv }, messageKey, ciphertext);
+        const message = new Uint8Array(await crypto.decrypt({ name: "AES-GCM", iv }, messageKey, ciphertext));
 
         this.#RN++;
 
@@ -1252,12 +1259,12 @@ class DoubleRatchet {
 
 Let's take a look at the changes:
 
-1. There are 3 new utility interfaces: `RawMessage`, `Header` and `MessageBundle`. `RawMessage` contains the ciphertext and the IV, `Header` contains the sender's public key, and the N and PN values of their send ratchet.
+1. There are 3 new utility interfaces: `RawMessage`, `Header` and `MessageBundle`. `RawMessage` contains the ciphertext and the IV, `Header` contains the sender's public key, and the N and PN values of their sending ratchet.
 2. The `DoubleRatchet` class has now got a bunch of new properties:
     - RK = Remote/receive key, it is the current public key of the other party, stored as its hex representation.
     - The N and PN values for both the send (SN, SPN) and receive (RN, RPN) ratchets.
 3. The `setup` function is updated to change the RK value and reset the N and PN values.
-4. The `encrypt` function now generates a message header and updates `SN` (note that it is updated after the send ratchet has been turned!).
+4. The `encrypt` function now generates a message header and updates `SN` (note that it is updated after the sending ratchet has been turned!).
 5. The `decrypt` function now accepts a `RawMessage` object and updates `RN`.
 
 Using the double ratchet now doesn't change much, we still need to add the error correction mechanism.
@@ -1285,10 +1292,10 @@ Output
 {
   rawMessage: {
     iv: Uint8Array(12) [ 112, 159, 115, 15, 254, 53, 131, 159, 1, 139, 195, 167 ],
-    ciphertext: ArrayBuffer(28) [ 137, 35, 241, 31, 120, 62, 125, 220, 122, 177, 78, 73, 153, 128, 18, 182, 18, 101, 93, 16, 185, 96, 163, 16, 228, 173, 133, 230 ]
+    ciphertext: Uint8Array(28) [ 137, 35, 241, 31, 120, 62, 125, 220, 122, 177, 78, 73, 153, 128, 18, 182, 18, 101, 93, 16, 185, 96, 163, 16, 228, 173, 133, 230 ]
   },
   header: {
-    pubkey: ArrayBuffer(65) [ 4, 150, 108, 87, 46, 231, 181, 66, 51, 62, 15, 203, 7, 159, 187, 136, 250, 97, 15, 211, 253, 180, 168, 161, 148, 178, 43, 29, 32, 140, 20, 41, 16, 142, 44, 219, 88, 225, 237, 31, 25, 141, 122, 20, 184, 169, 151, 26, 133, 229, 238, 194, 155, 127, 133, 64, 22, 212, 77, 233, 176, 110, 1, 232, 238 ],
+    pubkey: Uint8Array(65) [ 4, 150, 108, 87, 46, 231, 181, 66, 51, 62, 15, 203, 7, 159, 187, 136, 250, 97, 15, 211, 253, 180, 168, 161, 148, 178, 43, 29, 32, 140, 20, 41, 16, 142, 44, 219, 88, 225, 237, 31, 25, 141, 122, 20, 184, 169, 151, 26, 133, 229, 238, 194, 155, 127, 133, 64, 22, 212, 77, 233, 176, 110, 1, 232, 238 ],
     N: 0,
     PN: 0
   }
@@ -1296,19 +1303,19 @@ Output
 Decrypted message: Hello Alice!
 ```
 
-### Automating message processing
+#### Putting everything together
 
 Let's take a look at how we can use these N and PN parameters. Let's say Bob sends us 4 messages, message 1 arrives correctly, but message 2 and 3 get skipped and we only get message 4. If we take a look at the headers, this is what we should see: message 1 has a `N` of 0, but message 4 has a `N` of 3. Don't forget that every time we receive a message, we also increase `RN` by one. So when receiving message 4, Alice's `RN` is 1. Based on Signal's document, there are 2 possible options here:
 
 1. The message comes from the current ratchet: when Alice gets message 1, she stores the public key attached to it as her `RK` value. Message 4 will have the same public key, so Alice calculates `N` - `RN` = 3 - 1 = 2, which is going to be the count of skipped messages. This is true: we've skipped 2 messages: message 2 and 3.
-2. The message comes from an older ratchet: this is a bit trickier. Imagine Bob sends message 1 and message 2, but message 2 is delayed. We send back message 3 which triggers a root ratchet turn for Bob. He sends message 4, which would trigger a root turn for us. Before a root turn actually happens, we must calculate if we're missing any messages. Our `RN` value is 1 (we've decrypted 1 message - message 1 - so far). Message 4's header will have a `N` of 0 (it's the 1st message in Bob's new send rathcet) and a `PN` of 2 (= Bob's previous send ratchet had 2 messages, message 1 and 2). In this case, the count of messages skipped _in Bob's previous send ratchet_ = `PN` - `RN` = 2 - 1 = 1. This is true, we have skipped 1 message in Bob's previous ratchet. The count of messages skipped _in Bob's new send ratchet_ = `N` = 0. This is true, we've not skipped any messages in the current ratchet.
+2. The message comes from an older ratchet: this is a bit trickier. Imagine Bob sends message 1 and message 2, but message 2 is delayed. We send back message 3 which triggers a root ratchet turn for Bob. He sends message 4, which would trigger a root turn for us. Before a root turn actually happens, we must calculate if we're missing any messages. Our `RN` value is 1 (we've decrypted 1 message - message 1 - so far). Message 4's header will have a `N` of 0 (it's the 1st message in Bob's new send rathcet) and a `PN` of 2 (= Bob's previous sending ratchet had 2 messages, message 1 and 2). In this case, the count of messages skipped _in Bob's previous sending ratchet_ = `PN` - `RN` = 2 - 1 = 1. This is true, we have skipped 1 message in Bob's previous ratchet. The count of messages skipped _in Bob's new sending ratchet_ = `N` = 0. This is true, we've not skipped any messages in the current ratchet.
 
 When we know we've skipped a message, we'll generate the message keys for it and store them in a list. This list will use the public key and `N` variable of the message to uniquely identify it. When the skipped message arrives, we'll use the stored key to decrypt it.
 
 When we receive any message, the following happens:
 
 1. We look at the list of skipped message keys, mapped by the message's public key and `N` value. If a corresponding message key was found, we use that to decrypt the message, then delete that key.
-2. We calculate if we've skipped any messages in the previous ratchet. We turn our receive ratchet that many times and store all keys in our list (we know that those messages will have our stored `RK` as the public key).
+2. We calculate if we've skipped any messages in the previous ratchet. We turn our receiving ratchet that many times and store all keys in our list (we know that those messages will have our stored `RK` as the public key).
 3. If needed, we turn our root ratchet. (this is where our `RK`, `N` and `PN` values get reset)
 4. We calculate if we've skipped any messages in the current ratchet. We store the message keys just like before.
 5. We decrypt and return the message.
@@ -1319,19 +1326,19 @@ I'm super excited, so let's do it!
 class DoubleRatchet {
     ...
 
-    #skippedKeys = new Array<{ pubkey: string, N: number, key: ArrayBuffer }>();
+    #skippedKeys = new Array<{ pubkey: string, N: number, key: Uint8Array }>();
 
-    async #turn(pubkey: ArrayBuffer) {
+    async #turn(pubkey: Uint8Array) {
         ...
     }
 
     ...
 
-    async #decrypt(rawMessage: RawMessage, messageKey: CryptoKey): Promise<ArrayBuffer> {
+    async #decrypt(rawMessage: RawMessage, messageKey: CryptoKey) {
         const { iv, ciphertext } = rawMessage;
 
         // decrypt the message
-        return crypto.decrypt({ name: "AES-GCM", iv }, messageKey, ciphertext);
+        return crypto.decrypt({ name: "AES-GCM", iv }, messageKey, ciphertext).then(pt => new Uint8Array(pt));
     }
 
     async processMessage(message: MessageBundle) {
@@ -1384,7 +1391,7 @@ class DoubleRatchet {
 The bunch of ! operators are there because I'm using strict null checks in TypeScript. You may remove them if you don't use that option.
 {% /note %}
 
-Functions `decrypt` and `turn` have become private and `decrypt` no longer turns the receive ratchet manually, it requires the correct message key. The `processMessage` function is basically just what the pseudocode says, but as actual code. Note that `RN` has to be set to the message's `N` value + 1 (it's basically `RN` = `N` -> decrypt -> `RN++` simplied). There is also a new `skippedKeys` property which is an array that holds all the skipped keys.
+Functions `decrypt` and `turn` have become private and `decrypt` no longer turns the receiving ratchet manually, it requires the correct message key. The `processMessage` function is basically just what the pseudocode says, but as actual code. Note that `RN` has to be set to the message's `N` value + 1 (it's basically `RN` = `N` -> decrypt -> `RN++` simplied). There is also a new `skippedKeys` property which is an array that holds all the skipped keys.
 
 {% note %}
 You might have noticed there are these offset values. They're very important, otherwise we'd store message keys for the wrong messages. Imagine we got message 1 and 2 from the previous ratchet, but skipped 3, 4 and 5. If we didn't use the offset, we'd store message keys for messages with N of 0, 1 and 2 - message 1, 2 and 3. But we've already received message 1 and 2 (N = 0 and 1), therefore we need to store keys for message 3, 4 and 5. The offset is the number of messages we've already decrypted, we can use that to calculate the correct message number. The same logic applies for skipped messages in the current ratchet.
@@ -1509,9 +1516,452 @@ Alice receives: This is message 4!
 Alice receives: This is message 2!
 ```
 
-The final code can be viewed <a href="/files/double-ratchet.ts" download="double-ratchet.ts">here</a>.
+### Hiding those headers
 
-### Extra notes
+So far we've only encrypted the actual message, while keeping the header in plaintext. This works fine, however some people might not like the idea of a server having full control over the header - remember, they can not only read it, but also modify it!
+
+Fortunately for us, Signal has designed a method of encrypting headers inside Double Ratchet and it's surprisingly simple.
+
+#### New keys on the horizon
+
+To encrypt/decrypt headers, we'll need some kind of key. Alice and Bob will each have two keys for their sending and receiving ratchet, we'll call them header and next header key. The sending header key is used to encrypt a header and the receiving header key is to decrypt.
+
+When Alice or Bob gets a message, they'll first try to decrypt the message header with their receiving header key. If that fails, they'll try the next receiving header key. If that succeeds, it means they have to do a DH ratchet turn. Otherwise, they'll look through their list of skipped messages and find the corressponding header key (we'll see how that works later).
+
+The initialisation process is also a bit different. Let's say Alice wants to talk with Bob. Alongside a keypair and shared secret for the root ratchet, she'll also generate a sending header key and next receiving header key for Bob. Wait... what? You heard it right, Alice is the one who initialises Bob's header keys. This makes a lot of sense if you think about it: we know that when Bob receives the information required to initialise his Double Ratchet session, he can start sending messages right away, but for that he'll need a sending header key. The only way to do that while keeping the keys in sync is to let Alice generate the keys.
+
+Finally, let's also not forget how Alice is going to use these keys she generated for Bob. Remember, Bob's sending header key is used to encrypt the header, so it has to be Alice's receiving header key if she wants to decrypt it. It's actually going to be her next receiving header key, the reason we'll see very soon. Similarly, she'll use the key she generated as Bob's next receiving header key as her own sending header key.
+
+To recap, let's take a look at the new initialisation process with all the syncronished keys (marked with the = sign).
+
+```
+Alice---initialises (message request)--->Bob
+| generates:                             |
+| - root ratchet keypair              -> | - public component
+| - root ratchet seed                  = | - root ratchet seed
+| - sending header key                 = | - next receiving header key
+| - next receiving header key          = | - sending header key
+```
+
+#### From next keys to current
+
+I've previously mentioned that the requirement for a DH ratchet turn is that the next receiving header key decrypts the header successfully. With our new header keys, the DH ratchet turn changes too. The input is still the other party's public key, but the process is different:
+1. Use the public key to generate a new DH output, which will salt the root ratchet.
+2. Set the next receiving header key to the receiving header key.
+3. Turn the root ratchet and generate 64 bytes of output: the first 32 bytes are the new seed for the receiving ratchet, the second 32 bytes are the new receiving header key.
+4. Generate a new keychain and derive a new DH output for the root ratchet.
+5. Set the next sending header key to the sending header key.
+6. Turn the root ratchet and generate 64 bytes of output: the first 32 bytes are the new seed for the sending ratchet, the second 32 bytes are the new sending header key.
+
+If that didn't make sense at first, don't worry, it didn't for me either. To summarise, at each root turn, instead of only using the output for new sending and receiving ratchets, we also use it for the next header keys.
+
+Hopefully seeing it in code will make it clearer.
+
+```typescript
+/**
+ * Options for initialising a DoubleRatchet instance.
+ */
+interface InitOptions {
+    /**
+     * The public key of the remote party.
+     */
+    pubkey: Uint8Array;
+    /**
+     * Our next receiving header key.
+     */
+    NRHK: Uint8Array;
+    /**
+     * Our sending header key.
+     */
+    SHK: Uint8Array;
+}
+
+/**
+ * A little type jugglery to make the return type of DoubleRatchet.build() work.
+ */
+type DRInit<T extends InitOptions | undefined> = T extends InitOptions ? DoubleRatchet : { dr: DoubleRatchet; SHK: Uint8Array; NRHK: Uint8Array };
+
+class DHRatchet {
+    ...
+
+    async turn(pubkey: Uint8Array, newKey: boolean = false) {
+        ...
+
+        // use the DH output as the HKDF salt
+        // generate 96 bytes of output (32 = new state, 32 = seed for next ratchet, 32 = next header key)
+        const state = await crypto.importKey("raw", this.#state, { name: "HKDF" }, false, ["deriveBits"]);
+        const newState = await crypto.deriveBits({ name: "HKDF", hash: "SHA-512", salt: dhOutput, info: hkdfInfo }, state, 3 * 32 * 8);
+
+        // set the state to the first 32 bytes and the two outputs to the next 64 bytes
+        this.#state = new Uint8Array(newState, 0, 32);
+        const o1 = new Uint8Array(newState, 32, 32);
+        const o2 = new Uint8Array(newState, 64, 32);
+
+        return { o1, o2 };
+    }
+
+    ...
+}
+
+class DoubleRatchet {
+    ...
+
+    /**
+     * (Next) header keys for sending and receiving
+     */
+    #SHK: Uint8Array | undefined;
+    #NSHK: Uint8Array | undefined;
+    #RHK: Uint8Array | undefined;
+    #NRHK: Uint8Array | undefined;
+
+    ...
+
+    async #turn(pubkey: Uint8Array) {
+        ...
+
+        const { o1: receiveSeed } = await this.root.turn(pubkey);
+        this.#receive = new SymRatchet(receiveSeed);
+
+        ...
+
+        const { o1: sendSeed } = await this.root.turn(pubkey, true);
+        this.#send = new SymRatchet(sendSeed);
+
+        ...
+    }
+
+    ...
+
+    static async build<T extends InitOptions | undefined>(seed: Uint8Array, init: T) {
+        const dr = new DoubleRatchet();
+        dr.root = await DHRatchet.build(seed);
+
+        if (init) {
+            // initialize the header keys
+            dr.#SHK = init.SHK;
+            dr.#NRHK = init.NRHK;
+
+            // turn the root ratchet to create the sending ratchet and the next receiving ratchet
+            const { o1: sendSeed, o2: NSHK } = await dr.root.turn(init.pubkey);
+            dr.#send = new SymRatchet(sendSeed);
+            dr.#NSHK = NSHK.buffer;
+            
+            return <DRInit<T>>dr;
+        }
+
+        // if there are no init options, we're the first party, generate our sending header key and next receiving header key
+        dr.#SHK = globalThis.crypto.getRandomValues(new Uint8Array(32)).buffer;
+        dr.#NRHK = globalThis.crypto.getRandomValues(new Uint8Array(32)).buffer;
+
+        // return the DR session and the header keys for the other party
+        return <DRInit<T>>{ dr, SHK: dr.#NRHK, NRHK: dr.#SHK };
+    }
+}
+```
+
+First, the `DHRatchet`'s `turn` function is updated to return 64 bytes of data instead of 32. It returns two variables: `o1` and `o2`. `o1` is the seed for a new ratchet, `o2` is the next header key. Because of the syntax change, the `DoubleRatchet`'s `turn` function is also updated to use the new `o1` variable. (We'll later use `o2` too)
+
+The most major change is the new `build` function. Instead of a public key, it now accepts an `InitObject` with contains the public key, sending header key and next receiving header key. If it's provided, that means we're the second party, therefore we need to setup the sending ratchet, next sending header key and the two header keys we're given. Otherwise, we're the first party, so we generate our own sending header key and next receiving header key and return them alongside the Double Ratchet session. Remember: our sending header key is the other party's next receiving header key, and our next receiving header key is the other party's sending header key, that's why you see the `SHK` and `NRHK` properties being swapped.
+
+{% note %}
+You might also notice a lot of generic types and type casting. This is because TypeScript doesn't like it when you return different types from a function, so I had to do some type jugglery to make it work seamlessly. If you're not using TypeScript, don't bother with it, otherwise you can just copy-paste the code.
+{% /note %}
+
+Because of the new `build` function, we'll also need to change how we initialise the Double Ratchet session. This change is relatively minor, the rest of the code stays the same.
+
+```typescript
+const seed = globalThis.crypto.getRandomValues(new Uint8Array(32));
+
+const { dr: alice, NRHK, SHK } = await DoubleRatchet.build(seed, undefined);
+const bob = await DoubleRatchet.build(seed, { pubkey: await alice.root.getPubkey(), NRHK, SHK });
+
+// rest of the code same as before
+```
+
+#### Turning the header keys
+
+As I previously mentioned, during a root ratchet turn, we'll use the second 32 bytes of the DH ratchet's output to generate the next header keys.
+
+```typescript
+class DoubleRatchet {
+    ...
+
+    async #turn(pubkey: Uint8Array) {
+        this.#RK = toHex(pubkey);
+
+        // step 1: turn the root ratchet and use it for the receiving ratchet's seed
+        const { o1: receiveSeed, o2: NRHK } = await this.root.turn(pubkey);
+        this.#receive = new SymRatchet(receiveSeed);
+        this.#RPN = this.#RN;
+        this.#RN = 0;
+        if (this.#NRHK) this.#RHK = this.#NRHK;
+        this.#NRHK = NRHK.buffer;
+
+        // step 2: turn the root ratchet again - this time with a new key - and use it for the sending ratchet's seed
+        const { o1: sendSeed, o2: NSHK } = await this.root.turn(pubkey, true);
+        this.#send = new SymRatchet(sendSeed);
+        this.#SPN = this.#SN;
+        this.#SN = 0;
+        if (this.#NSHK) this.#SHK = this.#NSHK;
+        this.#NSHK = NSHK.buffer;
+    }
+
+    ...
+}
+```
+
+This basically does the following: next header key -> header key, DH ratchet output -> next header key, for both the sending and receiving ratchets. One small thing to notice is we'll only replace the header keys with the next header keys if there is actually a next header key. If we didn't do this check, we'd replace the header keys with undefined, which would cause problems later.
+
+#### Using the header keys
+
+Now that we've set up the header keys, let's use them. First, let's update the `encrypt` function, then we'll change the `processMessage` function.
+
+Previously, we've been using AES-GCM for encryption. AES-GCM has a so-called associated data field, which is important to update when the encryption key is not changing. The Signal document recommends using at least 128 bits of entropy for the associated data and fortunately for us, `SubtleCrypto` by default uses 128 bits of entropy, so we don't need to do anything.
+
+```typescript
+...
+
+function fromHex(hex: string) {
+    return new Uint8Array(hex.match(/.{1,2}/g)!.map((byte) => parseInt(byte, 16))).buffer;
+}
+
+...
+
+interface MessageBundle {
+    rawMessage: RawMessage;
+    header: RawMessage;
+}
+
+...
+
+class DoubleRatchet {
+    ...
+
+    async encrypt(message: Uint8Array): Promise<MessageBundle> {
+        ...
+
+        const header: Header = {
+            pubkey: await this.root.getPubkey(),
+            N: this.#SN,
+            PN: this.#SPN,
+        };
+
+        // encrypt the header
+        const headerKey = await crypto.importKey("raw", this.SHK!, { name: "AES-GCM" }, false, ["encrypt"]);
+        const headerPlainText = new TextEncoder().encode(JSON.stringify(
+            {
+                pubkey: toHex(header.pubkey),
+                N: header.N,
+                PN: header.PN,
+            }
+        ));
+        const headerIv = globalThis.crypto.getRandomValues(new Uint8Array(12));
+        const headerCiphertext = new Uint8Array(await crypto.encrypt({ name: "AES-GCM", iv: headerIv }, headerKey, headerPlainText));
+
+        this.#SN++;
+
+        return { rawMessage: { iv, ciphertext }, header: { iv: headerIv, ciphertext: headerCiphertext} };
+    }
+
+    ...
+}
+```
+
+Right now, if you're using any type of error checking, this will light up like a Christmas tree. That's because the `MessageBundle` interface has changed, its `header` property is now a `RawMessage` object instead of a `Header` object. Another small thing to note: when we convert the header into plaintext, the public kfey is converted into its hex representation, otherwise `JSON.stringify()` would skip it. You could make this nicer by using a different way of serialising the header, but for now this will work. This does mean however, that we need to implement a `fromHex` function too.
+
+Let's quickly recap how the `processMessage` function will work, then we can finish the header encryption:
+1. First, we go through our skipped message list.
+2. If that fails, we try to decrypt the header with our receiving header key, then the next receiving header key.
+3. If we successfully decrypted the header with the next receiving header key, we do a DH ratchet turn.
+4. In the case of being unable to decrypt the header, we ignore the message.
+5. After decrypting the header, the rest of the process is the same as before, except...
+6. When skipping messages, instead of indexing them by the public key and `N` value, we'll index them by the receiving header key and `N` value.
+
+If I showed all of it at once, it would be a bit confusing, so let's do it step by step. Starting with the skipped message list.
+
+```typescript
+class DoubleRatchet {
+    ...
+
+    async processMessage(message: MessageBundle) {
+        // check if we already have a key for this message
+        // unfortunately, this'll be very ugly: we'll linearly search the array for the key that decrypts the header
+        // if we manage to decrypt the header, we'll first check if the N values match, and if they do, we'll use the key to decrypt the message
+        let foundHeaderKey: CryptoKey | null = null;
+        for (const { headerKey, N, messageKey } of this.#skippedKeys) {
+            try {
+                let key: CryptoKey | null = foundHeaderKey;
+                if (!key) key = await crypto.importKey("raw", fromHex(headerKey), { name: "AES-GCM" }, false, ["decrypt"]);
+                const headerPlainText = await crypto.decrypt({ name: "AES-GCM", iv: message.header.iv }, key, message.header.ciphertext);
+
+                // at this point, we know the key is correct, let's speed up the search by saving it
+                foundHeaderKey = key;
+
+                const headerJson = JSON.parse(new TextDecoder().decode(headerPlainText));
+
+                // check if the N values match
+                if (headerJson.N !== N) continue;
+
+                // we found the key, decrypt the message
+                const mKey = await crypto.importKey("raw", messageKey, { name: "AES-GCM" }, false, ["decrypt"]);
+                return this.#decrypt(message.rawMessage, mKey);
+            } catch {
+                continue;
+            }
+        }
+
+        ...
+    }
+
+    ...
+}
+```
+
+Not bad, eh? It's basically just a linear search, which tries every header key, until it finds one that doesn't immediately errors. There's also a small optimisation: if a key is found to be correct, it's stored in the `foundHeaderKey` variable, so we don't have to import it again. This is useful if we have multiple stored messages with the same header key. After the key is found, we just check for the `N` value. If all is good, we - should - have the correct message key, which we just pass to the `decrypt` function.
+
+Next step: Decrypting the header!
+
+```typescript
+class DoubleRatchet {
+    ...
+
+    async #decryptHeader(header: RawMessage): Promise<{ header: Header; doTurn: boolean } | null> {
+        let headerPlainText: ArrayBuffer | null = null;
+        let doTurn = false;
+
+        // step 1: try the current header key
+        try {
+            if (!this.#RHK) throw new Error("No RHK");
+
+            const headerKey = await crypto.importKey("raw", this.#RHK, { name: "AES-GCM" }, false, ["decrypt"]);
+            headerPlainText = await crypto.decrypt({ name: "AES-GCM", iv: header.iv }, headerKey, header.ciphertext);
+        } catch (e) {}
+
+        // step 2: try the next header key
+        try {
+            if (!this.#NRHK) throw new Error("No NRHK");
+
+            const headerKey = await crypto.importKey("raw", this.#NRHK, { name: "AES-GCM" }, false, ["decrypt"]);
+            headerPlainText = await crypto.decrypt({ name: "AES-GCM", iv: header.iv }, headerKey, header.ciphertext);
+            doTurn = true;
+        } catch (e) {}
+
+        if(!headerPlainText) return null;
+
+        const headerJson = JSON.parse(new TextDecoder().decode(headerPlainText));
+
+        return {
+            header: {
+                pubkey: fromHex(headerJson.pubkey),
+                N: headerJson.N,
+                PN: headerJson.PN
+            },
+            doTurn
+        };
+    }
+
+    async processMessage(message: MessageBundle) {
+        ...
+        
+        // decrypt the header
+        const decryptedHeader = await this.#decryptHeader(message.header);
+        if (!decryptedHeader) throw new Error("Invalid/corrupt message");
+
+        const { header, doTurn } = decryptedHeader;
+
+        // calculate the number of skipped messages in the previous ratchet if we're about to do a root turn
+        if (doTurn) {
+            const skippedPrev = header.PN - this.#RN;
+            const offset = this.#RN; // this is needed to correctly calculate the skipped keys
+
+            for (let i = 0; i < skippedPrev; i++) {
+                const key = await this.#receive!.turn();
+                this.#skippedKeys.push({ headerKey: toHex(this.#RHK!), N: i + offset, messageKey: key });
+            }
+
+            await this.#turn(header.pubkey);
+        }
+
+        // calculate the number of skipped messages in the current ratchet
+        const skipped = doTurn ? header.N : header.N - this.#RN;
+        const offset = doTurn ? 0 : this.#RN; // this is needed to correctly calculate the skipped keys
+
+        for (let i = 0; i < skipped; i++) {
+            const key = await this.#receive!.turn();
+            this.#skippedKeys.push({ headerKey: toHex(this.#RHK!), N: i + offset, messageKey: key });
+        }
+
+        // update RN
+        this.#RN = header.N + 1;
+
+        // decrypt the message
+        const messageKey = await crypto.importKey("raw", await this.#receive!.turn(), { name: "AES-GCM" }, false, ["decrypt"]);
+        return this.#decrypt(message.rawMessage, messageKey);
+    }
+}
+```
+
+The `decryptHeader` function does exactly what the pseudocode says: it tries to decrypt the header with the receiving header key, then the next receiving header key. If the decryption fails, it returns null, otherwise it returns the header and a boolean indicating if a DH ratchet turn is needed.
+
+The `processMessage` function is where the real magic happens though. After checking the skipped messages list, we try to decrypt the header. If we get null, we skip the message. Otherwise, it's basically the same function as before, except when we skip messages, we index them by the receiving header key instead of the public key.
+
+#### The final code
+
+We can copy our previous example of skipping messages, which tests all parts of the code. Remember, the way we initialise the Double Ratchet session has changed, don't forget the new syntax! I've also logged the first message, so you can see how the header looks like.
+
+```typescript
+const seed = globalThis.crypto.getRandomValues(new Uint8Array(32));
+
+const { dr: alice, NRHK, SHK } = await DoubleRatchet.build(seed, undefined);
+const bob = await DoubleRatchet.build(seed, { pubkey: await alice.root.getPubkey(), NRHK, SHK });
+
+// Bob sends message 1 and 2 to Alice
+const message1 = await bob.encrypt(new TextEncoder().encode("This is message 1!"));
+console.log("Bob sends:", message1);
+const message2 = await bob.encrypt(new TextEncoder().encode("This is message 2!"));
+
+// message 1 arrives, 2 is delayed
+const decrypted1 = await alice.processMessage(message1);
+console.log("Alice receives:", new TextDecoder().decode(decrypted1));
+
+// Alice sends message 3
+const message3 = await alice.encrypt(new TextEncoder().encode("This is message 3!"));
+
+const decrypted3 = await bob.processMessage(message3);
+console.log("Bob receives:", new TextDecoder().decode(decrypted3));
+
+// Bob sends message 4, message 2 also arrives
+const message4 = await bob.encrypt(new TextEncoder().encode("This is message 4!"));
+
+const decrypted4 = await alice.processMessage(message4);
+console.log("Alice receives:", new TextDecoder().decode(decrypted4));
+const decrypted2 = await alice.processMessage(message2);
+console.log("Alice receives:", new TextDecoder().decode(decrypted2));
+```
+
+Output:
+```
+Bob sends: {
+  rawMessage: {
+    iv: Uint8Array(12) [ 225, 213, 48, 138, 107, 101, 236, 211, 90, 214, 133, 21 ],
+    ciphertext: Uint8Array(34) [ 91, 169, 149, 223, 45, 22, 10, 146, 29, 109, 65, 241, 62, 45, 108, 47, 155, 171, 73, 140, 83, 221, 161, 44, 235, 151, 98, 178, 31, 241, 191, 20, 92, 7 ]
+  },
+  header: {
+    iv: Uint8Array(12) [ 206, 134, 104, 99, 207, 101, 154, 72, 194, 75, 70, 189 ],
+    ciphertext: Uint8Array(172) [ 189, 202, 139, 14, 74, 140, 40, 54, 153, 120, 143, 169, 193, 172, 236, 91, 168, 117, 127, 46, 163, 21, 169, 22, 59, 152, 173, 66, 95, 103, 135, 234, 154, 31, 202, 166, 228, 47, 217, 218, 126, 145, 64, 230, 122, 186, 157, 0, 123, 146, 254, 122, 190, 93, 201, 171, 113, 242, 206, 198, 198, 207, 167, 200, 97, 131, 226, 191, 217, 4, 241, 33, 202, 42, 8, 35, 67, 225, 39, 214, 141, 221, 9, 25, 28, 177, 160, 16, 130, 39, 111, 243, 114, 209, 216, 173, 234, 21, 191, 240, 225, 3, 90, 33, 36, 144, 190, 89, 42, 220, 20, 244, 76, 176, 166, 114, 130, 202, 138, 87, 30, 176, 3, 220, 250, 227, 39, 165, 3, 184, 193, 73, 111, 69, 207, 195, 37, 57, 70, 107, 81, 158, 133, 251, 207, 77, 66, 248, 187, 159, 52, 28, 131, 27, 118, 249, 66, 37, 4, 33, 172, 8, 254, 169, 88, 247, 244, 234, 41, 66, 145, 10 ]
+  }
+}
+Alice receives: This is message 1!
+Bob receives: This is message 3!
+Alice receives: This is message 4!
+Alice receives: This is message 2!
+```
+
+As you can see, you get a beautifully encrypted header. Now if you excuse me, I'm gonna go to sleep, it's 0:42 in the morning.
+
+The final version of the code can be found <a href="/files/double-ratchet.ts" download="double-ratchet.ts">here</a>.
+
+### Final notes
 
 Well congratulations, you've finally completed implementing the Double Ratchet algorithm, give yourself a hug or something.
 
@@ -1519,7 +1969,7 @@ There are still some final stuff you could improve on:
 
 1. Currently, there is no limit to how many skipped message keys can be stored. The Signal document recommends creating one, since an attacker could send a bunch of fake messages which would just steal computational power. In practice, this limit is around 1000.
 2. In our controlled environment the messages sent between Alice and Bob are supervised, but in a real world attackers could try sending random fake messages to the parties. This won't cause problems, but the code doesn't handle decryption problems yet. This means, that if a fake (or even corrupted) message is received, it'll just throw an uncatched error.
-3. The headers are not encrypted. This could theoretically give the option for attackers (or the server itself) to modify the header, which can cause unwanted effects. Signal's document [mentions how you could encrypt the headers](https://signal.org/docs/specifications/doubleratchet/#double-ratchet-with-header-encryption). This is fortunately comming soon, so make sure to check back later! 
+3. Technically, the `DoubleRatchet`'s `RPN` and `RK` properties are completely unused. You can remove them if you want.
 
 Anyway, have fun!
 
@@ -1531,5 +1981,6 @@ This thing is complicated.
 
 1. Matrix's Megolm algorithm for group communication
 2. Signal's Sesame algorithm for managing sessions between multiple devices
+3. Examples for post-quantum cryptography
 
 Have a nice day!

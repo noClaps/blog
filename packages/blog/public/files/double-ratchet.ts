@@ -9,20 +9,49 @@ function toHex(buffer: ArrayBufferLike) {
         .join("");
 }
 
+function fromHex(hex: string) {
+    return new Uint8Array(hex.match(/.{1,2}/g)!.map((byte) => parseInt(byte, 16)));
+}
+
+/**
+ * Options for initialising a DoubleRatchet instance.
+ */
+interface InitOptions {
+    /**
+     * The public key of the remote party.
+     */
+    pubkey: Uint8Array;
+    /**
+     * Our next receiving header key.
+     */
+    NRHK: Uint8Array;
+    /**
+     * Our sending header key.
+     */
+    SHK: Uint8Array;
+}
+
+/**
+ * A little type jugglery to make the return type of DoubleRatchet.build() work.
+ */
+type DRInit<T extends InitOptions | undefined> = T extends InitOptions
+    ? DoubleRatchet
+    : { dr: DoubleRatchet; SHK: Uint8Array; NRHK: Uint8Array };
+
 interface RawMessage {
-    iv: ArrayBufferLike;
-    ciphertext: ArrayBufferLike;
+    iv: Uint8Array;
+    ciphertext: Uint8Array;
 }
 
 interface Header {
-    pubkey: ArrayBufferLike;
+    pubkey: Uint8Array;
     N: number;
     PN: number;
 }
 
 interface MessageBundle {
     rawMessage: RawMessage;
-    header: Header;
+    header: RawMessage;
 }
 
 /**
@@ -66,13 +95,14 @@ class DHRatchet {
         this.#keyChain = await crypto.generateKey({ name: "ECDH", namedCurve: "P-256" }, true, ["deriveBits"]);
     }
 
-    getPubkey() {
+    async getPubkey() {
         if (!this.#keyChain) throw new Error("DHRatchet not initialized");
 
-        return crypto.exportKey("raw", this.#keyChain.publicKey);
+        const k = await crypto.exportKey("raw", this.#keyChain.publicKey);
+        return new Uint8Array(k);
     }
 
-    async turn(pubkey: ArrayBuffer, newKey: boolean = false) {
+    async turn(pubkey: Uint8Array, newKey: boolean = false) {
         if (!this.#keyChain) throw new Error("DHRatchet not initialized");
 
         // if needed, generate a new key pair
@@ -87,14 +117,16 @@ class DHRatchet {
         const dhOutput = await crypto.deriveBits({ name: "ECDH", public: publicKey }, this.#keyChain.privateKey, 32 * 8);
 
         // use the DH output as the HKDF salt
+        // generate 96 bytes of output (32 = new state, 32 = seed for next ratchet, 32 = next header key)
         const state = await crypto.importKey("raw", this.#state, { name: "HKDF" }, false, ["deriveBits"]);
-        const newState = await crypto.deriveBits({ name: "HKDF", hash: "SHA-512", salt: dhOutput, info: hkdfInfo }, state, 64 * 8);
+        const newState = await crypto.deriveBits({ name: "HKDF", hash: "SHA-512", salt: dhOutput, info: hkdfInfo }, state, 3 * 32 * 8);
 
-        // set the state to the first 32 bytes and the final output to the last 32 bytes
+        // set the state to the first 32 bytes and the two outputs to the next 64 bytes
         this.#state = new Uint8Array(newState, 0, 32);
-        const final = new Uint8Array(newState, 32, 32);
+        const o1 = new Uint8Array(newState, 32, 32);
+        const o2 = new Uint8Array(newState, 64, 32);
 
-        return final;
+        return { o1, o2 };
     }
 
     static async build(seed: Uint8Array) {
@@ -126,29 +158,41 @@ class DoubleRatchet {
     #SPN: number = 0;
     #RPN: number = 0;
 
-    #skippedKeys = new Array<{ pubkey: string; N: number; key: ArrayBuffer }>();
+    /**
+     * (Next) header keys for sending and receiving
+     */
+    #SHK: Uint8Array | undefined;
+    #NSHK: Uint8Array | undefined;
+    #RHK: Uint8Array | undefined;
+    #NRHK: Uint8Array | undefined;
+
+    #skippedKeys = new Array<{ headerKey: string; N: number; messageKey: Uint8Array }>();
 
     constructor() {
         this.root = new DHRatchet();
     }
 
-    async #turn(pubkey: ArrayBuffer) {
+    async #turn(pubkey: Uint8Array) {
         this.#RK = toHex(pubkey);
 
         // step 1: turn the root ratchet and use it for the receiving ratchet's seed
-        const receiveSeed = await this.root.turn(pubkey);
+        const { o1: receiveSeed, o2: NRHK } = await this.root.turn(pubkey);
         this.#receive = new SymRatchet(receiveSeed);
         this.#RPN = this.#RN;
         this.#RN = 0;
+        if (this.#NRHK) this.#RHK = this.#NRHK;
+        this.#NRHK = NRHK;
 
         // step 2: turn the root ratchet again - this time with a new key - and use it for the sending ratchet's seed
-        const sendSeed = await this.root.turn(pubkey, true);
+        const { o1: sendSeed, o2: NSHK } = await this.root.turn(pubkey, true);
         this.#send = new SymRatchet(sendSeed);
         this.#SPN = this.#SN;
         this.#SN = 0;
+        if (this.#NSHK) this.#SHK = this.#NSHK;
+        this.#NSHK = NSHK;
     }
 
-    async encrypt(message: ArrayBuffer): Promise<MessageBundle> {
+    async encrypt(message: Uint8Array): Promise<MessageBundle> {
         if (!this.#send) throw new Error("DoubleRatchet not initialized");
 
         // generate random IV
@@ -156,89 +200,170 @@ class DoubleRatchet {
 
         // turn the send ratchet to create a message key
         const messageKey = await crypto.importKey("raw", await this.#send.turn(), { name: "AES-GCM" }, false, ["encrypt"]);
-        const ciphertext = await crypto.encrypt({ name: "AES-GCM", iv }, messageKey, message);
+        const ciphertext = new Uint8Array(await crypto.encrypt({ name: "AES-GCM", iv }, messageKey, message));
 
         const header: Header = {
             pubkey: await this.root.getPubkey(),
             N: this.#SN,
-            PN: this.#SPN,
+            PN: this.#SPN
         };
+
+        // encrypt the header
+        const headerKey = await crypto.importKey("raw", this.#SHK!, { name: "AES-GCM" }, false, ["encrypt"]);
+        const headerPlainText = new TextEncoder().encode(
+            JSON.stringify({
+                pubkey: toHex(header.pubkey),
+                N: header.N,
+                PN: header.PN
+            })
+        );
+        const headerIv = globalThis.crypto.getRandomValues(new Uint8Array(12));
+        const headerCiphertext = new Uint8Array(await crypto.encrypt({ name: "AES-GCM", iv: headerIv }, headerKey, headerPlainText));
 
         this.#SN++;
 
-        return { rawMessage: { iv, ciphertext }, header };
+        return { rawMessage: { iv, ciphertext }, header: { iv: headerIv, ciphertext: headerCiphertext } } satisfies MessageBundle;
     }
 
-    async #decrypt(rawMessage: RawMessage, messageKey: CryptoKey): Promise<ArrayBuffer> {
+    async #decrypt(rawMessage: RawMessage, messageKey: CryptoKey) {
         const { iv, ciphertext } = rawMessage;
 
         // decrypt the message
-        return crypto.decrypt({ name: "AES-GCM", iv }, messageKey, ciphertext);
+        return crypto.decrypt({ name: "AES-GCM", iv }, messageKey, ciphertext).then(pt => new Uint8Array(pt));
+    }
+
+    async #decryptHeader(header: RawMessage): Promise<{ header: Header; doTurn: boolean } | null> {
+        let headerPlainText: Uint8Array | null = null;
+        let doTurn = false;
+
+        // step 1: try the current header key
+        try {
+            if (!this.#RHK) throw new Error("No RHK");
+
+            const headerKey = await crypto.importKey("raw", this.#RHK, { name: "AES-GCM" }, false, ["decrypt"]);
+            headerPlainText = new Uint8Array(await crypto.decrypt({ name: "AES-GCM", iv: header.iv }, headerKey, header.ciphertext));
+        } catch (e) {}
+
+        // step 2: try the next header key
+        try {
+            if (!this.#NRHK) throw new Error("No NRHK");
+
+            const headerKey = await crypto.importKey("raw", this.#NRHK, { name: "AES-GCM" }, false, ["decrypt"]);
+            headerPlainText = new Uint8Array(await crypto.decrypt({ name: "AES-GCM", iv: header.iv }, headerKey, header.ciphertext));
+            doTurn = true;
+        } catch (e) {}
+
+        if(!headerPlainText) return null;
+
+        const headerJson = JSON.parse(new TextDecoder().decode(headerPlainText));
+
+        return {
+            header: {
+                pubkey: fromHex(headerJson.pubkey),
+                N: headerJson.N,
+                PN: headerJson.PN
+            },
+            doTurn
+        };
     }
 
     async processMessage(message: MessageBundle) {
         // check if we already have a key for this message
-        const skippedKey = this.#skippedKeys.find((k) => k.pubkey === toHex(message.header.pubkey) && k.N === message.header.N);
-        if (skippedKey) {
-            const messageKey = await crypto.importKey("raw", skippedKey.key, { name: "AES-GCM" }, false, ["decrypt"]);
-            this.#skippedKeys.splice(this.#skippedKeys.indexOf(skippedKey), 1); // remove the key from the skipped keys array
-            return this.#decrypt(message.rawMessage, messageKey);
+        // unfortunately, this'll be very ugly: we'll linearly search the array for the key that decrypts the header
+        // if we manage to decrypt the header, we'll first check if the N values match, and if they do, we'll use the key to decrypt the message
+        let foundHeaderKey: CryptoKey | null = null;
+        for (const { headerKey, N, messageKey } of this.#skippedKeys) {
+            try {
+                let key: CryptoKey | null = foundHeaderKey;
+                if (!key) key = await crypto.importKey("raw", fromHex(headerKey), { name: "AES-GCM" }, false, ["decrypt"]);
+                const headerPlainText = await crypto.decrypt({ name: "AES-GCM", iv: message.header.iv }, key, message.header.ciphertext);
+
+                // at this point, we know the key is correct, let's speed up the search by saving it
+                foundHeaderKey = key;
+
+                const headerJson = JSON.parse(new TextDecoder().decode(headerPlainText));
+
+                // check if the N values match
+                if (headerJson.N !== N) continue;
+
+                // we found the key, decrypt the message
+                const mKey = await crypto.importKey("raw", messageKey, { name: "AES-GCM" }, false, ["decrypt"]);
+                return this.#decrypt(message.rawMessage, mKey);
+            } catch {
+                continue;
+            }
         }
 
-        const doTurn = this.#RK !== toHex(message.header.pubkey);
+        // decrypt the header
+        const decryptedHeader = await this.#decryptHeader(message.header);
+        if (!decryptedHeader) throw new Error("Invalid/corrupt message");
+
+        const { header, doTurn } = decryptedHeader;
 
         // calculate the number of skipped messages in the previous ratchet if we're about to do a root turn
         if (doTurn) {
-            const skippedPrev = message.header.PN - this.#RN;
+            const skippedPrev = header.PN - this.#RN;
             const offset = this.#RN; // this is needed to correctly calculate the skipped keys
 
             for (let i = 0; i < skippedPrev; i++) {
                 const key = await this.#receive!.turn();
-                this.#skippedKeys.push({ pubkey: this.#RK, N: i + offset, key });
+                this.#skippedKeys.push({ headerKey: toHex(this.#RHK!), N: i + offset, messageKey: key });
             }
+
+            await this.#turn(header.pubkey);
         }
 
-        // do a turn if needed
-        if (doTurn) await this.#turn(message.header.pubkey);
-
         // calculate the number of skipped messages in the current ratchet
-        const skipped = doTurn ? message.header.N : message.header.N - this.#RN;
+        const skipped = doTurn ? header.N : header.N - this.#RN;
         const offset = doTurn ? 0 : this.#RN; // this is needed to correctly calculate the skipped keys
 
         for (let i = 0; i < skipped; i++) {
             const key = await this.#receive!.turn();
-            this.#skippedKeys.push({ pubkey: toHex(message.header.pubkey), N: i + offset, key });
+            this.#skippedKeys.push({ headerKey: toHex(this.#RHK!), N: i + offset, messageKey: key });
         }
 
         // update RN
-        this.#RN = message.header.N + 1;
+        this.#RN = header.N + 1;
 
         // decrypt the message
         const messageKey = await crypto.importKey("raw", await this.#receive!.turn(), { name: "AES-GCM" }, false, ["decrypt"]);
         return this.#decrypt(message.rawMessage, messageKey);
     }
 
-    static async build(seed: Uint8Array, pubkey?: ArrayBuffer) {
+    static async build<T extends InitOptions | undefined>(seed: Uint8Array, init: T) {
         const dr = new DoubleRatchet();
         dr.root = await DHRatchet.build(seed);
 
-        if (pubkey) {
-            // a new keychain is not needed, since DHRatchet.build() automatically creates a new key pair
-            const dhOutput = await dr.root.turn(pubkey);
-            dr.#send = new SymRatchet(dhOutput);
+        if (init) {
+            // initialize the header keys
+            dr.#SHK = init.SHK;
+            dr.#NRHK = init.NRHK;
+
+            // turn the root ratchet to create the send ratchet and the next receive ratchet
+            const { o1: sendSeed, o2: NSHK } = await dr.root.turn(init.pubkey);
+            dr.#send = new SymRatchet(sendSeed);
+            dr.#NSHK = NSHK;
+
+            return <DRInit<T>>dr;
         }
 
-        return dr;
+        // if there are no init options, we're the first party, generate our sending header key and next receiving header key
+        dr.#SHK = globalThis.crypto.getRandomValues(new Uint8Array(32));
+        dr.#NRHK = globalThis.crypto.getRandomValues(new Uint8Array(32));
+
+        // return the DR session and the header keys for the other party
+        return <DRInit<T>>{ dr, SHK: dr.#NRHK, NRHK: dr.#SHK };
     }
 }
 
 const seed = globalThis.crypto.getRandomValues(new Uint8Array(32));
 
-const alice = await DoubleRatchet.build(seed);
-const bob = await DoubleRatchet.build(seed, await alice.root.getPubkey());
+const { dr: alice, NRHK, SHK } = await DoubleRatchet.build(seed, undefined);
+const bob = await DoubleRatchet.build(seed, { pubkey: await alice.root.getPubkey(), NRHK, SHK });
 
 // Bob sends message 1 and 2 to Alice
 const message1 = await bob.encrypt(new TextEncoder().encode("This is message 1!"));
+console.log("Bob sends:", message1);
 const message2 = await bob.encrypt(new TextEncoder().encode("This is message 2!"));
 
 // message 1 arrives, 2 is delayed

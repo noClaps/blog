@@ -47,7 +47,7 @@ async function setupX3DH(): Promise<X3DHObject> {
         onetimeKeys.push({
             public: keyPair.publicKey,
             private: keyPair.privateKey,
-            id: i,
+            id: i
         });
     }
 
@@ -57,7 +57,7 @@ async function setupX3DH(): Promise<X3DHObject> {
         identityKeyPair,
         preKeyPair,
         preKeySignature,
-        onetimeKeys,
+        onetimeKeys
     };
 }
 
@@ -81,7 +81,7 @@ function getPrekeyBundle(user: X3DHObject): PrekeyBundle {
         preKey: user.preKeyPair.publicKey,
         preKeySignature: user.preKeySignature,
         oneTimeKey: oneTimeKey?.public ?? undefined,
-        oneTimeID: oneTimeKey?.id ?? undefined,
+        oneTimeID: oneTimeKey?.id ?? undefined
     };
 }
 
@@ -156,7 +156,7 @@ async function createX3DHRequest(user: X3DHObject, bundle: PrekeyBundle): Promis
         JSON.stringify({
             identityKey: toHex(await crypto.exportKey("raw", user.identityKeyPair.publicKey)),
             ephemeralKey: toHex(await crypto.exportKey("raw", ephemeralKey.publicKey)),
-            oneTimeID: bundle.oneTimeID,
+            oneTimeID: bundle.oneTimeID
         })
     );
 
@@ -172,7 +172,7 @@ async function createX3DHRequest(user: X3DHObject, bundle: PrekeyBundle): Promis
         identityKey: user.identityKeyPair.publicKey,
         ephemeralKey: ephemeralKey.publicKey,
         oneTimeID: bundle.oneTimeID ?? undefined,
-        ciphertext,
+        ciphertext
     };
 }
 
@@ -183,14 +183,7 @@ async function acceptX3DHRequest(user: X3DHObject, request: X3DHRequest) {
     const DH2 = await crypto.deriveBits({ name: "ECDH", public: request.ephemeralKey }, user.identityKeyPair.privateKey, 256);
     const DH3 = await crypto.deriveBits({ name: "ECDH", public: request.ephemeralKey }, user.preKeyPair.privateKey, 256);
     const oneTimeKey = user.onetimeKeys.find((key) => key.id === request.oneTimeID);
-    const DH4 = oneTimeKey
-        ? await crypto.deriveBits(
-              { name: "ECDH", public: request.ephemeralKey },
-              oneTimeKey.private,
-              256
-          )
-        : undefined;
-
+    const DH4 = oneTimeKey ? await crypto.deriveBits({ name: "ECDH", public: request.ephemeralKey }, oneTimeKey.private, 256) : undefined;
 
     // concatenate the DH values
     const DH = new Uint8Array(request.oneTimeID ? 128 : 96);
