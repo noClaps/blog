@@ -69,7 +69,7 @@ class SymRatchet {
     async turn() {
         const state = await crypto.importKey("raw", this.#state, "HKDF", false, ["deriveBits"]);
 
-        // create a new state, the salt is just a single 0 byte
+        // create a new state, the salt is just an empty array
         const newState = await crypto.deriveBits({ name: "HKDF", hash: "SHA-512", salt: new Uint8Array(), info: hkdfInfo }, state, 64 * 8);
 
         // set the state to the first 32 bytes
@@ -205,7 +205,7 @@ class DoubleRatchet {
         const header: Header = {
             pubkey: await this.root.getPubkey(),
             N: this.#SN,
-            PN: this.#SPN
+            PN: this.#SPN,
         };
 
         // encrypt the header
@@ -214,7 +214,7 @@ class DoubleRatchet {
             JSON.stringify({
                 pubkey: toHex(header.pubkey),
                 N: header.N,
-                PN: header.PN
+                PN: header.PN,
             })
         );
         const headerIv = globalThis.crypto.getRandomValues(new Uint8Array(12));
@@ -229,7 +229,7 @@ class DoubleRatchet {
         const { iv, ciphertext } = rawMessage;
 
         // decrypt the message
-        return crypto.decrypt({ name: "AES-GCM", iv }, messageKey, ciphertext).then(pt => new Uint8Array(pt));
+        return crypto.decrypt({ name: "AES-GCM", iv }, messageKey, ciphertext).then((pt) => new Uint8Array(pt));
     }
 
     async #decryptHeader(header: RawMessage): Promise<{ header: Header; doTurn: boolean } | null> {
@@ -253,7 +253,7 @@ class DoubleRatchet {
             doTurn = true;
         } catch (e) {}
 
-        if(!headerPlainText) return null;
+        if (!headerPlainText) return null;
 
         const headerJson = JSON.parse(new TextDecoder().decode(headerPlainText));
 
@@ -261,9 +261,9 @@ class DoubleRatchet {
             header: {
                 pubkey: fromHex(headerJson.pubkey),
                 N: headerJson.N,
-                PN: headerJson.PN
+                PN: headerJson.PN,
             },
-            doTurn
+            doTurn,
         };
     }
 
