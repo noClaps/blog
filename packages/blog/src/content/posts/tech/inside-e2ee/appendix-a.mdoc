@@ -1,8 +1,99 @@
 ---
 title: "Appendix A: Safely storing private keys"
-description: You can't keep your browser open, can you?
+description: You can't keep your browser open forever, can you?
 date: 2023-11-29
 author: Mester
 ---
 
-TODO
+## The challenge
+
+In both the X3DH and Double Ratchet algorithms, we use a lot of private keys and states that must be kept a secret from the world. Unfortunately, this raises a problem: how are we going to store them, we can't just keep a browser open, or a device turned on forever!
+
+This appendix is all about this challenge: we'll compare storing keys on server and device, learn about `SubtleCrypto`'s built-in functionality for encrypting `CryptoKey` objects and finally update our Double Ratchet code with a state export and import feature, which we can use to pause and resume conversations whenever we like.
+
+{% toc headings=$toc /%}
+
+## Server or device?
+
+One of the most important question you have to ask when designing a system like this is where the keys are going to be stored? There are two options: either store them on the server or on the device. Both options have valid pros and cons, so let's take a look at them.
+
+### Security
+
+The most important aspect of this question is security. By storing the keys on device, you're drastically reducing the attack surface of your system. However, it's still recommended to use encryption, and if you do that already, why not use the server, right? The thing is, even if you trust the server to keep your encrypted keys safe, you have no guarantee that the server itself won't want to get access to your encrypted data. If you're a very important person, this might be a valid concern. Sure, it sounds like a conspiracy theory, but that's what threat modelling is all about: thinking about the worst case scenario and preparing for it.
+
+### Simplicity
+
+We also have to think about how seamless and simple the system is. Think about a user trying to log in to their account on a new device. If the keys are stored on the server, all they have to do is enter their password and they're good to go. If the keys are stored on device, they have to go through a whole process of exporting and importing keys, which is not only more complicated, but also more error prone. You can design the system to be more seamless and transparent to the user, but that would require a lot of work, and even then, it would still be more complicated than the server-based solution.
+
+### Privacy
+
+Privacy is also a big deal. Storing keys on device improves privacy by giving more control over the keys to the user. However, it also means that the user is responsible for keeping their keys safe. If they lose their device, they lose their keys, and with that, all their conversations. If the keys are stored on the server, the user doesn't have to worry about this, but they also have to trust the server, which we've discussed is not always a good idea.
+
+### Conclusion
+
+As you can see, both options have their pros and cons, and there's no clear winner. It's up to you to decide which one you want to use. In this tutorial, we'll be using a device-based solution, but you can easily adapt it to a server-based one.
+
+## Where's the encryption key?
+
+Now that we've decided where to store keys, we also need to figure out *how* to encrypt them. A simple solution would be to use the user's password as the encryption key for private data, but then changing the password will be very complicated. A much clearner solution would be a "master key", which will be responsible for encrypting all the other data. This way, when we change the password, we only have to re-encrypt a single key.
+
+```
+Password --encrypts--> Master key --encrypts--> Private data
+```
+
+### Securing the password
+
+Using a master key as a middle man is a great idea, but there's still a problem: if we encrypt the master key using the password, but then log in to the server using the same password, it's the same as if we just stored the private data unencrypted. We need to make sure that the server doesn't learn the necessary information to decrypt the master key. The solution is rather simple: don't use the password itself to authenticate.
+
+### From password to authentication key
+
+In the Double Ratchet Algorithm, we've used HKDF extensively. We can also use it to derive an authentication key from the password. This way, the server will not learn the password, but we can generate the same authentication key and use that to authenticate.
+
+It's also time we play around with the HKDF's info parameter. Previously we've only used constant strings, but now we'll use it to influence the HKDF output. The input will be our password, the salt will be an empty `Uint8Array`, and the info parameter is going to be used to generate either the authentication key or the encryption key for the master key.
+
+```typescript
+const crypto = globalThis.crypto.subtle;
+
+const password = "flA3_24%xD-!p2aYr";
+
+type KeyType = "authentication" | "masterEnc";
+type Key<T extends KeyType> = T extends "authentication" ? string : CryptoKey;
+
+async function generateKey<T extends KeyType>(password: string, type: T): Promise<Key<T>> {
+    // read the password and pass it through HKDF
+    const rawPassword = new TextEncoder().encode(password);
+    const passwordKey = await crypto.importKey("raw", rawPassword, { name: "HKDF" }, false, ["deriveBits"]);
+
+    // salt: empty Uint8Array, info: type
+    const bits = await crypto.deriveBits({ name: "HKDF", hash: "SHA-256", salt: new Uint8Array(), info: new TextEncoder().encode(type) }, passwordKey, 256);
+
+    // if it's the authentication key, we need to convert the bytes to a hex string
+    // otherwise, return the bytes as an AES key
+    if (type === "authentication") {
+        return <Key<T>>Array.from(new Uint8Array(bits)).map((b) => b.toString(16).padStart(2, "0")).join("");
+    } else {
+        return <Promise<Key<T>>>crypto.importKey("raw", bits, { name: "AES-GCM" }, false, ["encrypt", "decrypt"]);
+    }
+}
+
+console.log("Authentication key:", await generateKey(password, "authentication"));
+console.log("Master key encryption:", await generateKey(password, "masterEnc"));
+```
+
+Output:
+
+```
+Authentication key: 18b9ee73b57bde696112acebe89c370cc4923c835e58ea27ea9c8aa1020b2c72
+Master key encryption: CryptoKey {
+  type: "secret",
+  extractable: false,
+  algorithm: {
+    name: "AES-GCM"
+  },
+  usages: [ "decrypt", "encrypt" ]
+}
+```
+
+The `generateKey` function returns a string or a CryptoKey based on what the key type is. There's a little type jugglery to make TypeScript report the correct return type. You cannot see the actual data of the key, but if you console logged the raw bits instead of the final value, you'd find they're indeed different.
+
+Now let's put this into practice: we'll design a class that will simulate a log in process and then encrypt some random secret using a master key. This class will also have a way of exporting/importing values - also called deserialisation/serialisation.

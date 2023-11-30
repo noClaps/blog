@@ -10,6 +10,8 @@ author: Mester
 Welcome back to the part 2 of the series on end-to-end encryption. In the first part, we looked at the basics of end-to-end encryption and how it works. In this part, we will look at the X3DH protocol, 
 which is used by the Signal protocol to establish a shared secret between two parties.
 
+{% toc headings=$toc /%}
+
 ### Why bother?
 
 You might ask: "Why do we need a key agreement protocol? Why can't we just use DH?" You might think that X3DH helps prevent MITM attacks, but that's not actually case. It improves deniability by having forward secrecy, but the two parties must still verify that their keys haven't been altered during transit. Another advantage of X3DH is that it's asynchronous, meaning that the two parties don't have to be online at the same time to establish a shared secret. This is especially useful for messaging apps, where users are often offline.
