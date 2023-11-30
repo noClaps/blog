@@ -19,7 +19,7 @@ One of the most important question you have to ask when designing a system like 
 
 ### Security
 
-The most important aspect of this question is security. By storing the keys on device, you're drastically reducing the attack surface of your system. However, it's still recommended to use encryption, and if you do that already, why not use the server, right? The thing is, even if you trust the server to keep your encrypted keys safe, you have no guarantee that the server itself won't want to get access to your encrypted data. If you're a very important person, this might be a valid concern. Sure, it sounds like a conspiracy theory, but that's what threat modelling is all about: thinking about the worst case scenario and preparing for it.
+The most important aspect of this question is security. By storing the keys on device, you're drastically reducing the attack surface of your system. However, it's still recommended to use encryption, and if you do that already, why not just use the server, right? The thing is, even if you trust the server to keep your encrypted keys safe, you have no guarantee that the server itself won't want to get access to your encrypted data. For some people, this might be a valid concern. Sure, it sounds like a conspiracy theory, but that's what threat modelling is all about: thinking about the worst case scenario and preparing for it.
 
 ### Simplicity
 
@@ -65,12 +65,18 @@ async function generateKey<T extends KeyType>(password: string, type: T): Promis
     const passwordKey = await crypto.importKey("raw", rawPassword, { name: "HKDF" }, false, ["deriveBits"]);
 
     // salt: empty Uint8Array, info: type
-    const bits = await crypto.deriveBits({ name: "HKDF", hash: "SHA-256", salt: new Uint8Array(), info: new TextEncoder().encode(type) }, passwordKey, 256);
+    const bits = await crypto.deriveBits(
+        { name: "HKDF", hash: "SHA-256", salt: new Uint8Array(), info: new TextEncoder().encode(type) },
+        passwordKey,
+        256
+    );
 
     // if it's the authentication key, we need to convert the bytes to a hex string
     // otherwise, return the bytes as an AES key
     if (type === "authentication") {
-        return <Key<T>>Array.from(new Uint8Array(bits)).map((b) => b.toString(16).padStart(2, "0")).join("");
+        return <Key<T>>Array.from(new Uint8Array(bits))
+            .map((b) => b.toString(16).padStart(2, "0"))
+            .join("");
     } else {
         return <Promise<Key<T>>>crypto.importKey("raw", bits, { name: "AES-GCM" }, false, ["encrypt", "decrypt"]);
     }
@@ -94,6 +100,248 @@ Master key encryption: CryptoKey {
 }
 ```
 
-The `generateKey` function returns a string or a CryptoKey based on what the key type is. There's a little type jugglery to make TypeScript report the correct return type. You cannot see the actual data of the key, but if you console logged the raw bits instead of the final value, you'd find they're indeed different.
+The `generateKey` function returns a string or a CryptoKey based on what the key type is. There's a little type jugglery to make TypeScript report the correct return type. You cannot see the actual data of the key, but if you console logged the raw bits instead of the final value, you'd find they're indeed different. You can also change the password and see how it affects the output.
 
-Now let's put this into practice: we'll design a class that will simulate a log in process and then encrypt some random secret using a master key. This class will also have a way of exporting/importing values - also called deserialisation/serialisation.
+Now you can send this authentication key when registering or logging in to the server, and the server can use it to authenticate you. The server will never learn the password, and you can use the same password to encrypt the master key.
+
+{% warning title="Storing authentication keys on the server" %}
+This authentication key functions similarly to a user's password. Therefore, the same security practices that apply to storing "regular" passwords on the server should also be followed for this key. While these practices are not covered in this tutorial, you can find ample resources on the internet for guidance.
+{% /warning %}
+
+### Encrypting the master key
+
+Before we move on, let's see how we can use the encryption key to encrypt a `CryptoKey` object. `SubtleCrypto` has a built-in `SubtleCrypto.wrapKey()` function which encrypts a `CryptoKey` object using a so-called wrapping key . It's very similar to the encrypt function, but it has an extra export format parameter, which is used to specify the format the encrypted key is exported to. This also means you can only use this function on keys where you've specified the `extractable` parameter to be `true`.
+
+For the format, I recommend using `jwk`, which is a JSON representation of the key. It works with both private and public keys, and it's generally easier to work with.
+
+To decrypt the key, we can use the `SubtleCrypto.unwrapKey()` function, which is the opposite of `wrapKey()`. It takes the encrypted key, the encryption key and the format as parameters, and returns the decrypted key.
+
+{% note %}
+`wrapKey` is basically export + encrypt, and `unwrapKey` is decrypt + import.
+{% /note %}
+
+```typescript
+async function generateKey<T extends KeyType>(password: string, type: T): Promise<Key<T>> {
+    ...
+
+    if (type === "authentication") {
+        ...
+    } else {
+        return <Promise<Key<T>>>crypto.importKey("raw", bits, { name: "AES-GCM" }, false, ["encrypt", "decrypt", "wrapKey", "unwrapKey"]);
+    }
+}
+```
+
+First we need to update our `generateKey` method to return a key with the `wrapKey` and `unwrapKey` usages, since they're required for the encryption and decryption. Then we can use the `wrapKey` function to encrypt a randomly generated master key.
+
+```typescript
+const masterKey = await crypto.generateKey({ name: "AES-GCM", length: 256 }, true, ["encrypt", "decrypt"]);
+
+const encKey = await generateKey(password, "masterEnc");
+const iv = globalThis.crypto.getRandomValues(new Uint8Array(12));
+
+const encryptedMasterKey = await crypto.wrapKey("jwk", masterKey, encKey, { name: "AES-GCM", iv });
+console.log("Encrypted master key:", encryptedMasterKey);
+```
+
+Output:
+```
+Encrypted master key: ArrayBuffer(138) [ 133, 66, 118, 177, 237, 42, 255, 158, 27, 134, 111, 209, 165, 134, 34, 238, 243, 87, 216, 240, 183, 138, 97, 205, 183, 74, 144, 163, 150, 11, 254, 116, 97, 1, 184, 248, 93, 201, 29, 110, 45, 163, 202, 244, 124, 140, 88, 58, 21, 152, 187, 142, 10, 94, 231, 79, 195, 123, 95, 44, 61, 40, 26, 69, 5, 43, 27, 138, 212, 220, 140, 251, 171, 201, 98, 17, 139, 104, 197, 129, 224, 50, 96, 254, 43, 17, 135, 76, 117, 108, 255, 175, 159, 104, 139, 243, 48, 165, 15, 155, 94, 149, 194, 243, 28, 187, 176, 95, 160, 141, 231, 99, 204, 168, 65, 71, 11, 165, 150, 124, 189, 196, 10, 30, 86, 238, 240, 65, 49, 189, 111, 108, 197, 44, 120, 211, 157, 150 ]
+```
+
+If you're interested, this is how the key would look decrypted:
+```typescript
+{
+  alg: "A256GCM",
+  ext: true,
+  k: "py-EhRdTKlFjSsfldwH_gi31AAjKwHl7EKvEKPhyrOw",
+  key_ops: [ "decrypt", "encrypt" ],
+  kty: "oct"
+}
+```
+
+## It's all coming together
+
+Now let's put this into practice: we'll design a class that will simulate an E2EE client of some sort. This class will have a private property `#secret`, which we want to keep hidden. It'll have a method for registering a new user, which will generate a master key and secret data, and use the password to encrypt them. For deserialisation, it'll have a login method which will decrypt the master key and secret data, and store them in the `#secret` property. Finally, it'll have a method for exporting the secret data, which will encrypt the secret data using the master key, and return the encrypted data. Later, we'll see how we can store this data in the browser.
+
+### Registering
+
+```typescript
+class Client {
+    /**
+     * The secret data we have to secure
+     */
+    #secret: Uint8Array;
+
+    /**
+     * The master key of the client
+     */
+    #masterKey: CryptoKey;
+
+    /**
+     * The key used to encrypt the master key
+     */
+    #masterEnc: CryptoKey;
+
+    constructor(secret: Uint8Array, masterKey: CryptoKey, masterEnc: CryptoKey) {
+        this.#secret = secret;
+        this.#masterKey = masterKey;
+        this.#masterEnc = masterEnc;
+    }
+
+    async export() {
+        return "error: not implemented";
+    }
+
+    /**
+     * A function to simulate creating a new user
+     * @param password The password of the user
+     */
+    static async register(password: string) {
+        // generate a random master key
+        const masterKey = await crypto.generateKey({ name: "AES-GCM", length: 256 }, true, ["encrypt", "decrypt"]);
+
+        // generate a random secret
+        const secret = globalThis.crypto.getRandomValues(new Uint8Array(32));
+
+        // generate the encryption key for the master key
+        const masterEnc = await generateKey(password, "masterEnc");
+        
+        const client = new Client(secret, masterKey, masterEnc);
+
+        // now generate the authentication key
+        const authenticationKey = await generateKey(password, "authentication");
+
+        // this is where we would send the authentication key to the server and implement the rest of the registration process
+        console.log("Registering user with authentication key:", authenticationKey);
+
+        return client;
+    }
+}
+```
+
+So far we have a static `register` function which generates a master key, secret and authenticates the user (we don't have a server here, the communication with the server is therefore only simulated). Now we have to think about how we should implement the `export` function. This function should return some data that we can store on device and use it to later resume the client. This means, it needs to include the master key and the secret. We already have the master encryption key stored in the `#masterEnc`, so we just need to add some `encrypt` and `wrapKey` calls to the function.
+
+For both operations however, we will need an IV. We can actually generate a completely new one every time we export the client, and just store it alongside the ciphertext. This also increases the security of the encryption, since the same plaintext will never be encrypted with the same key and IV.
+
+### Exporting
+
+```typescript
+class Client {
+    async export() {
+        // encrypt the secret with the master key
+        const secretIV = globalThis.crypto.getRandomValues(new Uint8Array(12));
+        const secretEnc = await crypto.encrypt({ name: "AES-GCM", iv: secretIV }, this.#masterKey, this.#secret);
+        const secretCipherText = new Uint8Array(secretEnc.byteLength + secretIV.byteLength);
+        secretCipherText.set(new Uint8Array(secretIV), 0);
+        secretCipherText.set(new Uint8Array(secretEnc), secretIV.byteLength);
+
+        // encrypt the master key with the master encryption key
+        const masterIV = globalThis.crypto.getRandomValues(new Uint8Array(12));
+        const masterEnc = await crypto.wrapKey("jwk", this.#masterKey, this.#masterEnc, { name: "AES-GCM", iv: masterIV });
+        const masterCipherText = new Uint8Array(masterEnc.byteLength + masterIV.byteLength);
+        masterCipherText.set(new Uint8Array(masterIV), 0);
+        masterCipherText.set(new Uint8Array(masterEnc), masterIV.byteLength);
+
+        // return the encrypted secret and master key as an object
+        return {
+            secret: toHex(secretCipherText),
+            master: toHex(masterCipherText)
+        };
+    }
+}
+```
+The process is same for both the secret and master key: generate an IV, encrypt the data, and concatenate the IV and the ciphertext. The return value is an object, with the encrypted secret and master key as hex strings.
+
+Here's how to use the `export` function:
+```typescript
+const client = await Client.register(password);
+const exported = await client.export();
+
+console.log("Exported:", exported);
+```
+
+Output:
+```
+Registering user with authentication key: 18b9ee73b57bde696112acebe89c370cc4923c835e58ea27ea9c8aa1020b2c72
+Exported: {
+  secret: "12590f9d13af8fe0ad69cdeb6fd322eed8aac9d21089584a79530ce5d0c53636b056dc0cd2cc732c7380499cd5c8b4f965a05a34f1b8cd8e2eae74bd",
+  master: "ee27a0b77d089f55bdc57e19a99fe28a89e585e0493e60b06d4d44088e462f1c7041a7cb651d909682f0df88e471d4ec21cfc8c704e5a13052914a11ad6d807b260cf624df1745a9039983b89c9efef061e4106e056cad3e4cd93afdb5a8952ffafaa6ad80c6894781a775597745c934285570fceb970ef6db7893dbc20024f8dfefe2fc9fec99aa00ffd2f949ee5c3e78a702c91cea"
+}
+```
+
+### Logging in
+
+Now that we can export the client, we also need to be able to import it. This is what we'll do in the `login` function. This function will take the exported data as a parameter, and use the password to first decrypt the master key, then the secret. Finally, it'll rebuild the client and return it.
+
+```typescript
+class Client {
+    static async login(state: Awaited<ReturnType<Client["export"]>>, password: string) {
+        // generate the authentication key
+        const authenticationKey = await generateKey(password, "authentication");
+
+        // this is where we would send the authentication key to the server and implement the rest of the login process
+        console.log("Logging in user with authentication key:", authenticationKey);
+
+        // decrypt the master key
+        const masterEncKey = await generateKey(password, "masterEnc");
+        const masterCipherText = fromHex(state.master);
+        const masterIV = masterCipherText.slice(0, 12);
+        const masterEnc = masterCipherText.slice(12);
+        const masterKey = await crypto.unwrapKey(
+            "jwk",
+            masterEnc,
+            masterEncKey,
+            { name: "AES-GCM", iv: masterIV },
+            { name: "AES-GCM", length: 256 },
+            true,
+            ["encrypt", "decrypt"]
+        );
+
+        // decrypt the secret
+        const secretCipherText = fromHex(state.secret);
+        const secretIV = secretCipherText.slice(0, 12);
+        const secretEnc = secretCipherText.slice(12);
+        const secret = await crypto.decrypt({ name: "AES-GCM", iv: secretIV }, masterKey, secretEnc).then((pt) => new Uint8Array(pt));
+
+        return new Client(secret, masterKey, masterEncKey);
+    }
+}
+```
+
+Right at the start, we do something very confusing in the parameters of the function. This `Awaited<ReturnType<Client["export"]>>` is using TypeScript's utility types to automatically extract the return type of the `export` function. If you later change the `export` function to include more encrypted data, this type will automatically update to include that data as well. This is a very useful feature, and I recommend you to use it whenever you can. The `Awaited` part is there because the `export` function is asynchronous, and we want only the actual object it returns, not the promise.
+
+The rest is pretty simple: we first use the authentication key to log in to the server, then generate the master encryption key and decrypt the master key and secret. Finally, we return a new client with the decrypted data. For both the master key and secret, the process is the same: we slice the IV and ciphertext from the exported data, and use the `unwrapKey` and `decrypt` functions to decrypt them.
+
+Let's see if it works:
+```typescript
+const client = await Client.register(password);
+console.log(client);
+const exported = await client.export();
+
+const client2 = await Client.login(exported, password);
+console.log(client2);
+```
+
+Console logging the clients will not show private members if you're running the script with Node.js (tested with version v20.9.0). I'm using [Bun](https://bun.sh), which does show private members, so here's the output (removed unnecessary party):
+
+```
+Registering user with authentication key: 18b9ee73b57bde696112acebe89c370cc4923c835e58ea27ea9c8aa1020b2c72
+Client {
+  [Symbol(#secret)]: Uint8Array(32) [ 156, 56, 246, 147, 13, 125, 45, 207, 207, 242, 136, 75, 134, 62, 77, 112, 86, 83, 107, 123, 194, 48, 71, 79, 129, 142, 215, 207, 230, 75, 152, 42 ]
+}
+Logging in user with authentication key: 18b9ee73b57bde696112acebe89c370cc4923c835e58ea27ea9c8aa1020b2c72
+Client {
+  [Symbol(#secret)]: Uint8Array(32) [ 156, 56, 246, 147, 13, 125, 45, 207, 207, 242, 136, 75, 134, 62, 77, 112, 86, 83, 107, 123, 194, 48, 71, 79, 129, 142, 215, 207, 230, 75, 152, 42 ]
+}
+```
+
+You can see that the secret is the same in both clients, which means the encryption and decryption worked. The authentication key is also the same, this is how you could verify the code works if you're using Node.js.
+
+{% note %}
+Using some built-in Node functions, you can show the private members in console.log(), but I didn't want to bother with that.
+{% /note %}
+
+## Storing the client
+
+Now that we can export and import the client, we need to figure out how to store the exported data. Most modern browsers have a lot of interesting APIs for storing data, we'll look at IndexedDB. IndexedDB is a lot more complicated to use than localStorage, but it's also more secure and has a lot more features. It's also asynchronous, which means it doesn't block the main thread when working with large data sets. That won't be a problem for us, since we're only storing a few kilobytes of data, but it might matter for your app, in case you want to store more data on device.
