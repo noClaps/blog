@@ -58,9 +58,9 @@ class SymRatchet {
 }
 ```
 
-{% note %}
-The # symbol in #state marks it as a private member which cannot be accessed outside the class
-{% /note %}
+{% warning title="Protected members and their weakness" %}
+The # symbol in #state is a naming convention that marks a property or method "protected" and inaccessable outside the class. However, this does NOT mean it's completely safe from potential attacks. You must not rely solely on this to protect private data such as ratchet states, keychains etc.
+{% /warning %}
 
 There is a lot to unpack here (fortunately the comments help explain a lot).
 
