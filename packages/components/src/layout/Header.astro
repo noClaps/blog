@@ -1,12 +1,12 @@
 ---
-import { Home } from "lucide-astro";
+import Icon from "../Icon.astro";
 ---
 
 <header>
   {
     Astro.url.pathname !== "/" && Astro.url.pathname !== "" ? (
       <a href="/">
-        <Home />
+        <Icon name="home" />
       </a>
     ) : (
       <div />

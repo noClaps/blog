@@ -1,5 +1,5 @@
 ---
-import { StickyNote } from "lucide-astro";
+import { Icon } from "@noclaps/components";
 
 interface Props {
   title?: string;
@@ -10,7 +10,7 @@ const { title = "NOTE" } = Astro.props;
 
 <div class="note">
   <p>
-    <StickyNote />
+    <Icon name="stickyNote" />
     <b>{title}</b>
   </p>
   <slot />

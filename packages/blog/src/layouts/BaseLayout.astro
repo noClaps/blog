@@ -1,6 +1,5 @@
 ---
-import { Layout } from "@noclaps/components";
-import { Rss } from "lucide-astro";
+import { Icon, Layout } from "@noclaps/components";
 
 import "../styles/colors.css";
 import "../styles/global.css";
@@ -26,7 +25,7 @@ const {
   />
   <Fragment slot="header">
     <a class="notes" href="/notes">Notes</a>
-    <a class="rss" href="/rss.xml" title="Atom Feed"><Rss /></a>
+    <a class="rss" href="/rss.xml" title="Atom Feed"><Icon name="rss" /></a>
   </Fragment>
   <slot />
 </Layout>

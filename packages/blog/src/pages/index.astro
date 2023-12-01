@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Topic from "../components/Topic.astro";
-import { Rss } from "lucide-astro";
+import { Icon } from "@noclaps/components";
 ---
 
 <BaseLayout title="The Blog of Random">
@@ -9,7 +9,7 @@ import { Rss } from "lucide-astro";
     <h1>The Blog of Random</h1>
     <span>
       <p>A blog about the most random things you can think of.</p>
-      <a href="/blog.rss"><Rss /></a>
+      <a href="/blog.rss"><Icon name="rss" /></a>
     </span>
     <div>
       <Topic section="history" />

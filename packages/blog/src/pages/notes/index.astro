@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Link from "../../components/Link.astro";
-import { Rss } from "lucide-astro";
+import { Icon } from "@noclaps/components";
 
 const notes = await getCollection("notes").then((notes) => {
     return notes.sort((a, b) => {
@@ -20,7 +20,7 @@ const notes = await getCollection("notes").then((notes) => {
     <main>
         <span>
             <h1>Notes</h1>
-            <a href="/notes.rss"><Rss /></a>
+            <a href="/notes.rss"><Icon name="rss" /></a>
         </span>
         <div>
             {

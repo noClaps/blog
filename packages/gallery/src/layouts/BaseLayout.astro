@@ -1,6 +1,5 @@
 ---
-import { Layout } from "@noclaps/components";
-import { Download } from "lucide-astro";
+import { Icon, Layout } from "@noclaps/components";
 
 interface Props {
   title: string;
@@ -16,7 +15,7 @@ const {
 <Layout {title} {description}>
   <a
     href="https://github.com/noClaps/assets/archive/refs/tags/2023-09-05.zip"
-    slot="header"><Download />Download</a
+    slot="header"><Icon name="download" />Download</a
   >
   <slot />
 </Layout>

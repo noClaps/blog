@@ -1,5 +1,5 @@
 ---
-import { MessageSquare } from "lucide-astro";
+import { Icon } from "@noclaps/components";
 
 interface Props {
   name?: string;
@@ -11,7 +11,7 @@ const { name = "QUOTE", link } = Astro.props;
 
 <blockquote class="quote">
   <p>
-    <MessageSquare />
+    <Icon name="messageSquare" />
     {
       link ? (
         <b>

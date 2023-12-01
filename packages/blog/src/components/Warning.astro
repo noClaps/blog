@@ -1,5 +1,5 @@
 ---
-import { AlertTriangle } from "lucide-astro";
+import { Icon } from "@noclaps/components";
 
 interface Props {
   title?: string;
@@ -10,7 +10,7 @@ const { title = "WARNING" } = Astro.props;
 
 <div class="warning">
   <p>
-    <AlertTriangle />
+    <Icon name="alertTriangle" />
     <b>{title}</b>
   </p>
   <slot />
