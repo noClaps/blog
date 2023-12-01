@@ -1,9 +1,7 @@
 import type { APIContext } from "astro";
 import { getCollection } from "astro:content";
 import rss from "@astrojs/rss";
-import sanitizeHtml from "sanitize-html";
-import MarkdownIt from "markdown-it";
-const parser = new MarkdownIt();
+import Markdoc from "@markdoc/markdoc";
 
 export async function GET(context: APIContext) {
     const notes = await getCollection("notes");
@@ -16,7 +14,7 @@ export async function GET(context: APIContext) {
             link: `/notes/${ note.slug }`,
             title: note.data.title,
             pubDate: note.data.lastmod ?? note.data.date,
-            content: sanitizeHtml(parser.render(note.body)),
+            content: Markdoc.renderers.html(Markdoc.transform(Markdoc.parse(note.body))),
             author: note.data.author.id
         }))
     });
