@@ -17,7 +17,8 @@
     "build:gallery": "turbo build --filter=gallery",
     "preview": "turbo preview",
     "preview:blog": "turbo preview --filter=blog",
-    "preview:gallery": "turbo preview --filter=gallery"
+    "preview:gallery": "turbo preview --filter=gallery",
+    "update": "rm -rf node_modules && bunx taze major -wr && bun i"
   },
   "workspaces": [
     "packages/*"
