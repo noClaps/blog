@@ -3,7 +3,7 @@
   "dependencies": {
     "@astrojs/markdoc": "^0.7.2",
     "@astrojs/rss": "^3.0.0",
-    "@markdoc/markdoc": "^0.3.5",
+    "@markdoc/markdoc": "^0.4.0",
     "@noclaps/components": "workspace:*",
     "astro": "^3.6.4",
     "katex": "^0.16.9"
