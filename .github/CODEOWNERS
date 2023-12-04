@@ -7,7 +7,4 @@ packages/blog/public/files/appendix-a.ts @MesterMan03
 packages/blog/public/files/Appendix-A-final.png @MesterMan03
 packages/blog/public/files/Appendix-A-idb.png @MesterMan03
 packages/blog/src/content/authors/Mester.json @MesterMan03
-packages/blog/src/content/posts/tech/inside-e2ee/introduction.mdoc @MesterMan03
-packages/blog/src/content/posts/tech/inside-e2ee/x3dh.mdoc @MesterMan03
-packages/blog/src/content/posts/tech/inside-e2ee/double-ratchet.mdoc @MesterMan03
-packages/blog/src/content/posts/tech/inside-e2ee/appendix-a.mdoc @MesterMan03
+packages/blog/src/content/posts/tech/inside-e2ee/ @MesterMan03
