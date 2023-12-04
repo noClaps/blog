@@ -419,7 +419,8 @@ If we run this code, you can use the browser's developer tools to inspect the da
 {% note %}
 You may need to delete the database and reload the page, if you've already run the code before.
 {% /note %}
-<img src="/files/Appendix-A-idb.png" alt="An image showing Microsoft Edge's Devtools with the created database and object" width="100%"/>
+
+![An image showing Microsoft Edge's Devtools with the created database and object](./Appendix-A-idb.png)
 
 ### Reading an object from the store
 
@@ -525,10 +526,10 @@ Let's see what changed:
 
 Running the code doesn't show any changes in the console, but if you inspect the database, you can see that the encrypted data is stored in it.
 
-<img src="/files/Appendix-A-final.png" alt="An image showing Microsoft Edge's Devtools with the stored encrypted state" width="100%"/>
+![An image showing Microsoft Edge's Devtools with the stored encrypted state](./Appendix-A-final.png)
 
 ## Conclusion
 
 In this appendix, we've looked at how to store private data on device. We've compared storing data on the server and on device, and we've seen how to use `SubtleCrypto`'s built-in functions to encrypt `CryptoKey` objects. Finally, we've written a class that can store and read a private secret value securely, and we've seen how to store the exported data in the browser using IndexedDB.
 
-As always, you can find the full code <a href=/files/appendix-a.ts download=appendix-a.ts>here</a>.
+As always, you can find the full code <a href="/files/appendix-a.ts" download="appendix-a.ts">here</a>.

@@ -6,7 +6,8 @@
     "@markdoc/markdoc": "^0.4.0",
     "@noclaps/components": "workspace:*",
     "astro": "^3.6.4",
-    "katex": "^0.16.9"
+    "katex": "^0.16.9",
+    "sharp": "^0.33.0"
   },
   "description": "The Blog of Random",
   "scripts": {
