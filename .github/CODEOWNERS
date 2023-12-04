@@ -4,7 +4,5 @@ packages/blog/public/files/basic-dh-example.ts @MesterMan03
 packages/blog/public/files/double-ratchet.ts @MesterMan03
 packages/blog/public/files/x3dh-example.ts @MesterMan03
 packages/blog/public/files/appendix-a.ts @MesterMan03
-packages/blog/public/files/Appendix-A-final.png @MesterMan03
-packages/blog/public/files/Appendix-A-idb.png @MesterMan03
 packages/blog/src/content/authors/Mester.json @MesterMan03
 packages/blog/src/content/posts/tech/inside-e2ee/ @MesterMan03
