@@ -34,7 +34,7 @@ async function generateKey<T extends KeyType>(password: string, type: T): Promis
             .map((b) => b.toString(16).padStart(2, "0"))
             .join("");
     } else {
-        return <Promise<Key<T>>>crypto.importKey("raw", bits, { name: "AES-GCM" }, false, ["encrypt", "decrypt", "wrapKey", "unwrapKey"]);
+        return <Promise<Key<T>>>crypto.importKey("raw", bits, { name: "AES-GCM" }, false, ["wrapKey", "unwrapKey"]);
     }
 }
 
@@ -75,11 +75,18 @@ class Client {
         masterCipherText.set(new Uint8Array(masterIV), 0);
         masterCipherText.set(new Uint8Array(masterEnc), masterIV.byteLength);
 
-        // return the encrypted secret and master key as an object
-        return {
+        const final = {
             secret: toHex(secretCipherText),
             master: toHex(masterCipherText)
         };
+
+        // store the encrypted data in the database
+        const transaction = db.transaction("client", "readwrite");
+        const store = transaction.objectStore("client");
+        store.put(final, "client");
+
+        // return the encrypted data in case we want to do something with it
+        return final;
     }
 
     /**
@@ -107,7 +114,16 @@ class Client {
         return client;
     }
 
-    static async login(state: Awaited<ReturnType<Client["export"]>>, password: string) {
+    static async login(password: string) {
+        const transaction = db.transaction("client", "readonly");
+        const store = transaction.objectStore("client");
+        const dataRequest = store.get("client");
+
+        const state = await new Promise<Awaited<ReturnType<Client["export"]>>>((resolve, reject) => {
+            dataRequest.onerror = reject;
+            dataRequest.onsuccess = () => resolve(dataRequest.result);
+        });
+
         // generate the authentication key
         const authenticationKey = await generateKey(password, "authentication");
 
@@ -139,11 +155,30 @@ class Client {
     }
 }
 
+const idb = globalThis.indexedDB;
+const openRequest = idb.open("client", 1);
+
+openRequest.onerror = (event) => {
+    console.error("Error opening database:", event);
+};
+openRequest.onupgradeneeded = (event) => {
+    const db = openRequest.result;
+    console.log(`Updating database from ${event.oldVersion} to ${event.newVersion}`);
+
+    // create an object store for the client
+    db.createObjectStore("client");
+};
+const db = await new Promise<IDBDatabase>((resolve) => {
+    openRequest.onsuccess = () => resolve(openRequest.result);
+}).then(() => {
+    return openRequest.result;
+});
+
 const client = await Client.register(password);
 console.log(client);
-const exported = await client.export();
+await client.export();
 
-const client2 = await Client.login(exported, password);
+const client2 = await Client.login(password);
 console.log(client2);
 
 export {};

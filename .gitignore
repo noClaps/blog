@@ -24,3 +24,5 @@ pnpm-debug.log*
 
 .prettierignore
 .prettierrc
+
+packages/blog/public/files/appendix-a.html
