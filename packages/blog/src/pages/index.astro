@@ -1,16 +1,14 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Topic from "../components/Topic.astro";
-import { Rss } from "lucide-astro";
+import { Icon } from "@noclaps/components";
 ---
 
 <BaseLayout title="The Blog of Random">
   <main>
     <h1>The Blog of Random</h1>
-    <span>
-      <p>A blog about the most random things you can think of.</p>
-      <a href="/blog.rss"><Rss /></a>
-    </span>
+    <p>A blog about the most random things you can think of.</p>
+    <a href="/blog.rss"><Icon name="rss" /></a>
     <div>
       <Topic section="history" />
       <Topic section="law" />
@@ -45,13 +43,5 @@ import { Rss } from "lucide-astro";
     &:hover {
       color: var(--accent);
     }
-  }
-
-  span {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
   }
 </style>

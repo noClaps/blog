@@ -17,7 +17,7 @@
   "scripts": {},
   "dependencies": {
     "@noclaps/inter-web": "github:noClaps/inter-web",
-    "astro": "^3.6.3",
-    "lucide-astro": "^0.294.0"
+    "astro": "^3.6.4",
+    "lucide-static": "^0.294.0"
   }
 }
