@@ -55,3 +55,8 @@ code:not(.astro-code code) {
 .contains-task-list {
     list-style-type: none;
 }
+
+img {
+    width: 100%;
+    object-fit: contain;
+}
