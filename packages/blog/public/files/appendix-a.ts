@@ -168,10 +168,9 @@ openRequest.onupgradeneeded = (event) => {
     // create an object store for the client
     db.createObjectStore("client");
 };
-const db = await new Promise<IDBDatabase>((resolve) => {
+const db = await new Promise<IDBDatabase>((resolve, reject) => {
     openRequest.onsuccess = () => resolve(openRequest.result);
-}).then(() => {
-    return openRequest.result;
+    openRequest.onerror = reject;
 });
 
 const client = await Client.register(password);

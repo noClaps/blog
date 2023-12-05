@@ -493,7 +493,6 @@ class Client {
 
 const idb = globalThis.indexedDB;
 const openRequest = idb.open("client", 1);
-let db: IDBDatabase;
 
 openRequest.onerror = (event) => {
     console.error("Error opening database:", event);
@@ -505,10 +504,9 @@ openRequest.onupgradeneeded = (event) => {
     // create an object store for the client
     db.createObjectStore("client");
 };
-const db = await new Promise<IDBDatabase>((resolve) => {
+const db = await new Promise<IDBDatabase>((resolve, reject) => {
     openRequest.onsuccess = () => resolve(openRequest.result);
-}).then(() => {
-    return openRequest.result;
+    openRequest.onerror = reject;
 });
 
 const client = await Client.register(password);
@@ -520,7 +518,7 @@ console.log(client2);
 ```
 
 Let's see what changed:
-1. We have a new `db` variable, which is used to store the database object. The open request's `onsuccess` function is wrapped in a promise, which blocks the script until `db` is set. This is necessary to make sure the database is initialised before we try to use it.
+1. We have a new `db` variable, which is used to store the database object. The open request's `onsuccess` function is wrapped in a promise, which blocks the script until `db` is set. This is necessary to make sure the database is initialised before we try to use it. Otherwise you could get a nasty race condition where the client is trying to write to/read from an undefined database.
 2. `Client.export()` now stores the encrypted data in the database, if the database is initialised. It still returns the data, so we can use the TypeScript trick we used earlier to get the return type of the `export` function.
 3. `Client.login()` now reads the data from the database - using a similar promise hack we used for the databased -, and uses it to resume the client. It throws an error if the database is not initialised.
 
