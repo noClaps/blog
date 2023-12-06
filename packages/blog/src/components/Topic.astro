@@ -10,6 +10,12 @@ const { section } = Astro.props;
 
 const posts = await getCollection("posts").then((posts) => {
   return posts.sort((a, b) => {
+    if (a.data.series && b.data.series) {
+      if (a.data.series > b.data.series) return 1;
+      if (a.data.series < b.data.series) return -1;
+      return 0;
+    }
+
     const aDate = a.data.lastmod ?? a.data.date;
     const bDate = b.data.lastmod ?? b.data.date;
 
