@@ -50,6 +50,10 @@ Each post should have frontmatter with the following properties:
 
   The name of the author. See [Authors](#authors) for details.
 
+- `series`: _number (Optional)_
+
+  The order of the post in a series. The post will appear in this order in the posts list on the index page. The posts will be sorted in ascending order of the series number, and sorted by date if no series number is provided. For instance, if there is a series of 3 posts with parts 1, 2 and 3, then part 1 should have `series: 1`, part 2 should have `series: 2` and part 3 should have `series: 3`.
+
 The frontmatter should be in YAML format.
 
 Example:
@@ -59,8 +63,9 @@ Example:
 title: "Google: A Misrepresented Evil"
 description: Don't be evil, sometimes.
 date: 2022-08-12
-lastmod: 2022-11-26
+lastmod: 2022-11-26 # Optional
 author: noClaps
+series: 1 # Optional
 ---
 ```
 

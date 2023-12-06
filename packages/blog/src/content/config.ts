@@ -8,6 +8,7 @@ const posts = defineCollection({
     date: z.date(),
     lastmod: z.date().optional(),
     author: reference("authors"),
+    series: z.number().optional()
   }),
 });
 
