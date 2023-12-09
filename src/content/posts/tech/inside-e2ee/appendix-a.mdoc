@@ -50,7 +50,9 @@ Using a master key as a middle man is a great idea, but there's still a problem:
 
 In the Double Ratchet Algorithm, we've used HKDF extensively. We can also use it to derive an authentication key from the password. This way, the server will not learn the password, but we can generate the same authentication key and use that to authenticate.
 
-It's also time we play around with the HKDF's info parameter. Previously we've only used constant strings, but now we'll use it to influence the HKDF output. The input will be our password, the salt will be an empty `Uint8Array`, and the info parameter is going to be used to generate either the authentication key or the encryption key for the master key.
+It's also time we play around with the HKDF's info parameter. Previously we've only used constant strings, but now we'll use it to influence the HKDF output. The input will be our password, and the info parameter is going to be used to generate either the authentication key or the encryption key for the master key.
+
+But what about the salt? Previously, we've just used an empty `Uint8Array`, because the input was always 32 bytes of random data with a high enough entropy. However, passwords are not random, and it can happen that multiple people share the same password. This means that if we use an empty salt, the output of the HKDF will be the same for all users with the same password. This is not good, since an attacker could use a so called "rainbow table" which has precomputed values of all the possible outputs of the HKDF, and use that to quickly find the password of a user and break encryption. To prevent this, we need to use a random salt. This salt will be stored on the device alongside the encrypted data, and will be used to randomise the output of the HKDF. This way, even if two users have the same password, their authentication keys will be different.
 
 ```typescript
 const crypto = globalThis.crypto.subtle;
@@ -60,17 +62,13 @@ const password = "flA3_24%xD-!p2aYr";
 type KeyType = "authentication" | "masterEnc";
 type Key<T extends KeyType> = T extends "authentication" ? string : CryptoKey;
 
-async function generateKey<T extends KeyType>(password: string, type: T): Promise<Key<T>> {
+async function generateKey<T extends KeyType>(password: string, type: T, salt: Uint8Array): Promise<Key<T>> {
     // read the password and pass it through HKDF
     const rawPassword = new TextEncoder().encode(password);
     const passwordKey = await crypto.importKey("raw", rawPassword, { name: "HKDF" }, false, ["deriveBits"]);
 
     // salt: empty Uint8Array, info: type
-    const bits = await crypto.deriveBits(
-        { name: "HKDF", hash: "SHA-256", salt: new Uint8Array(), info: new TextEncoder().encode(type) },
-        passwordKey,
-        256
-    );
+    const bits = await crypto.deriveBits({ name: "HKDF", hash: "SHA-256", salt, info: new TextEncoder().encode(type) }, passwordKey, 256);
 
     // if it's the authentication key, we need to convert the bytes to a hex string
     // otherwise, return the bytes as an AES key
@@ -79,12 +77,13 @@ async function generateKey<T extends KeyType>(password: string, type: T): Promis
             .map((b) => b.toString(16).padStart(2, "0"))
             .join("");
     } else {
-        return <Promise<Key<T>>>crypto.importKey("raw", bits, { name: "AES-GCM" }, false, ["encrypt", "decrypt"]);
+        return <Promise<Key<T>>>crypto.importKey("raw", bits, { name: "AES-GCM" }, false, ["wrapKey", "unwrapKey"]);
     }
 }
 
-console.log("Authentication key:", await generateKey(password, "authentication"));
-console.log("Master key encryption:", await generateKey(password, "masterEnc"));
+const salt = globalThis.crypto.getRandomValues(new Uint8Array(32));
+console.log("Authentication key:", await generateKey(password, "authentication", salt));
+console.log("Master key encryption:", await generateKey(password, "masterEnc", salt));
 ```
 
 Output:
@@ -101,7 +100,7 @@ Master key encryption: CryptoKey {
 }
 ```
 
-The `generateKey` function returns a string or a CryptoKey based on what the key type is. There's a little type jugglery to make TypeScript report the correct return type. You cannot see the actual data of the key, but if you console logged the raw bits instead of the final value, you'd find they're indeed different. You can also change the password and see how it affects the output.
+The `generateKey` function returns a string or a CryptoKey based on what the key type is. There's a little type jugglery to make TypeScript report the correct return type. You cannot see the actual data of the key, but if you console logged the raw bits instead of the final value, you'd find they're indeed different. You may also change the password and see how it affects the output. The salt is also randomly generated, so you'll get a different output every time you run the code.
 
 Now you can send this authentication key when registering or logging in to the server, and the server can use it to authenticate you. The server will never learn the password, and you can use the same password to encrypt the master key.
 
@@ -122,7 +121,7 @@ To decrypt the key, we can use the `SubtleCrypto.unwrapKey()` function, which is
 {% /note %}
 
 ```typescript
-async function generateKey<T extends KeyType>(password: string, type: T): Promise<Key<T>> {
+async function generateKey<T extends KeyType>(password: string, type: T, salt: Uint8Array): Promise<Key<T>> {
     ...
 
     if (type === "authentication") {
@@ -138,7 +137,8 @@ First we need to update our `generateKey` method to return a key with the `wrapK
 ```typescript
 const masterKey = await crypto.generateKey({ name: "AES-GCM", length: 256 }, true, ["encrypt", "decrypt"]);
 
-const encKey = await generateKey(password, "masterEnc");
+const salt = globalThis.crypto.getRandomValues(new Uint8Array(32));
+const encKey = await generateKey(password, "masterEnc", salt);
 const iv = globalThis.crypto.getRandomValues(new Uint8Array(12));
 
 const encryptedMasterKey = await crypto.wrapKey("jwk", masterKey, encKey, { name: "AES-GCM", iv });
@@ -184,10 +184,16 @@ class Client {
      */
     #masterEnc: CryptoKey;
 
-    constructor(secret: Uint8Array, masterKey: CryptoKey, masterEnc: CryptoKey) {
+    /**
+     * The salt used to influence the HKDF function
+     */
+    #salt: Uint8Array;
+
+    constructor(secret: Uint8Array, masterKey: CryptoKey, masterEnc: CryptoKey, salt: Uint8Array) {
         this.#secret = secret;
         this.#masterKey = masterKey;
         this.#masterEnc = masterEnc;
+        this.#salt = salt;
     }
 
     async export() {
@@ -206,12 +212,13 @@ class Client {
         const secret = globalThis.crypto.getRandomValues(new Uint8Array(32));
 
         // generate the encryption key for the master key
-        const masterEnc = await generateKey(password, "masterEnc");
-        
-        const client = new Client(secret, masterKey, masterEnc);
+        const salt = globalThis.crypto.getRandomValues(new Uint8Array(32));
+        const masterEnc = await generateKey(password, "masterEnc", salt);
+
+        const client = new Client(secret, masterKey, masterEnc, salt);
 
         // now generate the authentication key
-        const authenticationKey = await generateKey(password, "authentication");
+        const authenticationKey = await generateKey(password, "authentication", salt);
 
         // this is where we would send the authentication key to the server and implement the rest of the registration process
         console.log("Registering user with authentication key:", authenticationKey);
@@ -221,7 +228,7 @@ class Client {
 }
 ```
 
-So far we have a static `register` function which generates a master key, secret and authenticates the user (we don't have a server here, the communication with the server is therefore only simulated). Now we have to think about how we should implement the `export` function. This function should return some data that we can store on device and use it to later resume the client. This means, it needs to include the master key and the secret. We already have the master encryption key stored in the `#masterEnc`, so we just need to add some `encrypt` and `wrapKey` calls to the function.
+So far we have a static `register` function which generates a salt, master key, secret and authenticates the user (we don't have a server here, the communication with the server is therefore only simulated). Now we have to think about how we should implement the `export` function. This function should return some data that we can store on device and use it to later resume the client. This means, it needs to include the master key and the secret. We already have the master encryption key stored in the `#masterEnc`, so we just need to add some `encrypt` and `wrapKey` calls to the function. Don't forget it should also include the salt, so we can use it to generate the same keys when we log in.
 
 For both operations however, we will need an IV. We can actually generate a completely new one every time we export the client, and just store it alongside the ciphertext. This also increases the security of the encryption, since the same plaintext will never be encrypted with the same key and IV.
 
@@ -247,7 +254,8 @@ class Client {
         // return the encrypted secret and master key as an object
         return {
             secret: toHex(secretCipherText),
-            master: toHex(masterCipherText)
+            master: toHex(masterCipherText),
+            salt: toHex(this.#salt)
         };
     }
 }
@@ -270,8 +278,9 @@ Output:
 ```
 Registering user with authentication key: 18b9ee73b57bde696112acebe89c370cc4923c835e58ea27ea9c8aa1020b2c72
 Exported: {
-  secret: "12590f9d13af8fe0ad69cdeb6fd322eed8aac9d21089584a79530ce5d0c53636b056dc0cd2cc732c7380499cd5c8b4f965a05a34f1b8cd8e2eae74bd",
-  master: "ee27a0b77d089f55bdc57e19a99fe28a89e585e0493e60b06d4d44088e462f1c7041a7cb651d909682f0df88e471d4ec21cfc8c704e5a13052914a11ad6d807b260cf624df1745a9039983b89c9efef061e4106e056cad3e4cd93afdb5a8952ffafaa6ad80c6894781a775597745c934285570fceb970ef6db7893dbc20024f8dfefe2fc9fec99aa00ffd2f949ee5c3e78a702c91cea"
+  secret: "7692b3db88c1c49ff939a2f2e5211d51488d99828f5f9141fe…7343ff83b675c2be652de9b8ba5472004e965c4075cfb924c", 
+  master: "d1692c02e313f31b862ac083233f62664816b1ae0f507882af…3151410a665d1ac4c6624c56fad2e94f22f910498cc8baa2a", 
+  salt: "dc2f428f8ff9719a9ef381c7d1d0872401686c784bd9d9d30251b8ff85dccd30"
 }
 ```
 
@@ -282,14 +291,16 @@ Now that we can export the client, we also need to be able to import it. This is
 ```typescript
 class Client {
     static async login(state: Awaited<ReturnType<Client["export"]>>, password: string) {
+        const salt = fromHex(state.salt);
+
         // generate the authentication key
-        const authenticationKey = await generateKey(password, "authentication");
+        const authenticationKey = await generateKey(password, "authentication", salt);
 
         // this is where we would send the authentication key to the server and implement the rest of the login process
         console.log("Logging in user with authentication key:", authenticationKey);
 
         // decrypt the master key
-        const masterEncKey = await generateKey(password, "masterEnc");
+        const masterEncKey = await generateKey(password, "masterEnc", salt);
         const masterCipherText = fromHex(state.master);
         const masterIV = masterCipherText.slice(0, 12);
         const masterEnc = masterCipherText.slice(12);
@@ -309,14 +320,14 @@ class Client {
         const secretEnc = secretCipherText.slice(12);
         const secret = await crypto.decrypt({ name: "AES-GCM", iv: secretIV }, masterKey, secretEnc).then((pt) => new Uint8Array(pt));
 
-        return new Client(secret, masterKey, masterEncKey);
+        return new Client(secret, masterKey, masterEncKey, salt);
     }
 }
 ```
 
-Right at the start, we do something very confusing in the parameters of the function. This `Awaited<ReturnType<Client["export"]>>` is using TypeScript's utility types to automatically extract the return type of the `export` function. If you later change the `export` function to include more encrypted data, this type will automatically update to include that data as well. This is a very useful feature, and I recommend you use it whenever you can. The `Awaited` part is there because the `export` function is asynchronous, and we want only the actual object it returns, not the promise.
+Right at the start, we do something very confusing in the parameters of the function. This `Awaited<ReturnType<Client["export"]>>` is using TypeScript's utility types to automatically extract the return type of the `export` function. If you later change the `export` function to include more encrypted data, this type will automatically update to include that data as well. This is a very useful feature, and I recommend you use it whenever you can. The `Awaited` part is there because the `export` function returns a promise, and we want only the actual object it returns, not the promise.
 
-The rest is pretty simple: we first use the authentication key to log in to the server, then generate the master encryption key and decrypt the master key and secret. Finally, we return a new client with the decrypted data. For both the master key and secret, the process is the same: we slice the IV and ciphertext from the exported data, and use the `unwrapKey` and `decrypt` functions to decrypt them.
+The rest is pretty simple: we first convert the stringified salt back into a `Uint8Array`, then use the authentication key to log in to the server, generate the master encryption key and finally decrypt both the master key and secret. Finally, we return a new client with the decrypted data. For both the master key and secret, the process is the same: we slice the IV and ciphertext from the exported data, and use the `unwrapKey` and `decrypt` functions to decrypt them respectively.
 
 Let's see if it works:
 ```typescript
@@ -380,9 +391,9 @@ openRequest.onupgradeneeded = (event) => {
 
 There are 3 major events we need to listen to. The `onerror` event is fired when the database cannot be opened. The `onsuccess` event is fired when the database is successfully opened, and the `onupgradeneeded` event is fired when the database needs to be upgraded. This happens when you open a database with a higher version than the one that's currently stored on device. When you first open a database, this event will always fire, since there's no database stored on device yet.
 
-But what does it mean to upgrade a database? Basically, you need to define the data structure of the database. This is done by creating object stores. An object store is a collection of objects, which can be accessed by their keys. You can think of it as a table in a SQL database. You can create multiple object stores in a single database, and you can also create indexes for them, which are used to quickly search for objects.
+But what does it mean to upgrade a database? Basically, you need to define the data structure of the database. This is done by creating object stores. An object store is a collection of objects, which can be accessed by their keys. You can think of it as a table in a SQL database. You can create multiple object stores in a single database, and you can also create indexes for them, which are used to quickly search through the objects.
 
-So what data should we store? We want to store the exported client data, let's create an object store called "client" for that. This object store will just have a single object, which will be the output of the `Client.export()` function. This will be the only object in the store, therefore we don't need to create an index for it.
+Because we want to store the exported client data, let's create an object store called "client" for that. This object store will just have a single object, which will be the output of the `Client.export()` function. This will be the only object in the store, therefore we don't need to create an index for it.
 
 ```typescript
 openRequest.onupgradeneeded = (event) => {
@@ -461,7 +472,8 @@ class Client {
 
         const final = {
             secret: toHex(secretCipherText),
-            master: toHex(masterCipherText)
+            master: toHex(masterCipherText),
+            salt: toHex(this.#salt)
         };
 
         // store the encrypted data in the database
@@ -477,11 +489,6 @@ class Client {
         const transaction = db.transaction("client", "readonly");
         const store = transaction.objectStore("client");
         const dataRequest = store.get("client");
-
-        const state = await new Promise<Awaited<ReturnType<Client["export"]>>>((resolve, reject) => {
-            dataRequest.onerror = reject;
-            dataRequest.onsuccess = () => resolve(dataRequest.result);
-        });
 
         const state = await new Promise<Awaited<ReturnType<Client["export"]>>>((resolve, reject) => {
             dataRequest.onerror = reject;

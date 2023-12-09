@@ -15,17 +15,13 @@ function fromHex(hex: string) {
 type KeyType = "authentication" | "masterEnc";
 type Key<T extends KeyType> = T extends "authentication" ? string : CryptoKey;
 
-async function generateKey<T extends KeyType>(password: string, type: T): Promise<Key<T>> {
+async function generateKey<T extends KeyType>(password: string, type: T, salt: Uint8Array): Promise<Key<T>> {
     // read the password and pass it through HKDF
     const rawPassword = new TextEncoder().encode(password);
     const passwordKey = await crypto.importKey("raw", rawPassword, { name: "HKDF" }, false, ["deriveBits"]);
 
     // salt: empty Uint8Array, info: type
-    const bits = await crypto.deriveBits(
-        { name: "HKDF", hash: "SHA-256", salt: new Uint8Array(), info: new TextEncoder().encode(type) },
-        passwordKey,
-        256
-    );
+    const bits = await crypto.deriveBits({ name: "HKDF", hash: "SHA-256", salt, info: new TextEncoder().encode(type) }, passwordKey, 256);
 
     // if it's the authentication key, we need to convert the bytes to a hex string
     // otherwise, return the bytes as an AES key
@@ -54,10 +50,16 @@ class Client {
      */
     #masterEnc: CryptoKey;
 
-    constructor(secret: Uint8Array, masterKey: CryptoKey, masterEnc: CryptoKey) {
+    /**
+     * The salt used to influence the HKDF function
+     */
+    #salt: Uint8Array;
+
+    constructor(secret: Uint8Array, masterKey: CryptoKey, masterEnc: CryptoKey, salt: Uint8Array) {
         this.#secret = secret;
         this.#masterKey = masterKey;
         this.#masterEnc = masterEnc;
+        this.#salt = salt;
     }
 
     async export() {
@@ -77,7 +79,8 @@ class Client {
 
         const final = {
             secret: toHex(secretCipherText),
-            master: toHex(masterCipherText)
+            master: toHex(masterCipherText),
+            salt: toHex(this.#salt)
         };
 
         // store the encrypted data in the database
@@ -101,12 +104,13 @@ class Client {
         const secret = globalThis.crypto.getRandomValues(new Uint8Array(32));
 
         // generate the encryption key for the master key
-        const masterEnc = await generateKey(password, "masterEnc");
+        const salt = globalThis.crypto.getRandomValues(new Uint8Array(32));
+        const masterEnc = await generateKey(password, "masterEnc", salt);
 
-        const client = new Client(secret, masterKey, masterEnc);
+        const client = new Client(secret, masterKey, masterEnc, salt);
 
         // now generate the authentication key
-        const authenticationKey = await generateKey(password, "authentication");
+        const authenticationKey = await generateKey(password, "authentication", salt);
 
         // this is where we would send the authentication key to the server and implement the rest of the registration process
         console.log("Registering user with authentication key:", authenticationKey);
@@ -124,14 +128,16 @@ class Client {
             dataRequest.onsuccess = () => resolve(dataRequest.result);
         });
 
+        const salt = fromHex(state.salt);
+
         // generate the authentication key
-        const authenticationKey = await generateKey(password, "authentication");
+        const authenticationKey = await generateKey(password, "authentication", salt);
 
         // this is where we would send the authentication key to the server and implement the rest of the login process
         console.log("Logging in user with authentication key:", authenticationKey);
 
         // decrypt the master key
-        const masterEncKey = await generateKey(password, "masterEnc");
+        const masterEncKey = await generateKey(password, "masterEnc", salt);
         const masterCipherText = fromHex(state.master);
         const masterIV = masterCipherText.slice(0, 12);
         const masterEnc = masterCipherText.slice(12);
@@ -151,7 +157,7 @@ class Client {
         const secretEnc = secretCipherText.slice(12);
         const secret = await crypto.decrypt({ name: "AES-GCM", iv: secretIV }, masterKey, secretEnc).then((pt) => new Uint8Array(pt));
 
-        return new Client(secret, masterKey, masterEncKey);
+        return new Client(secret, masterKey, masterEncKey, salt);
     }
 }
 
