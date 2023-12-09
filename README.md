@@ -94,7 +94,7 @@ Example:
 
 The content of the post is up to you. However, it should be well-researched, with reputable sources provided for as many claims being made in the post as possible. Any post that is not properly researched, or that does not provide sources for claims made, will be rejected.
 
-If you need ideas for posts, you can check the [Issues tab](https://github.com/noClaps/ZeroLimits.dev/issues?q=is%3Aissue+is%3Aopen+label%3Aidea) of the GitHub repository for ZeroLimits.dev for open issues with the "idea" label. If you have an idea yourself, make sure to open an issue first before working on the post.
+If you need ideas for posts, you can check the [Issues tab](https://github.com/noClaps/blog/issues?q=is%3Aopen+is%3Aissue+label%3Aidea) for open issues with the "idea" label. If you have an idea yourself, make sure to open an issue first before working on the post.
 
 The post you write should be in the appropriate section. If none of the current sections are appropriate for the post, then this should be informed in the issue or pull request, and will be resolved as soon as possible.
 
