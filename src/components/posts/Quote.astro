@@ -1,0 +1,58 @@
+---
+import Icon from "../Icon.astro";
+
+interface Props {
+  name?: string;
+  link?: string;
+}
+
+const { name = "QUOTE", link } = Astro.props;
+---
+
+<blockquote class="quote">
+  <p>
+    <Icon name="messageSquare" />
+    {
+      link ? (
+        <b>
+          <a href={link} target="_blank" rel="noopener noreferrer">
+            {name}
+          </a>
+        </b>
+      ) : (
+        <b>{name}</b>
+      )
+    }
+  </p>
+  <slot />
+</blockquote>
+
+<style>
+  .quote {
+    display: grid;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin: 0.5rem 0;
+    background-color: oklch(var(--quote) / 25%);
+    border: 0.125rem solid oklch(var(--quote));
+  }
+
+  p {
+    margin: 0;
+  }
+
+  b {
+    vertical-align: middle;
+  }
+
+  svg {
+    height: 1rem;
+    width: 1rem;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+  }
+
+  a {
+    color: canvastext;
+  }
+</style>

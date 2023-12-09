@@ -1,0 +1,61 @@
+---
+import Icon from "./Icon.astro";
+---
+
+<header>
+    {
+        Astro.url.pathname !== "/" && Astro.url.pathname !== "" ? (
+            <a class="home" href="/">
+                <Icon name="home" />
+            </a>
+        ) : (
+            <div />
+        )
+    }
+    <div>
+        <a class="notes" href="/notes">Notes</a>
+        <a class="rss" href="/rss.xml" title="Atom Feed"><Icon name="rss" /></a>
+    </div>
+</header>
+
+<style>
+    header {
+        display: flex;
+        padding: 2dvh 1dvw;
+        background-color: canvas;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        justify-content: space-between;
+    }
+
+    a {
+        transition: all 0.25s;
+        color: canvastext;
+        padding: 0.25rem;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 0.25rem;
+
+        &.notes:hover {
+            background-color: accentcolor;
+            color: accentcolortext;
+        }
+
+        &.rss:hover,
+        &.home:hover {
+            color: accentcolor;
+        }
+    }
+
+    svg {
+        height: 1.25rem;
+        width: 1.25rem;
+        vertical-align: middle;
+    }
+
+    div {
+        display: flex;
+        gap: 1rem;
+    }
+</style>

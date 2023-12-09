@@ -1,3 +1,0 @@
-[submodule "packages/gallery/src/assets"]
-	path = packages/gallery/src/assets
-	url = https://github.com/noClaps/assets.git

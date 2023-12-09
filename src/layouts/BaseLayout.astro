@@ -1,0 +1,51 @@
+---
+import "../styles/colors.css";
+import "../styles/global.css";
+import Header from "@/components/Header.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "A blog about the most random things you can think of.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="icon" href="/favicon.ico" />
+    <title>{title}</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <link
+      rel="alternate"
+      href="/rss.xml"
+      type="application/rss+xml"
+      title="RSS"
+      slot="head"
+    />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Header />
+
+    <slot />
+
+    <style>
+      :root {
+        color-scheme: dark light;
+        font-family: system-ui;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </body>
+</html>

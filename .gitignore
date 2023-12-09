@@ -20,9 +20,7 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-.turbo
-
 .prettierignore
 .prettierrc
 
-packages/blog/public/files/appendix-a.html
+public/files/appendix-a.html

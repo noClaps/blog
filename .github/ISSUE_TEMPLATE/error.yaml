@@ -21,16 +21,6 @@ body:
               - label: My error has not been reported yet.
                 required: true
 
-    - type: dropdown
-      attributes:
-          label: Package
-          description: Which package is this bug for?
-          multiple: false
-          options:
-              - "components"
-              - "gallery"
-              - "blog"
-
     - type: textarea
       attributes:
           label: Where have I made an error?
