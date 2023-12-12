@@ -21,7 +21,7 @@ import Icon from "@/components/Icon.astro";
 <style>
   h1 {
     font-size: min(5rem, 15vmin);
-    color: accentcolor;
+    color: var(--primary);
     margin-bottom: 0.5rem;
   }
 
@@ -37,11 +37,11 @@ import Icon from "@/components/Icon.astro";
   }
 
   a {
-    color: canvastext;
+    color: var(--text);
     transition: all 0.25s;
 
     &:hover {
-      color: accentcolor;
+      color: var(--primary);
     }
   }
 </style>

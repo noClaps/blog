@@ -30,17 +30,17 @@ const authorString = `${author}-${titleString}`;
 
 <style>
   a {
-    color: canvastext;
-    border: 0.125rem solid accentcolor;
+    color: var(--text);
+    border: 0.125rem solid var(--primary);
     padding: 1rem;
     display: flex;
     flex-direction: column;
     border-radius: 0.5rem;
-    background-color: canvas;
+    background-color: var(--background);
     transition: all 0.25s;
 
     &:hover {
-      box-shadow: 0 0 0.5rem 0.25rem accentcolor;
+      box-shadow: 0 0 0.5rem 0.25rem var(--primary);
       text-decoration: none;
     }
   }

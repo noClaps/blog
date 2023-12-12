@@ -1,7 +1,7 @@
 article a:not(:is(h2, h3, h4, h5, h6) a) {
-    color: accentcolor;
+    color: var(--primary);
     background-position-y: 0%;
-    background-image: linear-gradient(180deg, transparent 50%, accentcolor 50%);
+    background-image: linear-gradient(180deg, transparent 50%, var(--primary) 50%);
     transition: all 0.25s;
     background-size: auto 200%;
     border-radius: 0.25rem;
@@ -13,7 +13,7 @@ article a:not(:is(h2, h3, h4, h5, h6) a) {
     &:hover {
         text-decoration: none;
         background-position-y: 100%;
-        color: accentcolortext;
+        color: var(--on-primary);
     }
 }
 

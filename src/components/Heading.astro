@@ -18,7 +18,7 @@ const Element = `h${level}` as Heading;
 
 <style>
     h2 {
-        border-top: solid 0.125rem accentcolor;
+        border-top: solid 0.125rem var(--primary);
         padding-top: calc(4rem / 3);
         margin-top: 0.5rem;
     }
@@ -37,7 +37,7 @@ const Element = `h${level}` as Heading;
     }
 
     a {
-        color: canvastext;
+        color: var(--text);
         &:hover {
             text-decoration: none;
         }
