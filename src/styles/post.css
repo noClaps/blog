@@ -1,26 +1,14 @@
 article a:not(:is(h2, h3, h4, h5, h6) a) {
-    color: var(--primary);
-    background-position-y: 0%;
-    background-image: linear-gradient(180deg, transparent 50%, var(--primary) 50%);
     transition: all 0.25s;
-    background-size: auto 200%;
     border-radius: 0.25rem;
     padding: 0.125rem;
-    margin: 0 -0.125rem;
     text-decoration: underline;
-    text-underline-offset: 0.25rem;
 
     &:hover {
-        text-decoration: none;
-        background-position-y: 100%;
+        background-color: var(--primary);
         color: var(--on-primary);
+        text-decoration: none;
     }
-}
-
-
-/* Lists */
-li {
-    margin: 1rem 0;
 }
 
 /* Tables */
@@ -49,11 +37,6 @@ code:not(.astro-code code) {
     color: var(--code-text);
     border-radius: 0.25rem;
     padding: 0.25rem;
-}
-
-/* Checklist */
-.contains-task-list {
-    list-style-type: none;
 }
 
 img {

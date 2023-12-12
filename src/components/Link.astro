@@ -1,31 +1,20 @@
 ---
 interface Props {
   title: string;
-  description?: string;
+  description: string;
   href: string;
   date?: Date;
   author?: string;
 }
 
 const { title, description, href, date, author } = Astro.props;
-
-const titleString = title.toLowerCase().split(" ").join("");
-const timeString = `${date?.toDateString().split(" ").join("")}-${titleString}`;
-const descriptionString = description?.toLowerCase().split(" ").join("");
-const authorString = `${author}-${titleString}`;
 ---
 
 <a href={`/${href}`} title={title}>
-  {
-    date && (
-      <time transition:name={timeString} datetime={date.toISOString()}>
-        {date.toDateString()}
-      </time>
-    )
-  }
-  <h3 transition:name={titleString}>{title}</h3>
-  {description && <p transition:name={descriptionString}>{description}</p>}
-  {author && <p transition:name={authorString}>Written by {author}</p>}
+  {date && <time datetime={date.toISOString()}>{date.toDateString()}</time>}
+  <h3>{title}</h3>
+  <p>{description}</p>
+  <p>Written by {author}</p>
 </a>
 
 <style>
