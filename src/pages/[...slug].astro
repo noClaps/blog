@@ -21,6 +21,7 @@ const { Content, headings } = await post.render();
   author={await getEntry("authors", post.data.author.id)}
   date={post.data.date}
   lastmod={post.data.lastmod}
+  {headings}
 >
   <Content toc={headings} />
 </Post>

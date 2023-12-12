@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 }
 
 const { note } = Astro.props;
-const { Content } = await note.render();
+const { Content, headings } = await note.render();
 ---
 
 <Note
@@ -20,6 +20,7 @@ const { Content } = await note.render();
     author={await getEntry("authors", note.data.author.id)}
     date={note.data.date}
     lastmod={note.data.lastmod}
+    {headings}
 >
     <Content />
 </Note>

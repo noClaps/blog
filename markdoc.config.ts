@@ -27,12 +27,6 @@ export default defineMarkdocConfig({
             attributes: {
                 display: { type: String }
             }
-        },
-        toc: {
-            render: component("./src/components/posts/TableOfContents.astro"),
-            attributes: {
-                headings: { type: String }
-            }
         }
     },
     extends: [shiki()]

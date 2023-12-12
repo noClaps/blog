@@ -2,7 +2,8 @@
 import BaseLayout from "./BaseLayout.astro";
 import "@/styles/post.css";
 import "@/styles/layout.css";
-import ScrollToTop from "@/components/ScrollToTop.astro";
+import type { MarkdownHeading } from "astro";
+import TableOfContents from "@/components/layout/TableOfContents.astro";
 
 interface Props {
   title: string;
@@ -15,32 +16,41 @@ interface Props {
   };
   date: Date;
   lastmod?: Date;
+  headings: MarkdownHeading[];
 }
 
-const { title, description, author, date, lastmod } = Astro.props;
+const { title, description, author, date, lastmod, headings } = Astro.props;
 
 const pubDate = lastmod ?? date;
 ---
 
 <BaseLayout {title} {description}>
-  <main>
-    <div class="post-header">
-      <time datetime={pubDate.toISOString()}>
-        {pubDate.toDateString()}
-      </time>
-      <h1>{title}</h1>
-      <div class="post-info">
-        <h3 class="description">{description}</h3>
-        <p class="author">
-          Written by <a class="author-link" href={author.data.link}
-            >{author.data.name}</a
-          >
-        </p>
-      </div>
+  <details slot="header">
+    <summary>Table of Contents</summary>
+    <TableOfContents {headings} />
+  </details>
+  <div class="content">
+    <div class="toc">
+      <h3>Table of Contents</h3>
+      <TableOfContents {headings} />
     </div>
+    <main>
+      <div class="post-header">
+        <time datetime={pubDate.toISOString()}>
+          {pubDate.toDateString()}
+        </time>
+        <h1>{title}</h1>
+        <div class="post-info">
+          <h3 class="description">{description}</h3>
+          <p class="author">
+            Written by <a class="author-link" href={author.data.link}
+              >{author.data.name}</a
+            >
+          </p>
+        </div>
+      </div>
 
-    <slot />
-
-    <ScrollToTop />
-  </main>
+      <slot />
+    </main>
+  </div>
 </BaseLayout>

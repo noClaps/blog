@@ -1,13 +1,18 @@
 ---
-import Icon from "./Icon.astro";
+import Icon from "../Icon.astro";
 ---
 
 <header>
     {
         Astro.url.pathname !== "/" && Astro.url.pathname !== "" ? (
-            <a class="home" href="/">
-                <Icon name="home" />
-            </a>
+            <div>
+                <a class="home" href="/">
+                    <Icon name="home" />
+                </a>
+                <slot>
+                    <div />
+                </slot>
+            </div>
         ) : (
             <div />
         )
@@ -57,5 +62,7 @@ import Icon from "./Icon.astro";
     div {
         display: flex;
         gap: 1rem;
+        align-items: center;
+        position: relative;
     }
 </style>

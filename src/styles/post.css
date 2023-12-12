@@ -1,3 +1,17 @@
+/* Root */
+.content {
+    margin-top: 1rem;
+
+    @media (min-width: 768px) {
+        &:has(.toc) {
+            display: grid;
+            grid-template-columns: 1fr 4fr;
+            margin: 0 2rem;
+        }
+    }
+}
+
+/* Headings */
 h1,
 h2,
 h3,
@@ -19,7 +33,8 @@ h3 {
     margin-bottom: 0;
 }
 
-article a:not(:is(h2, h3, h4, h5, h6) a) {
+/* Links */
+article a {
     transition: all 0.25s;
     border-radius: 0.25rem;
     padding: 0.125rem;
@@ -63,4 +78,30 @@ code:not(.astro-code code) {
 img {
     width: 100%;
     object-fit: contain;
+}
+
+/* Table of Contents */
+details {
+    position: absolute;
+    background-color: var(--background);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: 0.125rem solid var(--text);
+    width: max-content;
+    left: 2.5rem;
+    top: -0.25rem;
+
+    @media (min-width: 768px) {
+        display: none;
+    }
+}
+
+.toc {
+    position: sticky;
+    height: min-content;
+    top: 4rem;
+
+    @media (max-width: 768px) {
+        display: none;
+    }
 }
