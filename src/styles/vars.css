@@ -6,6 +6,10 @@
     --note: 50% 0.25 300;
     --warning: 50% 0.25 0;
 
+    --sans: "Switzer", system-ui;
+    --serif: "Sentient", ui-serif, serif;
+    --mono: ui-monospace, monospace;
+
     /* Generated using Realtime Colors: https://www.realtimecolors.com/ */
     @media (prefers-color-scheme: light) {
         --text: #0b151d;

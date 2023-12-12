@@ -1,14 +1,14 @@
 /* Fonts */
 code {
     overflow-wrap: break-word;
-    font-family: ui-monospace, monospace;
+    font-family: var(--mono);
 }
 
 /* Root */
 :root {
     color-scheme: dark light;
-    font-family: system-ui;
     scroll-behavior: smooth;
+    font-family: var(--sans);
 }
 
 body {

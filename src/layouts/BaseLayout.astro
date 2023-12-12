@@ -1,5 +1,5 @@
 ---
-import "@/styles/colors.css";
+import "@/styles/vars.css";
 import "@/styles/global.css";
 import Header from "@/components/Header.astro";
 
@@ -22,6 +22,10 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=switzer@2,1&f[]=sentient@2,1&display=swap"
+      rel="stylesheet"
+    />
     <link
       rel="alternate"
       href="/rss.xml"

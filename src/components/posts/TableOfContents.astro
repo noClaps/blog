@@ -1,6 +1,5 @@
 ---
 import type { MarkdownHeading } from "astro";
-import Heading from "../Heading.astro";
 import TableOfContentsHeading from "./TableOfContentsHeading.astro";
 
 interface Props {
@@ -27,7 +26,7 @@ headings.forEach((h) => {
 });
 ---
 
-<Heading level={2} id="table-of-contents">Table of Contents</Heading>
+<h2 id="table-of-contents">Table of Contents</h2>
 <ul>
     {
         toc.map(({ subheadings, slug, text }) => (
