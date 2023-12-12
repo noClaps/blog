@@ -1,19 +1,19 @@
 ---
 interface Props {
   title: string;
-  description: string;
+  description?: string;
   href: string;
-  date?: Date;
-  author?: string;
+  date: Date;
+  author: string;
 }
 
 const { title, description, href, date, author } = Astro.props;
 ---
 
 <a href={`/${href}`} title={title}>
-  {date && <time datetime={date.toISOString()}>{date.toDateString()}</time>}
+  <time datetime={date.toISOString()}>{date.toDateString()}</time>
   <h3>{title}</h3>
-  <p>{description}</p>
+  {description ?? <p>{description}</p>}
   <p>Written by {author}</p>
 </a>
 
