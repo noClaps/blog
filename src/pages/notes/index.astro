@@ -2,7 +2,6 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Link from "@/components/Link.astro";
-import Icon from "@/components/Icon.astro";
 
 const notes = await getCollection("notes").then((notes) => {
     return notes.sort((a, b) => {
@@ -18,10 +17,7 @@ const notes = await getCollection("notes").then((notes) => {
 
 <BaseLayout title="Notes">
     <main>
-        <span>
-            <h1>Notes</h1>
-            <a href="/notes.rss"><Icon name="rss" /></a>
-        </span>
+        <h1>Notes</h1>
         <div>
             {
                 notes.map((note) => (
@@ -41,25 +37,7 @@ const notes = await getCollection("notes").then((notes) => {
     h1 {
         font-size: min(5rem, 15vmin);
         color: var(--primary);
-        margin-bottom: 0.5rem;
         width: min-content;
-    }
-
-    a {
-        color: var(--text);
-        transition: all 0.25s;
-        margin-bottom: 1.5rem;
-        width: min-content;
-
-        &:hover {
-            color: var(--primary);
-        }
-    }
-
-    span {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
     }
 
     div {

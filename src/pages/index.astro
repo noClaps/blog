@@ -1,14 +1,12 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Topic from "@/components/Topic.astro";
-import Icon from "@/components/Icon.astro";
 ---
 
 <BaseLayout title="The Blog of Random">
   <main>
     <h1>The Blog of Random</h1>
     <p>A blog about the most random things you can think of.</p>
-    <a href="/blog.rss"><Icon name="rss" /></a>
     <div>
       <Topic section="history" />
       <Topic section="law" />
@@ -34,14 +32,5 @@ import Icon from "@/components/Icon.astro";
   div {
     columns: 24rem auto;
     gap: 1rem;
-  }
-
-  a {
-    color: var(--text);
-    transition: all 0.25s;
-
-    &:hover {
-      color: var(--primary);
-    }
   }
 </style>
