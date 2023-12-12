@@ -35,11 +35,5 @@ export default defineMarkdocConfig({
             }
         }
     },
-    nodes: {
-        heading: {
-            ...nodes.heading,
-            render: component("./src/components/Heading.astro")
-        }
-    },
     extends: [shiki()]
 });
