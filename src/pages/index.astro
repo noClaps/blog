@@ -68,6 +68,10 @@ const notes = await getCollection("notes").then((notes) => {
   section {
     display: flex;
     gap: 1rem;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
   }
 
   h2 {
