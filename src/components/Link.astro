@@ -12,7 +12,7 @@ const { title, description, href, date, author } = Astro.props;
 
 <a href={`/${href}`} title={title}>
   <time datetime={date.toISOString()}>{date.toDateString()}</time>
-  <h3>{title}</h3>
+  <h4>{title}</h4>
   {description ?? <p>{description}</p>}
   <p>Written by {author}</p>
 </a>
@@ -34,13 +34,13 @@ const { title, description, href, date, author } = Astro.props;
     }
   }
 
-  h3,
+  h4,
   p,
   time {
     margin: 0.25rem;
   }
 
-  h3 {
+  h4 {
     font-size: 1.25rem;
   }
 

@@ -4,6 +4,10 @@ code {
     font-family: var(--mono);
 }
 
+time {
+    font-family: var(--mono);
+}
+
 /* Root */
 :root {
     color-scheme: dark light;
@@ -18,7 +22,7 @@ body {
 }
 
 main {
-    width: min(64rem, 88dvw);
+    max-width: 88dvw;
     margin: auto;
 
     & a {
