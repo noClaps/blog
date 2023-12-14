@@ -67,6 +67,7 @@ th {
 .astro-code {
     border-radius: 0.5rem;
     padding: 1rem;
+    max-width: 75dvw;
 }
 
 code:not(.astro-code code) {
