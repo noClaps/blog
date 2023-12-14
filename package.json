@@ -4,9 +4,9 @@
     "@astrojs/markdoc": "^0.8.0",
     "@astrojs/rss": "^4.0.1",
     "@markdoc/markdoc": "^0.4.0",
-    "astro": "^4.0.3",
+    "astro": "^4.0.4",
     "katex": "^0.16.9",
-    "lucide-static": "^0.294.0",
+    "lucide-static": "^0.295.0",
     "sharp": "^0.33.0"
   },
   "description": "The Blog of Random",

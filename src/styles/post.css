@@ -7,6 +7,7 @@
             display: grid;
             grid-template-columns: 1fr 4fr;
             margin: 0 2rem;
+            gap: 1rem;
         }
     }
 }
@@ -100,6 +101,8 @@ details {
     position: sticky;
     height: min-content;
     top: 4rem;
+    overflow: auto;
+    max-height: 85dvh;
 
     @media (max-width: 768px) {
         display: none;
