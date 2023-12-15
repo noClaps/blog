@@ -5,8 +5,7 @@
     "@astrojs/rss": "^4.0.1",
     "@markdoc/markdoc": "^0.4.0",
     "astro": "^4.0.5",
-    "katex": "^0.16.9",
-    "sharp": "^0.33.0"
+    "katex": "^0.16.9"
   },
   "description": "The Blog of Random",
   "scripts": {
