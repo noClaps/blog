@@ -34,8 +34,7 @@ main {
 
 p,
 li {
-    text-align: justify;
-    line-height: 1.5rem;
+    line-height: 1.5;
     margin: 1rem 0;
 }
 
