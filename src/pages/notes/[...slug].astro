@@ -1,6 +1,6 @@
 ---
 import { getCollection, getEntry } from "astro:content";
-import Note from "@/layouts/Note.astro";
+import Post from "@/layouts/Post.astro";
 
 export async function getStaticPaths() {
     const notes = await getCollection("notes");
@@ -15,7 +15,7 @@ const { note } = Astro.props;
 const { Content, headings } = await note.render();
 ---
 
-<Note
+<Post
     title={note.data.title}
     author={await getEntry("authors", note.data.author.id)}
     date={note.data.date}
@@ -23,4 +23,4 @@ const { Content, headings } = await note.render();
     {headings}
 >
     <Content />
-</Note>
+</Post>

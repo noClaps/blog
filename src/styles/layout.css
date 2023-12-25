@@ -1,11 +1,9 @@
-.note-header,
 .post-header,
 .post-info {
     display: flex;
 }
 
-.post-header,
-.note-header {
+.post-header {
     flex-direction: column;
 }
 
