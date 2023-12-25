@@ -1,87 +1,26 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Topic from "@/components/Topic.astro";
-import { getCollection } from "astro:content";
-import Link from "@/components/Link.astro";
-
-const notes = await getCollection("notes").then((notes) => {
-  return notes.sort((a, b) => {
-    const aDate = a.data.lastmod ?? a.data.date;
-    const bDate = b.data.lastmod ?? b.data.date;
-
-    if (aDate > bDate) return -1;
-    if (aDate < bDate) return 1;
-    return 0;
-  });
-});
+import Title from "@/components/layout/Title.astro";
 ---
 
 <BaseLayout title="The Blog of Random">
   <main>
-    <h1>The Blog of Random</h1>
-    <p>A blog about the most random things you can think of.</p>
+    <Title />
     <section>
-      <div>
-        <h2>Blog</h2>
-        <Topic section="history" />
-        <Topic section="law" />
-        <Topic section="science" />
-        <Topic section="tech" />
-      </div>
-      <div>
-        <h2>Notes</h2>
-        {
-          notes.map((note) => (
-            <Link
-              title={note.data.title}
-              href={`notes/${note.slug}`}
-              date={note.data.lastmod ?? note.data.date}
-              author={note.data.author.id}
-            />
-          ))
-        }
-      </div>
+      <Topic section="history" />
+      <Topic section="law" />
+      <Topic section="science" />
+      <Topic section="tech" />
     </section>
   </main>
 </BaseLayout>
 
 <style>
-  h1 {
-    font-size: min(5rem, 15vmin);
-    color: var(--primary);
-    margin: 0;
-    text-align: center;
-  }
-
-  p {
-    font-size: 2rem;
-    line-height: 1.25;
-    text-align: center;
-  }
-
-  div {
+  section {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    width: 100%;
-  }
-
-  section {
-    display: flex;
-    gap: 1rem;
-
-    @media (max-width: 768px) {
-      flex-direction: column;
-    }
-  }
-
-  h2 {
-    font-size: 2rem;
-    text-align: center;
-  }
-
-  h1,
-  h2 {
-    font-family: var(--serif);
+    margin: 2rem 0;
   }
 </style>
