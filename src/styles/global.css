@@ -14,21 +14,17 @@ code {
 body {
     background-color: var(--background);
     color: var(--text);
-    margin: 0;
-}
-
-main {
     max-width: 88dvw;
     margin: auto;
+}
 
-    & a {
-        text-decoration: none;
-        color: var(--primary);
-        white-space: break-spaces;
+main a {
+    text-decoration: none;
+    color: var(--primary);
+    white-space: break-spaces;
 
-        &:hover {
-            text-decoration: underline;
-        }
+    &:hover {
+        text-decoration: underline;
     }
 }
 

@@ -4,9 +4,9 @@
 
     @media (min-width: 768px) {
         &:has(.toc) {
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr 5fr;
             gap: 1rem;
-            margin: auto 4dvw;
         }
     }
 }
