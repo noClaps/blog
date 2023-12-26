@@ -116,10 +116,18 @@ const posts = await getCollection("posts").then((posts) => {
     display: flex;
     overflow: auto;
     gap: 1rem;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
   }
 
   h3,
   h3 + section {
     margin-left: 4rem;
+
+    @media (max-width: 768px) {
+      margin-left: 2rem;
+    }
   }
 </style>

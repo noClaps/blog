@@ -5,7 +5,7 @@
     </section>
     <nav>
         <a href="/" data-selected={Astro.url.pathname === "/"}>Blog</a> /
-        <a href="/notes" data-selected={Astro.url.pathname === "/notes"}
+        <a href="/notes" data-selected={Astro.url.pathname.startsWith("/notes")}
             >Notes</a
         >
     </nav>
