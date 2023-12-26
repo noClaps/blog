@@ -3,9 +3,11 @@
     margin-top: 1rem;
 
     @media (min-width: 768px) {
-        display: grid;
-        grid-template-columns: 1fr 4fr;
-        gap: 1rem;
+        &:has(.toc) {
+            display: grid;
+            grid-template-columns: 1fr 4fr;
+            gap: 1rem;
+        }
     }
 }
 
