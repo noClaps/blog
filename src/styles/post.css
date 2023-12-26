@@ -60,7 +60,19 @@ th {
 .astro-code {
     border-radius: 0.5rem;
     padding: 1rem;
-    max-width: 60dvw;
+    max-width: 64.8dvw;
+
+    @media (min-width: 1280px) {
+        max-width: 67.35dvw;
+    }
+}
+
+li .astro-code {
+    max-width: calc(64.8dvw - 40px);
+
+    @media (min-width: 1280px) {
+        max-width: calc(67.35dvw - 40px);
+    }
 }
 
 code:not(.astro-code code) {
