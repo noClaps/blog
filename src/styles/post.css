@@ -3,11 +3,9 @@
     margin-top: 1rem;
 
     @media (min-width: 768px) {
-        &:has(.toc) {
-            display: grid;
-            grid-template-columns: 1fr 5fr;
-            gap: 1rem;
-        }
+        display: grid;
+        grid-template-columns: 1fr 4fr;
+        gap: 1rem;
     }
 }
 
@@ -38,11 +36,10 @@ article :is(p, li) {
 }
 
 /* Links */
-article a {
-    &:has(code) {
-        text-decoration: underline;
-    }
+article a:has(code) {
+    text-decoration: underline;
 }
+
 
 /* Tables */
 table {
@@ -63,7 +60,7 @@ th {
 .astro-code {
     border-radius: 0.5rem;
     padding: 1rem;
-    max-width: 75dvw;
+    max-width: 60dvw;
 }
 
 code:not(.astro-code code) {
