@@ -66,8 +66,8 @@ const posts = await getCollection("posts").then((posts) => {
                 ),
             )}
           </section>
+          <h3>Inside E2EE</h3>
           <section>
-            <h3>Inside E2EE</h3>
             <div class="links">
               {posts.map(
                 (post) =>
@@ -83,8 +83,8 @@ const posts = await getCollection("posts").then((posts) => {
               )}
             </div>
           </section>
+          <h3>Privacy, Security and Anonymity</h3>
           <section>
-            <h3>Privacy, Security and Anonymity</h3>
             <div class="links">
               {posts.map(
                 (post) =>
@@ -108,29 +108,26 @@ const posts = await getCollection("posts").then((posts) => {
 
 <style>
   h2 {
-    text-align: center;
-    font-size: 2rem;
     margin-top: 0;
-  }
-
-  .posts {
-    display: grid;
-    gap: 1rem;
-  }
-
-  .topic {
-    margin: 0 0 calc(4rem / 3);
-    break-inside: avoid;
   }
 
   section,
   .links {
     display: flex;
-    flex-direction: column;
+    overflow: auto;
     gap: 1rem;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
   }
 
-  h3 {
-    font-size: 1.5rem;
+  h3,
+  h3 + section {
+    margin-left: 4rem;
+
+    @media (max-width: 768px) {
+      margin-left: 2rem;
+    }
   }
 </style>

@@ -1,32 +1,40 @@
 /* Fonts */
 code {
     overflow-wrap: break-word;
-    font-family: ui-monospace, monospace;
+    font-family: var(--mono);
 }
 
 /* Root */
-main {
-    width: min(64rem, 88dvw);
+:root {
+    color-scheme: dark light;
+    scroll-behavior: smooth;
+    font-family: var(--sans);
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text);
+    max-width: 88dvw;
     margin: auto;
+}
 
-    & a {
-        text-decoration: none;
-        color: accentcolor;
-        white-space: break-spaces;
+main a {
+    text-decoration: none;
+    color: var(--primary);
+    white-space: break-spaces;
 
-        &:hover {
-            text-decoration: underline;
-        }
+    &:hover {
+        text-decoration: underline;
     }
 }
 
 p,
 li {
-    text-align: justify;
-    line-height: 1.5rem;
+    line-height: 1.5;
+    margin: 1rem 0;
 }
 
 hr {
     border: none;
-    border-top: solid 0.125rem accentcolor;
+    border-top: solid 0.125rem var(--primary);
 }

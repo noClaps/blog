@@ -1,0 +1,68 @@
+---
+import type { MarkdownHeading } from "astro";
+
+interface Props {
+    headings: MarkdownHeading[];
+    nested?: boolean;
+}
+
+export interface HeadingTree extends MarkdownHeading {
+    subheadings: HeadingTree[];
+}
+
+const { headings, nested = false } = Astro.props;
+
+// @ts-ignore I can't be bothered to do the type gymnastics for this
+const toc: HeadingTree[] = nested ? headings : [];
+if (!nested) {
+    const parentHeadings = new Map();
+    headings.forEach((h) => {
+        const heading = { ...h, subheadings: [] };
+        parentHeadings.set(heading.depth, heading);
+
+        if (heading.depth === 2) {
+            toc.push(heading);
+        } else if (heading.depth <= 3) {
+            parentHeadings.get(heading.depth - 1).subheadings.push(heading);
+        }
+    });
+}
+---
+
+<ul>
+    {
+        toc.map(({ subheadings, slug, text }) => (
+            <li>
+                <a href={`#${slug}`}>{text}</a>
+                {subheadings.length > 0 && (
+                    <Astro.self headings={subheadings} nested={true} />
+                )}
+            </li>
+        ))
+    }
+</ul>
+
+<style>
+    ul {
+        color: var(--text);
+        padding-left: 0;
+        list-style-type: none;
+    }
+
+    li {
+        line-height: 1;
+
+        & ul {
+            padding-left: 1rem;
+        }
+    }
+
+    a {
+        color: var(--text);
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+</style>

@@ -1,11 +1,13 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
-import "../styles/post.css";
-import ScrollToTop from "../components/ScrollToTop.astro";
+import "@/styles/post.css";
+import "@/styles/layout.css";
+import type { MarkdownHeading } from "astro";
+import TableOfContents from "@/components/layout/TableOfContents.astro";
 
 interface Props {
   title: string;
-  description: string;
+  description?: string;
   author: {
     data: {
       name: string;
@@ -14,93 +16,48 @@ interface Props {
   };
   date: Date;
   lastmod?: Date;
+  headings: MarkdownHeading[];
 }
 
-const { title, description, author, date, lastmod } = Astro.props;
+const { title, description, author, date, lastmod, headings } = Astro.props;
 
 const pubDate = lastmod ?? date;
-
-const titleString = title.toLowerCase().split(" ").join("");
-const timeString = `${pubDate
-  ?.toDateString()
-  .split(" ")
-  .join("")}-${titleString}`;
-const descriptionString = description?.toLowerCase().split(" ").join("");
-const authorString = `${author.data.name}-${titleString}`;
 ---
 
 <BaseLayout {title} {description}>
-  <main>
-    <div class="post-header">
-      <time transition:name={timeString} datetime={pubDate.toISOString()}>
-        {pubDate.toDateString()}
-      </time>
-      <h1 transition:name={titleString}>{title}</h1>
-      <div class="post-info">
-        <h3 transition:name={descriptionString}>{description}</h3>
-        <p transition:name={authorString}>
-          Written by <a href={author.data.link}>{author.data.name}</a>
-        </p>
-      </div>
-    </div>
-
-    <slot />
-
-    <ScrollToTop />
-  </main>
-</BaseLayout>
-
-<style>
-  main {
-    margin-top: 4dvh;
+  {
+    headings.length > 0 && (
+      <details slot="header">
+        <summary>Table of Contents</summary>
+        <TableOfContents {headings} />
+      </details>
+    )
   }
-
-  div {
-    display: flex;
-  }
-
-  /* Post header */
-  .post-header {
-    flex-direction: column;
-  }
-
-  h1,
-  time {
-    margin: 0.5rem 0;
-  }
-
-  h1 {
-    font-size: 3rem;
-    margin-bottom: 0;
-  }
-
-  time {
-    font-weight: bold;
-    opacity: 0.75;
-  }
-
-  /* Post info */
-  .post-info {
-    justify-content: space-between;
-
-    @media (max-width: 768px) {
-      flex-direction: column;
+  <div class="content">
+    {
+      headings.length > 0 && (
+        <div class="toc">
+          <h3>Table of Contents</h3>
+          <TableOfContents {headings} />
+        </div>
+      )
     }
-  }
-
-  p {
-    font-style: italic;
-    opacity: 0.75;
-  }
-
-  a {
-    color: canvastext;
-    transition: all 0.25s;
-  }
-
-  h3 {
-    opacity: 0.75;
-    font-size: 1.25rem;
-    margin: 1rem 0;
-  }
-</style>
+    <main>
+      <div class="post-header">
+        <time datetime={pubDate.toISOString()}>
+          {pubDate.toDateString()}
+        </time>
+        <h1>{title}</h1>
+        <div class="post-info">
+          {description && <h3 class="description">{description}</h3>}
+          <p class="author">
+            Written by <a class="author-link" href={author.data.link}
+              >{author.data.name}</a
+            >
+          </p>
+        </div>
+      </div>
+      <slot />
+    </main>
+  </div>
+</BaseLayout>

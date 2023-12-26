@@ -1,20 +1,18 @@
 {
   "name": "@noclaps/blog",
   "dependencies": {
-    "@astrojs/markdoc": "^0.8.0",
+    "@astrojs/markdoc": "^0.8.1",
     "@astrojs/rss": "^4.0.1",
     "@markdoc/markdoc": "^0.4.0",
-    "astro": "^4.0.3",
-    "katex": "^0.16.9",
-    "lucide-static": "^0.294.0",
-    "sharp": "^0.33.0"
+    "astro": "^4.0.7",
+    "katex": "^0.16.9"
   },
   "description": "The Blog of Random",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "astro build && astro preview",
     "astro": "astro"
   },
   "type": "module",

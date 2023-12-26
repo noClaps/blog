@@ -1,8 +1,8 @@
 ---
+import Link from "@/components/Link.astro";
+import Title from "@/components/layout/Title.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import Link from "../../components/Link.astro";
-import Icon from "@/components/Icon.astro";
 
 const notes = await getCollection("notes").then((notes) => {
     return notes.sort((a, b) => {
@@ -16,13 +16,10 @@ const notes = await getCollection("notes").then((notes) => {
 });
 ---
 
-<BaseLayout title="Notes">
+<BaseLayout title="Notes | The Blog of Random">
     <main>
-        <span>
-            <h1>Notes</h1>
-            <a href="/notes.rss"><Icon name="rss" /></a>
-        </span>
-        <div>
+        <Title />
+        <section>
             {
                 notes.map((note) => (
                     <Link
@@ -33,38 +30,20 @@ const notes = await getCollection("notes").then((notes) => {
                     />
                 ))
             }
-        </div>
+        </section>
     </main>
 </BaseLayout>
 
 <style>
-    h1 {
-        font-size: min(5rem, 15vmin);
-        color: accentcolor;
-        margin-bottom: 0.5rem;
-        width: min-content;
-    }
-
-    a {
-        color: canvastext;
-        transition: all 0.25s;
-        margin-bottom: 1.5rem;
-        width: min-content;
-
-        &:hover {
-            color: accentcolor;
-        }
-    }
-
-    span {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    div {
-        display: flex;
-        flex-direction: column;
+    section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(16rem, min-content));
         gap: 1rem;
+        margin: 2rem 0;
+
+        @media (max-width: 768px) {
+            grid-template-columns: unset;
+            grid-template-rows: 1fr;
+        }
     }
 </style>

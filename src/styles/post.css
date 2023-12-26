@@ -1,32 +1,52 @@
-article a:not(:is(h2, h3, h4, h5, h6) a) {
-    color: accentcolor;
-    background-position-y: 0%;
-    background-image: linear-gradient(180deg, transparent 50%, accentcolor 50%);
-    transition: all 0.25s;
-    background-size: auto 200%;
-    border-radius: 0.25rem;
-    padding: 0.125rem;
-    margin: 0 -0.125rem;
-    text-decoration: underline;
-    text-underline-offset: 0.25rem;
+/* Root */
+.content {
+    margin-top: 1rem;
 
-    &:hover {
-        text-decoration: none;
-        background-position-y: 100%;
-        color: accentcolortext;
+    @media (min-width: 768px) {
+        &:has(.toc) {
+            display: grid;
+            grid-template-columns: 1fr 4fr;
+            gap: 1rem;
+        }
     }
 }
 
+/* Post details */
+.author {
+    text-align: right;
 
-/* Lists */
-li {
-    margin: 1rem 0;
+    @media (max-width: 768px) {
+        text-align: left;
+    }
 }
+
+/* Headings */
+h2 {
+    border-top: solid 0.125rem var(--primary);
+    padding-top: calc(4rem / 3);
+    margin-top: 0.5rem;
+}
+
+h3 {
+    margin-top: 2rem;
+    margin-bottom: 0;
+}
+
+/* Text */
+article :is(p, li) {
+    text-align: justify;
+}
+
+/* Links */
+article a:has(code) {
+    text-decoration: underline;
+}
+
 
 /* Tables */
 table {
     margin: 1rem auto;
-    border: solid canvastext;
+    border: solid var(--text);
 }
 
 th {
@@ -42,6 +62,19 @@ th {
 .astro-code {
     border-radius: 0.5rem;
     padding: 1rem;
+    max-width: 64.8dvw;
+
+    @media (min-width: 1280px) {
+        max-width: 67.35dvw;
+    }
+}
+
+li .astro-code {
+    max-width: calc(64.8dvw - 40px);
+
+    @media (min-width: 1280px) {
+        max-width: calc(67.35dvw - 40px);
+    }
 }
 
 code:not(.astro-code code) {
@@ -51,12 +84,35 @@ code:not(.astro-code code) {
     padding: 0.25rem;
 }
 
-/* Checklist */
-.contains-task-list {
-    list-style-type: none;
-}
-
 img {
     width: 100%;
     object-fit: contain;
+}
+
+/* Table of Contents */
+details {
+    position: absolute;
+    background-color: var(--background);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: 0.125rem solid var(--text);
+    width: max-content;
+    left: 2.5rem;
+    top: -0.25rem;
+
+    @media (min-width: 768px) {
+        display: none;
+    }
+}
+
+.toc {
+    position: sticky;
+    height: min-content;
+    top: 4rem;
+    overflow: auto;
+    max-height: 85dvh;
+
+    @media (max-width: 768px) {
+        display: none;
+    }
 }

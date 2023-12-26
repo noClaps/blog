@@ -12,8 +12,6 @@ In both the X3DH and Double Ratchet algorithms, we use a lot of private keys and
 
 This appendix is all about this challenge: we'll compare storing keys on server and device, learn about `SubtleCrypto`'s built-in functionality for encrypting `CryptoKey` objects and finally write a class that can store and read a private secret value securely.
 
-{% toc headings=$toc /%}
-
 ## Server or device?
 
 One of the most important question you have to ask when designing a system like this is where the keys are going to be stored? There are two options: either store them on the server or on the device. Both options have valid pros and cons, so let's take a look at them.
