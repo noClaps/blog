@@ -1,10 +1,10 @@
 {
   "name": "@noclaps/blog",
   "dependencies": {
-    "@astrojs/markdoc": "^0.8.1",
+    "@astrojs/markdoc": "^0.8.2",
     "@astrojs/rss": "^4.0.1",
     "@markdoc/markdoc": "^0.4.0",
-    "astro": "^4.0.7",
+    "astro": "^4.0.8",
     "katex": "^0.16.9"
   },
   "description": "The Blog of Random",
