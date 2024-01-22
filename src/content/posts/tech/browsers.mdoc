@@ -1,7 +1,7 @@
 ---
-title: The Browser Wars
+title: Battle of the Browsers
 description: A comparison of different browsers, and a peace treaty
-date: 2024-01-20
+date: 2024-01-22
 author: noClaps
 ---
 
@@ -93,8 +93,68 @@ I like Firefox as a browser. It's relatively clean, fast, and usually works, and
 
 ## WebKit
 
+WebKit is Apple's browser engine that's used primarily in Safari. Just like the other engines, WebKit is [open source](https://github.com/WebKit/WebKit), and different versions of it have been used in other browsers, like WebKitGTK in GNOME Web, as well as many of Apple's own applications, including the [Apple Mail client and the App Store](https://webkit.org). WebKit was also used by Google Chrome and Opera, before they [switched to the Blink engine](https://www.chromium.org/blink/developer-faq/).
+
+### Safari
+
+Safari is Apple's proprietary browser that's built on top of WebKit. It's heavily optimised for Apple's operating systems and is generally the most performant browser for those systems. Safari is the [2nd most used browser in the world](https://gs.statcounter.com/browser-market-share), with around 18% market share.
+
+{% quote name="OPINION" %}
+Safari has been a great browser in the few months that I've been using it. I've had people tell me to switch to other browsers like Chrome, but I haven't really had a reason to so far. It's really fast, battery-efficient and ties in really well with Apple's other services like Private Relay or Keychain. Safari's extension support is a bit lacking, but since all I use is an adblocker and Bitwarden, I'm fine with that.
+
+From a web development perspective, Safari doesn't have _all_ of the features that Chrome does, and despite being the [2nd most standards-compliant](https://wpt.fyi/interop-2023?stable) browser, it still lacks a lot of the cool new tech like the View Transitions API. That being said, I haven't really experienced too many issues with it.
+{% /quote %}
+
 ## The differences
+
+The major differences between the browsers are their user interfaces (UIs), the user experience (UX), and the developer experience (DX).
+
+{% note %}
+When I say "developer experience", I mean from the perspective of a web developer. I have not worked on a browser myself and do not have a clue what that experience is like. I suppose web developers are technically users of browsers, but the experience is different enough that I think it's worth putting them in a separate category.
+{% /note %}
+
+### User interface (UI)
+
+Most browsers have a relatively similar UI: tabs at the top, extensions on the top right, bookmarks in a bar below tabs, etc. Each browser has its own spin on this design, with different colors, shapes, sizes, etc., but it's fairly intuitive to switch from one browser to another because of this consistency. That being said, some browsers allow for far more customisation than others, like Vivaldi or Firefox allowing their users to completely redesign their browser using CSS, or Chrome allowing users to make and share color themes, or Safari being completely unthemeable outside of the OS-provided color-schemes.
+
+People will generally adapt to different UIs fairly quickly, and so this isn't a major difference between them, although for those who enjoy customisation, more locked-down browsers like Chrome and Safari might not be good options.
+
+### User experience (UX)
+
+This is the major difference that most people will experience when using different browsers. Although their UIs may be similar, the experience of using them could be completely different. For instance, Chrome is heavily integrated with Google, so someone who uses a lot of Google services would likely benefit from using Chrome. The situation for other popular browsers is similar, such as Edge with Microsoft or Safari with Apple. This can include services like password managers, which are usually built into the browser and linked to your account.
+
+There are also other things that constitute the user experience, such as extension support. Chromium browsers have access to the Chrome Web Store, and Firefox-based browser have access to Firefox extensions, both of which are in the tens or hundreds of thousands. Meanwhile, the extension support on Safari is far more limited, and many are paid which limits their availability to users even further. For someone who uses a lot of extensions, or requires some specific extensions for their browsing, this may be the main deciding factor in their choice.
+
+One of the main reasons that people choose a specific browser is because of website compatibility. Although this issue is declining with every browser update that brings it closer to web standards, there are still websites that will either not work properly or simply refuse to load on certain browsers, generally due to the website using features the browser may lack. However, this problem will likely disappear in the near future as browser vendors aim for full compatibility.
+
+### Developer experience (DX)
+
+Much of the developer experience in different browsers boils down to compatibilty and the built-in developer tools.
+
+Compatibility is a huge problem for web developers, as they need to ensure that their code and designs have the exact same behavior on all of the browsers their visitors are likely to use. Not doing so would mean risking losing customers, and no business wants that. Generally developers will support the most used versions of the most used browsers, to maximise compatibility, and that is becoming easier to do as browsers gain feature parity with one another.
+
+{% quote name="OPINION" %}
+A lot of people put the responsibility of supporting different browsers on the developers of the website, but I don't think that's fair. Trying to convert an API or feature from a supporting browser to an unsupporting one can be incredibly difficult, and will generally result in a worse experience for the user. It's also expensive for the business to hire developers to code and maintain those features until the browser adds them natively, which can be an issue for smaller businesses.
+
+I'm not saying people are wrong to complain about something they expect to work, not working. I think the solution is for both web developers and browsers to simply follow the web standards. That will result in better compatibility, accessibility and sustainability, since most of the web is completely backwards-compatible. Since all of the popular browsers are backed by multi-billion- and trillion-dollar companies, I'm not quite sure why this has taken so long, but I'm glad we're finally starting to take it seriously.
+{% /quote %}
+
+The built-in developer tools can also make or break a web developer's experience. For instance, Chrome's DevTools are very powerful, with features like Lighthouse and Device Mode built in to them. Safari and Firefox don't have the same set of features, and depending on your development style and audience, you may need these features. Lighthouse can be helpful for locally testing your website for performance and accessibility, and is only available in Chromium-based browsers, for example. Generally, the best method is to either manually test on all of the browsers your visitors are likely to use, or to use a testing framework to do that for you.
 
 ## Other browser engines
 
+Other than the 3 browser engines above, others also exist:
+
+- [Servo](https://servo.org), a browser engine written in Rust with performance and web standards in mind. It was born out of Mozilla, but has since moved to Linux Foundation Europe.
+- [Ladybird](https://ladybird.dev), a browser written from scratch for SerenityOS.
+- [Goanna](https://www.palemoon.org/tech/goanna.shtml), a fork of an old version of [Gecko](#gecko) that is used in the Pale Moon browser. Updates to the Gecko engine have added security updates, which may have not been added to Goanna. Goanna and Pale Moon therefore may be insecure, and are not recommended to be used.
+
+There are likely many others that I missed, as these are the only ones I've heard of. Making a browser engine is a lot of work, which is probably why it's mostly big companies that have been able to succeed so far.
+
 ## A peace treaty
+
+Ask yourself the question, "Why do I use the browser that I do?". If you can easily answer that, then I'm sure you can understand that others may have their own reasons for using their browsers of choice. If you can't, then maybe you simply haven't found the right browser for you yet.
+
+At the end of the day, everyone uses whatever browser they want to, and I don't fully understand why people get so tribal about it. I've seen arguments online about why Firefox is better than Chrome, and I've had people tell me that Safari sucks, without being able to really explain why. In fact, that was one of the main reasons for me writing this post in the first place! I probably missed out on a lot of points, but I hope I've been able to cover some of the major differences between the different browsers, and maybe highlight that they're not so different after all.
+
+So maybe next time before you tell someone their browser sucks, you can try to understand why they may be using what they use, present the case for your preferred browser, and let them choose for themselves.
