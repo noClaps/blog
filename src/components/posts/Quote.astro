@@ -1,13 +1,4 @@
----
-interface Props {
-  name?: string;
-  link?: string;
-}
-
-const { name = "QUOTE", link } = Astro.props;
----
-
-<blockquote class="quote">
+<template id="b-quote">
   <p>
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -23,23 +14,49 @@ const { name = "QUOTE", link } = Astro.props;
       ><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
       ></path></svg
     >
-    {
-      link ? (
-        <b>
-          <a href={link} target="_blank" rel="noopener noreferrer">
-            {name}
-          </a>
-        </b>
-      ) : (
-        <b>{name}</b>
-      )
-    }
+	<b id="title">
+    	<a target="_blank" rel="noopener noreferrer"></a>
+	</b>
   </p>
-  <slot />
-</blockquote>
+</template>
+
+<script>
+	import { marked } from "marked"
+	class BQuote extends HTMLElement {
+		constructor() {
+			super()
+			
+			const template = document.querySelector("#b-quote")
+			if (!template) throw new Error("Quote template not found")
+
+			const title = this.getAttribute("title") ?? "QUOTE"
+			const href = this.getAttribute("href")
+			console.log(this.innerText)
+			const content = this.innerHTML.trim()
+			this.innerHTML = template.innerHTML
+
+			const titleSection = this.querySelector("#title")
+			if (!titleSection) throw new Error("Quote title section not found")
+
+			if (href) {
+				const link = titleSection.querySelector("a")
+				if (!link) throw new Error("Quote title link element not found")
+
+				link.href = href
+				link.innerHTML = title
+			} else {
+				titleSection.innerHTML = title
+			}
+
+			this.insertAdjacentHTML("beforeend", marked.parse(content) as string)
+		}
+	}
+
+	customElements.define("b-quote", BQuote)
+</script>
 
 <style>
-  .quote {
+  :global(b-quote) {
     display: grid;
     padding: 1rem;
     border-radius: 0.5rem;
@@ -52,14 +69,14 @@ const { name = "QUOTE", link } = Astro.props;
     margin: 0;
   }
 
-  b {
-    vertical-align: middle;
-  }
-
   svg {
     height: 1rem;
     width: 1rem;
     margin-right: 0.5rem;
+    vertical-align: middle;
+  }
+
+  b {
     vertical-align: middle;
   }
 

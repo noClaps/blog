@@ -1,12 +1,4 @@
----
-interface Props {
-  title?: string;
-}
-
-const { title = "WARNING" } = Astro.props;
----
-
-<div class="warning">
+<template id="b-warning">
   <p>
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -23,13 +15,36 @@ const { title = "WARNING" } = Astro.props;
         d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"
       ></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg
     >
-    <b>{title}</b>
+    <b id="title"></b>
   </p>
-  <slot />
-</div>
+</template>
+
+<script>
+	import { marked } from "marked"
+	class BWarning extends HTMLElement {
+		constructor() {
+			super()
+			
+			const template = document.querySelector("#b-warning")
+			if (!template) throw new Error("Warning template not found")
+
+			const content = this.innerHTML.trim()
+			this.innerHTML = template.innerHTML
+
+			this.insertAdjacentHTML("beforeend", marked.parse(content) as string)
+
+			const title = this.getAttribute("title") ?? "WARNING"
+			const titleElem = this.querySelector("#title")
+			if (!titleElem) throw new Error("Title section of warning template not found")
+			titleElem.innerHTML = title.trim()
+		}
+	}
+
+	customElements.define("b-warning", BWarning)
+</script>
 
 <style>
-  .warning {
+  :global(b-warning) {
     display: grid;
     padding: 1rem;
     border-radius: 0.5rem;

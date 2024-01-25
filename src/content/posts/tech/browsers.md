@@ -31,13 +31,13 @@ Chrome first launched in 2008 for Windows XP, and released previews and betas fo
 
 This initial benefit, in addition to the popularity of Google search and other Google services like Gmail, are likely what led to the rise in browser usage for Chrome, especially among the general audience. To this day, Chrome's integration with Google services is unmatched. If you use a lot of Google's suite of products, you're unlikely to find a better experience than Chrome.
 
-{% quote name="OPINION" %}
+<b-quote title="OPINION">
 I've used Chrome for a lot of my life, and I like Google's projects in general. The Chrome browser, and Chromium in general, has a lot of benefits, even technically speaking. I've written about some of these in my [Google: A Misrepresented Evil](./google#chromium) post, but more than that, they've given the world a lot of very helpful and important tools, like Node.js.
 
 However, I don't really like using Chrome on my computer anymore. It feels somehow slower and clunkier than other browsers, and installs a bunch of other things I don't want. I wish all they had was a `Chrome.app` that I could click on and run, without registering a couple background processes along the way. I also wish that signing into one Google service wouldn't sign me in to the whole browser, and also every other Google service. In fact, I don't really like signing into browsers at all (with an exception).
 
 At the same time, though, I do recognise that a majority of people use Chrome, and generally enjoy it, and I'd be lying if I said I didn't think it was a good browser.
-{% /quote %}
+</b-quote>
 
 ### Edge
 
@@ -47,7 +47,7 @@ Edge also brings with it a lot of features that other Chromium browsers don't ha
 
 In addition to this, Edge also ties in really well to Microsoft's services, and in general performs a lot better on Windows than most other browsers. However, as the browser has a lot of features built-in, a lot of people simply pass it up [as](https://www.thurrott.com/cloud/web-browsers/microsoft-edge/259781/users-pushback-against-bloatware-in-microsoft-edge) [being](https://www.techradar.com/computing/edge/microsoft-edge-is-installing-bloat-without-asking-and-we-cant-work-out-why) ["too](https://answers.microsoft.com/en-us/microsoftedge/forum/all/why-is-edge-being-bloated-and-slowed-down/da3a2ee9-9a11-4b6e-b638-0b1d1bf82a6e) [bloated"](https://www.reddit.com/r/browsers/comments/14s6kmg/wtf_happen_to_microsoft_edge_its_so_bloated_and/).
 
-{% quote name="OPINION" %}
+<b-quote title="OPINION">
 Personally, I'm not quite sure how I feel about Edge. There are times where I've liked using it, and other times where it really annoyed me.
 
 Bloat is a real issue with Edge, especially nowadays with features like Bing Chat/Microsoft Copilot, and the sidebar, as well as the Wallet, etc. The list of "features" is far too long for me to remember, and I usually just went into settings and turned it all off anyway. For someone who's that deep into the Microsoft ecosystem and uses the features, I'm sure it's a great thing, but it's not for me.
@@ -55,7 +55,7 @@ Bloat is a real issue with Edge, especially nowadays with features like Bing Cha
 Another thing that annoys me is that if you disable storing cookies on exit, the start page for the browser shows you a cookie banner each time you start it. Why their start page was storing any cookies in the first place, especially after I disabled all of the features of the start page, is beyond me. Every other browser that I've tried has figured this out, so I'm not sure what Edge is doing. At least they ask, I suppose.
 
 However, once you configure Edge to be how you want it, it's not a terrible browser. It's more optimised for Windows than Chrome is, and properly ties in with system features like Defender. If I had the ability to customise the browser how I want it, I'd generally pick Edge over Chrome on Windows.
-{% /quote %}
+</b-quote>
 
 ### Brave
 
@@ -65,7 +65,7 @@ The browser comes with an adblocker built-in called Brave Shields, which is buil
 
 It's generally marketed as a privacy-focused browser, although their Brave Ads business has led them to be compared to Google with Google Ads. In addition, just like Edge, a lot of their features have been labelled as ["bloat"](https://community.brave.com/t/brave-is-getting-heavier-bloated-buggy-every-new-update/482229). There was also a case where Brave was found ["selling copyrighted data for AI training"](https://stackdiary.com/brave-selling-copyrighted-data-for-ai-training/), although it was data from Brave Search and not the browser itself.
 
-{% quote name="OPINION" %}
+<b-quote title="OPINION">
 I like Brave. Like with Edge, the initial setup is a little annoying to do (not nearly as bad as Edge, though), but after that it's smooth sailing. I'm not cryptocurrency person, and so I don't really care for BAT or the Wallet, and I'm glad it gives you the option to turn it off.
 
 Brave Search has also worked well for me in the past, though I do still use Google search. Google isn't as good as it used to be, but I've found it better than the alternatives. The "least bad" option, if you will.
@@ -73,7 +73,7 @@ Brave Search has also worked well for me in the past, though I do still use Goog
 However, there have been many controveries behind [Brave](https://archive.is/Tu0M2#Controversies) and its [founder](https://www.wired.com/2014/04/brendan-eichs-downfall/), and if you'd like to read a more criticising view of Brave, I can recommend [this ZDNet article](https://www.zdnet.com/article/brave-browser-the-bad-and-the-ugly/).
 
 While a lot of their controversies don't really affect the browser itself, I know people who refuse to use Brave simply because of Brendan Eich and so I figured I'd mention it.
-{% /quote %}
+</b-quote>
 
 ## Gecko
 
@@ -87,9 +87,9 @@ Firefox is really the main browser built on top of Gecko, with most others like 
 
 Today, it's a formidable browser that sits as the fourth-most used in the world.
 
-{% quote name="OPINION" %}
+<b-quote title="OPINION">
 I like Firefox as a browser. It's relatively clean, fast, and usually works, and takes me a lot less work to set up than Brave, Chrome or Edge do. However, it's not as great as Chromium to do web development in since a lot of the browser DevTools simply aren't as well-made as Chromium's or WebKit's. I also have a problem with Mozilla, which I've written about in a [Note](/notes/mozilla).
-{% /quote %}
+</b-quote>
 
 ## WebKit
 
@@ -99,19 +99,19 @@ WebKit is Apple's browser engine that's used primarily in Safari. Just like the 
 
 Safari is Apple's proprietary browser that's built on top of WebKit. It's heavily optimised for Apple's operating systems and is generally the most performant browser for those systems. Safari is the [2nd most used browser in the world](https://gs.statcounter.com/browser-market-share), with around 18% market share.
 
-{% quote name="OPINION" %}
+<b-quote title="OPINION">
 Safari has been a great browser in the few months that I've been using it. I've had people tell me to switch to other browsers like Chrome, but I haven't really had a reason to so far. It's really fast, battery-efficient and ties in really well with Apple's other services like Private Relay and Keychain. Safari's extension support is a bit lacking, but since all I use is an adblocker and Bitwarden, I'm fine with that.
 
 From a web development perspective, Safari doesn't have _all_ of the features that Chrome does, and despite being the [2nd most standards-compliant](https://wpt.fyi/interop-2023?stable) browser, it still lacks a lot of the cool new tech like the View Transitions API. That being said, I haven't really experienced too many issues with it.
-{% /quote %}
+</b-quote>
 
 ## The differences
 
 The major differences between the browsers are their user interfaces (UIs), the user experience (UX), and the developer experience (DX).
 
-{% note %}
+<b-note>
 When I say "developer experience", I mean from the perspective of a web developer. I have not worked on a browser myself and do not have a clue what that experience is like. I suppose web developers are technically users of browsers, but the experience is different enough that I think it's worth putting them in a separate category.
-{% /note %}
+</b-note>
 
 ### User interface (UI)
 
@@ -133,11 +133,11 @@ Much of the developer experience in different browsers boils down to compatibilt
 
 Compatibility is a huge problem for web developers, as they need to ensure that their code and designs have the exact same behavior on all of the browsers their visitors are likely to use. Not doing so would mean risking losing customers, and no business wants that. Generally developers will support the most used versions of the most used browsers, to maximise compatibility, and that is becoming easier to do as browsers gain feature parity with one another.
 
-{% quote name="OPINION" %}
+<b-quote title="OPINION">
 A lot of people put the responsibility of supporting different browsers on the developers of the website, but I don't think that's fair. Trying to convert an API or feature from a supporting browser to an unsupporting one can be incredibly difficult, and will generally result in a worse experience for the user. It's also expensive for the business to hire developers to code and maintain those features until the browser adds them natively, which can be an issue for smaller businesses.
 
 I'm not saying people are wrong to complain about something they expect to work, not working. I think the solution is for both web developers and browsers to simply follow the web standards. That will result in better compatibility, accessibility and sustainability, since most of the web is completely backwards-compatible. Since all of the popular browsers are backed by multi-billion- and trillion-dollar companies, I'm not quite sure why this has taken so long, but I'm glad we're finally starting to take it seriously.
-{% /quote %}
+</b-quote>
 
 The built-in developer tools can also make or break a web developer's experience. For instance, Chrome's DevTools are very powerful, with features like Lighthouse and Device Mode built in to them. Safari and Firefox don't have the same set of features, and depending on your development style and audience, you may need these features. Lighthouse can be helpful for locally testing your website for performance and accessibility, and is only available in Chromium-based browsers, for example. Generally, the best method is to either manually test on all of the browsers your visitors are likely to use, or to use a testing framework to do that for you.
 

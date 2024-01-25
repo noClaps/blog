@@ -5,6 +5,10 @@ import "@/styles/layout.css";
 import type { MarkdownHeading } from "astro";
 import TableOfContents from "@/components/layout/TableOfContents.astro";
 
+import Note from "@/components/posts/Note.astro";
+import Warning from "@/components/posts/Warning.astro";
+import Quote from "@/components/posts/Quote.astro";
+
 interface Props {
   title: string;
   description?: string;
@@ -61,3 +65,7 @@ const pubDate = lastmod ?? date;
     </main>
   </div>
 </BaseLayout>
+
+<Note />
+<Warning />
+<Quote />
