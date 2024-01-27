@@ -3,15 +3,9 @@ import { gfmHeadingId } from "marked-gfm-heading-id";
 import { markedHighlight } from "marked-highlight";
 import { codeToHtml } from "shiki";
 
-const parserFixes = new HTMLRewriter().on("*", {
+const parserFixes = new HTMLRewriter().on("pre:not(.shiki), pre:not(.shiki)>code", {
 	element(el) {
-		if (el.tagName === "pre" && !el.getAttribute("class")) {
-			el.removeAndKeepContent()
-		}
-
-		if (el.tagName === "code" && el.getAttribute("class")?.match(/language-(.*)/)) {
-			el.removeAndKeepContent()
-		}
+		el.removeAndKeepContent()
 	},
 })
 
