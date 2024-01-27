@@ -19,9 +19,8 @@ class BWarning extends HTMLElement {
 		></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg
 		>
 		<b id="title">${this.getAttribute("title") ?? "WARNING"}</b>
-		${this.innerHTML.trim()}
 		</p>
-
+		${this.innerHTML.trim()}
 		`
 	}
 }

@@ -25,9 +25,7 @@ class BQuote extends HTMLElement {
 		href ? (
 			`
 			<b>
-          <a href=${href} target="_blank" rel="noopener noreferrer">
-            ${title}
-          </a>
+          <a href=${href} target="_blank" rel="noopener noreferrer">${title}</a>
         </b>
 			`
 		) : `<b>${title}</b>`
