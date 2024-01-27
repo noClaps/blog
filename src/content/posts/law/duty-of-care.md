@@ -5,9 +5,9 @@ date: 2023-09-15
 author: noClaps
 ---
 
-{% note %}
+<b-note>
 The "R" in "R v ..." stands for "Regina", which is Latin for the Queen. This is because public criminal prosecutions are usually brought in the Queen's name. This case is from the UK, which is why the Queen's name is used. The equivalent in your country may be "The People", "The State", "The Commonwealth", etc.
-{% /note %}
+</b-note>
 
 ## Fanny, Stone and Dobinson
 
@@ -23,9 +23,9 @@ Stone and Dobinson were charged with manslaughter.
 
 The prosecution argued that the couple had undertaken a duty of care towards a person who was unable to take care of herself. This was furthered by the fact that Fanny had lived in their home, and was a blood relative of one of the defendants. Hence, by being related and taking care of Fanny, they had a duty to keep her alive and well. Her death meant that the couple had been negligent and failed to fulfill their duty, and so were guilty of manslaughter.
 
-{% note %}
+<b-note>
 According to UK law, a manslaughter is an unlawful killing without an intention to kill or cause harm. Since neither Stone nor Dobinson had any intention to harm or kill Fanny, they were charged with manslaughter, and not murder.
-{% /note %}
+</b-note>
 
 The defense claimed that, seeing as both Stone and Dobinson were handicapped, they would have been incapable of undertaking a duty of care towards Fanny in the first place. Hence, the decline in her condition was not something for which the couple should be responsible. In addition, the blood relation did not matter as Fanny was paying rent for the room she was provided. Dobinson's kind and helpful behaviour of feeding also did not establish a duty of care, as simply helping someone out does not imply any duty towards them. In court, Dobinson even claimed "she is not my sister", which definitely does not imply any duty of care by her towards Fanny.
 
@@ -39,9 +39,9 @@ On one hand, it makes sense that they were found guilty. Taking someone in and c
 
 On the other hand, it raises a question of where the line for duty of care is. If I see my brother drowning, and I jump in to try to save them, am I now undertaking a duty of care towards him? It would certainly fit the situation: he's drowning, which means he is not in a position to properly care for himself. If I dive in to try to save him, am I undertaking a duty of care towards him? If I am unable to save him, will I be charged with manslaughter? What about non-familial relationships, if it's a partner that's suffering from a mental illness, or a friend, or even a stranger, would I still be undertaking a duty of care towards them? There's an argument that says I would not necessarily be responsible for their well-being, because simply helping someone does not imply any duty towards them.
 
-{% note %}
+<b-note>
 Of course, these are all situations in which I am unable to get professional help for the person. Maybe there isn't anyone else nearby to save my brother from drowning, or I am unable to afford a doctor for my partner or friend. These are all situations that are probably real for many people around the world, and were true in Stone's and Dobinson's case as well.
-{% /note %}
+</b-note>
 
 ## Conclusion
 
@@ -51,9 +51,9 @@ One of the major questions of this case was setting where the line for duty of c
 
 Ultimately, as is true with most aspects of law and life, a balance must be reached.
 
-{% warning title="Disclaimer" %}
+<b-warning title="Disclaimer">
 I am not a lawyer, and I do not have any experience with how the law actually works. I just heard about this case from someone and found it interesting enough to write a blog post about. There's probably a lot of things I may have gotten wrong, because I simply don't know what I don't know about law. If you are in a situation similar to the one described in this post, or simply want to know more about this case or law in general, I'd advise you to seek out a lawyer or law professor. They'd be far more helpful than me.
-{% /warning %}
+</b-warning>
 
 ## Sources
 

@@ -7,21 +7,21 @@ author: noClaps
 
 ---
 
-{% quote name="Jeffery Lagarias, expert on the Collatz conjecture, mathematician at the University of Michigan" %}
+<b-quote title="Jeffery Lagarias, expert on the Collatz conjecture, mathematician at the University of Michigan">
 This is a really dangerous problem. People become obsessed with it and it really is impossible.
-{% /quote %}
+</b-quote>
 
-{% quote name="Paul Erdös, the man who only loved numbers" %}
+<b-quote title="Paul Erdös, the man who only loved numbers">
 Mathematics is not ready for such problems yet.
-{% /quote %}
+</b-quote>
 
-{% quote name="Master of alliteration, me" %}
+<b-quote title="Master of alliteration, me">
 Many, many mathematicians over the months of meaningless moil have made minimal progress toward the solution of this stupidly simple yet stubbornly unsolvable problem.
-{% /quote %}
+</b-quote>
 
-{% quote name="Pretty much every mathematician ever" %}
+<b-quote title="Pretty much every mathematician ever">
 Don't waste your time on this.
-{% /quote %}
+</b-quote>
 
 So, I wasted my time on this.
 
@@ -83,9 +83,13 @@ This guy wrote a lot of books. The names are all in German and I'm not gonna lis
 ### The Plan
 Back to the topic, how are we gonna solve this problem? We can simplify this problem into 2 expressions:
 
-{% math %}3x+1{% /math %}
+$$
+3x+1
+$$
 
-{% math %}\frac x 2{% /math %}
+$$
+\frac x 2
+$$
 
 Now that we have those, we can turn it into a program to make the computer do all the work for us. I'm gonna be using Python for this, because it's one of the easier programming languages to understand and I'm more comfortable with it. If you have a different preference, feel free to use your own preferred language to write the program.
 
@@ -133,9 +137,9 @@ So far, there's been no solutions. That's not really a conclusion since it can't
 
 [Terence Tao](https://en.wikipedia.org/wiki/Terence_Tao), kid genius who's no longer a kid but still a genius, gave this problem a go. He found a "solution", which is that _almost_ all numbers reach 1, which gives us a pretty good estimate of the actual solution. You can read about it in his [blog post](https://terrytao.wordpress.com/2011/08/25/the-collatz-conjecture-littlewood-offord-theory-and-powers-of-2-and-3/). I didn't understand any of it, but maybe you will.
 
-{% quote name="Terence Tao, genius, mathematician" %}
+<b-quote title="Terence Tao, genius, mathematician">
 It’s actually an occupational hazard when you’re a mathematician. You could get obsessed with these big famous problems that are way beyond anyone’s ability to touch, and you can waste a lot of time.
-{% /quote %}
+</b-quote>
 
 I found a thesis by Jose William Porras that claims to be the "Solution to Collatz's Conjecture". You can [have a read here](https://www.researchgate.net/publication/325389892_Solution_to_Collatz's_Conjecture). Again, I didn't understand it, but maybe you will.
 

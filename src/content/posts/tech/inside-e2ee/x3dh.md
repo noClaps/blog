@@ -23,9 +23,9 @@ Enough talk, let's take a look at how X3DH works.
 
 X3DH needs a bunch of [other keypairs](https://www.signal.org/docs/specifications/x3dh#keys) to work (we're going to use the P-256 curve for all of them). These key(pair)s include: identity key (this never changes), prekey (this may be renewed, usually once per week, depending on the implementation to provide forward-secrecy, we're not going to implement that here) and a list of one-time prekeys (these should all be discarded after they're used, and refreshed when their amount falls below a certain threshold, for this example we're going to generate 20 random keys and just choose one during the protocol run). The public prekey is signed with ECDSA, with the signing key being the private identity key (this means that the recipient can verify the digital signature with the public identity key).
 
-{% warning %}
+<b-warning>
 There is a very important thing to note: all private key components must be only available to the user they belong to, other users and especially the server must never learn them. This can be achieved in 2 ways: either only store them on device, or encrypt them before storing it on the server, both depend massively on your app's implementation. Because we're not dealing with servers here, we assume that everything is stored the safest way possible.
-{% /warning %}
+</b-warning>
 
 ```typescript
 const crypto = globalThis.crypto.subtle;
@@ -60,9 +60,9 @@ async function setupX3DH(): Promise<X3DHObject> {
 
 First we set up some interfaces for TypeScript. If you're implementing this in pure JavaScript, you can skip this step. Then we create the `toHex` function, which we've already used earlier. The `setupX3DH` function starts off easy: we generate the identity key and prekey. They're both using the P-256 curve with key usages set to `deriveBits`, because later we're going to use them to generate a byte sequence, not a new key (if it was `deriveKey`, we could only use to generate a new AES key for example, but X3DH expects a byte sequence, not a key). Note that `setupX3DH` is an async function, since we'll need to use `await` for `SubtleCrypto`'s functions.
 
-{% note %}
+<b-note>
 Indented lines are part of a function
-{% /note %}
+</b-note>
 
 ```typescript
     // setupX3DH
@@ -83,9 +83,9 @@ Indented lines are part of a function
 
 This is another quirk of `SubtleCrypto`. You cannot use a key generated with `ECDH` for the `ECDSA` algorithm, even though they're completely interchangable. To counter this, we're using a "hack" which exports the private identity key, then re-imports it with `ECDSA`, so we can use the `sign` key usage on it. Note that the exported key format is set to [`pkcs8`](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#pkcs_8), since we're exporting a private key.
 
-{% note %}
+<b-note>
 The keys are only interchangeable because we're using the P-256 curve. If you're using a third-party library for, e.g., Curve25519, note that X25519 for ECDH and Ed25519 for ECDSA are not directly interchangeable, look up your library's documentation for more information.
-{% /note %}
+</b-note>
 
 After the private identity key has been modified that `SubtleCrypto` can accept it, it is used by `SubtleCrypto.sign()` to create a digital signature of the public prekey, which only the public identity key can verify.
 

@@ -6,13 +6,13 @@ lastmod: 2023-02-05
 author: noClaps
 ---
 
-{% note title="DISCLAIMERS" %}
+<b-note title="DISCLAIMERS">
 1. This post is based on my own personal experience using Windows and various Linux distributions, and may not reflect your experience with it.
 2. Many of the things I talk about here might be possible to change by messing around with different configurations and system files in the OSes, but that's not something I am willing to do, and neither are most people. Default settings matter a lot, and that is what I'm going to focus on.
 3. I may mention certain things that certain OSes do well, and that others don't. This doesn't mean I'm biased towards or against something. I'm not sponsored by any companies or organisations, and there is no reason for me to praise something unless I really believe it's good, or point out concerns I don't think are valid.
 4. This post may be a bit more technical than my other ones, so if you're feeling a bit lost with what I'm talking about, don't worry it's not your fault.
 5. I don't care if you think it's Linux or GNU/Linux, I'm saying Linux.
-{% /note %}
+</b-note>
 
 When I'm looking for an OS to use for every day of my life for the next few years, there's certain criteria I want it to meet. It should be:
 - simple,
@@ -59,9 +59,9 @@ So you've chosen a distro that you're happy with. This will usually bring with i
 
 However, there are [many, many package managers](#linux-1) out there, and none are compatible with each other. In the Debian family, you have dpkg. The Red Hat distros use RPM, while Arch uses Pacman. Even Windows has their own package manager, called [winget](https://learn.microsoft.com/en-us/windows/package-manager/). And that's not even mentioning the third-party package managers, like Flatpak and Snap on Linux, Scoop and Chocolatey on Windows, and Homebrew on macOS. Within package managers, you also have both first-party repositories, which come from the OS itself, and [third-party repositories](https://www.ubuntubuzz.com/2017/01/ubuntu-package-management-part-4-ppa-and-third-party-repository.html), like the Arch User Repository (AUR) and Personal Package Archives (PPA) on Ubuntu, which bring about their own benefits and drawbacks.
 
-{% quote name="Bjørn Erik Pedersen, Hugo developer" link="https://discourse.gohugo.io/t/add-flatpak-support/13734/3" %}
+<b-quote title="Bjørn Erik Pedersen, Hugo developer" href="https://discourse.gohugo.io/t/add-flatpak-support/13734/3">
 It would be cool if the Linux world would agree on 1 app manager.
-{% /quote %}
+</b-quote>
 
 This is one of the main reasons Linux can be so complicated. Furthermore, the GUI software stores, like GNOME Software or KDE Discover are often [clunky](https://bugzilla.redhat.com/show_bug.cgi?id=2022755) and [difficult to use](https://www.reddit.com/r/kde/comments/qoo7gv/why_is_discover_so_unresponsive_and_buggy/), and sometimes don't have all of the packages available in the repositories.
 

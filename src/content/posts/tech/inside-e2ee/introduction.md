@@ -13,9 +13,9 @@ Dear readers, I welcome you all to my series all about E2EE. It's going to be ab
 
 This first post is a quick introduction to the concept of E2EE. You'll learn its basics, some cryptographic terms and we'll also do a implementation of a simple Diffie-Hellmann key exchange. Later, you'll learn about the X3DH key exchange, and finally we'll implement the Double Ratchet algorithm, which is used in the messaging app Signal.
 
-{% note %}
+<b-note>
 The example codes are actually going to be in TypeScript instead of JavaScript, don't get confused about that.
-{% /note %}
+</b-note>
 
 ## What is E2EE?
 
@@ -44,9 +44,9 @@ Depends on your mentality really. Some people just want something that's easy to
 
 E2EE is used mainly in messaging apps that are designed to be, well... secure. Examples are [Matrix](https://matrix.org/), [Session](https://getsession.org/), [Signal](https://signal.org/), even Apple's [iMessage](https://www.apple.com/privacy/features#imessage) if you have [Advanced Data Protection](https://support.apple.com/en-us/HT212520) enabled, because the iCloud **backups** of your messages are [not E2EE](https://support.apple.com/en-gb/HT202303) without it. With ADP, only your devices can decrypt your conversations, not even Apple.
 
-{% note %}
+<b-note>
 On Matrix, direct one-on-one conversations are always E2EE, for group chats it's an opt-in feature.
-{% /note %}
+</b-note>
 
 Continuing with the Apple example, with Advanced Data Protection almost all of your iCloud data is stored using E2EE, so only you can access it. Point is: E2EE is not just for messages, it's just a way of encrypting any arbitary data, even if it's just for a single recipient (you).
 
@@ -56,7 +56,7 @@ Since this section is going to mention a lot of advanced cryptographic terms, I'
 
 -   Integrity and authenticity: These are two important terms in cryptography. Integrity means a message hasn't been changed during transmit, and authenticity means the message comes from the stated sender. For example, if you get a message from your online bank, you can be sure that the message actually came from your bank and it's really what they sent you.
 -   [DH (Diffie-Hellman)](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange): The DH key exchange was [created in 1977](https://worldwide.espacenet.com/patent/search/family/025257633/publication/US4200770A?q=pn%3DUS4200770) by [Bailey Diffie](https://en.wikipedia.org/wiki/Whitfield_Diffie) and [Martin Hellman](https://en.wikipedia.org/wiki/Martin_Hellman), with some help from [Ralph Merkle](https://en.wikipedia.org/wiki/Ralph_Merkle). This post is not going to get into the mathematical details, but basically DH works by mixing a random private key you generate with the public key of the person you want to perform the key exchange with. They do the same, but with their private key and your public key. (Note that the public and private keys are mathematically linked together, they aren't completely random)
--   [Elliptic curve](https://en.wikipedia.org/wiki/Elliptic_curve): An elliptic curve is a mathematical algebraic curve, usually written in the form of {% math display="inline" %}y^2 = x^3 + ax + b{% /math %}, where a and b are random numbers. In cryptography, they're used for:
+-   [Elliptic curve](https://en.wikipedia.org/wiki/Elliptic_curve): An elliptic curve is a mathematical algebraic curve, usually written in the form of \\(y^2 = x^3 + ax + b\\), where a and b are random numbers. In cryptography, they're used for:
     -   [Elliptic-curve cryptography (ECC)](https://en.wikipedia.org/wiki/Elliptic-curve_cryptography): ECC is a type of [public-key cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography) using the powers of elliptic curves. They're usually harder to break even with smaller key sizes, because of the [Elliptic Curve Discrete Logarithm Problem](https://link.springer.com/referenceworkentry/10.1007/978-1-4419-5906-5_246). If you don't understand any of this (I don't), then here is an [easy to understand video from Computerphile](https://www.youtube.com/watch?v=NF1pwjL9-DE).
     -   [Elliptic-curve Diffie-Hellman (ECDH)](https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman): ECDH is just the Diffie-Hellman key exchange, but with elliptic curves. When the implementation mentions DH, ECDH is meant, since I'm going to use elliptic curves for everything anyway. Here, it's going to be used as part of the X3DH algorithm to perform the DH key exchanges.
     -   [Elliptic Curve Digital Signature Algorithm (ECDSA)](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm): ECDSA is - similar to ECDH - a variant of the [Digital Signature Algorithm (DSA)](https://en.wikipedia.org/wiki/Digital_Signature_Algorithm), using ellipctic curves. DSA is used to [digitally sign](https://en.wikipedia.org/wiki/Digital_signature) arbitary data using public and private keys ([asymmetric cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography)). I'm going to use it for the X3DH algorithm.
@@ -113,9 +113,9 @@ Unfortunately it has some caveats:
 
 For a DH key exchange to happen, we need 2 things: Alice's and Bob's keypair. We can then mix the recipient's public key with our private key and get a shared secret.
 
-{% warning %}
+<b-warning>
 Make sure the following code is served from a server with HTTPS, because the Web Crypto API only works in secure contexts! Otherwise you can run it in Node.js.
-{% /warning %}
+</b-warning>
 
 ```typescript
 const crypto = globalThis.crypto.subtle;
@@ -206,9 +206,9 @@ For the third time, do not **ever** use a single key for encryption, but just to
 
 Since you've already set up the final secret keys with the `encrypt` and `decrypt` key usages, you just need to provide the [IV (initialization vector)](https://en.wikipedia.org/wiki/Initialization_vector) and the data to encrypt.
 
-{% note %}
+<b-note>
 The initialization vector should be completely random every time you encrypt something. You also need to transmit it to the recipient, but it does not need to be kept secret.
-{% /note %}
+</b-note>
 
 ```typescript
 const data = new TextEncoder().encode("Hello, world!");

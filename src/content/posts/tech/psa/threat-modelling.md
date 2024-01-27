@@ -10,11 +10,11 @@ Before you start on your privacy and security journey, one of the main things yo
 ## What is this threat model thing?
 Your threat model is pretty much a plan for what you're protecting and who you're protecting it from. Using that, the tools and services may you choose to use are much easier to decide, especially considering the [insanely large number](https://distrowatch.com/dwres.php?resource=family-tree) of options for some things.
 
-{% quote name="Threat Modelling, Victoria Drake, OWASP Foundation" link="https://owasp.org/www-community/Threat_Modeling" %}
+<b-quote title="Threat Modelling, Victoria Drake, OWASP Foundation" href="https://owasp.org/www-community/Threat_Modeling">
 Threat modeling works to identify, communicate, and understand threats and mitigations within the context of protecting something of value.
 
 A threat model is a structured representation of all the information that affects the security of an application. In essence, it is a view of the application and its environment through the lens of security.
-{% /quote %}
+</b-quote>
 
 That's all fancy talk for "identify who you don't want to get your stuff, so that you can work toward not letting them get your stuff". Everyone's threat model is different, so when you say "I don't care about privacy", that doesn't mean you don't care about your privacy. It just means you have a different threat model than someone else, and you don't want to change that. And that's fine, everyone has their own level of comfort with the data they share.
 
@@ -31,9 +31,9 @@ Let's look at an example. Let's say you're someone who needs a lot of security, 
 - Unless you're on iOS, where all [browsers are just Safari](https://developer.apple.com/app-store/review/guidelines/#software-requirements), the most secure browser is [Chromium/Chrome](https://www.chromium.org/Home/chromium-security/), not [Firefox](https://madaidans-insecurities.github.io/firefox-chromium.html), contrary to what many in the privacy community may have you believe.
 - Apart from that, the best advice would be to have as few trusted parties as possible. Meaning if you're using Google stuff (Android and Chrome) then don't go and use Dropbox and unnecessarily trust a third party, since that's an additional point that you could get hacked from. In general, you'd want to minimise the number of services you use, to have as few points of attack as possible.
 
-{% warning %}
+<b-warning>
 This is not actual security advice, it is just an example. Please do not listen to this if you are in a situation as described above. I do not take responsibility for any trouble you may get in because of my example explaining threat modelling. I am just a person on the internet and do not give out actual security advice.
-{% /warning %}
+</b-warning>
 
 Now compare that to someone who maybe wants to protect their data from being used by Big Tech companies to sell ads and track them across the internet. They'd have a threat model that calls for higher privacy at the cost of some minimal security. For someone like that:
 - Linux distributions may be a good option for a desktop OS, with their lack of tracking built-in to the system and generally open nature. An OS like GrapheneOS or iOS may be sufficient, without the Advanced Data Protection or Advanced Protection Program, or perhaps even without an Apple or Google account entirely.
@@ -47,13 +47,13 @@ As you can see, having a threat model helps make the decisions on how to go abou
 ## Want threat model. How get?
 There's many guides and tools out there to help you create a threat model, but in general it boils down to 5 questions:
 
-{% quote name="Threat Modelling, Privacy Guides" link="https://www.privacyguides.org/basics/threat-modeling/" %}
+<b-quote title="Threat Modelling, Privacy Guides" href="https://www.privacyguides.org/basics/threat-modeling/">
 1. What do I want to protect?
 2. Who do I want to protect it from?
 3. How likely is it that I will need to protect it?
 4. How bad are the consequences if I fail?
 5. How much trouble am I willing to go through to try to prevent potential consequences?
-{% /quote %}
+</b-quote>
 
 I encourage you to read the whole threat modelling guide from Privacy Guides, it's very well written and clearly explains each step.
 
@@ -76,11 +76,11 @@ However, there are situations where failure to identify your threats or use prop
 ### How much trouble am I willing to go through to try to prevent potential consequences?
 This is usually the part where most people give up and go back to their original setup, while continuing to complain about a lack of privacy on said setup. This is also the part that _really_ specifies the tools that you'd end up using, usually narrowing it down to one or two options.
 
-{% note %}
+<b-note>
 Keep in mind that most of the extreme situations mentioned above, such as the ones where high security or anonymity are required, probably don't apply to you. The people that those apply to probably aren't reading this blog, since they have many other things to be worrying about.
 
 One of the common mistakes I've seen people do is not properly identify their threat model, try to go all in on privacy, security or anonymity, find it too complicated, and go back to their original setup, and continue to complain about how privacy-invasive or insecure their setup is. That's mainly why a threat model is helpful and necessary, so you can identify exactly what you're trying to achieve.
-{% /note %}
+</b-note>
 
 ## What comes next?
 Now that you have your threat model in place, start looking for tools that you think fit it well. One of the places I recommend you start is a password manager. It's something that makes your life easier, while also making it more private and secure ([most of the time](https://blog.lastpass.com/2022/12/notice-of-recent-security-incident/)). Some good password managers I can recommend are KeePass, [Bitwarden](https://bitwarden.com/), [1Password](https://1password.com/), [pass](https://www.passwordstore.org/), and [iCloud Keychain](https://support.apple.com/en-gb/HT204085). They can generate strong passwords and store them for you, which means no more forgetting passwords to your accounts. Some also offer the ability to store 2FA keys, and while storing 2FA keys in your password manager has its [own pros and cons](https://passwordbits.com/2fa-inside-password-manager/), the feature is there if you want it. You can decide your own steps after that.

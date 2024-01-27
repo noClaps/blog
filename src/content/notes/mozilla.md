@@ -24,19 +24,19 @@ As for where they even got this money, they received more than $500 million from
 
 which are:
 
-{% quote name="Mozilla Foundation and subsidiaries, Independent Auditor's Report" link="https://assets.mozilla.net/annualreport/2022/mozilla-fdn-2022-fs-final-0908.pdf" %}
+<b-quote title="Mozilla Foundation and subsidiaries, Independent Auditor's Report" href="https://assets.mozilla.net/annualreport/2022/mozilla-fdn-2022-fs-final-0908.pdf">
 Mozilla provides the Firefox web browser, which is a free and open-source web browser initially developed by Mozilla Foundation and the Corporation. Mozilla incorporates search engines of its customers as a default status or an optional status available in the Firefox web browser. Mozilla generally receives royalties at a certain percentage of revenues earned by its customers through their search engines incorporated in the Firefox web browser.
-{% /quote %}
+</b-quote>
 
 So basically, search engine deals. Other than that, we have the "Subscription and advertising revenue" clocking in at $75 million dollars. These are described as:
 
-{% quote name="Mozilla Foundation and subsidiaries, Independent Auditor's Report" link="https://assets.mozilla.net/annualreport/2022/mozilla-fdn-2022-fs-final-0908.pdf" %}
+<b-quote title="Mozilla Foundation and subsidiaries, Independent Auditor's Report" href="https://assets.mozilla.net/annualreport/2022/mozilla-fdn-2022-fs-final-0908.pdf">
 Mozilla's subscription revenues primarily consist of revenue from subscriptions to a service known as Pocket Premium and VPN.
 
 [...]
 
 Mozilla also offers advertising services in three formats. The first is the New Tab / Tiles advertising service, which places links to sponsored content when a new tab is opened in the Firefox web browser. The second format is through Pocket's email product, Pocket Hits. Pocket Hits may include paid advertisements, which are places in email newsletters that get delivered to global Pocket users. Lastly, Mozilla also sells web advertisement spots on content that Mozilla licenses and syndicates from publisher partners across the web.
-{% /quote %}
+</b-quote>
 
 ### Services
 
@@ -46,9 +46,9 @@ I don't use Mullvad or Mozilla VPN, but it's pretty clear to me which one's the 
 
 As for Pocket, here's a little snippet from their privacy policy:
 
-{% quote name="Pocket Privacy Policy" link="https://getpocket.com/en/privacy/#sharing"%}
+<b-quote title="Pocket Privacy Policy" href="https://getpocket.com/en/privacy/#sharing">
 We also share aggregated, non-personal data and related usage information, which does not contain any personal information which can identify you or any other individual user, with third parties, including content providers, website operators, advertisers and publishers. For example, we may share with a content provider a list of the most saved articles to Pocket based on an analysis of aggregated, anonymous user data, but we would not share with such content provider any personal information regarding such users.
-{% /quote %}
+</b-quote>
 
 It's a better privacy policy than most services, I will admit, but it's still not something I'd expect from a privacy-first non-profit organisation.
 
@@ -87,9 +87,9 @@ And some others I couldn't find anything about
 
 Now, I'm not against people fighting for what they believe in (even if I don't necessarily agree with them), and if anyone from Mozilla wants to invest their own money to further those causes, then I'm all the happier for them. However, I don't see why that has to go through a tech company's accounts. Most of the organisations that "Mozilla" seems to invest in generally align with its CEO's views. On the other hand, they've been known to lay off their own employees that were working on innovative projects like the [Rust programming language](https://blog.rust-lang.org/2020/08/18/laying-the-foundation-for-rusts-future.html) or the Servo team.
 
-{% quote name="Mozilla lays off 250 employees while it refocuses on commercial products, Catalin Cimpanu, ZDNet, 2020" link="https://www.zdnet.com/article/mozilla-lays-off-250-employees-while-it-refocuses-on-commercial-products/" %}
+<b-quote title="Mozilla lays off 250 employees while it refocuses on commercial products, Catalin Cimpanu, ZDNet, 2020" href="https://www.zdnet.com/article/mozilla-lays-off-250-employees-while-it-refocuses-on-commercial-products/">
 Main casualties of today's layoffs were the developers working on the company's experimental Servo browser engine and Mozilla's threat management security team.
-{% /quote %}
+</b-quote>
 
 ## Conclusion
 

@@ -102,9 +102,9 @@ The `generateKey` function returns a string or a CryptoKey based on what the key
 
 Now you can send this authentication key when registering or logging in to the server, and the server can use it to authenticate you. The server will never learn the password, and you can use the same password to encrypt the master key.
 
-{% warning title="Storing authentication keys on the server" %}
+<b-warning title="Storing authentication keys on the server">
 This authentication key functions similarly to a user's password. Therefore, the same security practices that apply to storing "regular" passwords on the server should also be followed for this key. While these practices are not covered in this tutorial, you can find ample resources on the internet for guidance.
-{% /warning %}
+</b-warning>
 
 ### Encrypting the master key
 
@@ -114,9 +114,9 @@ For the format, I recommend using `jwk`, which is a JSON representation of the k
 
 To decrypt the key, we can use the `SubtleCrypto.unwrapKey()` function, which is the opposite of `wrapKey()`. It takes the encrypted key, the wrapper key and the format as parameters, and returns the decrypted key.
 
-{% note %}
+<b-note>
 `wrapKey` is basically export + encrypt, and `unwrapKey` is decrypt + import.
-{% /note %}
+</b-note>
 
 ```typescript
 async function generateKey<T extends KeyType>(password: string, type: T, salt: Uint8Array): Promise<Key<T>> {
@@ -258,9 +258,9 @@ class Client {
     }
 }
 ```
-{% note %}
+<b-note>
 The toHex function (and later fromHex) both come from our Double Ratchet code
-{% /note %}
+</b-note>
 
 The process is same for both the secret and master key: generate an IV, encrypt the data, and concatenate the IV and the ciphertext. The return value is an object, with the encrypted secret and master key as hex strings.
 
@@ -352,17 +352,17 @@ Client {
 
 You can see that the secret is the same in both clients, which means the encryption and decryption worked. The authentication key is also the same, this is how you could verify the code works if you're using Node.js.
 
-{% note %}
+<b-note>
 Using some built-in Node functions, you can show the private members in console.log(), but I didn't want to bother with that.
-{% /note %}
+</b-note>
 
 ## Storing the client
 
 Now that we can export and import the client, we need to figure out how to store the exported data. Most modern browsers have a lot of interesting APIs for storing data, we'll look at [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API). IndexedDB is a lot more complicated to use than [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage), but it's also more secure and has a lot more features. It's also asynchronous, which means it doesn't block the main thread when working with large data sets. That won't be a problem for us, since we're only storing a few kilobytes of data, but it might matter for your app, in case you want to store more data on device.
 
-{% note %}
+<b-note>
 IndexedDB is only available in the browser, therefore any following code must be run in a browser.
-{% /note %}
+</b-note>
 
 ### Setting up IndexedDB
 
@@ -426,9 +426,9 @@ To modify the database, you have to start a transaction using the `transaction` 
 
 If we run this code, you can use the browser's developer tools to inspect the database. In Chromium-based browsers, you can find it under the "Application" tab ("Storage" in Firefox). You can see that the database has been created, and it contains the object store we created, and the object we added.
 
-{% note %}
+<b-note>
 You may need to delete the database and reload the page, if you've already run the code before.
-{% /note %}
+</b-note>
 
 ![An image showing Microsoft Edge's Devtools with the created database and object](./Appendix-A-idb.png)
 

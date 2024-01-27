@@ -59,9 +59,9 @@ class SymRatchet {
 }
 ```
 
-{% warning title="Protected members and their weakness" %}
+<b-warning title="Protected members and their weakness">
 The # symbol in #state is a naming convention that marks a property or method "protected" and inaccessable outside the class. However, this does NOT mean it's completely safe from potential attacks. You must not rely solely on this to protect private data such as ratchet states, keychains etc.
-{% /warning %}
+</b-warning>
 
 There is a lot to unpack here (fortunately the comments help explain a lot).
 
@@ -253,9 +253,9 @@ In other words, after Alice generates her receive and sending ratchet, she canno
 3. Calculate a DH exchange with the new keys, use the output in the symmetric turn to create the new sending ratchet.
 The only exception is the initial setup (when Bob receives Alice's message request), where the first step is skipped.
 
-{% note %}
+<b-note>
 Every message contains the party's public key (this will be used later for out-of-order messages), therefore the other party must decide if that key is new or not. You'll see how this might be implemented soon.
-{% /note %}
+</b-note>
 
 If you didn't understand any of that, don't worry, me neither. I basically just turned the images [here](https://signal.org/docs/specifications/doubleratchet/#diffie-hellman-ratchet) to text.
 
@@ -750,15 +750,15 @@ class DoubleRatchet {
 }
 ```
 
-{% note %}
+<b-note>
 The bunch of ! operators are there because I'm using strict null checks in TypeScript. You may remove them if you don't use that option.
-{% /note %}
+</b-note>
 
 Functions `decrypt` and `turn` have become private and `decrypt` no longer turns the receiving ratchet manually, it requires the correct message key. The `processMessage` function is basically just what the pseudocode says, but as actual code. Note that `RN` has to be set to the message's `N` value + 1 (it's basically `RN` = `N` -> decrypt -> `RN++` simplied). There is also a new `skippedKeys` property which is an array that holds all the skipped keys.
 
-{% note %}
+<b-note>
 You might have noticed there are these offset values. They're very important, otherwise we'd store message keys for the wrong messages. Imagine we got message 1 and 2 from the previous ratchet, but skipped 3, 4 and 5. If we didn't use the offset, we'd store message keys for messages with N of 0, 1 and 2 - message 1, 2 and 3. But we've already received message 1 and 2 (N = 0 and 1), therefore we need to store keys for message 3, 4 and 5. The offset is the number of messages we've already decrypted, we can use that to calculate the correct message number. The same logic applies for skipped messages in the current ratchet.
-{% /note %}
+</b-note>
 
 #### Basic example
 
@@ -1026,9 +1026,9 @@ First, the `DHRatchet`'s `turn` function is updated to return 64 bytes of data i
 
 The most major change is the new `build` function. Instead of a public key, it now accepts an `InitObject` with contains the public key, sending header key and next receiving header key. If it's provided, that means we're the second party, therefore we need to setup the sending ratchet, next sending header key and the two header keys we're given. Otherwise, we're the first party, so we generate our own sending header key and next receiving header key and return them alongside the Double Ratchet session. Remember: our sending header key is the other party's next receiving header key, and our next receiving header key is the other party's sending header key, that's why you see the `SHK` and `NRHK` properties being swapped.
 
-{% note %}
+<b-note>
 You might also notice a lot of generic types and type casting. This is because TypeScript doesn't like it when you return different types from a function, so I had to do some type jugglery to make it work seamlessly. If you're not using TypeScript, don't bother with it, otherwise you can just copy-paste the code.
-{% /note %}
+</b-note>
 
 Because of the new `build` function, we'll also need to change how we initialise the Double Ratchet session. This change is relatively minor, the rest of the code stays the same.
 
