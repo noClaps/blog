@@ -9,7 +9,7 @@ for (const post of posts) {
 	const postHeadings = headings(renderedPost)
 
 	Bun.write(
-		`dist/${post.slug}/index.html`,
+		`dist/${post.slug}.html`,
 		Post(
 			{
 				title: post.title,

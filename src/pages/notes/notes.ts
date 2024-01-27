@@ -9,7 +9,7 @@ for (const note of notes) {
 	const noteHeadings = headings(rendered)
 
 	Bun.write(
-		`./dist/notes/${note.slug}/index.html`,
+		`./dist/notes/${note.slug}.html`,
 		Post(
 			{
 				title: note.title,
