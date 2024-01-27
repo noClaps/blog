@@ -1,7 +1,9 @@
 import {$} from "bun"
 
-// Copy CSS
+// Prepare
 await $`mkdir -p dist`
+
+// Copy CSS
 await $`cp -r src/styles dist`
 
 // Copy static files
@@ -28,3 +30,12 @@ Bun.build({
 	outdir: "dist/mathjax",
 	minify: true
 })
+
+// Build images
+const imagesGlob = new Bun.Glob("**/*.{png,jpeg,jpg}")
+const images = imagesGlob.scanSync({cwd: "src/content"})
+
+for (const image of images) {
+	const imagePath = image.split("/").slice(1).join("/")
+	Bun.write(`dist/${image.startsWith("notes") ? "notes" : ""}/${imagePath}`, Bun.file(`src/content/${image}`))
+}
