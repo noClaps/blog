@@ -25,6 +25,7 @@ export async function getCollection(name: string) {
 	const data = []
 	for (const file of collection) {
 		if (file.endsWith("json")) {
+			// @ts-ignore
 			data.push(await Bun.file(`./src/content/${name}/${file}`).json())
 		} else {
 			data.push(

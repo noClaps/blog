@@ -32,7 +32,7 @@ export default function BaseLayout(
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content=${description}>
 	<link href="https://api.fontshare.com/v2/css?f[]=switzer@2,1&display=swap" rel="stylesheet">
-	<link rel="alternate" href="/rss.xml" type="application/rss+xml" title="RSS">
+	<link rel="alternate" href="/feed.json" type="application/json" title="Feed">
 	<link rel="stylesheet" href="/styles/global.css">
 	${slots.head || ""}
 </head>

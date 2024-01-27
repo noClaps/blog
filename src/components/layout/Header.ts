@@ -28,11 +28,11 @@ export default function Header(
                         <polyline points="9 22 9 12 15 12 15 22" />
                     </svg>
                 </a>
-				${slots ? slots.default : `<div></div>`}
+				${slots && slots.default ? slots.default : `<div></div>`}
             </div>
         `) : (`<div></div>`)
     }
-    <a class="rss" href="/rss.xml" title="RSS Feed"
+    <a class="feed" href="/feed.json" title="Feed"
         ><svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"

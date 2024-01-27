@@ -96,7 +96,7 @@ header {
 			color: var(--on-primary);
 		}
 
-		&.rss:hover,
+		&.feed:hover,
 		&.home:hover {
 			color: var(--primary);
 		}
