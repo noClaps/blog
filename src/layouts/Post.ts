@@ -31,6 +31,7 @@ export default function Post(
 		<link rel="stylesheet" href="/styles/post.css">
 		<link rel="stylesheet" href="/styles/components.css">
 		<script src="/post-components.js" defer></script>
+		<script src="/mathjax/tex-svg.js" async type="module"></script>
 		`,
 		header: 
 			headings.length > 0 ? (

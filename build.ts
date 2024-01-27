@@ -21,3 +21,10 @@ Bun.build({
 	outdir: "dist",
 	minify: true,
 })
+
+// Add MathJax
+Bun.build({
+	entrypoints: ["node_modules/mathjax/es5/tex-svg.js"],
+	outdir: "dist/mathjax",
+	minify: true
+})
