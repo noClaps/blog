@@ -1,72 +1,68 @@
-import { headings } from "./markdown/headings";
-import { frontmatter } from "./markdown/frontmatter";
-import { hr } from "./markdown/horizontal-rule";
-import { bold, italic, strikethrough, subscript, superscript, mark } from "./markdown/formatting";
-import { table, tableHeading, tableBody } from "./markdown/tables";
-import { codeBlock, inlineCode } from "./markdown/code";
-import { images } from "./markdown/images";
-import { hyperlink } from "./markdown/hyperlink";
-import { blockquote } from "./markdown/blockquote";
-import { checklist, ul, ol, li } from "./markdown/lists";
-import { paragraph } from "./markdown/paragraph";
+import { marked } from "marked";
+import { gfmHeadingId } from "marked-gfm-heading-id";
+import { markedHighlight } from "marked-highlight";
+import { codeToHtml } from "shiki";
 
-export default function parseMarkdown(md: string) {
-	const frontmatterRegex = /^---([\w:\s\S]*?)---/;
+const parserFixes = new HTMLRewriter().on("*", {
+	element(el) {
+		if (el.tagName === "pre" && !el.getAttribute("class")) {
+			el.removeAndKeepContent()
+		}
 
-	// Frontmatter
-	const postData = frontmatter(frontmatterRegex, md)
-	md = md.replace(frontmatterRegex, "").trim()
+		if (el.tagName === "code" && el.getAttribute("class")?.match(/language-(.*)/)) {
+			el.removeAndKeepContent()
+		}
+	},
+})
 
-	// Headings
-	md = headings(md, 1)
-	md = headings(md, 2)
-	md = headings(md, 3)
-	md = headings(md, 4)
-	md = headings(md, 5)
-	md = headings(md, 6)
-
-	// Horizontal rule
-	md = hr(md)
-
-	// Formatting
-	md = bold(md)
-	md = italic(md)
-	md = strikethrough(md)
-	md = subscript(md)
-	md = superscript(md)
-	md = mark(md)
-
-	// Tables
-	md = table(md)
-	md = tableHeading(md)
-	md = tableBody(md)
-
-	// Code
-	md = codeBlock(md)
-	md = inlineCode(md)
-
-	// Images
-	md = images(md)
-
-	// Hyperlinks
-	md = hyperlink(md)
-
-	// Blockquotes
-	md = blockquote(md)
-
-	// Lists
-	md = checklist(md)
-	md = ul(md)
-	md = ol(md)
-
-	let attempt = 1;
-	while (md.match(/\s*(-|\d\.)\s(.*)/gm) && attempt <= 2) {
-		md = li(md, attempt)
-		attempt++;
+const webComponent = {
+	name: "webComponent",
+	level: "block",
+	start(src: string) {
+		return src.match(/<b-(.*)>/)?.index
+	},
+	// @ts-ignore
+	tokenizer(src: string, _) {
+		const rule = /^(<b-(?:.*)>)\n([\S\s]*?)\n(<\/b-(?:.*)>)/;
+		const match = rule.exec(src)
+		if (match) {
+			// @ts-ignore
+			const token = {
+				type: "webComponent",
+				raw: match[0],
+				open: match[1],
+				// @ts-ignore I have no clue how these types work so I'm just gonna ignore them.
+				text: this.lexer.blockTokens(match[2].trim()),
+				close: match[3],
+				tokens: []
+			}
+			return token
+		}
+	},
+	// @ts-ignore
+	renderer(token): string {
+		// @ts-ignore
+		return `${token.open}${this.parser.parse(token.text)}${token.close}`
 	}
+}
 
-	// Paragraph
-	md = paragraph(md)
+export default async function parseMarkdown(md: string) {
+	md = md.replace(/^---([\w:\s\S]*?)---/, "").trim()
 
-	return { html: md, postData }
+	marked.use({extensions: [webComponent]})
+	marked.use(gfmHeadingId(), markedHighlight({
+		async: true,
+		async highlight(code, lang) {
+			return await codeToHtml(code, {
+				lang,
+				theme: "github-dark"
+			})
+		}
+	}))
+
+	let html = await marked.parse(md)
+
+	html = await parserFixes.transform(new Response(html)).text()
+
+	return html
 }

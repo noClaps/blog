@@ -1,13 +1,17 @@
+export default function Header(
+	slots: {
+		default?: string
+	} = {},
+	vals: {
+		pathname: string
+	}
+) {
+	return `
 <header>
-    {
-        Astro.url.pathname !== "/" && Astro.url.pathname !== "/notes" ? (
+    ${
+        vals.pathname !== "/" && vals.pathname !== "/notes" ? (`
             <div>
-                <a
-                    class="home"
-                    href={
-                        Astro.url.pathname.startsWith("/notes") ? "/notes" : "/"
-                    }
-                >
+                <a class="home" href="${vals.pathname.startsWith("/notes") ? "/notes" : "/"}">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -24,13 +28,9 @@
                         <polyline points="9 22 9 12 15 12 15 22" />
                     </svg>
                 </a>
-                <slot>
-                    <div />
-                </slot>
+				${slots ? slots.default : `<div></div>`}
             </div>
-        ) : (
-            <div />
-        )
+        `) : (`<div></div>`)
     }
     <a class="rss" href="/rss.xml" title="RSS Feed"
         ><svg
@@ -50,47 +50,5 @@
         </svg>
     </a>
 </header>
-
-<style>
-    header {
-        display: flex;
-        padding: 2dvh 0;
-        background-color: var(--background);
-        position: sticky;
-        top: 0;
-        z-index: 2;
-        justify-content: space-between;
-    }
-
-    a {
-        transition: all 0.25s;
-        color: var(--text);
-        padding: 0.25rem;
-        text-decoration: none;
-        font-weight: bold;
-        border-radius: 0.25rem;
-
-        &.notes:hover {
-            background-color: var(--primary);
-            color: var(--on-primary);
-        }
-
-        &.rss:hover,
-        &.home:hover {
-            color: var(--primary);
-        }
-    }
-
-    svg {
-        height: 1.25rem;
-        width: 1.25rem;
-        vertical-align: middle;
-    }
-
-    div {
-        display: flex;
-        gap: 1rem;
-        align-items: center;
-        position: relative;
-    }
-</style>
+`
+}
