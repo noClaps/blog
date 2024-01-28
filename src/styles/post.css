@@ -68,6 +68,10 @@ th {
 	@media (min-width: 1280px) {
 		max-width: 67.35dvw;
 	}
+
+	@media (max-width: 768px) {
+		max-width: 88dvw;
+	}
 }
 
 li .shiki {
