@@ -1,25 +1,17 @@
 {
-  "name": "@noclaps/blog",
+  "name": "blog",
+  "type": "module",
   "dependencies": {
-    "@astrojs/check": "^0.4.1",
-    "@astrojs/markdoc": "^0.8.3",
-    "@astrojs/rss": "^4.0.2",
-    "@markdoc/markdoc": "^0.4.0",
-    "astro": "^4.2.1",
-    "katex": "^0.16.9",
-    "sharp": "^0.33.2",
+    "@types/bun": "^1.0.4",
+    "marked": "^11.2.0",
+    "marked-gfm-heading-id": "^3.1.2",
+    "marked-highlight": "^2.1.0",
+    "mathjax": "^3.2.2",
+    "shiki": "^1.0.0-beta.0",
     "typescript": "^5.3.3"
   },
-  "description": "The Blog of Random",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro build && astro preview",
-    "astro": "astro"
-  },
-  "type": "module",
-  "devDependencies": {
-    "@types/katex": "^0.16.7"
+    "build": "rm -rf dist/ && bun run build.ts",
+    "dev": "bun run build && bunx serve dist"
   }
 }
