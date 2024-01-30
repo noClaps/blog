@@ -1,15 +1,5 @@
 import parseMarkdown from "../../tools/markdown"
 import { getCollection } from "../../tools/utils"
-import BaseLayout from "../layouts/BaseLayout"
-
-function escapeHTML(html: string) {
-	return html
-			.replaceAll(`&`, "&amp;")
-			.replaceAll(`<`, "&lt;")
-			.replaceAll(`>`, "&gt;")
-			.replaceAll(`"`, "&quot;")
-			.replaceAll(`'`, "&#39;")
-}
 
 const postItems = await getCollection("posts")
 const noteItems = await getCollection("notes")
