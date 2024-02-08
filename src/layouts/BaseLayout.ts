@@ -1,27 +1,27 @@
 import Header from "../components/layout/Header";
 
 interface Props {
-	title: string;
-	description?: string
+  title: string;
+  description?: string;
 }
 
 export default function BaseLayout(
-	props: Props,
-	slots: {
-		default: string;
-		head?: string;
-		header?: string;
-	},
-	vals: {
-		pathname: string;
-	}
+  props: Props,
+  slots: {
+    default: string;
+    head?: string;
+    header?: string;
+  },
+  vals: {
+    pathname: string;
+  },
 ) {
-	const {
-		title,
-		description = "A blog about the most random things you can think of."
-	} = props
+  const {
+    title,
+    description = "A blog about the most random things you can think of.",
+  } = props;
 
-	return `
+  return `
 <!doctype html>
 <html lang="en">
 
@@ -38,10 +38,10 @@ export default function BaseLayout(
 </head>
 
 <body>
-	${Header({default: slots.header}, {pathname: vals.pathname})}
+	${Header({ default: slots.header }, { pathname: vals.pathname })}
 	${slots.default}
 </body>
 
 </html>
-`
+`;
 }

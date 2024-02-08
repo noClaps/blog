@@ -1,11 +1,11 @@
 class BQuote extends HTMLElement {
-	constructor() {
-		super()
+  constructor() {
+    super();
 
-		const href = this.getAttribute("href")
-		const title = this.getAttribute("title") ?? "QUOTE"
+    const href = this.getAttribute("href");
+    const title = this.getAttribute("title") ?? "QUOTE";
 
-		this.innerHTML = `
+    this.innerHTML = `
 <p class="quote-heading">
 <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -22,18 +22,18 @@ class BQuote extends HTMLElement {
       ></path></svg
     >
 	${
-		href ? (
-			`
+    href
+      ? `
 			<b>
           <a href=${href} target="_blank" rel="noopener noreferrer">${title}</a>
         </b>
 			`
-		) : `<b>${title}</b>`
-	}
+      : `<b>${title}</b>`
+  }
 	</p>
 	${this.innerHTML.trim()}
-		`
-	}
+		`;
+  }
 }
 
-customElements.define("b-quote", BQuote)
+customElements.define("b-quote", BQuote);

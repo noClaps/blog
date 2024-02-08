@@ -47,7 +47,7 @@ In fact, the Greeks were so sure of their phalanxes, they didn't even make walls
 ### Phalanxes in action
 As with any army, the true potential of the phalanxes lay in the strength and discipline of the hoplites in them. The problem back then was that calling for backup didn't exist, and it wouldn't exist until the 5<sup>th</sup> century BCE, so a the outcome of a battle was decided solely on the people on the battlefield at that instance. And once the battle began, it wouldn't stop until one of the sides broke formation, and hence lost.
 
-The hoplites would form the phalanx by standing in rows next to one another, covering the left parts of their bodies (and the right part of their left-side-neighbor's body) with their _hoplons_, and their spears sticking out from the gaps between the shields. Once in formation, the phalanx would move slowly toward the enemy, fighting them off slowly and blocking nearly all incoming hits with their shields, holding the formation as tightly as they possibly could in order to break through the ranks of the other side. 
+The hoplites would form the phalanx by standing in rows next to one another, covering the left parts of their bodies (and the right part of their left-side-neighbor's body) with their _hoplons_, and their spears sticking out from the gaps between the shields. Once in formation, the phalanx would move slowly toward the enemy, fighting them off slowly and blocking nearly all incoming hits with their shields, holding the formation as tightly as they possibly could in order to break through the ranks of the other side.
 
 The phalanx was used on the front lines in a "pushing match" against the opposing side, quite literally since those in the front of the phalanx were often being pushed by the shields of those behind them. In later years, this strategy was used to make the phalanx as a sort of human battering ram to break into the enemy's front lines while the cavalry cleaned up the flanks.
 
@@ -55,7 +55,7 @@ The phalanx was used on the front lines in a "pushing match" against the opposin
 Over the years, there have been many different formations of phalanxes, each having better success rates than the last.
 
 ### The phalanx at Marathon
-This was the phalanx used by the Greeks at the famous Battle of Marathon against the Persians. This is the battle where the messenger ran for 26.2 miles from Marathon to tell the general that they had won against the Persians, and immediately collapsed afterwards from exhaustion and died on the spot. That story is the reason why running for 26.2 miles is called running a marathon. 
+This was the phalanx used by the Greeks at the famous Battle of Marathon against the Persians. This is the battle where the messenger ran for 26.2 miles from Marathon to tell the general that they had won against the Persians, and immediately collapsed afterwards from exhaustion and died on the spot. That story is the reason why running for 26.2 miles is called running a marathon.
 
 ### The oblique phalanx
 This phalanx was first seen in full force in the Battle of Leuctra in 371 BCE, when the commander Epaminondas of Thebes used it against Sparta, and wiped the floor with them. It works by placing the troops at an angle and focusing on one section of the enemy's battle lines at a time, eventually breaking through and winning.

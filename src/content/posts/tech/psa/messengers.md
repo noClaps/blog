@@ -26,7 +26,7 @@ No encryption is pretty easy to explain, there's just nothing there to protect y
 One of the [most popular forms of messenger](https://en.wikipedia.org/wiki/Text_messaging#Worldwide_use), SMS, has [no encryption](https://en.wikipedia.org/wiki/Instant_messaging#Encryption). This means that governments, companies, hackers, and anyone with basic tools can [see all of your messages](https://theconversation.com/how-hackers-can-use-message-mirroring-apps-to-see-all-your-sms-texts-and-bypass-2fa-security-165817). While this might not be worrying, because "who even uses SMS?", [many services use SMS as two-factor authentication (2FA)](https://dataprot.net/statistics/two-factor-authentication-statistics/#two-factor-authentication-statistics), including banks. This can allow any attackers to get your SMS 2FA codes and log in to your bank account, often without your knowledge.
 
 It gets worse. There's a global telecom network known as [Signaling System 7 (SS7)](https://en.wikipedia.org/wiki/Signalling_System_No._7), which turned out to have a [really serious security hole](https://thehackernews.com/2014/12/hackers-can-read-your-private-sms-and.html) that allowed hackers to see and record calls, messages, location information, etc., of any person on the network. The thing is, nearly every telecom operator (Verizon, SingTel, Jio, Vodafone, etc.) around the world uses this protocol, and it's the reason you can call or SMS someone using a different provider. They weren't bothered about these flaws at all, their logic being, "You need lots of tech and money and stuff to exploit this, no one's gonna do it."
-    
+
 Until of course, [someone did](https://thehackernews.com/2017/05/ss7-vulnerability-bank-hacking.html).
 
 And that's why you **don't use SMS for anything** even remotely important. Use encrypted platforms like [**Signal**](#signal), [**Threema**](#threema), [**Session**](#session), [**Element**](#elementmatrix) or any other end-to-end encrypted messenger.
@@ -153,7 +153,7 @@ In conclusion, Session isn't for most people. It's not a very effective replacem
 - [GitHub](https://github.com/oxen-io)
 - [Privacy Policy](https://getsession.org/privacy-policy)
 - [Terms of Service](https://getsession.org/terms-of-service)
-        
+
 ### Element/Matrix
 **Element** is an open source decentralised messenger that uses the **Matrix** protocol to work. You can use [other Matrix clients](https://matrix.org/clients/) that may provide different UIs and features. I recommend Element since it provides the most complete Matrix experience, having been [founded by the team behind Matrix](https://element.io/#matrix-card).
 
@@ -183,7 +183,7 @@ I've used Element for a while on Android, and I haven't had the best experience 
 - [GitHub](https://github.com/matrix-org)
 - [Legal](https://matrix.org/legal/)
 - [Supporters](https://matrix.org/supporters/)
-        
+
 ### Threema
 **Threema** is probably one of the most feature-rich messengers that actually keeps your privacy and security in mind. They use [end-to-end encryption](https://threema.ch/en/faq/why_secure) with the open source [NaCl](https://nacl.cr.yp.to/) library. They have open source clients and have been [audited](https://threema.ch/en/blog/posts/audit-2020-en), which makes them quite easy to recommend. Threema is also based in Switzerland, the country with some of the [strongest data](https://en.wikipedia.org/wiki/Information_privacy_law#Switzerland) [protection laws](https://datenrecht.ch/ndsg-en/) in the world, which, in my opinion, gives them an edge over the other messengers, most of which are [based in the US](https://en.wikipedia.org/wiki/Information_privacy_law#United_States).
 
@@ -194,7 +194,7 @@ Threema offers [clients](https://threema.ch/en/download) for Android, iOS, macOS
 The biggest disadvantage of Threema that I can see is that [their app is paid](https://threema.ch/en/faq/why_not_free_of_charge). In a world of free apps like WhatsApp, Signal, Telegram, etc., a paid app like Threema doesn't stand much of a chance. To be fair to them, having a paid app means a clear business model as opposed to the shady data collection of most closed-source free apps.
 
 In conclusion, a great messenger from a country with great privacy laws. I really wish they were a bit more mainstream, but alas it's a paid app, and not everyone wants/is able to pay for their privacy. With great alternatives like Signal, Session or Matrix, I don't see much reason for people to use this app, despite how great it is. If your friends, your family and you are able and willing to pay for your privacy, I would highly recommend Threema to be your messenger.
-    
+
 - [Website](https://threema.ch/en)
 - [GitHub](https://github.com/threema-ch)
 - [Privacy Policy](https://threema.ch/privacy_policy/)

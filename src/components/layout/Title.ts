@@ -1,9 +1,5 @@
-export default function Title(
-	vals: {
-		pathname: string
-	}
-) {
-	return `
+export default function Title(vals: { pathname: string }) {
+  return `
 <div class="title">
     <section>
         <h1>The Blog of Random</h1>
@@ -11,8 +7,10 @@ export default function Title(
     </section>
     <nav>
         <a href="/" data-selected="${vals.pathname === "/"}">Blog</a> /
-        <a href="/notes" data-selected="${vals.pathname.startsWith("/notes")}">Notes</a>
+        <a href="/notes" data-selected="${vals.pathname.startsWith(
+          "/notes",
+        )}">Notes</a>
     </nav>
 </div>
-	`
+	`;
 }

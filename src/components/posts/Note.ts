@@ -1,8 +1,8 @@
 class BNote extends HTMLElement {
-	constructor() {
-		super()
-		
-		this.innerHTML = `
+  constructor() {
+    super();
+
+    this.innerHTML = `
 <p class="note-heading">
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -22,8 +22,8 @@ class BNote extends HTMLElement {
     <b>${this.getAttribute("title") ?? "NOTE"}</b>
   </p>
   ${this.innerHTML.trim()}
-		`
-	}
+		`;
+  }
 }
 
-customElements.define("b-note", BNote)
+customElements.define("b-note", BNote);

@@ -49,11 +49,11 @@ What can be confirmed, however, is written records from back in the day:
 <b-quote title="Yen Chih-Tui (531-591), scholar-official, circa 589">
 Paper on which there are quotations or commentaries from the Five Classics or the names of sages, I dare not use for toilet purposes
 </b-quote>
-    
+
 <b-quote title="Arab traveller to China, 851 AD">
 [The Chinese] do not wash themselves with water when they have done their necessities; but they wipe themselves with paper
 </b-quote>
-    
+
 This is the earliest written proof of paper being used for toilet purposes, showing that even the first toilet paper was made in China.
 
 Back in those days, toilet paper was made from rice straw, not necessarily because it was comfortable but simply because it was efficient. You see, the fibers of rice straw are tender, so they need much less time to process than any other kinds of paper. And since time is money, these were much cheaper too.
@@ -70,11 +70,11 @@ Originally, Americans used some creative methods to clean up after doing their b
 1. Corn cobs. As I said before, weird but used fairly commonly in the Western world.
 
 2. Newspapers and magazines, which were first introduced in the 18<sup>th</sup> century.
-  
+
 <b-quote title="Barry Kudrowitz, associate professor and director of product design at the University of Minnesota">
 The 'legend' goes that people were using Sears catalogs in outhouses, but when the catalog began to be printed in glossy paper, people needed to find a replacement
 </b-quote>
-   
+
 Americans also used the _Farmer's Almanac_ so often, they would nail them to the outhouse walls for easy access to both reading material and toilet paper once they were done reading. That's why, in 1919, the company started pre-drilling holes into the corner of the books, which they continue to do to this day.
 
 The West got its first taste (not literally, that would be disgusting and weird) of toilet paper in 1857, thanks to a New Yorker names Joseph Gayetty. Mr Gayetty marketed his invention, the "Medicated Paper, for the Water-Closet", which sold in packages of 500 sheets for 50 cents, which converts to a standard roll of two-ply, or half of a standard roll of one-ply, for about $16 today. If that sounds overpriced, that's because it is.
@@ -110,12 +110,12 @@ I'm not sure I should put this in here, seeing as these religions have long and 
 
 ### Buddhism
 - Hygiene sticks were mentioned in Buddhist koans.
-  
+
   <b-quote name="An excerpt from a Buddhist koan">
   A monk asked Ummon, “What is Buddha?” Ummon replied, “Kanshiketsu!”
 
   [...]
-  
+
   Kanshiketsu - A shiketsu, or “poop-stick” (kan, dry; shi, poop; ketsu, stick), was used in old times instead of toilet paper. It is at once both private and polluted. But in samadhi there is no private or public, no pure or polluted.
   </b-quote>
 

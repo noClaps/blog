@@ -1,17 +1,20 @@
 export default function Header(
-	slots: {
-		default?: string
-	} = {},
-	vals: {
-		pathname: string
-	}
+  slots: {
+    default?: string;
+  } = {},
+  vals: {
+    pathname: string;
+  },
 ) {
-	return `
+  return `
 <header>
     ${
-        vals.pathname !== "/" && vals.pathname !== "/notes" ? (`
+      vals.pathname !== "/" && vals.pathname !== "/notes"
+        ? `
             <div>
-                <a class="home" href="${vals.pathname.startsWith("/notes") ? "/notes" : "/"}">
+                <a class="home" href="${
+                  vals.pathname.startsWith("/notes") ? "/notes" : "/"
+                }">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -30,7 +33,8 @@ export default function Header(
                 </a>
 				${slots && slots.default ? slots.default : `<div></div>`}
             </div>
-        `) : (`<div></div>`)
+        `
+        : `<div></div>`
     }
     <a class="feed" href="/feed.json" title="Feed"
         ><svg
@@ -50,5 +54,5 @@ export default function Header(
         </svg>
     </a>
 </header>
-`
+`;
 }

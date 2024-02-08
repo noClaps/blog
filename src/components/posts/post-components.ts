@@ -1,3 +1,3 @@
-import "./Note"
-import "./Quote"
-import "./Warning"
+import "./Note";
+import "./Quote";
+import "./Warning";

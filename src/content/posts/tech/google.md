@@ -6,7 +6,7 @@ lastmod: 2022-11-26
 author: noClaps
 ---
 
-## Humble beginnings 
+## Humble beginnings
 Google had its [humble beginnings](https://about.google/our-story/) in 1995 as a research project by Stanford University students Larry Page, Sergey Brin, and Scott Hassan. While Hassan left before the company was officially founded, the other two remained, and went on to become owners of one of the [largest companies](https://www.gobankingrates.com/money/business/how-much-is-google-worth/) in the world.
 
 Now, the company that started out as a simple search engine controls the daily lives of millions of people around the world, with their [largest product](https://sg.oberlo.com/statistics/search-engine-market-share) being Google Search. It's so popular that "Googling" has become [synonymous](https://www.merriam-webster.com/dictionary/google) with searching the web. Other than the search engine, Google's other products are also widely used, such as [Google Drive](https://enlyft.com/tech/products/google-drive), [Gmail](https://techjury.net/blog/gmail-statistics/), [Google Maps](https://webtribunal.net/blog/google-map-statistics/), etc. However, Google's most popular products are [Android](https://gs.statcounter.com/os-market-share) and [Chrome](https://gs.statcounter.com/browser-market-share).
@@ -108,7 +108,7 @@ Advanced Protection is recommended for anyone who is at an elevated risk of targ
 </b-quote>
 
 #### Chromium
-Chromium (and by extension Chromium-based browsers like Chrome, Brave and Edge) is one of the most secure browsers in the world, better than most alternatives like Firefox. This is widely agreed-upon in the security community. 
+Chromium (and by extension Chromium-based browsers like Chrome, Brave and Edge) is one of the most secure browsers in the world, better than most alternatives like Firefox. This is widely agreed-upon in the security community.
 
 <b-quote title="Daniel Micay, lead developer of GrapheneOS" href="https://grapheneos.org/usage#web-browsing">
 Chromium-based browsers [...] provide the strongest sandbox implementation, leagues ahead of the alternatives. It is much harder to escape from the sandbox and it provides much more than acting as a barrier to compromising the rest of the OS. Site isolation enforces security boundaries around each site using the sandbox by placing each site into an isolated sandbox. [...] Site isolation is important even without a compromise, due to side channels. Browsers without site isolation are very vulnerable to attacks like Spectre.
@@ -142,7 +142,7 @@ Android is not Linux
 </b-quote>
 
 <b-quote title="Ars Technica" href="https://arstechnica.com/gadgets/2009/02/an-introduction-to-google-android-for-developers/">
-Although Android is built on top of the Linux kernel, the platform has very little in common with the conventional desktop Linux stack. 
+Although Android is built on top of the Linux kernel, the platform has very little in common with the conventional desktop Linux stack.
 </b-quote>
 
 [Android's security model](https://source.android.com/security) is often praised as [one of the strongest](https://madaidans-insecurities.github.io/android.html), and that can be further [improved by GrapheneOS](https://grapheneos.org/features) on a Google Pixel device.

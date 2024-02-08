@@ -87,7 +87,7 @@ Now that you have your threat model in place, start looking for tools that you t
 
 Keep in mind that when you're making changes, you will have to research for yourself the options available to you, to see which one fits you the best. This may take time and lots of trial-and-error, so don't be afraid to try things out. Free trials and plans will likely be your best friend throughout this (though please do consider donating/subscribing to the projects if you like them! More often than not, these projects don't get a lot of funding!). You can use an email aliasing service like [SimpleLogin](https://simplelogin.io/) or [AnonAddy](https://anonaddy.com/) if you don't want to give out your real email when signing up for services.
 
-If you have a spare computer or phone you can use that, if you're concerned with letting it touch your current data or setup. If not, most mainstream OSes have strong enough sandboxing of profiles that you could set up a new one and use that without fear of it touching your other setup. Virtual machines achieve a similar goal, though may be a little harder to set up. 
+If you have a spare computer or phone you can use that, if you're concerned with letting it touch your current data or setup. If not, most mainstream OSes have strong enough sandboxing of profiles that you could set up a new one and use that without fear of it touching your other setup. Virtual machines achieve a similar goal, though may be a little harder to set up.
 
 Sometimes this can be difficult or time-consuming, so feel free to take all the time you need. Your threat model may change along the way, and that's perfectly fine! Remember, privacy is a journey, but it's only as long as you're willing to make it.
 

@@ -10,7 +10,7 @@ b-warning {
 	.warning-heading {
 		margin: 0;
 		text-align: left;
-		
+
 		b {
 			vertical-align: middle;
 		}
@@ -80,4 +80,3 @@ b-note {
 		}
 	}
 }
-

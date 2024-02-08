@@ -1,7 +1,7 @@
 class BWarning extends HTMLElement {
-	constructor() {
-		super()
-		this.innerHTML = `
+  constructor() {
+    super();
+    this.innerHTML = `
 		<p class="warning-heading">
 		<svg
 		xmlns="http://www.w3.org/2000/svg"
@@ -21,8 +21,8 @@ class BWarning extends HTMLElement {
 		<b id="title">${this.getAttribute("title") ?? "WARNING"}</b>
 		</p>
 		${this.innerHTML.trim()}
-		`
-	}
+		`;
+  }
 }
 
-customElements.define("b-warning", BWarning)
+customElements.define("b-warning", BWarning);
