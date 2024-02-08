@@ -30,7 +30,5 @@ A blog about the most random things you can think of.
 
 ## Licenses
 
-All of the code in this repository is under the [0BSD license](./LICENSE), unless specified otherwise.
-
 The licenses of all dependencies are in their respective folders in `node_modules/` when you install them
 with `bun install`.
