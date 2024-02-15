@@ -5,8 +5,6 @@ date: 2024-02-15
 author: noClaps
 ---
 
-<!-- Boško Brkić | Admira Ismić -->
-
 ## A New Year's party
 
 New Year's Eve, 1984. Earlier that year, Sarajevo (then in Yugoslavia, in modern-day Bosnia and Herzegovina) had hosted the Winter Olympics, the first to be held in a Slavic-speaking country. The year may have been ending, but for Boško Brkić and Admira Ismić, two high school students, this was the start of something new.
