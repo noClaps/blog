@@ -26,7 +26,9 @@ These atoms were important because they allowed us to make up pretty much anythi
 
 Most philosophers agree that it was actually the ancient Indians who came up with the idea of these "uncuttable" particles, but the name (like the names of so many other concepts in science) came from the Greek word. Either way, we're not here to learn about the history, let's do the science!
 
-## Wave-particle duality
+## Quantum physics
+
+### Wave-particle duality
 
 There's a lot of fancy words there, but I promise it's relatively simple. It's one of the earliest scientific discoveries that was made about something relating to quantum mechanics, and it'll help explain a lot of concepts down the road. The experiment that made this discovery is known as Young's double-slit experiment, and was performed by British physicist Thomas Young in 1801.
 
@@ -70,7 +72,7 @@ Okay, there's a lot to take in there. Let's break it down part by part
 
 When Young discovered this, he changed the scientific world. A lot of old questions were answered, and a lot of new questions were raised.
 
-## Quantums
+### Quantums
 
 We'll come back to the double slit experiment and wave-particle duality in a bit, first let's talk about light and energy.
 
@@ -118,11 +120,11 @@ Also, for anyone claiming that your phones give off radiation, or that 5G towers
 
 Anyway, coming back to why this is important, we now have a way to get energy from the Sun to the Earth, but it's all just glorified light! This is where energy conversion comes in. Plants, for example, can use that light energy to activate chemical processes that turn carbon dioxide and water into carbohydrates, which are plant food. The energy is now stored in that food, and we can eat those plants, or animals that eat the plants, and transfer that energy to us. And so, life!
 
-## Wave-particle duality 2: Electric boogaloo
+### Wave-particle duality 2: Electric boogaloo
 
 When scientists saw that light had properties of both particles and waves, they wondered what else could do cool stuff like that. When they repeated the experiment with electrons, they saw the same thing! This lead to a lot more questions than answers, since while light was a bit confusing with its behavior, people were pretty certain that electrons were definitely particles.
 
-## The wave function
+### The wave function
 
 Desperate to find answers, scientists tried something different. They figured, "well if we're shooting a bunch of particles it behaves like a wave. Maybe that's because a bunch of particles all together simply make a wave (like water). What happens if we only shoot one particle at a time?"
 
@@ -147,10 +149,68 @@ $$
 i\hbar\frac{\partial \Psi(x,t)}{\partial t} = -\frac{\hbar}{2m} \frac{\partial^2 \Psi(x,t)}{\partial x^2} + V(x)\Psi(x,t)
 $$
 
-This looks very scary, and it's not nearly as bad as it might seem, but we're not using it either way so it doesn't matter! You might see different versions of this equation online, but all of them mean pretty much the same thing.
+This looks very scary, and it's not nearly as bad as it might seem, but we're not gonna be using it either way so it doesn't matter (unless you're actually studying the field, in which case it matters a lot)! You might see different versions of this equation online, but all of them mean pretty much the same thing.
 
-## Uncertainty principle
+### Quantum superposition
 
-Then, they tried to block off one of the holes, expecting to see a wave-like pattern behind with the number of photons decreasing going away from the center. If it were a wave, it should behave like one regardless of how many slits there are, right? Before I tell you what happened, scroll back up to the double-slit experiment diagram and try to imagine what would happen in each case if one of the holes was blocked off.
+Let's go back to the double-slit experiment (told you it was gonna be useful!). After sending particles through one at a time, they figured that it must always behave as a wave of probability moving outwards from the source, so they tried to block off one of the holes, expecting to see a wave-like pattern behind with the number of photons decreasing going away from the center. If it were a wave, it should behave like one regardless of how many slits there are, right? Before I tell you what happened, scroll back up to the double-slit experiment diagram and try to imagine what would happen in each case if one of the holes was blocked off.
 
-What the scientists actually saw was (b), the particles were accumulating in one spot as if they were going through in a straight line. This happened with photons, electrons, and pretty much every small particle they used.
+What the scientists actually saw was (b), the particles were accumulating in one spot as if they were going through in a straight line. This happened with photons, electrons, and pretty much every small particle they used. So when there was only one slit, the particle behaved as a particle and travelled in a straight line!
+
+This happened because of something called **superposition**. You might have heard about it in a thought experiment called Schrödinger's cat. It goes something like this:
+
+1. Place a cat into a box and close it. You cannot tell what's happening in the box.
+2. When the cat is in the box, it has a 50% chance of dying. (Theoretically. No real cats were harmed in the making of this experiment!)
+3. After some time, you come back to the box. Before you open the box, the cat can either be alive or dead, with a 50% chance of each.
+
+That seems fairly logical, but superposition states that, instead of the cat being either alive _or_ dead, the cat is both alive _and_ dead at the same time. That is, it's in a superposition of both living and dead states.
+
+How can a cat be in both states? Well, a cat can't. But since particles don't really exist as anything other than probabilities, they can. That's what was happening with the double-slit experiment: the particle was in a superposition of all the places that its wave function said it could be, which is why it was behaving like a wave. Essentially, it was behaving as a big wave travelling through the system.
+
+So why did we only see a particle on the other side? Well, when you open the box, you "observe" what happens, and the superposition of the cat "collapses" into one of 2 states: alive or dead. This basically happens by the universe flipping a coin, and if it lands on heads the cat lives otherwise it dies. If you repeated the experiment a thousand times, you'd get 500 living cats and 500 dead ones.
+
+Similarly, when the particle travels through the system, it has a probability of being somewhere on the screen, with the probability of it being in each place being defined by its wave function. The universe then randomly picks a spot based on that probability, and places the particle there when we "observe" it. When you look at the screen, you open the box, and find out what happened to the metaphorical cat.
+
+So why does this not happen when we only have one open slit? Well, there's no probability of the particle going anywhere else other than the slit. There's no other slit for it to go through, so the superposition was collapsed the moment the particle left your source. It's as if you never even closed the box, and just watched what happened to the cat. Since the superposition was never there, there was no probability wave, and it just behaved like a particle with a known position and travelled straight through like you'd expect.
+
+This is why laser pointers and flashlights don't spread out like waves, because there's no probability of the light being anywhere else other than where you've pointed it.
+
+If you think this is a bit much, I don't blame you. It's a very different way of thinking about things than how we perceive them in our day-to-day lives. But the truth is, so much of our universe works on these phenomenon, that it might seem crazy that we didn't discover them until quite recently. Anyway, if you want to take a break, I don't blame you. Once you're ready, we can move on.
+
+### Quantum tunnelling
+
+I keep talking about how important these things are to the universe and our existence, and you might be wondering why. In my opinion, one of the most important phenomenon displayed by these particles is quantum tunnelling.
+
+Let's think about what tunnelling is. Fundamentally, it's a way of getting through a barrier of some sort. If we dig a tunnel through a mountain, it's because we need to get somewhere and the mountain is a barrier to that path. Quantum tunnelling works the same way, but for particles, where the particle encounters a barrier it shouldn't be able to get through, yet it does.
+
+<b-note>
+The following explanation has been adapted from [LibreTexts Physics](https://phys.libretexts.org/Bookshelves/University_Physics/University_Physics_(OpenStax)/University_Physics_III_-_Optics_and_Modern_Physics_(OpenStax)/07%3A_Quantum_Mechanics/7.07%3A_Quantum_Tunneling_of_Particles_through_Potential_Barriers).
+</b-note>
+
+Let's say we have a ball with some amount of energy, which means it's moving with some speed. If it encounters a small hill, it can roll over it, and down the other side, and continue on its journey. Now, let's say it encounters a really big hill. It can roll partway up the hill, but it won't be able to go over to the other side.
+
+In the quantum realm, we can imagine the ball to be particles. The hills are now dependent on energy rather than physical height, and are known as "potential barriers". Basically, the particle would need a certain amount of energy to get past that barrier and to the other side. We can even feel some of these barriers, such as the repulsion when you bring the two similar poles of two magnets together (positive-positive or negative-negative).
+
+However, do you remember how particles aren't particles, but waves of probability? If you look at the wave function graph above, you can see how that wave spreads over an area. That means, if the hill is thin enough and that graph is wide enough, there's a small chance that the particle can appear on the other side.
+
+<figure>
+    <img src="https://www.dummies.com/wp-content/uploads/316773.image0.jpg" alt="A graph showing the probability of a particle being on the other side of a barrier. This isn't exactly how the graph looks since the probability decreases exponentially inside the barrier, but it's good enough for a basic explanation. Source: Physics I for Dummies.">
+    <figcaption>
+        A graph showing the probability of a particle being on the other side of a barrier. This isn't exactly how the graph looks since the probability decreases exponentially inside the barrier, but it's good enough for a basic explanation.
+        Source: <a href="https://www.dummies.com/article/academics-the-arts/science/physics/string-theory-access-parallel-universes-with-quantum-tunneling-177689/">Physics I for Dummies</a>.
+    </figcaption>
+</figure>
+
+From Schrödinger's cat, we know that if there's a probability of something happen, it will happen given enough attempts. So sometimes, the particle will get through the barrier, which is known as **quantum tunnelling**.
+
+This happens all over the universe, but most importantly, it happens in stars like our Sun. Because stars have so many tiny atoms like hydrogen and helium, the nuclei (centers) of these atoms don't have that much of a barrier to cross. The barrier in question is the same repulsion that we feel with magnets, since the nuclei of both atoms are positive, while the outer shells are both negative. We'll look at the structure of atoms in a bit, and this will make more sense.
+
+Once the nuclei cross this barrier, they fuse together (called nuclear fusion), and that releases a _lot_ of energy. When you have a lot of nuclear fusion happening, you get a lot of energy released, which makes it easier to make more nuclear fusion happen. An easy way to imagine this is that once a ball gets over a hill, it releases a bunch of energy. This extra energy speeds up other balls nearby, which means they make it further up the hill where the hill is smaller, which means a higher probability of the balls tunnelling across, which means even more energy is released, speeding up more balls, until most of the balls can make it over the hill.
+
+And you get a star! Of course, we know that the Sun is a star, and we need the Sun to survive.
+
+### Conclusion
+
+There's a lot more fun stuff that happens in quantum physics, like entanglement, which is how quantum computers work. However, a lot of those get complicated, and would probably make more sense once you have a better understanding of quantum mechanics. I'm still learning, and don't have that level of understanding just yet (skill issues, I know), so maybe I'll come back and update this post once I do.
+
+Anyway, enough about quantum physics and particle's behaviors, let's actually look at what these particles even are. Time for particle physics (my favorite)!
