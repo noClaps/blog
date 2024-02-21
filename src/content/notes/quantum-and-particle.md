@@ -1,6 +1,6 @@
 ---
 title: A beginner's guide to Quantum and Particle Physics
-date: 2024-02-18
+date: 2024-02-21
 author: noClaps
 ---
 
@@ -214,3 +214,117 @@ And you get a star! Of course, we know that the Sun is a star, and we need the S
 There's a lot more fun stuff that happens in quantum physics, like entanglement, which is how quantum computers work. However, a lot of those get complicated, and would probably make more sense once you have a better understanding of quantum mechanics. I'm still learning, and don't have that level of understanding just yet (skill issues, I know), so maybe I'll come back and update this post once I do.
 
 Anyway, enough about quantum physics and particle's behaviors, let's actually look at what these particles even are. Time for particle physics (my favorite)!
+
+## Particle physics
+
+Particle physics differs from quantum physics in that it deals with the properties of the particles themselves and some of the interactions between them, instead of the mechanics and behaviors of the particles with the rest of the universe. I would argue it's sometimes even more complicated and confusing than quantum physics, and the answers to a lot of questions in this field are, "we don't know yet".
+
+However, I do enjoy particle physics a lot more than quantum. It's an even newer field that looks at the absolute lowest level of the universe, and I believe that a lot of interactions and behaviors of objects and vaccums that we can see and interact with can be explained at this fundamental level.
+
+### Inside the atom
+
+Most people probably assume atoms to be the smallest units of matter, kind of like the pixels of our universe. That's a fair assumption to make, considering we learn that relatively early on in science classes in school. However, there's a lot more that's going on inside atoms, including even smaller particles and interactions between them.
+
+Let's talk about the structure of atoms. Most people have probably seen atoms that have a group of particles in the middle and a bunch of tinier particles orbiting around it. Some people who took chemistry or physics in high school (and actually paid attention) probably remember there being electron shells or levels, with specific numbers of electrons in each level.
+
+All of this is pretty accurate, and this model of the atom was first discovered in a series of experiments known as the Geiger-Marsden experiments, or the Rutherford gold foil experiment. In the experiment, an alpha particle (I'll explain what this later on in the post) was shot at a piece of gold foil. An alpha particle is positively charged, which means it gets repelled by other positive charges.
+
+One of the first things they discovered was that many of the alpha particles would pass straight through the foil without being deflected by anything. This showed that atoms were mostly made up of empty space, and weren't big solid balls of matter. However, they also knew that electrons existed and were negatively charged, and that atoms were neutral (no charge), which means there needed to be some positive charge somewhere to balance that negative charge.
+
+They then saw that the alpha particle would get deflected sometimes. The amount it would get deflected would also vary, and sometimes it would come flying back in the direction it came from. This meant that there was a very strong positive charge somewhere, and the closer the alpha particle got to that positive charge, the more strongly it would get deflected. Again, you can imagine this using magnets, where the closer you bring the like poles of magnets together, the more strongly they push each other apart.
+
+They figured out that there was a strong positive charge somewhere inside the atom, and decided it was somewhere in the middle and therefore called it the nucleus. They then put the electrons in orbits around the nucleus, and we have one of the earlier modern models of the atom. There's a lot of other fun stuff we've discovered since, about energy levels and electron clouds (the clouds of probability from before), but for most people this model works fine.
+
+Of course, the electrons aren't actually orbiting around the nucleus, since the momentum and acceleration from that rotation would basically cause the atom to destroy itself immediately, but we don't really need to worry about that too much.
+
+### The Standard Model
+
+Okay, let's dive a little bit deeper. Since the Geiger-Marsden experiments, we've found out that the nucleus contains positively charged particles called protons, as well as neutral particles called neutrons. We also have electrons hanging out outside the nucleus. But what exactly _are_ these?
+
+Electrons are as fundamental particles. This means that, as far as we know, they're not made up of anything else. Neutrons and protons, on the other hand, are composite particles, which are made up of other fundamental particles called quarks.
+
+Remember how I said protons have a positive charge? Let's call this a +1 charge. Electrons need to balance protons, so let's make those -1. Finally, neutrons, being neutral, can be 0 charge. Since electrons are fundamental, we can ignore those, so let's focus on the composites.
+
+We need a way to break those down into smaller particles. What's the best way to break down whole numbers? Fractions! Okay, so let's create a quark with a fractional charge, say +2/3. That was fun! Let's do another one, with -1/3. Sure, these can technically be any number you want since we're making them up, but humor me for a bit here.
+
+We can now combine these quarks simply by adding their charges. So 2/3 + 2/3 - 1/3 = 1, and 2/3 - 1/3 - 1/3 = 0. By using different combinations of these quarks, we've made our proton and neutron! This is exactly how the proton and neutron are made: using up (+2/3) and down (-1/3) quarks. We can use different combinations of these quarks, and as long as the result ends up being a whole number, we have a new particle!
+
+The Standard Model of Particle Physics (the Standard Model for short) defines these fundamental particles. It technically exists as an equation, but most sources will lay it out in a table so that it's easier to understand. The Standard Model can generally be separated into 2 categories: fermions and bosons.
+
+<figure>
+    <img src="https://www.physik.uzh.ch/groups/serra/images/SM1.png" alt="The Standard Model of Particle Physics. Source: Standard Model, Physik-Institut, Universität Zürich.">
+    <figcaption>
+        The Standard Model of Particle Physics. Source: <a href="https://www.physik.uzh.ch/groups/serra/StandardModel.html">Standard Model, Physik-Institut, Universität Zürich</a>.
+    </figcaption>
+</figure>
+
+### Fermions
+
+Named after Enrico Fermi, these are the particles that make up all of the matter in the universe. There are 3 generations of these matter particles, and fermions can be further split up into 2 categories: leptons and quarks.
+
+#### Leptons
+
+Each generation of lepton consists of a particle and its corresponding neutrino. First generation leptons are electrons and electron neutrinos. Second generation are muons and muon neutrinos. Third generation are tau and tau neutrinos.
+
+The particles themselves aren't that interesting. Each particle similar properties, with -1 charge. The major difference between them is their mass, where the higher generations have much heavier particles. The tau, for example, weighs 3.5 times as much as an electron!
+
+Neutrinos, on the other hand, are a bit more interesting. They have 0 charge, extremely low mass, and generally don't interact with most matter. In fact, there's trillions of them going through your hands every second! This is why they were, and still are, so difficult to detect. The only reason we know about them is because without having them there a bunch of our calculations weren't making sense.
+
+#### Quarks
+
+There are 6 quarks in total. The first generation consists of the quarks we've already encountered: up and down. The second generation is similar to the first, with the charm (+2/3) and strange (-1/3) quarks. The third generation is also similar, with top (+2/3) and bottom (-1/3). Like with the leptons, quarks get heavier the higher the generation. The top quark, for instance, weighs almost 100 000 times as much as an up quark!
+
+### Bosons
+
+These are the force carrier particles, which represent the forces we encounter in our daily lives. Remember, forces are just pushes and pulls, but things you might not think of as forces can be.
+
+For example, you might think of pushing on a box as a force, and you'd be right. By pushing on a box, you are doing work on it to move it a certain distance. However, the repulsion and attraction of a magnet is also a force, since it is also doing work on the magnetic object to move it a certain distance, either away from or towards itself.
+
+#### Electromagnetic interaction
+
+This force is known as the electromagnetic force, or electromagnetic interaction, and its carrier is the photon. This doesn't mean that magnets don't work in dark rooms, it just means that whenever there's an electromagnetic interaction, a photon is involved in some way. For example, particles like electrons can absorb and emit photons to jump to higher or lower energy levels. The details of it are a bit complicated, but the gist of it is that this interaction only works with charged particles, so no neutrinos allowed.
+
+#### Strong interaction
+
+"Now wait a minute", you might be thinking, "if like charges repel each other, how are there so many positive charges all in one place in the nucleus?" Great question! The nucleus indeed has some pretty strong repulsion because of the electromagnetic interaction. In a universe where that was the only interaction, there wouldn't be nuclei, and there wouldn't be atoms, and cookies wouldn't exist and I'd be very sad. Luckily, we don't live in such a world, because the strong force, or strong interaction, exists!
+
+This force is carried, or _mediated_, by gluons. If the name "gluons" sounds like it was derived from "glue", that's probably because it was! The strong force is extremely strong, orders of magnitude stronger than the electromagnetic force or gravity, and strong enough to keep the nucleus "glued" together. You can imagine it like a much stronger but fundamentally different version of gravity that only works within the nucleus of atoms.
+
+The strong interaction, like the electromagnetic interaction, is a bit picky about what it'll work with. Specifically, the strong force only works with "colored" particles, which are pretty much just quarks. Yes, the naming of things in particle physics sucks, but the things that happen at this scale are so weird and abstract that I don't think any language has the words to really describe it, and any name we give it would sound just as weird.
+
+#### Weak interaction
+
+"Now wait another minute", you might be thinking again, "I've heard of atoms decaying and stuff. If this strong force is as strong as you claim, how does that happen?" Another excellent question. That happens, as you can probably guess from the title of this section, due to the weak force, which are mediated by the W and Z bosons.
+
+The weak interaction isn't directly responsible for radioactivity, but it does cause it. This is because the weak force can change one type of quark into another, something no other interaction can do. Let's say we change the up quark in a proton into a down quark. The difference between their charges is -1 (since +2/3 - 1 = -1/3). Since the overall charge of an atom needs to be 0 for it to be stable, and it just lost a +1 charge, it now needs to lose a -1 charge. So the atom lets out an electron from its nucleus, and this is known as a beta particle.
+
+The reason it can do this is because, unlike the gluons and photons, the W and Z bosons have charge and mass. The W boson can have positive or negative charge, while the Z boson is neutral.
+
+#### Higgs
+
+The Higgs boson and Higgs field is far too complicated even for me. All I can really tell you is that the Higgs field is the reason that mass exists. It's also a fairly recent development in particle physics, and I'm quite excited to see where it goes.
+
+### Force fields
+
+Before I move on, I figured I'd talk a little about what force fields are. While they sound cool, like something out of science fiction, they're pretty simple. A force field is basically just an area in space where a force can act. The force fields for the electromagnetic interaction or gravitational interaction are infinite, for example, while those for the strong and weak interactions are limited in range.
+
+### Gravity
+
+You might have noticed that I didn't talk about gravity when going through the bosons. It's a fundamental force of the universe, surely it must have a particle, right? Well scientists thought the same, and so they tried adding a graviton to the list of bosons. However, when they did a lot of calculations started breaking down, and they realised they'd made a mistake.
+
+You see, gravity isn't like the other forces. In fact, [gravity is not a force](https://www.youtube.com/watch?v=R3LjJeeae68) at all! It's more of a consequence of the bending of space-time due to the mass of objects. Well that's the extremely simplified explanation, and the truth is we don't really understand how gravity really works. There's been some new developments on ideas of quantum gravity, but this is one of the biggest missing links between our world and the quantum realm. Figuring out how gravity fits in could massively help us get to a Theory of Everything™.
+
+Gravity is far more complicated than most people realise, and definitely out of the scope of this post. If you want to learn more, I'd recommend checking out this [Veritasium video](https://www.youtube.com/watch?v=XRr1kaXKBsU) and the Sabine Hossenfelder video I linked above.
+
+## Conclusion
+
+And that's it! You now have a basic starting point to get going on your journey through quantum and particle physics. It's a very fast and innovative field, and there's new developments and ideas being shared all the time! Pretty much everyone has their own idea of how the universe works, and as long as you can prove it mathematically and/or experimentally, you might even be right!
+
+Some other resources to get you started:
+
+- Quantum ([Google Play Store](https://play.google.com/store/apps/details?id=brychta.stepan.quantum_en)) - This app taught me a lot of the basics of quantum mechanics, and really piqued my interest in the subject. I'm not sure how often it's been updated since I used it, but I'm fairly certain it's still a great resource.
+- [Quantum Mechanics I lecture notes by Paul Skrzypczyk at the University of Bristol](https://paulskrzypczyk.github.io/qm-lecture-notes/) - These notes are aimed at a 2nd year physics student, so if you've done 1st year physics these might be helpful. There's also short lecture videos to go alongside the written content, and problem sheets with questions to solve for practice. NOTE: I am not Paul Skrzypczyk.
+- [CERN](https://home.cern) - The experiments that scientists do at CERN are probably some of the coolest things ever, and a lot of the discoveries came from the Large Hadron collider in CERN. Fun fact: the World Wide Web was also founded by Tim Berners-Lee at CERN!
+- The internet - Looking stuff up is probably the best way to learn in today's world. My parents keep telling me about how I have it easy with all the world's knowledge at my fingertips, and they're right. The internet is probably humanity's greatest invention so far, and with the crazy amount of information on here, you'd be a fool not to take advantage of it. Just be careful and verify any claims that you see, try to stick to reputable sources, and try not to get distrac- ooh, a squirrel!
+
+I hope you have fun with this guide and with quantum and particle physics in general. A lot of the concepts here are things I wish I'd had an easier time finding and understanding when I was getting started. Unfortunately, I couldn't find any great explanations for these things, and so I've written this post so that hopefully others can get those resources that I didn't really get, and hopefully understand this incredibly exciting part of physics a little bit better.
