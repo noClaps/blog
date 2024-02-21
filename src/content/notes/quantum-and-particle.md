@@ -68,7 +68,7 @@ Okay, there's a lot to take in there. Let's break it down part by part
 
   The truth is, small particles (I mean _really_ small) like photons (light particles) have this exact behavior. If you shoot them through really tiny slits, you start getting this interference pattern. So light is a wave? Well, not exactly. If you have a laser pointer or a flashlight and you point it in a certain direction, you can see the light travelling in a straight line to get to wherever you're pointing it. Waves cannot do this, which means light is a particle.
 
-  In reality, light behaves as both a particle _and_ and a wave, hence the name wave-particle duality.
+  In reality, light behaves as both a particle _and_ a wave, hence the name wave-particle duality.
 
 When Young discovered this, he changed the scientific world. A lot of old questions were answered, and a lot of new questions were raised.
 
@@ -189,7 +189,7 @@ The following explanation has been adapted from [LibreTexts Physics](https://phy
 
 Let's say we have a ball with some amount of energy, which means it's moving with some speed. If it encounters a small hill, it can roll over it, and down the other side, and continue on its journey. Now, let's say it encounters a really big hill. It can roll partway up the hill, but it won't be able to go over to the other side.
 
-In the quantum realm, we can imagine the ball to be particles. The hills are now dependent on energy rather than physical height, and are known as "potential barriers". Basically, the particle would need a certain amount of energy to get past that barrier and to the other side. We can even feel some of these barriers, such as the repulsion when you bring the two similar poles of two magnets together (positive-positive or negative-negative).
+In the quantum realm, we can imagine the ball to be particles. The hills are now dependent on energy rather than physical height, and are known as "potential barriers". Basically, the particle would need a certain amount of energy to get past that barrier and to the other side. We can even feel some of these barriers, such as the repulsion when you bring the two similar poles of two magnets together (north-north or south-south).
 
 However, do you remember how particles aren't particles, but waves of probability? If you look at the wave function graph above, you can see how that wave spreads over an area. That means, if the hill is thin enough and that graph is wide enough, there's a small chance that the particle can appear on the other side.
 
@@ -227,7 +227,7 @@ Most people probably assume atoms to be the smallest units of matter, kind of li
 
 Let's talk about the structure of atoms. Most people have probably seen atoms that have a group of particles in the middle and a bunch of tinier particles orbiting around it. Some people who took chemistry or physics in high school (and actually paid attention) probably remember there being electron shells or levels, with specific numbers of electrons in each level.
 
-All of this is pretty accurate, and this model of the atom was first discovered in a series of experiments known as the Geiger-Marsden experiments, or the Rutherford gold foil experiment. In the experiment, an alpha particle (I'll explain what this later on in the post) was shot at a piece of gold foil. An alpha particle is positively charged, which means it gets repelled by other positive charges.
+All of this is pretty accurate, and this model of the atom was first discovered in a series of experiments known as the Geiger-Marsden experiments, or the Rutherford gold foil experiment. In the experiment, an alpha particle was shot at a piece of gold foil. An alpha particle is positively charged, which means it gets repelled by other positive charges.
 
 One of the first things they discovered was that many of the alpha particles would pass straight through the foil without being deflected by anything. This showed that atoms were mostly made up of empty space, and weren't big solid balls of matter. However, they also knew that electrons existed and were negatively charged, and that atoms were neutral (no charge), which means there needed to be some positive charge somewhere to balance that negative charge.
 
@@ -276,7 +276,7 @@ There are 6 quarks in total. The first generation consists of the quarks we've a
 
 ### Bosons
 
-These are the force carrier particles, which represent the forces we encounter in our daily lives. Remember, forces are just pushes and pulls, but things you might not think of as forces can be.
+Bosons, named by Paul Dirac in honor of Indian physicist Satyendra Nath Bose, are the force carrier particles, which represent the forces we encounter in our daily lives. Remember, forces are just pushes and pulls, but things you might not think of as forces can be.
 
 For example, you might think of pushing on a box as a force, and you'd be right. By pushing on a box, you are doing work on it to move it a certain distance. However, the repulsion and attraction of a magnet is also a force, since it is also doing work on the magnetic object to move it a certain distance, either away from or towards itself.
 
@@ -296,7 +296,7 @@ The strong interaction, like the electromagnetic interaction, is a bit picky abo
 
 "Now wait another minute", you might be thinking again, "I've heard of atoms decaying and stuff. If this strong force is as strong as you claim, how does that happen?" Another excellent question. That happens, as you can probably guess from the title of this section, due to the weak force, which are mediated by the W and Z bosons.
 
-The weak interaction isn't directly responsible for radioactivity, but it does cause it. This is because the weak force can change one type of quark into another, something no other interaction can do. Let's say we change the up quark in a proton into a down quark. The difference between their charges is -1 (since +2/3 - 1 = -1/3). Since the overall charge of an atom needs to be 0 for it to be stable, and it just lost a +1 charge, it now needs to lose a -1 charge. So the atom lets out an electron from its nucleus, and this is known as a beta particle.
+The weak interaction isn't directly responsible for radioactivity, but it does cause it. This is because the weak force can change one type of quark into another, something no other interaction can do. Let's say we change the up quark in a proton into a down quark. The difference between their charges is -1 (since +2/3 - 1 = -1/3). Since the overall charge of an atom needs to be 0 for it to be stable, and it just lost a +1 charge, it now needs to lose a -1 charge. So the atom lets out an electron from its nucleus, and this is known as a beta particle, one of the products of radioactivity.
 
 The reason it can do this is because, unlike the gluons and photons, the W and Z bosons have charge and mass. The W boson can have positive or negative charge, while the Z boson is neutral.
 
