@@ -27,8 +27,3 @@ A blog about the most random things you can think of.
     ```
 
     This will build the site and place it in `dist/`.
-
-## Licenses
-
-The licenses of all dependencies are in their respective folders in `node_modules/` when you install them
-with `bun install`.
