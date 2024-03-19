@@ -47,7 +47,7 @@ for (const image of images) {
 const htmlGlob = new Bun.Glob("**/*.html");
 const htmlFiles = htmlGlob.scanSync({ cwd: "dist/" });
 for (const page of htmlFiles) {
-  new HTMLRewriter()
+  const html = new HTMLRewriter()
     .on("img", {
       async element(el) {
         const src = el.getAttribute("src");
@@ -56,15 +56,14 @@ for (const page of htmlFiles) {
         const urlArr = src.split("/");
         const filename = urlArr[urlArr.length - 1];
         const path = `/${page.replace(".html", "")}/${filename}`;
-
-        if (src.startsWith("https://")) {
-          await fetch(src).then((r) =>
-            Bun.write(`dist${path}`, r.arrayBuffer()),
-          );
-        }
-
         el.setAttribute("src", path);
+
+        if (src.startsWith("http")) {
+          const image = await fetch(src).then((r) => r.blob());
+          Bun.write(`dist${path.replaceAll("%20", " ")}`, image);
+        }
       },
     })
     .transform(await Bun.file(`dist/${page}`).text());
+  Bun.write(`dist/${page}`, html);
 }
