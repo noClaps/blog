@@ -42,3 +42,28 @@ for (const image of images) {
     Bun.file(`src/content/${image}`),
   );
 }
+
+// Download remote files
+const htmlGlob = new Bun.Glob("**/*.html");
+const htmlFiles = htmlGlob.scanSync({ cwd: "dist/" });
+for (const page of htmlFiles) {
+  const html = new HTMLRewriter()
+    .on("img", {
+      async element(el) {
+        const src = el.getAttribute("src");
+        if (!src) return;
+
+        const urlArr = src.split("/");
+        const filename = urlArr[urlArr.length - 1];
+        const path = `/${page.replace(".html", "")}/${filename}`;
+        el.setAttribute("src", path);
+
+        if (src.startsWith("http")) {
+          const image = await fetch(src).then((r) => r.blob());
+          Bun.write(`dist${path.replaceAll("%20", " ")}`, image);
+        }
+      },
+    })
+    .transform(await Bun.file(`dist/${page}`).text());
+  Bun.write(`dist/${page}`, html);
+}
