@@ -7,9 +7,11 @@ author: noClaps
 ---
 
 ## Origins
-Most people nowadays generally remember [AOL Instant Messenger](https://en.wikipedia.org/wiki/AIM_(software)) and [MySpace](https://en.wikipedia.org/wiki/Myspace) as their introduction to social media, while the newer generations probably got started on [Instagram](https://en.wikipedia.org/wiki/Instagram), [Facebook](https://en.wikipedia.org/wiki/Facebook), [TikTok](https://en.wikipedia.org/wiki/TikTok), or another of the hundreds of social media applications. Most of these were developed relatively recently, and much of their userbase reflects that. However, the first social media ever was launched in 1960 with the [PLATO system](https://en.wikipedia.org/wiki/PLATO_(computer_system)) at the University of Illinois.
+
+Most people nowadays generally remember [AOL Instant Messenger](<https://en.wikipedia.org/wiki/AIM_(software)>) and [MySpace](https://en.wikipedia.org/wiki/Myspace) as their introduction to social media, while the newer generations probably got started on [Instagram](https://en.wikipedia.org/wiki/Instagram), [Facebook](https://en.wikipedia.org/wiki/Facebook), [TikTok](https://en.wikipedia.org/wiki/TikTok), or another of the hundreds of social media applications. Most of these were developed relatively recently, and much of their userbase reflects that. However, the first social media ever was launched in 1960 with the [PLATO system](<https://en.wikipedia.org/wiki/PLATO_(computer_system)>) at the University of Illinois.
 
 ### First
+
 PLATO, short for Programmed Logic for Automatic Teaching Operations, was a computer-based learning system, that came along with:
 
 <b-quote title="John Daleske, worked on PLATO system from 1976 to 1980" href="http://www.daleske.com/plato/">
@@ -25,7 +27,9 @@ Some of the most popular pieces of software ever made, including Lotus Notes and
 Clearly, this was an important first step for social media, but it was, quite literally, just the beginning.
 
 ### The Golden Oldies
+
 #### IRC
+
 [Internet Relay Chat (IRC)](https://en.wikipedia.org/wiki/Internet_Relay_Chat) was [introduced in 1988](https://daniel.haxx.se/irchistory.html), and very quickly became one of the most used text-based messaging networks, reaching a peak of around [1 million users](https://techcrunch.com/2013/01/06/irc-has-lost-60-of-its-users-since-2003-but-life-as-a-robot-is-just-beginning/) in 2003. Since then, the IRC userbase has declined to [some tens of thousands of users](https://netsplit.de/networks/top100.php), mostly limited to open source projects or communities that have already existed on IRC for a long time.
 
 <b-quote title="David Wickes, commented on DEV Community" href="https://dev.to/gypsydave5/comment/k5k3">
@@ -33,7 +37,8 @@ IRC's abandonment by the community is a crying shame. People have exchanged an o
 </b-quote>
 
 #### AIM, Yahoo! Messenger and MSN Messenger
-[AOL](https://en.wikipedia.org/wiki/AOL), originally known as America Online, is a name many people fondly remember as their introduction to the Internet, especially in the Western world. One of their most popular products was the [AOL Internet Messenger](https://en.wikipedia.org/wiki/AIM_(software)), reaching up to [53 million users](https://web.archive.org/web/20101030030304/http://www.bigblueball.com/forums/general-other-im-news/34413-im-market-share.html) in 2006, almost 52% of the instant messenger market at the time.
+
+[AOL](https://en.wikipedia.org/wiki/AOL), originally known as America Online, is a name many people fondly remember as their introduction to the Internet, especially in the Western world. One of their most popular products was the [AOL Internet Messenger](<https://en.wikipedia.org/wiki/AIM_(software)>), reaching up to [53 million users](https://web.archive.org/web/20101030030304/http://www.bigblueball.com/forums/general-other-im-news/34413-im-market-share.html) in 2006, almost 52% of the instant messenger market at the time.
 
 Soon after AIM was released, web services provider [Yahoo!](https://en.wikipedia.org/wiki/Yahoo!) released their very own [Yahoo! Pager](https://web.archive.org/web/20101220214553/http://yhoo.client.shareholder.com/press/releasedetail.cfm?ReleaseID=173501) in 1998 which allowed users to communicate on their Yahoo! Chat chatroom. This was later renamed to [Yahoo! Messenger](https://en.wikipedia.org/wiki/Yahoo!_Messenger) in 1999.
 
@@ -42,18 +47,23 @@ In that same year, Microsoft released their [MSN Messenger](https://en.wikipedia
 Windows Live Messenger was [discontinued in 2014](https://www.theverge.com/2014/8/29/6082199/msn-messenger-shutting-down-15-years-history), and Yahoo! Messenger [met the same fate](https://web.archive.org/web/20200505014715/https://help.yahoo.com/kb/SLN28776.html) a few years later, in 2018.
 
 #### MySpace
+
 Reaching a peak market share of [more than 70%](https://techcrunch.com/2008/01/16/myspace-may-still-dominate-in-the-us-but-surprise-facebook-is-catching-up-fast-worldwide/) in 2008, just 5 years after its initial launch, [MySpace](https://en.wikipedia.org/wiki/Myspace) was one of the largest social media sites of all time. It even surpassed Google Search and Yahoo! Mail and became the [most visited site](https://mashable.com/archive/myspace-americas-number-one) in the US. However, with the [launch of Facebook](https://www.forbes.com/sites/adamhartung/2011/01/14/why-facebook-beat-myspace/#645304b0147e) and the subsequent burst of newer social media sites, MySpace was soon left behind, and slowly forgotten.
 
 ## The Modern Age
+
 The [launch and popularisation](https://www.history.com/this-day-in-history/facebook-launches-mark-zuckerberg) of Facebook kicked off [Web 2.0](https://en.wikipedia.org/wiki/Web_2.0) and the modern age of social media. However, it was only the beginning. Soon, tens, if not hundreds, of social media platforms would start popping up, and while only a handful would last, it would be clear that social media is becoming the future. However, the future isn't necessarily bright.
 
 ## Types of social media
+
 There are different types of social media, and they serve many different purposes.
 
 ### Social networking
+
 Social networking is exactly what it sounds like, a type of social media meant for networking. Social networks are primarily meant to connect people together, people that may never have found one another otherwise. Most social media platforms fall under this category, such as Facebook, Twitter, Reddit, Instagram, TikTok, etc.
 
 ### Microblogging
+
 <b-quote title="Merriam-Webster dictionary" href="https://www.merriam-webster.com/dictionary/microblogging">
 Definition of _microblogging_
 : blogging done with severe space or size constraints typically by posting frequent brief messages about personal activities
@@ -62,16 +72,19 @@ Definition of _microblogging_
 As is the name, microblogging is similar to blogging, where one may write about any number of topics, such as their personal life, a specific subject (like I'm doing right now), sharing news, etc. Companies can also use microblogs to write a short announcement post, or market their products. Some popular microblogging platforms are [Twitter](https://twitter.com/) and [Tumblr](https://www.tumblr.com/).
 
 ### Social news aggregation and discussion forums
+
 The most prominent social media in this category is [Reddit](https://www.reddit.com/), where users post content which is then discussed in a forum-style format. Reddit allows users to create and participate in subreddits, which are smaller, more specialised communities that tend to focus on a specific topic.
 
 Other social news aggregation sites include [Slashdot](https://slashdot.org/) and [Hacker News](https://news.ycombinator.com/).
 
 ### Image and video sharing
+
 [YouTube](https://www.youtube.com) is the [2<sup>nd</sup> most visited site](https://www.similarweb.com/top-websites/) in the world, and [one of the largest](https://www.statista.com/statistics/272014/global-social-networks-ranked-by-number-of-users/) social media platforms, though not many think of it that way. It falls under the category of video-sharing platform, similar to other alternatives like [Vimeo](https://vimeo.com/) or [PeerTube](https://joinpeertube.org/). There's also a subset of video sharing platforms where you have short-form content, such as [TikTok](https://tiktok.com) and [YouTube Shorts](https://youtube.com/shorts). It's basically to full video sharing platforms what microblogging is to blogging.
 
 On the photo-sharing side of things, exist platforms like [Instagram](https://www.instagram.com/) and [Pixelfed](https://pixelfed.org/), which are where people can post cute pictures of their cats for their friends and the rest of the world to see.
 
 ## The Good
+
 Social media definitely has its benefits, it connects people and forms communities of similarly-interested individuals, and [greatly accelerates](https://socialnetworking.procon.org/arguments/social-media-spreads-information-faster-than-any-other-media/) the transfer of information. It brings people together, whether it's a [business using social media](https://blog.hootsuite.com/social-media-for-business/) to connect with customers, or your grandma sharing photos of her food with her family on Facebook.
 
 <b-quote title="Josh Constine, TechCrunch" href="https://techcrunch.com/2017/06/22/bring-the-world-closer-together/">
@@ -79,6 +92,7 @@ So today, as Facebook approaches 2 billion monthly users, its CEO Mark Zuckerber
 </b-quote>
 
 ### Goverments
+
 Social media is an [invaluable tool](https://read.oecd-ilibrary.org/governance/social-media-use-by-governments_5jxrcmghmk0s-en) for goverments to connect with their citizens. Many goverments use social media to [establish trust](https://blog.hootsuite.com/social-media-government/#Key_benefits_of_social_media_in_government) and transparency by regularly engaging with the community.
 
 <b-quote title="Infographic by Ohio University’s Master of Public Administration program" href="https://onlinemasters.ohio.edu/blog/social-media-in-government/">
@@ -88,9 +102,11 @@ The Department of Justice believes its use of social media improves goverment tr
 Social media also allows the people to [hold their leaders accountable](https://about.fb.com/news/2018/01/effect-social-media-democracy/). This was best demonstrated in Tunisia in the Arab Spring, where [protestors used platforms](https://www.theatlantic.com/technology/archive/2011/09/so-was-facebook-responsible-for-the-arab-spring-after-all/244314/) like Facebook and YouTube to spread awareness of what was going on in the country.
 
 ### Businesses
+
 Businesses are probably the ones who [benefit most](https://business.gov.au/online/social-media-for-business) from social media. Many businesses provide customer support on platforms like [Twitter](https://business.twitter.com/en/blog/how-twitter-has-become-a-key-customer-support-channel.html), promote their products on Instagram through advertisements or brand deals with [influencers](https://www.socialmediaexaminer.com/5-brands-on-instagram-that-succeed-with-influencer-marketing/), and have user forums and communities on [Reddit](https://www.shopify.com/blog/how-to-use-reddit).
 
 ### Science and research
+
 Social media plays a big role in science. [Research](https://www.nature.com/articles/s41556-018-0253-6) has shown that scientists use platforms like Facebook, Twitter and LinkedIn to share discoveries and further their professional life.
 
 <b-quote title="Social media for scientists. Nat Cell Biol 20, 1329 (2018)." href="https://doi.org/10.1038/s41556-018-0253-6">
@@ -102,9 +118,11 @@ Sure enough, famous scientists like theoretical physicist [Brian Greene](https:/
 Research projects like [GrapheneOS](https://twitter.com/GrapheneOS), or institutions like [CERN](https://twitter.com/CERN) also have social media accounts where they share results from experiments and research to the public.
 
 ## The Bad
+
 Unfortunately, that seems to be where most of the benefit of social media ends.
 
 ### Moderation vs Censorship
+
 One of the main problems with social media is that when people are given a platform to express their thoughts to the world, not everyone has pleasant thoughts. However, it's not easy to moderate this behavior from users, since it can be, and often is, taken as censorship and silencing criticism. In fact, the line between censorship and moderation is not very clear.
 
 <b-quote title="Moderating online content: fighting harm or silencing dissent?, United Nations Human Rights Office of the High Commissioner" href="https://www.ohchr.org/en/stories/2021/07/moderating-online-content-fighting-harm-or-silencing-dissent">
@@ -144,14 +162,16 @@ That is not bringing about change. If all you're doing is casting stones, you ar
 
 Others supported it:
 <b-quote title="Cancel culture, adapted from ProCon.org" href="https://www.procon.org/headlines/is-cancel-culture-or-callout-culture-good-for-society/">
+
 1. Cancel culture allows marginalized people to seek accountability where the justice system fails.
 2. Cancel culture gives a voice to disenfranchised or less powerful people.
 3. Cancel culture is simply a new form of boycott, a cherished tactic in the civil rights movement, to bring about social change.
-</b-quote>
+   </b-quote>
 
 Cancel culture has been seen as censorship by those being cancelled, and as moderation by those cancelling. Which you see it as is up for you to decide, but I hope it's clear how much of an issue this can be.
 
 ### Mental health
+
 Time and time again, social media has been proven to be [hazardous](https://www.forbes.com/sites/alicegwalton/2017/06/30/a-run-down-of-social-medias-effects-on-our-mental-health/) to the mental health of its users.
 
 Companies like [Facebook have research](https://www.theguardian.com/technology/2021/oct/25/facebook-whistleblower-frances-haugen-calls-for-urgent-external-regulation) that shows the addictive nature of their social media platforms, and yet they do nothing to prevent it. This is because your attention is how these platforms [make money](https://seekingalpha.com/article/4472656-how-does-instagram-make-money-for-facebook) in the first place. The longer you spend on their app, the more ads they can show you, and the more money they make. This is one of the main reasons for the [algorithms](https://sproutsocial.com/insights/social-media-algorithms/) that these social media employ to show you the content they believe will keep you online the longest.
@@ -183,6 +203,7 @@ Steer et al (2014) found some people became depressed after spending time on Fac
 There's not much I want to say about this topic, since I'm no expert, but the Nursing Times article I've quoted above is a great read for the effects of social media on mental health. It's been peer-reviewed and is written by professionals of the field. Mental health is a serious issue and I don't want my inexperience to cause me to get something wrong.
 
 ### Privacy
+
 The modern internet runs on advertisements, and that isn't any less true for social media. Platforms like Facebook, Instagram, Twitter and YouTube all have algorithmically delivered content that caters to each user's specific tastes. Have you ever been thinking about something and suddenly you see a ton of ads about it? That's because based on your interests, the algorithms driving these platforms can predict what kinds of things you'd be likely to click on, and serve you ads based on that.
 
 This is also why they want to keep you on the platform, so that they can serve you even more ads and earn even more money. The advertising business is one of the main reasons you can even use these platforms for free, because ads earn the companies behind them far, far more than if they implemented a subscription model or paid access.
@@ -202,6 +223,7 @@ By user consent I mean that it is not made clear to the user what they're signin
 The collection and abuse of user data is a topic I covered in my [Intro to Privacy, Security and Anonymity](/tech/psa/intro#why-should-i-care) post.
 
 ## What's in the #future?
+
 As with anything in the tech world, the future of social media is uncertain. From [Twitter rapidly losing users](https://www.theguardian.com/news/datablog/2023/jan/08/elon-musk-drove-more-than-a-million-people-to-mastodon-but-many-arent-sticking-around) (at least temporarily), new social media platforms like [BeReal](https://www.npr.org/2022/04/16/1092814566/bereal-app-gen-z-download), which tries to remove the ["fakeness"](https://www.sciencedaily.com/releases/2014/08/140814123925.htm) that social media often brings with it, to the rise of Web3, decentralisation and federation, such as with the [Fediverse](https://www.eff.org/deeplinks/2022/11/fediverse-could-be-awesome-if-we-dont-screw-it).
 
 There's a very good chance that we'll see a shift towards social media platforms that prioritise mental health and decentralisation, especially as there is more awareness about these issues. The Fediverse has been [gaining popularity](https://fediverse.observer/stats), especially with Mastodon, and BeReal has seen [rapid growth](https://blog.apptopia.com/social-app-of-the-moment-bereal-grows-users-315-ytd) over the last few years.
@@ -209,11 +231,13 @@ There's a very good chance that we'll see a shift towards social media platforms
 However, there is an equal chance that people will continue to stay on the platforms they're currently on. The [network effect](https://www.investopedia.com/terms/n/network-effect.asp) is a strong one, and tends to keep people wherever they are, despite how [unsatisfied](https://www.theguardian.com/technology/2018/sep/17/instagram-is-supposed-to-be-friendly-so-why-is-it-making-people-so-miserable) they may be with it. The greatest strength of social media, being able to connect with others, is the very thing that keeps people locked behind the bars of their chosen platform. This is one of the main reasons Facebook can have the [lowest user satisfaction rating](https://www.pcmag.com/news/customer-satisfaction-with-social-media-platforms-is-slumping) of any social media, and still have the [most monthly active users](https://www.zippia.com/advice/facebook-statistics/) in the world.
 
 ## Conclusion
+
 Social media has its benefits in today's world. It has never been easier to connect with family and friends around the world instantaneously. Goverments, scientists, political figures, etc., all use social media to get information out to the public quickly. However, it comes with its drawbacks, in the form of moderation and censorship, mental health issues and privacy violations.
 
 Whether you choose to use social media is a decision I leave up to you. Personally, I don't have any personal social media accounts (except email and messaging apps, if you count those), and I don't intend to at any point in the near future. If you do choose to keep your account, make sure you're aware of what you've signed up for, and that you truly accept those terms and conditions.
 
 ## Additional Sources
+
 [Timeline of social media - Wikipedia](https://en.wikipedia.org/wiki/Timeline_of_social_media)
 
 [Deceptive Design](https://www.deceptive.design/)

@@ -8,6 +8,7 @@ author: noClaps
 Before you start on your privacy and security journey, one of the main things you should figure out is your threat model.
 
 ## What is this threat model thing?
+
 Your threat model is pretty much a plan for what you're protecting and who you're protecting it from. Using that, the tools and services may you choose to use are much easier to decide, especially considering the [insanely large number](https://distrowatch.com/dwres.php?resource=family-tree) of options for some things.
 
 <b-quote title="Threat Modelling, Victoria Drake, OWASP Foundation" href="https://owasp.org/www-community/Threat_Modeling">
@@ -21,6 +22,7 @@ That's all fancy talk for "identify who you don't want to get your stuff, so tha
 For instance, someone's threat model could be to protect against tracking and data collection, but not necessarily need to block out Big Tech companies or the government. Someone else's threat model may require them to be [anonymous](https://www.ohchr.org/en/stories/2015/06/human-rights-encryption-and-anonymity-digital-age), even if it may come at the cost of their unidentifiable data leaking, such as [whistleblowers](https://en.wikipedia.org/wiki/Whistleblower#Risks) or [activists](https://www.theguardian.com/global-development/2022/mar/02/more-human-rights-defenders-murdered-2021-environmental-indigenous-rights-activists). Those two individuals would be using very different tools to achieve their goals, some of which are not interchangeable. Having a clear threat model helps realise what those goals are, and what tools to use to achieve them.
 
 ## Why should I get one of those?
+
 Consider how many browsers are out there: Brave, Firefox, Chrome, Edge, Opera, Vivaldi. Each of those browser serves a different purpose, and it can be hard to choose. However, if you know you're deep into the Google ecosystem, you wouldn't really go and pick Firefox or Opera, you'd pick Chrome. From a convenience perspective, it's the easiest one for you to just install and start using, and so it's the best browser for you. Someone else may not agree, and that's how a lot of internet disputes start.
 
 Do you see how having a plan or idea of what you needed helped you make the decision? A threat model does exactly that, it helps you pick and choose the tools and services you use.
@@ -36,6 +38,7 @@ This is not actual security advice, it is just an example. Please do not listen 
 </b-warning>
 
 Now compare that to someone who maybe wants to protect their data from being used by Big Tech companies to sell ads and track them across the internet. They'd have a threat model that calls for higher privacy at the cost of some minimal security. For someone like that:
+
 - Linux distributions may be a good option for a desktop OS, with their lack of tracking built-in to the system and generally open nature. An OS like GrapheneOS or iOS may be sufficient, without the Advanced Data Protection or Advanced Protection Program, or perhaps even without an Apple or Google account entirely.
 - Browsers like Brave or Firefox (hardened with [Arkenfox](https://github.com/arkenfox/user.js/)) would be much better options with their tracking protection and adblocking (built-in on Brave, with an extension like [uBlock Origin](https://github.com/gorhill/uBlock) for Firefox) features.
 - Instead of having fewer trusted parties, the advice would be to put as few eggs in one basket as possible. So in a situation like this, using [Ente](https://ente.io) for photos, [Proton Drive](https://proton.me/drive) for cloud storage, and [Tutanota](https://tutanota.com/) for email would be beneficial, so one company doesn't hold _all_ of your data.
@@ -45,6 +48,7 @@ Someone who wishes to stay anonymous would have a different set of tools, like [
 As you can see, having a threat model helps make the decisions on how to go about picking the tools and services, depending on what you're protecting and who you're protecting against.
 
 ## Want threat model. How get?
+
 There's many guides and tools out there to help you create a threat model, but in general it boils down to 5 questions:
 
 <b-quote title="Threat Modelling, Privacy Guides" href="https://www.privacyguides.org/basics/threat-modeling/">
@@ -58,22 +62,27 @@ There's many guides and tools out there to help you create a threat model, but i
 I encourage you to read the whole threat modelling guide from Privacy Guides, it's very well written and clearly explains each step.
 
 ### What do I want to protect?
+
 For most people, this is their data. This usually includes stuff like emails, conversations, browsing activity, device usage, etc. However, it varies between threat models. For instance, someone who requires anonymity may want to protect their identity, even if their browsing activity is far more easily available.
 
 ### Who do I want to protect it from?
+
 This is the "threat" part of threat modelling. Who do you consider a threat against the thing you're protecting? In the case of most people, this is companies that use their data to track them across the internet, usually to show them ads.
 
 If your threat is your government, you're in a lot of trouble if you're reading this blog post. See above warning about not taking advice from person on internet.
 
 ### How likely is it that I will need to protect it?
+
 This is one of those questions that could drastically change from one person to another. In the case of the majority of people, they don't necessarily _need_ to protect their data, but they certainly _want_ to. However, in the case of someone in a more sensitive situation, they may _need_ to protect their data or identity, or else they could be in grave danger or lose their life.
 
 ### How bad are the consequences if I fail?
+
 The answer to this question tends to stem from the previous one. If you're not in a very sensitive situation and you just don't want to be tracked across the web, the worst that could really happen is some ad company, like Google or Meta, end up getting a small amount of data about you and are able to track you, at least for as long as you have the flaw in your system.
 
 However, there are situations where failure to identify your threats or use proper tools could risk in sensitive information getting leaked, or someone losing their life.
 
 ### How much trouble am I willing to go through to try to prevent potential consequences?
+
 This is usually the part where most people give up and go back to their original setup, while continuing to complain about a lack of privacy on said setup. This is also the part that _really_ specifies the tools that you'd end up using, usually narrowing it down to one or two options.
 
 <b-note>
@@ -83,6 +92,7 @@ One of the common mistakes I've seen people do is not properly identify their th
 </b-note>
 
 ## What comes next?
+
 Now that you have your threat model in place, start looking for tools that you think fit it well. One of the places I recommend you start is a password manager. It's something that makes your life easier, while also making it more private and secure ([most of the time](https://blog.lastpass.com/2022/12/notice-of-recent-security-incident/)). Some good password managers I can recommend are KeePass, [Bitwarden](https://bitwarden.com/), [1Password](https://1password.com/), [pass](https://www.passwordstore.org/), and [iCloud Keychain](https://support.apple.com/en-gb/HT204085). They can generate strong passwords and store them for you, which means no more forgetting passwords to your accounts. Some also offer the ability to store 2FA keys, and while storing 2FA keys in your password manager has its [own pros and cons](https://passwordbits.com/2fa-inside-password-manager/), the feature is there if you want it. You can decide your own steps after that.
 
 Keep in mind that when you're making changes, you will have to research for yourself the options available to you, to see which one fits you the best. This may take time and lots of trial-and-error, so don't be afraid to try things out. Free trials and plans will likely be your best friend throughout this (though please do consider donating/subscribing to the projects if you like them! More often than not, these projects don't get a lot of funding!). You can use an email aliasing service like [SimpleLogin](https://simplelogin.io/) or [AnonAddy](https://anonaddy.com/) if you don't want to give out your real email when signing up for services.
@@ -92,6 +102,7 @@ If you have a spare computer or phone you can use that, if you're concerned with
 Sometimes this can be difficult or time-consuming, so feel free to take all the time you need. Your threat model may change along the way, and that's perfectly fine! Remember, privacy is a journey, but it's only as long as you're willing to make it.
 
 ## Additional Sources
+
 [Privacy Guides](https://privacyguides.org) - They have some great suggestions for privacy-friendly tools, and the site is constantly updated with the newest information. Good starting point for exploring options for tools and services.
 
 [PrivSec.dev](https://privsec.dev) - They have some great explanations for a variety of different topics related to privacy and security. Some of the articles can get a bit technical, but most of them are very clearly explained and easy to understand.

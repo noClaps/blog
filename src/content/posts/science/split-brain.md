@@ -6,9 +6,11 @@ author: noClaps
 ---
 
 ## Patient WJ
+
 In 1962, a patient was part of an experiment that had never been done before. This was [Patient WJ](https://www.todayifoundout.com/index.php/2023/01/the-curious-case-of-the-people-with-split-brains/), a 48-year-old former World War II paratrooper who had suffered a head injury, and was frequently experiencing convulsions and blackouts. One of his worst episodes was in 1953, and lasted 3 days.
 
 ### Seizures
+
 <b-quote title="Conceptual definition of seizure and epilepsy, ILAE Official Report: A practical clinical definition of epilepsy" href="https://onlinelibrary.wiley.com/doi/10.1111/epi.12550">
 An epileptic seizure is a transient occurrence of signs and/or symptoms due to abnormal excessive or synchronous neuronal activity in the brain.
 
@@ -26,6 +28,7 @@ When the synchrony spreads to both sides of the brain, a generalized seizure occ
 </b-quote>
 
 ### Cutting ties
+
 The neurosurgeons on the case, Drs Vogel and Bogen, and neuropsychologists, Sperry and Gazzaniga, had an idea: what if the connection between the 2 hemispheres of the brain, the corpus callosum, was cut? This would significantly reduce the spread of the seizure, preventing the harm that seizures could cause. Although the surgery itself seemed fairly safe, the effects of the procedure, called corpus callosotomy, were still unknown and could have detrimental effects on the patient.
 
 Previous attempts at corpus callosotomy to treat epilepsy in the 1940s by [Dr William P. van Wagenen](https://thejns.org/view/journals/j-neurosurg/108/3/article-p608.xml) had ended in failure. However, the scientists had reason to believe that their attempt would be successful.
@@ -89,6 +92,7 @@ The experiments were an important step to understanding how the brain functions,
 And in case you're wondering, yes, WJ's epilepsy was cured, and his seizures become less frequent and severe.
 
 ## Additional Sources
+
 [Curious: Split Brain](https://www.youtube.com/watch?v=roKV8XJHXKc)
 
 [You Are Two](https://www.youtube.com/watch?v=wfYbgdo8e-8)
