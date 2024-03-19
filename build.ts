@@ -53,12 +53,12 @@ for (const page of htmlFiles) {
         const src = el.getAttribute("src");
         if (!src) return;
 
-        const urlArr = src.split("/");
-        const filename = urlArr[urlArr.length - 1];
-        const path = `/${page.replace(".html", "")}/${filename}`;
-        el.setAttribute("src", path);
-
         if (src.startsWith("http")) {
+          const urlArr = src.split("/");
+          const filename = urlArr[urlArr.length - 1];
+          const path = `/${page.replace(".html", "")}/${filename}`;
+          el.setAttribute("src", path);
+
           const image = await fetch(src).then((r) => r.blob());
           Bun.write(`dist${path.replaceAll("%20", " ")}`, image);
         }
