@@ -35,9 +35,9 @@ There's a lot of fancy words there, but I promise it's relatively simple. It's o
 Here, let's look at a diagram:
 
 <figure>
-    <img src="./quantum-and-particle/Double-slit-experiment-with-a-photons-b-very-large-particles-c-electrons.jpg" alt="A diagram showing the double slit experiment using particles and waves. Source: Quantum Shape Effects, Alhun Aydin, Sabanci University, 2021.">
+    <img src="./quantum-and-particle/double-slit.png" alt="A diagram showing the double slit experiment using particles and waves.">
     <figcaption>
-        A diagram showing the double slit experiment using particles and waves. Source: <a href="https://www.researchgate.net/figure/Double-slit-experiment-with-a-photons-b-very-large-particles-c-electrons_fig1_349125115">Quantum Shape Effects, Alhun Aydin, Sabanci University, 2021.</a>
+        A diagram showing the double slit experiment using particles and waves.
     </figcaption>
 </figure>
 
