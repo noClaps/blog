@@ -60,7 +60,7 @@ for (const page of htmlFiles) {
           el.setAttribute("src", path);
 
           const image = await fetch(src).then((r) => r.blob());
-          Bun.write(`dist${path.replaceAll("%20", " ")}`, image);
+          Bun.write(`dist${decodeURI(path)}`, image);
         }
       },
     })
