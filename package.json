@@ -11,7 +11,7 @@
     "typescript": "^5.4.3"
   },
   "scripts": {
-    "build": "rm -rf dist/ && bun run build.ts",
-    "dev": "bun run build && bunx serve dist"
+    "build": "bun scripts/build.ts",
+    "dev": "bun scripts/dev.ts"
   }
 }
