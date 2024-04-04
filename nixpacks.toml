@@ -3,3 +3,4 @@ cmds = ["bun run build"]
 
 [start]
 onlyIncludeFiles = ["./dist/"]
+cmd = "bun start"
