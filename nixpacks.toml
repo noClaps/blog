@@ -1,5 +1,5 @@
 [phases.setup]
-nixPkgs = ["...", "bun"]
+nixPkgs = ["...", "unzip"]
 
 [phases.build]
 cmds = ["bun upgrade", "bun run build"]
