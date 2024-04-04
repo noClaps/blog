@@ -1,9 +1,0 @@
-[phases.setup]
-nixPkgs = ["...", "unzip"]
-
-[phases.build]
-cmds = ["bun upgrade", "bun run build"]
-
-[start]
-onlyIncludeFiles = ["./dist/"]
-cmd = "bun start"
