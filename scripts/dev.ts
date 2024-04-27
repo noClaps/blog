@@ -4,7 +4,7 @@ import { watch } from "fs";
 async function serve() {
   await $`bun scripts/build.ts`;
 
-  Bun.serve({
+  return Bun.serve({
     async fetch({ url }) {
       const path = new URL(url).pathname;
 
@@ -23,8 +23,8 @@ async function serve() {
 }
 
 await serve()
-  .then(() => {
-    console.log("Server running on http://localhost:3000.");
+  .then((server) => {
+    console.log(`Server running on ${server.url}`);
   })
   .catch((e) => {
     console.log(`Something went wrong: ${e}`);
