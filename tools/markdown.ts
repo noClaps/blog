@@ -3,15 +3,6 @@ import { gfmHeadingId } from "marked-gfm-heading-id";
 import { markedHighlight } from "marked-highlight";
 import { codeToHtml } from "shiki";
 
-const parserFixes = new HTMLRewriter().on(
-  "pre:not(.shiki), pre:not(.shiki)>code",
-  {
-    element(el) {
-      el.removeAndKeepContent();
-    },
-  },
-);
-
 const webComponent = {
   name: "webComponent",
   level: "block",
@@ -55,14 +46,13 @@ export default async function parseMarkdown(md: string) {
         return await codeToHtml(code, {
           lang,
           theme: "github-dark",
+          structure: "inline",
         });
       },
     }),
   );
 
   let html = await marked.parse(md);
-
-  html = await parserFixes.transform(new Response(html)).text();
 
   return html;
 }

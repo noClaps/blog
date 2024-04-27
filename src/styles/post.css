@@ -58,7 +58,8 @@ th {
 }
 
 /* Code */
-.shiki {
+pre {
+    background-color: var(--code-bg);
     border-radius: 0.5rem;
     padding: 1rem;
     max-width: 64.8dvw;
@@ -73,7 +74,7 @@ th {
     }
 }
 
-li .shiki {
+li pre {
     max-width: calc(64.8dvw - 40px);
 
     @media (min-width: 1280px) {
@@ -81,7 +82,7 @@ li .shiki {
     }
 }
 
-code:not(.shiki code) {
+code:not(pre code) {
     background-color: var(--code-bg);
     color: var(--code-text);
     border-radius: 0.25rem;
