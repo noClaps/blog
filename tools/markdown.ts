@@ -1,25 +1,22 @@
-import { marked } from "marked";
+import { type TokenizerAndRendererExtension, marked } from "marked";
 import { gfmHeadingId } from "marked-gfm-heading-id";
 import { markedHighlight } from "marked-highlight";
 import { codeToHtml } from "shiki";
 
-const webComponent = {
+const webComponent: TokenizerAndRendererExtension = {
   name: "webComponent",
   level: "block",
-  start(src: string) {
+  start(src) {
     return src.match(/<b-(.*)>/)?.index;
   },
-  // @ts-ignore
-  tokenizer(src: string, _) {
+  tokenizer(src, _) {
     const rule = /^(<b-(?:.*)>)\n([\S\s]*?)\n(<\/b-(?:.*)>)/;
     const match = rule.exec(src);
     if (match) {
-      // @ts-ignore
       const token = {
         type: "webComponent",
         raw: match[0],
         open: match[1],
-        // @ts-ignore I have no clue how these types work so I'm just gonna ignore them.
         text: this.lexer.blockTokens(match[2].trim()),
         close: match[3],
         tokens: [],
@@ -27,18 +24,16 @@ const webComponent = {
       return token;
     }
   },
-  // @ts-ignore
-  renderer(token): string {
-    // @ts-ignore
+  renderer(token) {
     return `${token.open}${this.parser.parse(token.text)}${token.close}`;
   },
 };
 
 export default async function parseMarkdown(md: string) {
-  md = md.replace(/^---([\w:\s\S]*?)---/, "").trim();
+  const mdWithoutFrontmatter = md.replace(/^---([\w:\s\S]*?)---/, "").trim();
 
-  marked.use({ extensions: [webComponent] });
   marked.use(
+    { extensions: [webComponent] },
     gfmHeadingId(),
     markedHighlight({
       async: true,
@@ -52,7 +47,5 @@ export default async function parseMarkdown(md: string) {
     }),
   );
 
-  let html = await marked.parse(md);
-
-  return html;
+  return await marked.parse(mdWithoutFrontmatter);
 }

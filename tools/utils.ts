@@ -13,7 +13,7 @@ function frontmatter(md: string) {
 
   const dataObject: { [key: string]: string } = {};
   for (let data of frontmatterData) {
-    data = data.map((i) => i.replaceAll(`"`, ``));
+    data = data.map((i) => i.replaceAll(`"`, ""));
     dataObject[data[0]] = data.slice(1).join(": ");
   }
 
@@ -40,7 +40,7 @@ export async function getCollection(name: string) {
   for (const item of data) {
     if (item.date) item.date = new Date(item.date);
     if (item.lastmod) item.lastmod = new Date(item.lastmod);
-    if (item.series) item.series = parseInt(item.series);
+    if (item.series) item.series = Number.parseInt(item.series);
     if (item.author) {
       item.author = (await getCollection("authors")).find(
         (i) => i.name === item.author,

@@ -1,10 +1,10 @@
 export default function Header(
-  slots: {
-    default?: string;
-  } = {},
   vals: {
     pathname: string;
   },
+  slots: {
+    default?: string;
+  } = {},
 ) {
   return `
 <header>
@@ -31,10 +31,10 @@ export default function Header(
                         <polyline points="9 22 9 12 15 12 15 22" />
                     </svg>
                 </a>
-				${slots && slots.default ? slots.default : `<div></div>`}
+				${slots?.default ? slots.default : "<div></div>"}
             </div>
         `
-        : `<div></div>`
+        : "<div></div>"
     }
     <a class="feed" href="/feed.json" title="Feed"
         ><svg

@@ -1,4 +1,4 @@
-import { type Heading } from "../../../tools/types";
+import type { Heading } from "../../../tools/types";
 
 interface Props {
   headings: Heading[];
@@ -16,7 +16,7 @@ export default function TableOfContents(props: Props) {
   const toc: HeadingTree[] = nested ? headings : [];
   if (!nested) {
     const parentHeadings = new Map();
-    headings.forEach((h) => {
+    for (const h of headings) {
       const heading = { ...h, subheadings: [] };
       parentHeadings.set(heading.depth, heading);
 
@@ -25,7 +25,7 @@ export default function TableOfContents(props: Props) {
       } else if (heading.depth <= 3) {
         parentHeadings.get(heading.depth - 1).subheadings.push(heading);
       }
-    });
+    }
   }
 
   return `

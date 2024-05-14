@@ -1,6 +1,6 @@
 import BaseLayout from "./BaseLayout";
 import TableOfContents from "../components/layout/TableOfContents";
-import { type Heading } from "../../tools/types";
+import type { Heading } from "../../tools/types";
 
 interface Props {
   title: string;

@@ -1,5 +1,5 @@
 import { $ } from "bun";
-import { watch } from "fs";
+import { watch } from "node:fs";
 
 async function serve() {
   await $`bun scripts/build.ts`;
@@ -8,9 +8,9 @@ async function serve() {
     async fetch({ url }) {
       const path = new URL(url).pathname;
 
-      if (path === "/") return new Response(Bun.file(`dist/index.html`));
+      if (path === "/") return new Response(Bun.file("dist/index.html"));
       if (path === "/notes")
-        return new Response(Bun.file(`dist/notes/index.html`));
+        return new Response(Bun.file("dist/notes/index.html"));
 
       if (await Bun.file(`dist${decodeURI(path)}`).exists()) {
         return new Response(Bun.file(`dist${decodeURI(path)}`));

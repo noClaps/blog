@@ -38,7 +38,7 @@ export default function BaseLayout(
 </head>
 
 <body>
-	${Header({ default: slots.header }, { pathname: vals.pathname })}
+	${Header({ pathname: vals.pathname }, { default: slots.header })}
 	${slots.default}
 </body>
 
