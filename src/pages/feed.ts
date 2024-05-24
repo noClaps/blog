@@ -147,7 +147,7 @@ async function rssFeed() {
   );
 
   const feed = `
-<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <description>A blog about the most random things you can think of.</description>
     <link>https://blog.zerolimits.dev</link>
@@ -156,11 +156,12 @@ async function rssFeed() {
     <language>en</language>
     <lastBuildDate>${new Date(lastUpdate).toUTCString()}</lastBuildDate>
     <pubDate>${new Date(lastUpdate).toUTCString()}</pubDate>
+    <atom:link href="https://blog.zerolimits.dev/feed.rss" rel="self" type="application/rss+xml" />
     ${entries
       .map((entry) =>
         `
       <item>
-        <author>${entry.author}</author>
+        <dc:creator>${entry.author}</dc:creator>
         <description>${entry.description}</description>
         <guid>${entry.guid}</guid>
         <link>${entry.link}</link>
