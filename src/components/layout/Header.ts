@@ -36,7 +36,7 @@ export default function Header(
         `
         : "<div></div>"
     }
-    <a class="feed" href="/feed.json" title="Feed"
+    <a class="feed" href="/feed" title="Feed"
         ><svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"

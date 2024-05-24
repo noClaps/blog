@@ -33,6 +33,8 @@ export default function BaseLayout(
 	<meta name="description" content="${description}">
 	<link href="https://api.fontshare.com/v2/css?f[]=switzer@2,1&display=swap" rel="stylesheet">
 	<link rel="alternate" href="/feed.json" type="application/json" title="Feed">
+	<link rel="alternate" href="/feed.atom" type="application/atom+xml" title="Feed">
+	<link rel="alternate" href="/feed.rss" type="application/rss+xml" title="Feed">
 	<link rel="stylesheet" href="/styles/global.css">
 	${slots.head || ""}
 </head>
