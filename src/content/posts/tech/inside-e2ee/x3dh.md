@@ -402,4 +402,4 @@ The code for this example can be downloaded <a href="/files/x3dh-example.ts" dow
 
 ## Conclusion
 
-In this part, we've learned how to implement the X3DH key exchange protocol using `SubtleCrypto`. The next part is going to be a major step-up, as we'll be implementing the Double Ratchet algorithm, which is used by the Signal protocol to encrypt messages. You can find it [here](/posts/tech/inside-e2ee/double-ratchet).
+In this part, we've learned how to implement the X3DH key exchange protocol using `SubtleCrypto`. The next part is going to be a major step-up, as we'll be implementing the Double Ratchet algorithm, which is used by the Signal protocol to encrypt messages. You can find it [here](/tech/inside-e2ee/double-ratchet).
