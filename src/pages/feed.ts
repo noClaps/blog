@@ -189,7 +189,7 @@ const html = BaseLayout(
     default: `
 <main>
   <h2>The Blog of Random Feed</h2>
-  <p>To add a feed to the blog, simply enter <code>https://blog.zerolimits.dev</code> into your feed reader, it should automatically find and add the feed!</p>
+  <p>Simply enter <code>https://blog.zerolimits.dev</code> into your feed reader, it should automatically find and add the feed!</p>
 </main>
 `,
   },
