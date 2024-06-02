@@ -102,6 +102,7 @@ details {
     border-radius: 0.5rem;
     border: 0.125rem solid var(--text);
     width: max-content;
+    max-width: calc(80dvw - 2.5rem);
     left: 2.5rem;
     top: -0.25rem;
 
