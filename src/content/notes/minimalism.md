@@ -38,9 +38,7 @@ It all comes back to intentionality. Why do I have a GitHub account? Well, I nee
 
 ### The phone apps survey
 
-Back in 2021, I did a survey for how many apps people had installed on their phones. Granted, my sample size wasn't the largest (about 100 people) and mostly consisted of my extended family, my parents' friends, and possibly some Redditors, but even with that I found that most people have around 50 apps on their phone on average. This ranged from teenage up to the 60s.
-
-Back in 2021, I did a survey for how many apps people had installed on their phones. Granted, my sample size wasn't the largest (about 100 people) and mostly consisted of my extended family, my parents' friends, and possibly some Redditors, but even with that I found that most people have around 50 apps on their phone on average. My data ranged from teenage up to the 60s, and across many different manufacturers.
+Back in 2021, I did a survey for how many apps people had installed on their phones. Granted, my sample size wasn't the largest (about 100 people) and mostly consisted of my extended family, my parents' friends, and possibly some Redditors, but even with that I found that most people have around 50 apps on their phone on average. This ranged from teenages up to people in their 60s, with phones from many different manufacturers.
 
 Survey and data collection ethics aside, this showed me that people have a lot of apps on their phones. I then went on to highlight some points about why having so many apps was bad. I mentioned how phones have limited storage and memory, how apps can burn through battery and mobile data, and how it was bad for privacy and security. A lot of those points still stand, but things have changed in the 3 years since I did that survey. Phones have larger storage and battery capacities, more memory, better security models. Mobile data is cheaper now, and Wi-Fi is more accessible. However, apps have also gotten bigger and heavier, and the OS takes up more storage than it used to, and people have accumulated files from over the years.
 
