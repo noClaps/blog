@@ -64,20 +64,20 @@ Indented lines are part of a function
 :::
 
 ```typescript
-    // setupX3DH
-    const identitySigningKey = await crypto.importKey(
-        "pkcs8",
-        await crypto.exportKey("pkcs8", identityKeyPair.privateKey),
-        { name: "ECDSA", namedCurve: "P-256" },
-        false,
-        ["sign"]
-    );
+// setupX3DH
+const identitySigningKey = await crypto.importKey(
+	"pkcs8",
+	await crypto.exportKey("pkcs8", identityKeyPair.privateKey),
+	{ name: "ECDSA", namedCurve: "P-256" },
+	false,
+	["sign"],
+);
 
-    const preKeySignature = await crypto.sign(
-        { name: "ECDSA", hash: "SHA-512" },
-        identitySigningKey,
-        await crypto.exportKey("raw", preKeyPair.publicKey)
-    );
+const preKeySignature = await crypto.sign(
+	{ name: "ECDSA", hash: "SHA-512" },
+	identitySigningKey,
+	await crypto.exportKey("raw", preKeyPair.publicKey),
+);
 ```
 
 This is another quirk of `SubtleCrypto`. You cannot use a key generated with `ECDH` for the `ECDSA` algorithm, even though they're completely interchangable. To counter this, we're using a "hack" which exports the private identity key, then re-imports it with `ECDSA`, so we can use the `sign` key usage on it. Note that the exported key format is set to [`pkcs8`](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#pkcs_8), since we're exporting a private key.
@@ -125,27 +125,28 @@ The next step is to start a protocol run. For this we'll of course use Alice and
 
 ```typescript
 interface PrekeyBundle {
-    identityKey: CryptoKey; // the public identity key of the fetched user
-    preKey: CryptoKey; // the public prekey of the fetched user
-    preKeySignature: ArrayBuffer; // the signature of the prekey
-    oneTimeKey: CryptoKey; // the public one-time prekey of the fetched user
-    oneTimeID: number; // the ID of the one-time prekey
+	identityKey: CryptoKey; // the public identity key of the fetched user
+	preKey: CryptoKey; // the public prekey of the fetched user
+	preKeySignature: ArrayBuffer; // the signature of the prekey
+	oneTimeKey: CryptoKey; // the public one-time prekey of the fetched user
+	oneTimeID: number; // the ID of the one-time prekey
 }
 
 function getPrekeyBundle(user: X3DHObject): PrekeyBundle {
-    // happens on server
-    const oneTimeKey = user.onetimeKeys[Math.floor(Math.random() * user.onetimeKeys.length)];
+	// happens on server
+	const oneTimeKey =
+		user.onetimeKeys[Math.floor(Math.random() * user.onetimeKeys.length)];
 
-    // the server should somehow mark the one-time key as used, so it cannot be used again
+	// the server should somehow mark the one-time key as used, so it cannot be used again
 
-    return {
-        // this would be the response to an HTTP request or similar
-        identityKey: user.identityKeyPair.publicKey,
-        preKey: user.preKeyPair.publicKey,
-        preKeySignature: user.preKeySignature,
-        oneTimeKey: oneTimeKey?.public ?? undefined,
-        oneTimeID: oneTimeKey?.id ?? undefined,
-    };
+	return {
+		// this would be the response to an HTTP request or similar
+		identityKey: user.identityKeyPair.publicKey,
+		preKey: user.preKeyPair.publicKey,
+		preKeySignature: user.preKeySignature,
+		oneTimeKey: oneTimeKey?.public ?? undefined,
+		oneTimeID: oneTimeKey?.id ?? undefined,
+	};
 }
 ```
 
@@ -202,44 +203,68 @@ We start by creating yet another interface to represent an X3DH request. This ob
 We do the weird export-import hack again, but this time on the public identity key (note that we're using type `raw` here, because `bundle.identityKey` is a public key!). If this was real code, the keys would be transmitted with a Base64, hex etc. encoding, so you wouldn't need this SubtleCrypto mess, you only have to do this if you're trying to use an already existing `CryptoKey` object. Finally, it is used to verify the prekey signature. If it fails, the protocol run is instantly aborted.
 
 ```typescript
-    // createX3DHRequest
-    // derive the shared secret
-    const ephemeralKey = await crypto.generateKey({ name: "ECDH", namedCurve: "P-256" }, true, ["deriveBits"]);
+// createX3DHRequest
+// derive the shared secret
+const ephemeralKey = await crypto.generateKey(
+	{ name: "ECDH", namedCurve: "P-256" },
+	true,
+	["deriveBits"],
+);
 
-    // generate the 4 DH values
-    const DH1 = await crypto.deriveBits({ name: "ECDH", public: bundle.preKey }, user.identityKeyPair.privateKey, 256);
-    const DH2 = await crypto.deriveBits({ name: "ECDH", public: bundle.identityKey }, ephemeralKey.privateKey, 256);
-    const DH3 = await crypto.deriveBits({ name: "ECDH", public: bundle.preKey }, ephemeralKey.privateKey, 256);
-    const DH4 = bundle.oneTimeKey
-        ? await crypto.deriveBits({ name: "ECDH", public: bundle.oneTimeKey }, ephemeralKey.privateKey, 256)
-        : undefined;
+// generate the 4 DH values
+const DH1 = await crypto.deriveBits(
+	{ name: "ECDH", public: bundle.preKey },
+	user.identityKeyPair.privateKey,
+	256,
+);
+const DH2 = await crypto.deriveBits(
+	{ name: "ECDH", public: bundle.identityKey },
+	ephemeralKey.privateKey,
+	256,
+);
+const DH3 = await crypto.deriveBits(
+	{ name: "ECDH", public: bundle.preKey },
+	ephemeralKey.privateKey,
+	256,
+);
+const DH4 = bundle.oneTimeKey
+	? await crypto.deriveBits(
+			{ name: "ECDH", public: bundle.oneTimeKey },
+			ephemeralKey.privateKey,
+			256,
+		)
+	: undefined;
 
-    // concatenate the DH values
-    const DH = new Uint8Array(bundle.oneTimeKey ? 128 : 96);
-    DH.set(new Uint8Array(DH1), 0);
-    DH.set(new Uint8Array(DH2), 32);
-    DH.set(new Uint8Array(DH3), 64);
-    if (DH4) DH.set(new Uint8Array(DH4), 96);
+// concatenate the DH values
+const DH = new Uint8Array(bundle.oneTimeKey ? 128 : 96);
+DH.set(new Uint8Array(DH1), 0);
+DH.set(new Uint8Array(DH2), 32);
+DH.set(new Uint8Array(DH3), 64);
+if (DH4) DH.set(new Uint8Array(DH4), 96);
 ```
 
 After verifying the prekey signature, we generate a new ephemeral key (key usage set to `deriveBits`), then perform the 4 DH key exchanges, each time setting the length to 256, indicating we want the result to be 32 bytes long (256 bits = 32 bytes). `DH4` is set to undefined if the one-time prekey doesn't exist. Then, these 4 DH results are concatenated together into a single Uint8Array, which can either be 128 or 96 bytes long, depending on the one-time prekey.
 
 ```typescript
-    // createX3DHRequest
-    // derive the secret key
-    const info = new TextEncoder().encode("E2EE is amazing!");
+// createX3DHRequest
+// derive the secret key
+const info = new TextEncoder().encode("E2EE is amazing!");
 
-    const secretKeyInput = await crypto.importKey("raw", DH, "HKDF", false, ["deriveKey"]);
+const secretKeyInput = await crypto.importKey("raw", DH, "HKDF", false, [
+	"deriveKey",
+]);
 
-    const secretKey = await crypto.deriveKey(
-        { name: "HKDF", salt: new Uint8Array(), info, hash: "SHA-512" },
-        secretKeyInput,
-        { name: "AES-GCM", length: 256 },
-        true,
-        ["encrypt", "decrypt"]
-    );
+const secretKey = await crypto.deriveKey(
+	{ name: "HKDF", salt: new Uint8Array(), info, hash: "SHA-512" },
+	secretKeyInput,
+	{ name: "AES-GCM", length: 256 },
+	true,
+	["encrypt", "decrypt"],
+);
 
-    console.log(`Secret key derived: ${toHex(await crypto.exportKey("raw", secretKey))}`);
+console.log(
+	`Secret key derived: ${toHex(await crypto.exportKey("raw", secretKey))}`,
+);
 ```
 
 Finally, we import our byte sequence and set its algorithm to `HKDF` and key usage to `deriveKey` (since we're going to derive a key in the next step), and finally perform `SubtleCrypto.deriveKey()` to turn our input key material into an AES key we can use. The salt is just an empty `Uint8Array`, which fortunately doesn't compromise security. For debugging purposes, I logged secret key to the console, but for obvious reasons do not ever do this in production code.
@@ -249,21 +274,39 @@ Finally, we import our byte sequence and set its algorithm to `HKDF` and key usa
 We're not done yet though, we'll also need to generate a request object for Bob, so he can also perform the calculations we've done earlier. Fortunately, this is really simple.
 
 ```typescript
-    // createX3DHRequest
-    // generate AD (concatenate the hash of the two public identity keys)
-    const AD = new Uint8Array(64);
-    AD.set(new Uint8Array(await crypto.digest("SHA-256", await crypto.exportKey("raw", user.identityKeyPair.publicKey))), 0);
-    AD.set(new Uint8Array(await crypto.digest("SHA-256", await crypto.exportKey("raw", bundle.identityKey))), 32);
+// createX3DHRequest
+// generate AD (concatenate the hash of the two public identity keys)
+const AD = new Uint8Array(64);
+AD.set(
+	new Uint8Array(
+		await crypto.digest(
+			"SHA-256",
+			await crypto.exportKey("raw", user.identityKeyPair.publicKey),
+		),
+	),
+	0,
+);
+AD.set(
+	new Uint8Array(
+		await crypto.digest(
+			"SHA-256",
+			await crypto.exportKey("raw", bundle.identityKey),
+		),
+	),
+	32,
+);
 
-    // create the initial ciphertext
-    const iv = globalThis.crypto.getRandomValues(new Uint8Array(16));
-    const message = new TextEncoder().encode(
-        JSON.stringify({
-            identityKey: toHex(await crypto.exportKey("raw", user.identityKeyPair.publicKey)),
-            ephemeralKey: toHex(await crypto.exportKey("raw", ephemeralKey.publicKey)),
-            oneTimeID: bundle.oneTimeID,
-        })
-    );
+// create the initial ciphertext
+const iv = globalThis.crypto.getRandomValues(new Uint8Array(16));
+const message = new TextEncoder().encode(
+	JSON.stringify({
+		identityKey: toHex(
+			await crypto.exportKey("raw", user.identityKeyPair.publicKey),
+		),
+		ephemeralKey: toHex(await crypto.exportKey("raw", ephemeralKey.publicKey)),
+		oneTimeID: bundle.oneTimeID,
+	}),
+);
 ```
 
 First we create an AD (associated data) by hashing the requesting user's public key and the requested user's public key and concatenating them together (we use a hash to make sure we get exactly 32 bytes per key). The requested user has to reconstruct this to be able to read the initial ciphertext. A new IV is also generated along with the plaintext of the initial ciphertext. What this message contains is completely up to the application, my implementation has a copy of the keys in the request object, so in case the server tries to mess with the keys, the message will contain completely different ones, which can be used to verify the integrity of an X3DH request.
@@ -327,21 +370,25 @@ async function acceptX3DHRequest(user: X3DHObject, request: X3DHRequest) {
 If you've done everything correctly, the resulting `DH` buffer **_should_** have the same exact values as the one Alice has generated. If that's true, the HKDF will create the same key:
 
 ```typescript
-    // acceptX3DHRequest
-    // derive the secret key
-    const info = new TextEncoder().encode("E2EE is amazing!");
+// acceptX3DHRequest
+// derive the secret key
+const info = new TextEncoder().encode("E2EE is amazing!");
 
-    const secretKeyInput = await crypto.importKey("raw", DH, "HKDF", false, ["deriveKey"]);
+const secretKeyInput = await crypto.importKey("raw", DH, "HKDF", false, [
+	"deriveKey",
+]);
 
-    const secretKey = await crypto.deriveKey(
-        { name: "HKDF", salt: new Uint8Array([0]), info, hash: "SHA-512" },
-        secretKeyInput,
-        { name: "AES-GCM", length: 256 },
-        true,
-        ["encrypt", "decrypt"]
-    );
+const secretKey = await crypto.deriveKey(
+	{ name: "HKDF", salt: new Uint8Array([0]), info, hash: "SHA-512" },
+	secretKeyInput,
+	{ name: "AES-GCM", length: 256 },
+	true,
+	["encrypt", "decrypt"],
+);
 
-    console.log(`Secret key derived: ${toHex(await crypto.exportKey("raw", secretKey))}`);
+console.log(
+	`Secret key derived: ${toHex(await crypto.exportKey("raw", secretKey))}`,
+);
 ```
 
 As you can see, this code is basically the same as the `generateX3DH`. Also, because the `info` parameter is always a constant, we don't have to include it in the request, you can just generate it again. Anyway, let's finish up this code and test it for good!

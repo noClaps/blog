@@ -58,10 +58,10 @@ Since this section is going to mention a lot of advanced cryptographic terms, I'
 - [DH (Diffie-Hellman)](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange): The DH key exchange was [created in 1977](https://worldwide.espacenet.com/patent/search/family/025257633/publication/US4200770A?q=pn%3DUS4200770) by [Bailey Diffie](https://en.wikipedia.org/wiki/Whitfield_Diffie) and [Martin Hellman](https://en.wikipedia.org/wiki/Martin_Hellman), with some help from [Ralph Merkle](https://en.wikipedia.org/wiki/Ralph_Merkle). This post is not going to get into the mathematical details, but basically DH works by mixing a random private key you generate with the public key of the person you want to perform the key exchange with. They do the same, but with their private key and your public key. (Note that the public and private keys are mathematically linked together, they aren't completely random)
 - [Elliptic curve](https://en.wikipedia.org/wiki/Elliptic_curve): An elliptic curve is a mathematical algebraic curve, usually written in the form of $$y^2 = x^3 + ax + b$$, where a and b are random numbers. In cryptography, they're used for:
   - [Elliptic-curve cryptography (ECC)](https://en.wikipedia.org/wiki/Elliptic-curve_cryptography): ECC is a type of [public-key cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography) using the powers of elliptic curves. They're usually harder to break even with smaller key sizes, because of the [Elliptic Curve Discrete Logarithm Problem](https://link.springer.com/referenceworkentry/10.1007/978-1-4419-5906-5_246). If you don't understand any of this (I don't), then here is an [easy to understand video from Computerphile](https://www.youtube.com/watch?v=NF1pwjL9-DE).
-  -   [Elliptic-curve Diffie-Hellman (ECDH)](https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman): ECDH is just the Diffie-Hellman key exchange, but with elliptic curves. When the implementation mentions DH, ECDH is meant, since I'm going to use elliptic curves for everything anyway. Here, it's going to be used as part of the X3DH algorithm to perform the DH key exchanges.
-  -   [Elliptic Curve Digital Signature Algorithm (ECDSA)](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm): ECDSA is - similar to ECDH - a variant of the [Digital Signature Algorithm (DSA)](https://en.wikipedia.org/wiki/Digital_Signature_Algorithm), using ellipctic curves. DSA is used to [digitally sign](https://en.wikipedia.org/wiki/Digital_signature) arbitary data using public and private keys ([asymmetric cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography)). I'm going to use it for the X3DH algorithm.
+  - [Elliptic-curve Diffie-Hellman (ECDH)](https://en.wikipedia.org/wiki/Elliptic-curve_Diffie%E2%80%93Hellman): ECDH is just the Diffie-Hellman key exchange, but with elliptic curves. When the implementation mentions DH, ECDH is meant, since I'm going to use elliptic curves for everything anyway. Here, it's going to be used as part of the X3DH algorithm to perform the DH key exchanges.
+  - [Elliptic Curve Digital Signature Algorithm (ECDSA)](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm): ECDSA is - similar to ECDH - a variant of the [Digital Signature Algorithm (DSA)](https://en.wikipedia.org/wiki/Digital_Signature_Algorithm), using ellipctic curves. DSA is used to [digitally sign](https://en.wikipedia.org/wiki/Digital_signature) arbitary data using public and private keys ([asymmetric cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography)). I'm going to use it for the X3DH algorithm.
 - [Hashing](https://en.wikipedia.org/wiki/Hash_function): Hashing is the process of turning any arbitary data into a fixed-length block. The length is defined by the hash algorithm, and is usually 256 bits (32 bytes). Hashes are mainly used for verifying data integrity, since even the slightest change (for example, replace a dot with a comma) has drastic impacts on the derived hash.
-- [AES (sometimes called Rijndael)](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard): AES (Advanced Encryption Standard) is probably the most widely used [symmetric-key encryption algorithm](https://en.wikipedia.org/wiki/Symmetric-key_algorithm) (this means that the same key decrypts and encrypts the data, unlike in [RSA](https://en.wikipedia.org/wiki/RSA_(cryptosystem)) for example). It's a variant of the Rijndael algorithm and works with a fixed key size of 128, 192 or 256 bits (16, 24 and 32 bytes respectively) and processes 128 bits (16 bytes) of data at a time, this is also called the block size. I'll use its variant called [AES-GCM](https://en.wikipedia.org/wiki/AES-GCM-SIV) with a 256 bits long key for the actual (en/de)cryption.
+- [AES (sometimes called Rijndael)](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard): AES (Advanced Encryption Standard) is probably the most widely used [symmetric-key encryption algorithm](https://en.wikipedia.org/wiki/Symmetric-key_algorithm) (this means that the same key decrypts and encrypts the data, unlike in [RSA](<https://en.wikipedia.org/wiki/RSA_(cryptosystem)>) for example). It's a variant of the Rijndael algorithm and works with a fixed key size of 128, 192 or 256 bits (16, 24 and 32 bytes respectively) and processes 128 bits (16 bytes) of data at a time, this is also called the block size. I'll use its variant called [AES-GCM](https://en.wikipedia.org/wiki/AES-GCM-SIV) with a 256 bits long key for the actual (en/de)cryption.
 - [MAC](https://en.wikipedia.org/wiki/Message_authentication_code): MAC stands for message authentication code and is used for ensuring authenticity and integrity. It's similar to a digital signature, but uses a single key instead of a keypair. To verify a MAC signature, you need the key used to generate it. The term MAC is rather generic, meanwhile [HMAC](https://en.wikipedia.org/wiki/HMAC) is a specific MAC implementation using a hash function.
 - [HKDF](https://en.wikipedia.org/wiki/HKDF): HKDF is a [key derivation function](https://en.wikipedia.org/wiki/Key_derivation_function) which takes in some parameters and returns a cryptographically secure key - other examples are [PBKDF2](https://en.wikipedia.org/wiki/PBKDF2) and [Argon2](https://en.wikipedia.org/wiki/Argon2) - with some HMAC sprinkled on top of it, to ensure integry and authenticity. It's going to be the main function I'll use for the Double Ratchet implementation, since it is essentially a ratchet function.
 - [Forward secrecy](https://en.wikipedia.org/wiki/Forward_secrecy): Forward secrecy (sometimes called perfect forward secrecy) means that when a secret is revealed, it cannot be used to crack previous sessions or messages for example. Let's say I use a single key to encrypt all of my messages. In that case, if an attacker cracks the key once, they get access to all past and future messages.
@@ -85,7 +85,7 @@ Great, you've shared a random secret key with your recipient, time to encrypt me
 
 See, AES is nice and all, but think about what happens if a hacker breaks the key: oops, they just got access to all past and future messages, my bad! This is where forward secrecy comes in handy.
 
-To implement this, we can use "ratchet" functions. These functions work like a real [ratchet](https://en.wikipedia.org/wiki/Ratchet_(device)): they only go forward, but not backwards. If you think about hashing, you might recognise that it is also a ratchet function: you cannot revert a hash to get the original input data.
+To implement this, we can use "ratchet" functions. These functions work like a real [ratchet](<https://en.wikipedia.org/wiki/Ratchet_(device)>): they only go forward, but not backwards. If you think about hashing, you might recognise that it is also a ratchet function: you cannot revert a hash to get the original input data.
 
 Alright, you've updated your app so it uses a ratchet function to generate a new key for each message, and this ratchet is synchronised on the recipient's and your devices (since otherwise they wouldn't be able to decrypt your messages). I think you can figure out the next problem: if hackers can't read past keys, can't they just use the ratchet to generate all future keys after compromising one? They can, you're absolutely correct. Solution: add another ratchet, 2 > 1!
 
@@ -124,9 +124,17 @@ const crypto = globalThis.crypto.subtle;
 We declare a variable called "crypto", and set it to [SubtleCrypto](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto) object of `globalThis`. SubtleCrypto is part of the Web Crypto API and has all the cool stuff we want. `globalThis` is used, to make sure the code can be executed in both the browser and Node.js.
 
 ```typescript
-const alice = await crypto.generateKey({ name: "ECDH", namedCurve: "P-256" }, true, ["deriveKey"]);
+const alice = await crypto.generateKey(
+	{ name: "ECDH", namedCurve: "P-256" },
+	true,
+	["deriveKey"],
+);
 
-const bob = await crypto.generateKey({ name: "ECDH", namedCurve: "P-256" }, true, ["deriveKey"]);
+const bob = await crypto.generateKey(
+	{ name: "ECDH", namedCurve: "P-256" },
+	true,
+	["deriveKey"],
+);
 ```
 
 This should be pretty self explanatory: we create two variables named `alice` and `bob` using the [`SubtleCrypto.generateKey()`](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/generateKey) method with the required parameters:
@@ -137,20 +145,20 @@ This should be pretty self explanatory: we create two variables named `alice` an
 
 ```typescript
 function toHex(buffer: ArrayBufferLike) {
-    return Array.from(new Uint8Array(buffer))
-        .map((b) => b.toString(16).padStart(2, "0"))
-        .join("");
+	return Array.from(new Uint8Array(buffer))
+		.map((b) => b.toString(16).padStart(2, "0"))
+		.join("");
 }
 
 console.log(
-    `Alice's private key: ${toHex(await crypto.exportKey("pkcs8", alice.privateKey))}, public key: ${toHex(
-        await crypto.exportKey("raw", alice.publicKey)
-    )}`
+	`Alice's private key: ${toHex(await crypto.exportKey("pkcs8", alice.privateKey))}, public key: ${toHex(
+		await crypto.exportKey("raw", alice.publicKey),
+	)}`,
 );
 console.log(
-    `Bob's private key: ${toHex(await crypto.exportKey("pkcs8", bob.privateKey))}, public key: ${toHex(
-        await crypto.exportKey("raw", bob.publicKey)
-    )}`
+	`Bob's private key: ${toHex(await crypto.exportKey("pkcs8", bob.privateKey))}, public key: ${toHex(
+		await crypto.exportKey("raw", bob.publicKey),
+	)}`,
 );
 ```
 
@@ -162,19 +170,19 @@ Time to do a DH key exchange!
 
 ```typescript
 const aliceSecret = await crypto.deriveKey(
-    { name: "ECDH", public: bob.publicKey },
-    alice.privateKey,
-    { name: "AES-GCM", length: 256 },
-    true,
-    ["encrypt", "decrypt"]
+	{ name: "ECDH", public: bob.publicKey },
+	alice.privateKey,
+	{ name: "AES-GCM", length: 256 },
+	true,
+	["encrypt", "decrypt"],
 );
 
 const bobSecret = await crypto.deriveKey(
-    { name: "ECDH", public: alice.publicKey },
-    bob.privateKey,
-    { name: "AES-GCM", length: 256 },
-    true,
-    ["encrypt", "decrypt"]
+	{ name: "ECDH", public: alice.publicKey },
+	bob.privateKey,
+	{ name: "AES-GCM", length: 256 },
+	true,
+	["encrypt", "decrypt"],
 );
 ```
 
@@ -183,7 +191,9 @@ Because we've previously set the key usage to `deriveKey`, we can use [`SubtleCr
 ```typescript
 console.log("Derived shared secrets!");
 
-console.log(`Alice's secret: ${toHex(await crypto.exportKey("raw", aliceSecret))}`);
+console.log(
+	`Alice's secret: ${toHex(await crypto.exportKey("raw", aliceSecret))}`,
+);
 console.log(`Bob's secret: ${toHex(await crypto.exportKey("raw", bobSecret))}`);
 ```
 
@@ -214,7 +224,11 @@ The initialization vector should be completely random every time you encrypt som
 const data = new TextEncoder().encode("Hello, world!");
 
 const iv = window.crypto.getRandomValues(new Uint8Array(16));
-const encrypted = await crypto.encrypt({ name: "AES-GCM", iv }, aliceSecret, data);
+const encrypted = await crypto.encrypt(
+	{ name: "AES-GCM", iv },
+	aliceSecret,
+	data,
+);
 
 console.log(`Encrypted data: ${toHex(encrypted)}`);
 ```
@@ -232,7 +246,11 @@ Encrypted data: 30c4c584523b6da399aec32504ff607d7e39f35b5e416383f270383bc9
 Now let's do the very opposite:
 
 ```typescript
-const decrypted = await crypto.decrypt({ name: "AES-GCM", iv }, aliceSecret, encrypted);
+const decrypted = await crypto.decrypt(
+	{ name: "AES-GCM", iv },
+	aliceSecret,
+	encrypted,
+);
 
 console.log(`Decrypted data: ${new TextDecoder().decode(decrypted)}`);
 ```

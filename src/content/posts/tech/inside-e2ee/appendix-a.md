@@ -34,7 +34,7 @@ As you can see, both options have their pros and cons, and there's no clear winn
 
 ## Where's the encryption key?
 
-Now that we've decided where to store private data, we also need to figure out *how* to encrypt it. A simple solution would be to use the user's password as the encryption key for private data, but then changing the password will be very complicated - think about how much data would need to be re-encrypted. A much clearner solution would be a "master key", which will be responsible for encrypting all the other data. This way, when we change the password, we only have to re-encrypt a single key.
+Now that we've decided where to store private data, we also need to figure out _how_ to encrypt it. A simple solution would be to use the user's password as the encryption key for private data, but then changing the password will be very complicated - think about how much data would need to be re-encrypted. A much clearner solution would be a "master key", which will be responsible for encrypting all the other data. This way, when we change the password, we only have to re-encrypt a single key.
 
 ```
 Password --encrypts--> Master key --encrypts--> Private data
@@ -60,28 +60,58 @@ const password = "flA3_24%xD-!p2aYr";
 type KeyType = "authentication" | "masterEnc";
 type Key<T extends KeyType> = T extends "authentication" ? string : CryptoKey;
 
-async function generateKey<T extends KeyType>(password: string, type: T, salt: Uint8Array): Promise<Key<T>> {
-    // read the password and pass it through HKDF
-    const rawPassword = new TextEncoder().encode(password);
-    const passwordKey = await crypto.importKey("raw", rawPassword, { name: "HKDF" }, false, ["deriveBits"]);
+async function generateKey<T extends KeyType>(
+	password: string,
+	type: T,
+	salt: Uint8Array,
+): Promise<Key<T>> {
+	// read the password and pass it through HKDF
+	const rawPassword = new TextEncoder().encode(password);
+	const passwordKey = await crypto.importKey(
+		"raw",
+		rawPassword,
+		{ name: "HKDF" },
+		false,
+		["deriveBits"],
+	);
 
-    // salt: empty Uint8Array, info: type
-    const bits = await crypto.deriveBits({ name: "HKDF", hash: "SHA-256", salt, info: new TextEncoder().encode(type) }, passwordKey, 256);
+	// salt: empty Uint8Array, info: type
+	const bits = await crypto.deriveBits(
+		{
+			name: "HKDF",
+			hash: "SHA-256",
+			salt,
+			info: new TextEncoder().encode(type),
+		},
+		passwordKey,
+		256,
+	);
 
-    // if it's the authentication key, we need to convert the bytes to a hex string
-    // otherwise, return the bytes as an AES key
-    if (type === "authentication") {
-        return <Key<T>>Array.from(new Uint8Array(bits))
-            .map((b) => b.toString(16).padStart(2, "0"))
-            .join("");
-    } else {
-        return <Promise<Key<T>>>crypto.importKey("raw", bits, { name: "AES-GCM" }, false, ["wrapKey", "unwrapKey"]);
-    }
+	// if it's the authentication key, we need to convert the bytes to a hex string
+	// otherwise, return the bytes as an AES key
+	if (type === "authentication") {
+		return <Key<T>>Array.from(new Uint8Array(bits))
+			.map((b) => b.toString(16).padStart(2, "0"))
+			.join("");
+	} else {
+		return <Promise<Key<T>>>(
+			crypto.importKey("raw", bits, { name: "AES-GCM" }, false, [
+				"wrapKey",
+				"unwrapKey",
+			])
+		);
+	}
 }
 
 const salt = globalThis.crypto.getRandomValues(new Uint8Array(32));
-console.log("Authentication key:", await generateKey(password, "authentication", salt));
-console.log("Master key encryption:", await generateKey(password, "masterEnc", salt));
+console.log(
+	"Authentication key:",
+	await generateKey(password, "authentication", salt),
+);
+console.log(
+	"Master key encryption:",
+	await generateKey(password, "masterEnc", salt),
+);
 ```
 
 Output:
@@ -133,13 +163,20 @@ async function generateKey<T extends KeyType>(password: string, type: T, salt: U
 First we need to update our `generateKey` method to return a key with the `wrapKey` and `unwrapKey` usages, since they're required for the encryption and decryption. Then we can use the `wrapKey` function to encrypt a randomly generated master key.
 
 ```typescript
-const masterKey = await crypto.generateKey({ name: "AES-GCM", length: 256 }, true, ["encrypt", "decrypt"]);
+const masterKey = await crypto.generateKey(
+	{ name: "AES-GCM", length: 256 },
+	true,
+	["encrypt", "decrypt"],
+);
 
 const salt = globalThis.crypto.getRandomValues(new Uint8Array(32));
 const encKey = await generateKey(password, "masterEnc", salt);
 const iv = globalThis.crypto.getRandomValues(new Uint8Array(12));
 
-const encryptedMasterKey = await crypto.wrapKey("jwk", masterKey, encKey, { name: "AES-GCM", iv });
+const encryptedMasterKey = await crypto.wrapKey("jwk", masterKey, encKey, {
+	name: "AES-GCM",
+	iv,
+});
 console.log("Encrypted master key:", encryptedMasterKey);
 ```
 
@@ -169,62 +206,75 @@ Now let's put this into practice: we'll design a class that will simulate an E2E
 
 ```typescript
 class Client {
-    /**
-     * The secret data we have to secure
-     */
-    #secret: Uint8Array;
+	/**
+	 * The secret data we have to secure
+	 */
+	#secret: Uint8Array;
 
-    /**
-     * The master key of the client
-     */
-    #masterKey: CryptoKey;
+	/**
+	 * The master key of the client
+	 */
+	#masterKey: CryptoKey;
 
-    /**
-     * The key used to encrypt the master key
-     */
-    #masterEnc: CryptoKey;
+	/**
+	 * The key used to encrypt the master key
+	 */
+	#masterEnc: CryptoKey;
 
-    /**
-     * The salt used to influence the HKDF function
-     */
-    #salt: Uint8Array;
+	/**
+	 * The salt used to influence the HKDF function
+	 */
+	#salt: Uint8Array;
 
-    constructor(secret: Uint8Array, masterKey: CryptoKey, masterEnc: CryptoKey, salt: Uint8Array) {
-        this.#secret = secret;
-        this.#masterKey = masterKey;
-        this.#masterEnc = masterEnc;
-        this.#salt = salt;
-    }
+	constructor(
+		secret: Uint8Array,
+		masterKey: CryptoKey,
+		masterEnc: CryptoKey,
+		salt: Uint8Array,
+	) {
+		this.#secret = secret;
+		this.#masterKey = masterKey;
+		this.#masterEnc = masterEnc;
+		this.#salt = salt;
+	}
 
-    async export() {
-        return "error: not implemented";
-    }
+	async export() {
+		return "error: not implemented";
+	}
 
-    /**
-     * A function to simulate creating a new user
-     * @param password The password of the user
-     */
-    static async register(password: string) {
-        // generate a random master key
-        const masterKey = await crypto.generateKey({ name: "AES-GCM", length: 256 }, true, ["encrypt", "decrypt"]);
+	/**
+	 * A function to simulate creating a new user
+	 * @param password The password of the user
+	 */
+	static async register(password: string) {
+		// generate a random master key
+		const masterKey = await crypto.generateKey(
+			{ name: "AES-GCM", length: 256 },
+			true,
+			["encrypt", "decrypt"],
+		);
 
-        // generate a random secret
-        const secret = globalThis.crypto.getRandomValues(new Uint8Array(32));
+		// generate a random secret
+		const secret = globalThis.crypto.getRandomValues(new Uint8Array(32));
 
-        // generate the encryption key for the master key
-        const salt = globalThis.crypto.getRandomValues(new Uint8Array(32));
-        const masterEnc = await generateKey(password, "masterEnc", salt);
+		// generate the encryption key for the master key
+		const salt = globalThis.crypto.getRandomValues(new Uint8Array(32));
+		const masterEnc = await generateKey(password, "masterEnc", salt);
 
-        const client = new Client(secret, masterKey, masterEnc, salt);
+		const client = new Client(secret, masterKey, masterEnc, salt);
 
-        // now generate the authentication key
-        const authenticationKey = await generateKey(password, "authentication", salt);
+		// now generate the authentication key
+		const authenticationKey = await generateKey(
+			password,
+			"authentication",
+			salt,
+		);
 
-        // this is where we would send the authentication key to the server and implement the rest of the registration process
-        console.log("Registering user with authentication key:", authenticationKey);
+		// this is where we would send the authentication key to the server and implement the rest of the registration process
+		console.log("Registering user with authentication key:", authenticationKey);
 
-        return client;
-    }
+		return client;
+	}
 }
 ```
 
@@ -236,28 +286,41 @@ For both operations however, we will need an IV. We can actually generate a comp
 
 ```typescript
 class Client {
-    async export() {
-        // encrypt the secret with the master key
-        const secretIV = globalThis.crypto.getRandomValues(new Uint8Array(12));
-        const secretEnc = await crypto.encrypt({ name: "AES-GCM", iv: secretIV }, this.#masterKey, this.#secret);
-        const secretCipherText = new Uint8Array(secretEnc.byteLength + secretIV.byteLength);
-        secretCipherText.set(new Uint8Array(secretIV), 0);
-        secretCipherText.set(new Uint8Array(secretEnc), secretIV.byteLength);
+	async export() {
+		// encrypt the secret with the master key
+		const secretIV = globalThis.crypto.getRandomValues(new Uint8Array(12));
+		const secretEnc = await crypto.encrypt(
+			{ name: "AES-GCM", iv: secretIV },
+			this.#masterKey,
+			this.#secret,
+		);
+		const secretCipherText = new Uint8Array(
+			secretEnc.byteLength + secretIV.byteLength,
+		);
+		secretCipherText.set(new Uint8Array(secretIV), 0);
+		secretCipherText.set(new Uint8Array(secretEnc), secretIV.byteLength);
 
-        // encrypt the master key with the master encryption key
-        const masterIV = globalThis.crypto.getRandomValues(new Uint8Array(12));
-        const masterEnc = await crypto.wrapKey("jwk", this.#masterKey, this.#masterEnc, { name: "AES-GCM", iv: masterIV });
-        const masterCipherText = new Uint8Array(masterEnc.byteLength + masterIV.byteLength);
-        masterCipherText.set(new Uint8Array(masterIV), 0);
-        masterCipherText.set(new Uint8Array(masterEnc), masterIV.byteLength);
+		// encrypt the master key with the master encryption key
+		const masterIV = globalThis.crypto.getRandomValues(new Uint8Array(12));
+		const masterEnc = await crypto.wrapKey(
+			"jwk",
+			this.#masterKey,
+			this.#masterEnc,
+			{ name: "AES-GCM", iv: masterIV },
+		);
+		const masterCipherText = new Uint8Array(
+			masterEnc.byteLength + masterIV.byteLength,
+		);
+		masterCipherText.set(new Uint8Array(masterIV), 0);
+		masterCipherText.set(new Uint8Array(masterEnc), masterIV.byteLength);
 
-        // return the encrypted secret and master key as an object
-        return {
-            secret: toHex(secretCipherText),
-            master: toHex(masterCipherText),
-            salt: toHex(this.#salt)
-        };
-    }
+		// return the encrypted secret and master key as an object
+		return {
+			secret: toHex(secretCipherText),
+			master: toHex(masterCipherText),
+			salt: toHex(this.#salt),
+		};
+	}
 }
 ```
 
@@ -293,38 +356,47 @@ Now that we can export the client, we also need to be able to import it. This is
 
 ```typescript
 class Client {
-    static async login(state: Awaited<ReturnType<Client["export"]>>, password: string) {
-        const salt = fromHex(state.salt);
+	static async login(
+		state: Awaited<ReturnType<Client["export"]>>,
+		password: string,
+	) {
+		const salt = fromHex(state.salt);
 
-        // generate the authentication key
-        const authenticationKey = await generateKey(password, "authentication", salt);
+		// generate the authentication key
+		const authenticationKey = await generateKey(
+			password,
+			"authentication",
+			salt,
+		);
 
-        // this is where we would send the authentication key to the server and implement the rest of the login process
-        console.log("Logging in user with authentication key:", authenticationKey);
+		// this is where we would send the authentication key to the server and implement the rest of the login process
+		console.log("Logging in user with authentication key:", authenticationKey);
 
-        // decrypt the master key
-        const masterEncKey = await generateKey(password, "masterEnc", salt);
-        const masterCipherText = fromHex(state.master);
-        const masterIV = masterCipherText.slice(0, 12);
-        const masterEnc = masterCipherText.slice(12);
-        const masterKey = await crypto.unwrapKey(
-            "jwk",
-            masterEnc,
-            masterEncKey,
-            { name: "AES-GCM", iv: masterIV },
-            { name: "AES-GCM", length: 256 },
-            true,
-            ["encrypt", "decrypt"]
-        );
+		// decrypt the master key
+		const masterEncKey = await generateKey(password, "masterEnc", salt);
+		const masterCipherText = fromHex(state.master);
+		const masterIV = masterCipherText.slice(0, 12);
+		const masterEnc = masterCipherText.slice(12);
+		const masterKey = await crypto.unwrapKey(
+			"jwk",
+			masterEnc,
+			masterEncKey,
+			{ name: "AES-GCM", iv: masterIV },
+			{ name: "AES-GCM", length: 256 },
+			true,
+			["encrypt", "decrypt"],
+		);
 
-        // decrypt the secret
-        const secretCipherText = fromHex(state.secret);
-        const secretIV = secretCipherText.slice(0, 12);
-        const secretEnc = secretCipherText.slice(12);
-        const secret = await crypto.decrypt({ name: "AES-GCM", iv: secretIV }, masterKey, secretEnc).then((pt) => new Uint8Array(pt));
+		// decrypt the secret
+		const secretCipherText = fromHex(state.secret);
+		const secretIV = secretCipherText.slice(0, 12);
+		const secretEnc = secretCipherText.slice(12);
+		const secret = await crypto
+			.decrypt({ name: "AES-GCM", iv: secretIV }, masterKey, secretEnc)
+			.then((pt) => new Uint8Array(pt));
 
-        return new Client(secret, masterKey, masterEncKey, salt);
-    }
+		return new Client(secret, masterKey, masterEncKey, salt);
+	}
 }
 ```
 
@@ -383,14 +455,14 @@ The `open` function takes two parameters: the name of the database, and the vers
 
 ```typescript
 openRequest.onerror = (event) => {
-    console.error("Error opening database:", event);
-}
+	console.error("Error opening database:", event);
+};
 openRequest.onsuccess = (event) => {
-    const db = openRequest.result;
-}
+	const db = openRequest.result;
+};
 openRequest.onupgradeneeded = (event) => {
-    // implement
-}
+	// implement
+};
 ```
 
 There are 3 major events we need to listen to. The `onerror` event is fired when the database cannot be opened. The `onsuccess` event is fired when the database is successfully opened, and the `onupgradeneeded` event is fired when the database needs to be upgraded. This happens when you open a database with a higher version than the one that's currently stored on device. When you first open a database, this event will always fire, since there's no database stored on device yet.
@@ -401,12 +473,14 @@ Because we want to store the exported client data, let's create an object store 
 
 ```typescript
 openRequest.onupgradeneeded = (event) => {
-    const db = openRequest.result;
-    console.log(`Updating database from ${event.oldVersion} to ${event.newVersion}`);
+	const db = openRequest.result;
+	console.log(
+		`Updating database from ${event.oldVersion} to ${event.newVersion}`,
+	);
 
-    // create an object store for the client
-    db.createObjectStore("client");
-}
+	// create an object store for the client
+	db.createObjectStore("client");
+};
 ```
 
 The `createObjectStore` function takes two parameters: the name of the object store, and an options object. The options object can be used to specify the key path and whether the store should auto increment the keys, by setting the `keyPath` and `autoIncrement` values respectively. A key path is a property of the object that will be used as the key. Imagine an object such as `{ a: "hello", b: 3 }`. If we set the key path to `a`, the key of this object will be `"hello"`. If we set the key path to `b`, the key will be `3`. If we don't set a key path, the key will be auto generated, and will be a number. For this use case we don't need to use key paths, that's why it's not specified in the code above. `autoIncrement` means that the key will be automatically generated when we add a new object to the store. We didn't set either of these values, which means we'll have to manually assign a key to the value we want to store. This is fine, since we're only concerned with storing a single object.
@@ -417,15 +491,15 @@ Now that we have a database and an object store, we can start storing data. Firs
 
 ```typescript
 openRequest.onsuccess = (event) => {
-    const db = openRequest.result;
+	const db = openRequest.result;
 
-    // open a transaction
-    const transaction = db.transaction("client", "readwrite");
-    // get the object store
-    const store = transaction.objectStore("client");
-    // add dummy data
-    store.put("Hello World!", "yeshellohi");
-}
+	// open a transaction
+	const transaction = db.transaction("client", "readwrite");
+	// get the object store
+	const store = transaction.objectStore("client");
+	// add dummy data
+	store.put("Hello World!", "yeshellohi");
+};
 ```
 
 To modify the database, you have to start a transaction using the `transaction` function. This function takes two parameters: the name of the database and the mode of the transaction. The mode can either be `readonly` or `readwrite`. After creating a transaction, you can access an object store using the `IDBTransaction.objectStore()` function. Finally, `IDBObjectStore.put()` is used to insert data into the object store. The first argument is the actual data you want to store, the second is the key. If you don't specify a key, it'll be auto generated, unless that's disabled when you create the object store (which it is in our case).

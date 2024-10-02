@@ -162,9 +162,11 @@ That is not bringing about change. If all you're doing is casting stones, you ar
 Others supported it:
 
 ::: quote Cancel culture, adapted from ProCon.org {href="https://www.procon.org/headlines/is-cancel-culture-or-callout-culture-good-for-society/"}
+
 1. Cancel culture allows marginalized people to seek accountability where the justice system fails.
 2. Cancel culture gives a voice to disenfranchised or less powerful people.
 3. Cancel culture is simply a new form of boycott, a cherished tactic in the civil rights movement, to bring about social change.
+
 :::
 
 Cancel culture has been seen as censorship by those being cancelled, and as moderation by those cancelling. Which you see it as is up for you to decide, but I hope it's clear how much of an issue this can be.

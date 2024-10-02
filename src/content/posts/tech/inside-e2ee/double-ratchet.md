@@ -27,35 +27,41 @@ const crypto = globalThis.crypto.subtle;
 const hkdfInfo = new TextEncoder().encode("Created by Mester");
 
 function toHex(buffer: ArrayBufferLike) {
-    return Array.from(new Uint8Array(buffer))
-        .map((b) => b.toString(16).padStart(2, "0"))
-        .join("");
+	return Array.from(new Uint8Array(buffer))
+		.map((b) => b.toString(16).padStart(2, "0"))
+		.join("");
 }
 
 /**
  * A single symmetric ratchet that can turn and return a message key.
  */
 class SymRatchet {
-    // set the state to a private member, so it cannot be accessed from outside
-    #state: Uint8Array = new Uint8Array();
+	// set the state to a private member, so it cannot be accessed from outside
+	#state: Uint8Array = new Uint8Array();
 
-    constructor(seed: Uint8Array) {
-        if (seed.byteLength !== 32) throw new Error("Invalid seed length");
-        this.#state = seed;
-    }
+	constructor(seed: Uint8Array) {
+		if (seed.byteLength !== 32) throw new Error("Invalid seed length");
+		this.#state = seed;
+	}
 
-    async turn() {
-        const state = await crypto.importKey("raw", this.#state, "HKDF", false, ["deriveBits"]);
+	async turn() {
+		const state = await crypto.importKey("raw", this.#state, "HKDF", false, [
+			"deriveBits",
+		]);
 
-        // create a new state, the salt is just an empty array
-        const newState = await crypto.deriveBits({ name: "HKDF", hash: "SHA-512", salt: new Uint8Array(), info: hkdfInfo }, state, 64 * 8);
+		// create a new state, the salt is just an empty array
+		const newState = await crypto.deriveBits(
+			{ name: "HKDF", hash: "SHA-512", salt: new Uint8Array(), info: hkdfInfo },
+			state,
+			64 * 8,
+		);
 
-        // set the state to the first 32 bytes
-        this.#state = new Uint8Array(newState, 0, 32);
+		// set the state to the first 32 bytes
+		this.#state = new Uint8Array(newState, 0, 32);
 
-        // return the last 32 bytes (used for message encryption/decryption)
-        return new Uint8Array(newState, 32, 32);
-    }
+		// return the last 32 bytes (used for message encryption/decryption)
+		return new Uint8Array(newState, 32, 32);
+	}
 }
 ```
 
@@ -82,7 +88,10 @@ To test if it works, let's set up two ratchets, but with different starting seed
 
 ```typescript
 const ratchet = new SymRatchet(
-    new Uint8Array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31])
+	new Uint8Array([
+		0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
+	]),
 );
 for (let i = 0; i < 5; i++) console.log(toHex(await ratchet.turn()));
 ```
@@ -101,7 +110,10 @@ ba98c268b3518dddb107d080f6e98963b71d28c1191ae6fbc7e21ebcd2b6bccc
 
 ```typescript
 const ratchet = new SymRatchet(
-    new Uint8Array([1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31])
+	new Uint8Array([
+		1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
+	]),
 );
 for (let i = 0; i < 5; i++) console.log(toHex(await ratchet.turn()));
 ```
@@ -138,63 +150,79 @@ There is something important to remember: if Alice and Bob create their root rat
  * A double ratchet that can encrypt and decrypt messages.
  */
 class DoubleRatchet {
-    #root: SymRatchet;
-    #send: SymRatchet | undefined;
-    #receive: SymRatchet | undefined;
+	#root: SymRatchet;
+	#send: SymRatchet | undefined;
+	#receive: SymRatchet | undefined;
 
-    firstSend: boolean = true;
+	firstSend: boolean = true;
 
-    constructor(seed: Uint8Array, firstSend: boolean = true) {
-        this.#root = new SymRatchet(seed);
+	constructor(seed: Uint8Array, firstSend: boolean = true) {
+		this.#root = new SymRatchet(seed);
 
-        this.firstSend = firstSend;
-    }
+		this.firstSend = firstSend;
+	}
 
-    async #init() {
-        if (this.firstSend) {
-            this.#send = new SymRatchet(await this.#root.turn());
-            this.#receive = new SymRatchet(await this.#root.turn());
-        } else {
-            this.#receive = new SymRatchet(await this.#root.turn());
-            this.#send = new SymRatchet(await this.#root.turn());
-        }
-    }
+	async #init() {
+		if (this.firstSend) {
+			this.#send = new SymRatchet(await this.#root.turn());
+			this.#receive = new SymRatchet(await this.#root.turn());
+		} else {
+			this.#receive = new SymRatchet(await this.#root.turn());
+			this.#send = new SymRatchet(await this.#root.turn());
+		}
+	}
 
-    async encrypt(message: Uint8Array) {
-        if (!this.#send) throw new Error("DoubleRatchet not initialized");
+	async encrypt(message: Uint8Array) {
+		if (!this.#send) throw new Error("DoubleRatchet not initialized");
 
-        // generate random IV
-        const iv = globalThis.crypto.getRandomValues(new Uint8Array(12));
+		// generate random IV
+		const iv = globalThis.crypto.getRandomValues(new Uint8Array(12));
 
-        // turn the sending ratchet to create a message key
-        const messageKey = await crypto.importKey("raw", await this.#send.turn(), { name: "AES-GCM" }, false, ["encrypt"]);
-        const ciphertext = new Uint8Array(await crypto.encrypt({ name: "AES-GCM", iv }, messageKey, message));
+		// turn the sending ratchet to create a message key
+		const messageKey = await crypto.importKey(
+			"raw",
+			await this.#send.turn(),
+			{ name: "AES-GCM" },
+			false,
+			["encrypt"],
+		);
+		const ciphertext = new Uint8Array(
+			await crypto.encrypt({ name: "AES-GCM", iv }, messageKey, message),
+		);
 
-        return { iv, ciphertext };
-    }
+		return { iv, ciphertext };
+	}
 
-    async decrypt(ciphertext: Uint8Array, iv: Uint8Array) {
-        if (!this.#receive) throw new Error("DoubleRatchet not initialized");
+	async decrypt(ciphertext: Uint8Array, iv: Uint8Array) {
+		if (!this.#receive) throw new Error("DoubleRatchet not initialized");
 
-        // turn the receiving ratchet to create a message key
-        const messageKey = await crypto.importKey("raw", await this.#receive.turn(), { name: "AES-GCM" }, false, ["decrypt"]);
-        return crypto.decrypt({ name: "AES-GCM", iv }, messageKey, ciphertext).then(pt => new Uint8Array(pt));
-    }
+		// turn the receiving ratchet to create a message key
+		const messageKey = await crypto.importKey(
+			"raw",
+			await this.#receive.turn(),
+			{ name: "AES-GCM" },
+			false,
+			["decrypt"],
+		);
+		return crypto
+			.decrypt({ name: "AES-GCM", iv }, messageKey, ciphertext)
+			.then((pt) => new Uint8Array(pt));
+	}
 
-    static async build(seed: Uint8Array, firstSend: boolean = true) {
-        const dr = new DoubleRatchet(seed, firstSend);
-        await dr.#init();
-        return dr;
-    }
+	static async build(seed: Uint8Array, firstSend: boolean = true) {
+		const dr = new DoubleRatchet(seed, firstSend);
+		await dr.#init();
+		return dr;
+	}
 }
 ```
 
 That's basically it, the only thing missing is the turning mechanism - we'll add that later. For now, let's see what we have here:
 
--   The `#init` function of the `DoubleRatchet` class is used to create the sending and receiving ratchets (the order is based on the previously mentioned `firstSend` boolean).
--   `encrypt` takes in some bytes, generates a 12 bytes initialization vector and encrypts it with the message key from the sending ratchet.
--   `decrypt` does this in reverse, and turns the receiving ratchet instead.
--   We also have a static `build` function, which is a simple wrapper around the constructor and `#init` function.
+- The `#init` function of the `DoubleRatchet` class is used to create the sending and receiving ratchets (the order is based on the previously mentioned `firstSend` boolean).
+- `encrypt` takes in some bytes, generates a 12 bytes initialization vector and encrypts it with the message key from the sending ratchet.
+- `decrypt` does this in reverse, and turns the receiving ratchet instead.
+- We also have a static `build` function, which is a simple wrapper around the constructor and `#init` function.
 
 Now let's see if we can use it to send some messages between Alice and Bob! To make the secret sharing simpler, we'll just generate a random secret on the fly instead of using the X3DH code from earlier.
 
@@ -269,55 +297,83 @@ But enough talk, let's code.
  * A Diffie-Hellman ratchet used to provide future secrecy.
  */
 class DHRatchet {
-    #state: Uint8Array = new Uint8Array();
-    #keyChain: CryptoKeyPair | undefined;
+	#state: Uint8Array = new Uint8Array();
+	#keyChain: CryptoKeyPair | undefined;
 
-    async init(seed: Uint8Array) {
-        if (seed.byteLength !== 32) throw new Error("Invalid seed length");
-        this.#state = seed;
+	async init(seed: Uint8Array) {
+		if (seed.byteLength !== 32) throw new Error("Invalid seed length");
+		this.#state = seed;
 
-        // generate a key pair
-        this.#keyChain = await crypto.generateKey({ name: "ECDH", namedCurve: "P-256" }, true, ["deriveBits"]);
-    }
+		// generate a key pair
+		this.#keyChain = await crypto.generateKey(
+			{ name: "ECDH", namedCurve: "P-256" },
+			true,
+			["deriveBits"],
+		);
+	}
 
-    async getPubkey() {
-        if (!this.#keyChain) throw new Error("DHRatchet not initialized");
+	async getPubkey() {
+		if (!this.#keyChain) throw new Error("DHRatchet not initialized");
 
-        const k = await crypto.exportKey("raw", this.#keyChain.publicKey);
-        return new Uint8Array(k);
-    }
+		const k = await crypto.exportKey("raw", this.#keyChain.publicKey);
+		return new Uint8Array(k);
+	}
 
-    async turn(pubkey: Uint8Array, newKey: boolean = false) {
-        if (!this.#keyChain) throw new Error("DHRatchet not initialized");
+	async turn(pubkey: Uint8Array, newKey: boolean = false) {
+		if (!this.#keyChain) throw new Error("DHRatchet not initialized");
 
-        // if needed, generate a new key pair
-        if (newKey) {
-            this.#keyChain = await crypto.generateKey({ name: "ECDH", namedCurve: "P-256" }, true, ["deriveBits"]);
-        }
+		// if needed, generate a new key pair
+		if (newKey) {
+			this.#keyChain = await crypto.generateKey(
+				{ name: "ECDH", namedCurve: "P-256" },
+				true,
+				["deriveBits"],
+			);
+		}
 
-        // import the public key
-        const publicKey = await crypto.importKey("raw", pubkey, { name: "ECDH", namedCurve: "P-256" }, false, []);
+		// import the public key
+		const publicKey = await crypto.importKey(
+			"raw",
+			pubkey,
+			{ name: "ECDH", namedCurve: "P-256" },
+			false,
+			[],
+		);
 
-        // derive a new DH output
-        const dhOutput = await crypto.deriveBits({ name: "ECDH", public: publicKey }, this.#keyChain.privateKey, 32 * 8);
+		// derive a new DH output
+		const dhOutput = await crypto.deriveBits(
+			{ name: "ECDH", public: publicKey },
+			this.#keyChain.privateKey,
+			32 * 8,
+		);
 
-        // use the DH output as the HKDF salt
-        const state = await crypto.importKey("raw", this.#state, { name: "HKDF" }, false, ["deriveBits"]);
-        const newState = await crypto.deriveBits({ name: "HKDF", hash: "SHA-512", salt: dhOutput, info: hkdfInfo }, state, 64 * 8);
+		// use the DH output as the HKDF salt
+		const state = await crypto.importKey(
+			"raw",
+			this.#state,
+			{ name: "HKDF" },
+			false,
+			["deriveBits"],
+		);
+		const newState = await crypto.deriveBits(
+			{ name: "HKDF", hash: "SHA-512", salt: dhOutput, info: hkdfInfo },
+			state,
+			64 * 8,
+		);
 
-        // set the state to the first 32 bytes and the final output to the last 32 bytes
-        this.#state = new Uint8Array(newState, 0, 32);
-        const final = new Uint8Array(newState, 32, 32);
+		// set the state to the first 32 bytes and the final output to the last 32 bytes
+		this.#state = new Uint8Array(newState, 0, 32);
+		const final = new Uint8Array(newState, 32, 32);
 
-        return final;
-    }
+		return final;
+	}
 
-    static async build(seed: Uint8Array) {
-        const dr = new DHRatchet();
-        await dr.init(seed);
+	static async build(seed: Uint8Array) {
+		const dr = new DHRatchet();
+		await dr.init(seed);
 
-        return dr;
-    }
+		return dr;
+	}
 }
 ```
 
@@ -389,21 +445,39 @@ const bob = await DoubleRatchet.build(seed, await alice.root.getPubkey());
 await alice.turn(await bob.root.getPubkey());
 
 // Alice and Bob send a single message after each other
-const aliceMessage = await alice.encrypt(new TextEncoder().encode("Hello Bob!"));
-console.log("Alice's message:", toHex(aliceMessage.iv), toHex(aliceMessage.ciphertext));
+const aliceMessage = await alice.encrypt(
+	new TextEncoder().encode("Hello Bob!"),
+);
+console.log(
+	"Alice's message:",
+	toHex(aliceMessage.iv),
+	toHex(aliceMessage.ciphertext),
+);
 
 // Bob receives Alice's message, turns his ratchet and decrypts the message
 await bob.turn(await alice.root.getPubkey());
 
-const aliceMessageDec = await bob.decrypt(aliceMessage.ciphertext, aliceMessage.iv);
+const aliceMessageDec = await bob.decrypt(
+	aliceMessage.ciphertext,
+	aliceMessage.iv,
+);
 console.log("Bob received:", new TextDecoder().decode(aliceMessageDec));
 
 const bobMessage = await bob.encrypt(new TextEncoder().encode("Hello Alice!"));
-console.log("Bob's message:", toHex(bobMessage.iv), toHex(bobMessage.ciphertext));
+console.log(
+	"Bob's message:",
+	toHex(bobMessage.iv),
+	toHex(bobMessage.ciphertext),
+);
 
 // Alice receives Bob's message, turns her ratchet and decrypts the message
 await alice.turn(await bob.root.getPubkey());
-console.log("Alice received:", new TextDecoder().decode(await alice.decrypt(bobMessage.ciphertext, bobMessage.iv)));
+console.log(
+	"Alice received:",
+	new TextDecoder().decode(
+		await alice.decrypt(bobMessage.ciphertext, bobMessage.iv),
+	),
+);
 ```
 
 Output:
@@ -813,10 +887,18 @@ const alice = await DoubleRatchet.build(seed);
 const bob = await DoubleRatchet.build(seed, await alice.root.getPubkey());
 
 // Bob sends a message to Alice
-const message1 = await bob.encrypt(new TextEncoder().encode("Hello Alice, this is message 1!"));
-const message2 = await bob.encrypt(new TextEncoder().encode("Hello Alice, this is message 2!"));
-const message3 = await bob.encrypt(new TextEncoder().encode("Hello Alice, this is message 3!"));
-const message4 = await bob.encrypt(new TextEncoder().encode("Hello Alice, this is message 4!"));
+const message1 = await bob.encrypt(
+	new TextEncoder().encode("Hello Alice, this is message 1!"),
+);
+const message2 = await bob.encrypt(
+	new TextEncoder().encode("Hello Alice, this is message 2!"),
+);
+const message3 = await bob.encrypt(
+	new TextEncoder().encode("Hello Alice, this is message 3!"),
+);
+const message4 = await bob.encrypt(
+	new TextEncoder().encode("Hello Alice, this is message 4!"),
+);
 
 // Message 1 arrives, but 2 and 3 are lost
 const decrypted1 = await alice.processMessage(message1);
@@ -852,21 +934,29 @@ const alice = await DoubleRatchet.build(seed);
 const bob = await DoubleRatchet.build(seed, await alice.root.getPubkey());
 
 // Bob sends message 1 and 2 to Alice
-const message1 = await bob.encrypt(new TextEncoder().encode("This is message 1!"));
-const message2 = await bob.encrypt(new TextEncoder().encode("This is message 2!"));
+const message1 = await bob.encrypt(
+	new TextEncoder().encode("This is message 1!"),
+);
+const message2 = await bob.encrypt(
+	new TextEncoder().encode("This is message 2!"),
+);
 
 // message 1 arrives, 2 is delayed
 const decrypted1 = await alice.processMessage(message1);
 console.log("Alice receives:", new TextDecoder().decode(decrypted1));
 
 // Alice sends message 3
-const message3 = await alice.encrypt(new TextEncoder().encode("This is message 3!"));
+const message3 = await alice.encrypt(
+	new TextEncoder().encode("This is message 3!"),
+);
 
 const decrypted3 = await bob.processMessage(message3);
 console.log("Bob receives:", new TextDecoder().decode(decrypted3));
 
 // Bob sends message 4, message 2 also arrives
-const message4 = await bob.encrypt(new TextEncoder().encode("This is message 4!"));
+const message4 = await bob.encrypt(
+	new TextEncoder().encode("This is message 4!"),
+);
 
 const decrypted4 = await alice.processMessage(message4);
 console.log("Alice receives:", new TextDecoder().decode(decrypted4));
@@ -1041,7 +1131,11 @@ Because of the new `build` function, we'll also need to change how we initialise
 const seed = globalThis.crypto.getRandomValues(new Uint8Array(32));
 
 const { dr: alice, NRHK, SHK } = await DoubleRatchet.build(seed, undefined);
-const bob = await DoubleRatchet.build(seed, { pubkey: await alice.root.getPubkey(), NRHK, SHK });
+const bob = await DoubleRatchet.build(seed, {
+	pubkey: await alice.root.getPubkey(),
+	NRHK,
+	SHK,
+});
 
 // rest of the code same as before
 ```
@@ -1282,25 +1376,37 @@ We can copy our previous example of skipping messages, which tests all parts of 
 const seed = globalThis.crypto.getRandomValues(new Uint8Array(32));
 
 const { dr: alice, NRHK, SHK } = await DoubleRatchet.build(seed, undefined);
-const bob = await DoubleRatchet.build(seed, { pubkey: await alice.root.getPubkey(), NRHK, SHK });
+const bob = await DoubleRatchet.build(seed, {
+	pubkey: await alice.root.getPubkey(),
+	NRHK,
+	SHK,
+});
 
 // Bob sends message 1 and 2 to Alice
-const message1 = await bob.encrypt(new TextEncoder().encode("This is message 1!"));
+const message1 = await bob.encrypt(
+	new TextEncoder().encode("This is message 1!"),
+);
 console.log("Bob sends:", message1);
-const message2 = await bob.encrypt(new TextEncoder().encode("This is message 2!"));
+const message2 = await bob.encrypt(
+	new TextEncoder().encode("This is message 2!"),
+);
 
 // message 1 arrives, 2 is delayed
 const decrypted1 = await alice.processMessage(message1);
 console.log("Alice receives:", new TextDecoder().decode(decrypted1));
 
 // Alice sends message 3
-const message3 = await alice.encrypt(new TextEncoder().encode("This is message 3!"));
+const message3 = await alice.encrypt(
+	new TextEncoder().encode("This is message 3!"),
+);
 
 const decrypted3 = await bob.processMessage(message3);
 console.log("Bob receives:", new TextDecoder().decode(decrypted3));
 
 // Bob sends message 4, message 2 also arrives
-const message4 = await bob.encrypt(new TextEncoder().encode("This is message 4!"));
+const message4 = await bob.encrypt(
+	new TextEncoder().encode("This is message 4!"),
+);
 
 const decrypted4 = await alice.processMessage(message4);
 console.log("Alice receives:", new TextDecoder().decode(decrypted4));

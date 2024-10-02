@@ -52,11 +52,13 @@ As you can see, having a threat model helps make the decisions on how to go abou
 There's many guides and tools out there to help you create a threat model, but in general it boils down to 5 questions:
 
 ::: quote Threat Modelling, Privacy Guides {href="https://www.privacyguides.org/basics/threat-modeling/"}
+
 1. What do I want to protect?
 2. Who do I want to protect it from?
 3. How likely is it that I will need to protect it?
 4. How bad are the consequences if I fail?
 5. How much trouble am I willing to go through to try to prevent potential consequences?
+
 :::
 
 I encourage you to read the whole threat modelling guide from Privacy Guides, it's very well written and clearly explains each step.

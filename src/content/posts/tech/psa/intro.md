@@ -116,10 +116,12 @@ Metadata is extraordinarily intrusive. As an analyst, I would prefer to be looki
 Think of it like this: if you see someone having a conversation with a known drug dealer, even if the actual conversation wasn't heard, there can be some fairly accurate assumptions about what's going on. Similarly, even if the actual messages are encrypted, metadata about the messages can be incredibly revealing.
 
 ::: quote Examples from the EFF {href="https://www.eff.org/fr/deeplinks/2013/06/why-metadata-matters"}
+
 - They know you received a call from the local NRA office while it was having a campaign against gun legislation, and then called your senators and congressional representatives immediately after. But the content of those calls remains safe from government intrusion.
 - They know you called a gynecologist, spoke for a half hour, and then called the local Planned Parenthood's number later that day. But nobody knows what you spoke about.
 - They know you spoke with an HIV testing service, then your doctor, then your health insurance company in the same hour. But they don't know what was discussed.
 - They know you called the suicide prevention hotline from the Golden Gate Bridge. But the topic of the call remains a secret.
+
 :::
 
 As you can see, it's pretty easy to figure out what's going on in someone's life, even if you don't know the exact words used in each phone call or conversation.
