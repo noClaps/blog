@@ -2,14 +2,10 @@
 	"name": "blog",
 	"devDependencies": {
 		"@kitajs/html": "^4.2.2",
-		"@types/bun": "^1.1.9",
-		"lucide-static": "^0.441.0",
+		"@types/bun": "^1.1.10",
+		"lucide-static": "^0.447.0",
 		"typescript": "^5.6.2",
 		"@noclaps/znak": "npm:@jsr/noclaps__znak"
-	},
-	"scripts": {
-		"build": "bun scripts/build.ts",
-		"dev": "bun scripts/dev.ts"
 	},
 	"type": "module"
 }

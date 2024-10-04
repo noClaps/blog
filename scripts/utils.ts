@@ -4,26 +4,52 @@ type AuthorCollection = {
 	name: string;
 	link: string;
 };
-type PostsCollection = {
+export type PostsCollection = {
 	slug: string;
 	title: string;
-	description?: string;
+	description: string;
 	author: AuthorCollection;
 	date: Date;
 	lastmod?: Date;
 	series?: number;
 };
+export type NotesCollection = {
+	slug: string;
+	title: string;
+	author: AuthorCollection;
+	date: Date;
+	lastmod?: Date;
+};
+export type StoriesCollection = {
+	slug: string;
+	title: string;
+	author: AuthorCollection;
+};
 
 type PostsFrontmatter = {
 	title: string;
-	description?: string;
+	description: string;
 	author: string;
 	date: string;
 	lastmod?: string;
 	series?: string;
 };
 
-function frontmatter(md: string) {
+type NotesFrontmatter = {
+	title: string;
+	author: string;
+	date: string;
+	lastmod?: string;
+};
+
+type StoriesFrontmatter = {
+	title: string;
+	author: string;
+};
+
+function frontmatter<
+	T = PostsFrontmatter | NotesFrontmatter | StoriesFrontmatter,
+>(md: string) {
 	const frontmatterRegex = md.match(/^---([\w:\s\S]*?)---/);
 	if (!frontmatterRegex) throw new Error("Frontmatter not found");
 
@@ -40,18 +66,20 @@ function frontmatter(md: string) {
 		dataObject[data[0]] = data.slice(1).join(": ");
 	}
 
-	return dataObject as PostsFrontmatter;
+	return dataObject as T;
 }
 
 export async function getCollection(
 	name: "authors",
 ): Promise<AuthorCollection[]>;
+export async function getCollection(name: "notes"): Promise<NotesCollection[]>;
+export async function getCollection(name: "posts"): Promise<PostsCollection[]>;
 export async function getCollection(
-	name: "notes" | "posts",
-): Promise<PostsCollection[]>;
+	name: "stories",
+): Promise<StoriesCollection[]>;
 export async function getCollection(
-	name: "authors" | "notes" | "posts",
-): Promise<AuthorCollection[] | PostsCollection[]> {
+	name: "authors" | "notes" | "posts" | "stories",
+) {
 	switch (name) {
 		case "authors": {
 			const collection = new Bun.Glob("*.json").scanSync({
@@ -69,9 +97,9 @@ export async function getCollection(
 				cwd: "src/content/notes",
 			});
 
-			const data: PostsCollection[] = [];
+			const data: NotesCollection[] = [];
 			for (const file of collection) {
-				const fm = frontmatter(
+				const fm = frontmatter<NotesFrontmatter>(
 					await Bun.file(`src/content/notes/${file}`).text(),
 				);
 				const author = (await getCollection("authors")).find(
@@ -97,7 +125,7 @@ export async function getCollection(
 
 			const data: PostsCollection[] = [];
 			for (const file of collection) {
-				const fm = frontmatter(
+				const fm = frontmatter<PostsFrontmatter>(
 					await Bun.file(`src/content/posts/${file}`).text(),
 				);
 				const author = (await getCollection("authors")).find(
@@ -113,6 +141,31 @@ export async function getCollection(
 					date: new Date(fm.date),
 					lastmod: fm.lastmod ? new Date(fm.lastmod) : undefined,
 					series: fm.series ? Number.parseInt(fm.series) : undefined,
+				});
+			}
+
+			return data;
+		}
+
+		case "stories": {
+			const collection = new Bun.Glob("**/*.md").scanSync({
+				cwd: "src/content/stories",
+			});
+
+			const data: StoriesCollection[] = [];
+			for (const file of collection) {
+				const fm = frontmatter<StoriesFrontmatter>(
+					await Bun.file(`src/content/stories/${file}`).text(),
+				);
+				const author = (await getCollection("authors")).find(
+					(i) => i.name === fm.author,
+				);
+				if (!author) throw new Error(`Author for ${file} not found`);
+
+				data.push({
+					slug: file.replace(".md", ""),
+					title: fm.title,
+					author,
 				});
 			}
 

@@ -1,23 +1,41 @@
-import { getCollection, parseMarkdown } from "../../scripts/utils";
+import {
+	getCollection,
+	parseMarkdown,
+	type NotesCollection,
+	type PostsCollection,
+	type StoriesCollection,
+} from "../../scripts/utils";
 
 const postItems = await getCollection("posts");
 const noteItems = await getCollection("notes");
+const storyItems = await getCollection("stories");
 
 for (const item of noteItems) {
 	item.slug = `notes/${item.slug}`;
 }
 
-const items = [...postItems, ...noteItems];
+for (const item of storyItems) {
+	item.slug = `stories/${item.slug}`;
+}
+
+const items: (PostsCollection | NotesCollection | StoriesCollection)[] = [
+	...postItems,
+	...noteItems,
+	...storyItems,
+];
 
 let lastUpdate = new Date(0);
 const content: { [key: string]: string } = {};
 for (const item of items) {
-	const itemDate = item.lastmod ?? item.date;
-	if (itemDate > lastUpdate) {
-		lastUpdate = itemDate;
+	if ("date" in item) {
+		const itemDate = item.lastmod ?? item.date;
+		if (itemDate > lastUpdate) {
+			lastUpdate = itemDate;
+		}
 	}
+
 	const { html } = await Bun.file(
-		`src/content/${item.slug.startsWith("notes") ? "" : "posts/"}${
+		`src/content/${item.slug.startsWith("notes") || item.slug.startsWith("stories") ? "" : "posts/"}${
 			item.slug
 		}.md`,
 	)
@@ -37,9 +55,10 @@ function jsonFeed() {
 		url: `https://blog.zerolimits.dev/${item.slug}`,
 		title: item.title,
 		content_html: content[item.slug],
-		summary: item.description ?? "",
-		date_published: new Date(item.date).toISOString(),
-		date_modified: new Date(item.lastmod ?? item.date).toISOString(),
+		summary: "description" in item ? item.description : "",
+		date_published: "date" in item ? new Date(item.date).toISOString() : "",
+		date_modified:
+			"date" in item ? new Date(item.lastmod ?? item.date).toISOString() : "",
 		authors: [{ name: item.author.name, url: item.author.link }],
 		language: "en",
 	}));
@@ -63,15 +82,16 @@ function atomFeed() {
 	const entries = items.map((item) => ({
 		id: `https://blog.zerolimits.dev/${item.slug}`,
 		title: item.title,
-		updated: new Date(item.lastmod ?? item.date).toISOString(),
+		updated:
+			"date" in item ? new Date(item.lastmod ?? item.date).toISOString() : "",
 		author: {
 			name: item.author.name,
 			uri: item.author.link,
 		},
 		content: Bun.escapeHTML(content[item.slug]),
 		link: `https://blog.zerolimits.dev/${item.slug}`,
-		summary: item.description,
-		published: new Date(item.date).toISOString(),
+		summary: "description" in item ? item.description : "",
+		published: "date" in item ? new Date(item.date).toISOString() : "",
 	}));
 
 	const feed = `<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><id>https://blog.zerolimits.dev</id><title>The Blog of Random</title><updated>${new Date(lastUpdate).toISOString()}</updated><link rel="self" href="https://blog.zerolimits.dev/feed.atom" />${authors.map((author) => `<contributor><name>${author.name}</name><uri>${author.url}</uri></contributor>`).join("")}<icon>https://blog.zerolimits.dev/favicon.ico</icon><subtitle>A blog about the most random things you can think of.</subtitle>${entries
@@ -87,10 +107,11 @@ function atomFeed() {
 function rssFeed() {
 	const entries = items.map((item) => ({
 		author: item.author.name,
-		description: item.description,
+		description: "description" in item ? item.description : "",
 		guid: `https://blog.zerolimits.dev/${item.slug}`,
 		link: `https://blog.zerolimits.dev/${item.slug}`,
-		pubDate: new Date(item.lastmod ?? item.date).toUTCString(),
+		pubDate:
+			"date" in item ? new Date(item.lastmod ?? item.date).toUTCString() : "",
 		title: item.title,
 		content: Bun.escapeHTML(content[item.slug]),
 	}));

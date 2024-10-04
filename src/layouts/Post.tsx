@@ -46,7 +46,7 @@ export default function Post(
 			name: string;
 			link: string;
 		};
-		date: Date;
+		date?: Date;
 		lastmod?: Date;
 		headings: Heading[];
 	},
@@ -173,9 +173,11 @@ export default function Post(
 						)}
 						<main>
 							<div class="post-header">
-								<time datetime={pubDate.toISOString()}>
-									{pubDate.toDateString()}
-								</time>
+								{pubDate && (
+									<time datetime={pubDate.toISOString()}>
+										{pubDate.toDateString()}
+									</time>
+								)}
 								<h1>{title}</h1>
 								<div class="post-info">
 									{description !==
@@ -185,7 +187,7 @@ export default function Post(
 										""
 									)}
 									<p class="author">
-										Written by
+										Written by{" "}
 										<a class="author-link" href={author.link}>
 											{author.name}
 										</a>

@@ -3,6 +3,7 @@ import Post from "../layouts/Post";
 
 const posts = await getCollection("posts");
 const notes = await getCollection("notes");
+const stories = await getCollection("stories");
 
 for (const post of posts) {
 	const { html, headings } = parseMarkdown(
@@ -43,6 +44,25 @@ for (const note of notes) {
 			},
 			html,
 			`/notes/${note.slug}`,
+		),
+	);
+}
+
+for (const story of stories) {
+	const { html, headings } = parseMarkdown(
+		await Bun.file(`src/content/stories/${story.slug}.md`).text(),
+	);
+
+	Bun.write(
+		`./dist/stories/${story.slug}.html`,
+		Post(
+			{
+				title: story.title,
+				author: story.author,
+				headings,
+			},
+			html,
+			`/stories/${story.slug}`,
 		),
 	);
 }
