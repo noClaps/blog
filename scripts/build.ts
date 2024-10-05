@@ -8,18 +8,15 @@ await $`mkdir -p dist`;
 await $`cp -a public/. dist`;
 
 // Build HTML
-const glob = new Bun.Glob("**/**.{ts,tsx}");
-const files = glob.scanSync({ cwd: "src/pages" });
-
+const files = new Bun.Glob("**/**.{ts,tsx}").scanSync({ cwd: "src/pages" });
 for (const file of files) {
 	await $`bun run src/pages/${file}`;
 }
 
 // Build post components
-const htmlGlob = new Bun.Glob("**/*.html");
-const htmlFiles = htmlGlob.scanSync({ cwd: "dist/" });
+const htmlFiles = new Bun.Glob("**/*.html").scanSync({ cwd: "dist/" });
 for (const page of htmlFiles) {
-	const html = new HTMLRewriter()
+	const htmlRw = new HTMLRewriter()
 		.on(".note-heading", {
 			element(el) {
 				el.prepend(StickyNote, { html: true });
@@ -34,44 +31,39 @@ for (const page of htmlFiles) {
 			element(el) {
 				el.prepend(AlertTriangle, { html: true });
 			},
-		})
-		.transform(await Bun.file(`dist/${page}`).text());
+		});
+
+	if (Bun.env.NODE_ENV === "production") {
+		htmlRw.on("img", {
+			async element(el) {
+				const src = el.getAttribute("src");
+				if (!src) return;
+
+				if (src.startsWith("http")) {
+					const urlArr = src.split("/");
+					const filename = urlArr[urlArr.length - 1];
+					const path = `/${page.replace(".html", "")}/${filename}`;
+					el.setAttribute("src", path);
+
+					const image = await fetch(src).then((r) => r.blob());
+					Bun.write(`dist${decodeURI(path)}`, image);
+				}
+			},
+		});
+	}
+
+	const html = htmlRw.transform(await Bun.file(`dist/${page}`).text());
 	Bun.write(`dist/${page}`, html);
 }
 
 // Build images
-const imagesGlob = new Bun.Glob("**/*.{png,jpeg,jpg}");
-const images = imagesGlob.scanSync({ cwd: "src/content" });
-
+const images = new Bun.Glob("**/*.{png,jpeg,jpg}").scanSync({
+	cwd: "src/content",
+});
 for (const image of images) {
 	const imagePath = image.split("/").slice(1).join("/");
 	Bun.write(
-		`dist/${image.startsWith("notes") ? "notes" : ""}/${imagePath}`,
+		`dist/${image.startsWith("posts") ? "" : image.split("/")[0]}/${imagePath}`,
 		Bun.file(`src/content/${image}`),
 	);
-}
-
-// Download remote files
-if (Bun.env.NODE_ENV === "production") {
-	for (const page of htmlFiles) {
-		const html = new HTMLRewriter()
-			.on("img", {
-				async element(el) {
-					const src = el.getAttribute("src");
-					if (!src) return;
-
-					if (src.startsWith("http")) {
-						const urlArr = src.split("/");
-						const filename = urlArr[urlArr.length - 1];
-						const path = `/${page.replace(".html", "")}/${filename}`;
-						el.setAttribute("src", path);
-
-						const image = await fetch(src).then((r) => r.blob());
-						Bun.write(`dist${decodeURI(path)}`, image);
-					}
-				},
-			})
-			.transform(await Bun.file(`dist/${page}`).text());
-		Bun.write(`dist/${page}`, html);
-	}
 }
