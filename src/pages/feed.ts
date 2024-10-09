@@ -1,6 +1,7 @@
+import { render } from "@noclaps/znak";
 import {
 	getCollection,
-	parseMarkdown,
+	removeFrontmatter,
 	type NotesCollection,
 	type PostsCollection,
 	type StoriesCollection,
@@ -34,13 +35,13 @@ for (const item of items) {
 		}
 	}
 
-	const { html } = await Bun.file(
+	const html = await Bun.file(
 		`src/content/${item.slug.startsWith("notes") || item.slug.startsWith("stories") ? "" : "posts/"}${
 			item.slug
 		}.md`,
 	)
 		.text()
-		.then((md) => parseMarkdown(md));
+		.then(async (md) => await render(removeFrontmatter(md)));
 	content[item.slug] = html;
 }
 

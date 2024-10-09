@@ -1,5 +1,3 @@
-import Znak from "@noclaps/znak";
-
 type AuthorCollection = {
 	name: string;
 	link: string;
@@ -177,8 +175,6 @@ export async function getCollection(
 	}
 }
 
-export function parseMarkdown(md: string) {
-	let mdWithoutFrontmatter = md.replace(/^---([\w:\s\S]*?)---/, "").trim();
-	const post = new Znak(mdWithoutFrontmatter);
-	return { html: post.renderToHTML(), headings: post.headings() };
+export function removeFrontmatter(md: string) {
+	return md.replace(/^---([\w:\s\S]*?)---/, "").trim();
 }

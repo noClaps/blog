@@ -1,4 +1,5 @@
-import { getCollection, parseMarkdown } from "../../scripts/utils";
+import { headings as headingsFn, render } from "@noclaps/znak";
+import { getCollection, removeFrontmatter } from "../../scripts/utils";
 import Post from "../layouts/Post";
 
 const posts = await getCollection("posts");
@@ -6,9 +7,11 @@ const notes = await getCollection("notes");
 const stories = await getCollection("stories");
 
 for (const post of posts) {
-	const { html, headings } = parseMarkdown(
+	const postContent = removeFrontmatter(
 		await Bun.file(`src/content/posts/${post.slug}.md`).text(),
 	);
+	const html = await render(postContent);
+	const headings = headingsFn(postContent);
 
 	Bun.write(
 		`dist/${post.slug}.html`,
@@ -28,9 +31,11 @@ for (const post of posts) {
 }
 
 for (const note of notes) {
-	const { html, headings } = parseMarkdown(
+	const noteContent = removeFrontmatter(
 		await Bun.file(`src/content/notes/${note.slug}.md`).text(),
 	);
+	const html = await render(noteContent);
+	const headings = headingsFn(noteContent);
 
 	Bun.write(
 		`./dist/notes/${note.slug}.html`,
@@ -49,9 +54,11 @@ for (const note of notes) {
 }
 
 for (const story of stories) {
-	const { html, headings } = parseMarkdown(
+	const storyContent = removeFrontmatter(
 		await Bun.file(`src/content/stories/${story.slug}.md`).text(),
 	);
+	const html = await render(storyContent);
+	const headings = headingsFn(storyContent);
 
 	Bun.write(
 		`./dist/stories/${story.slug}.html`,

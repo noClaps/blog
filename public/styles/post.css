@@ -93,6 +93,12 @@ img {
 	object-fit: contain;
 }
 
+/* Math */
+.katex math[display="block"] {
+	margin: 1rem;
+	font-size: 1.125rem;
+}
+
 /* Table of Contents */
 details {
 	position: absolute;
