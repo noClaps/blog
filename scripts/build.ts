@@ -1,26 +1,20 @@
-import { jsonFeed, rssFeed, atomFeed } from "../src/pages/feed";
+import { jsonFeed, rssFeed, atomFeed } from "../src/pages/feed.ts";
 import { AlertTriangle, MessageSquare, StickyNote } from "lucide-static";
-import { indexPage, notesPage, storiesPage } from "../src/pages";
-import { writeNotes, writePosts, writeStories } from "../src/pages/posts";
+import { indexPage, notesPage, storiesPage } from "../src/pages/index.tsx";
+import { writeNotes, writePosts, writeStories } from "../src/pages/posts.tsx";
 
 // Build feeds
-jsonFeed();
-rssFeed();
-atomFeed();
+Bun.write("dist/feed.json", jsonFeed());
+Bun.write("dist/feed.atom", atomFeed());
+Bun.write("dist/feed.rss", rssFeed());
 
 // Build index pages
 Bun.write("dist/index.html", await indexPage());
 Bun.write("dist/notes/index.html", await notesPage());
 Bun.write("dist/stories/index.html", await storiesPage());
 
-// Build posts
-await writePosts();
-await writeNotes();
-await writeStories();
-
-// Build post components
-const htmlFiles = new Bun.Glob("**/*.html").scanSync({ cwd: "dist/" });
-for (const page of htmlFiles) {
+// Build post components and download images
+function buildPost(post: string, filePath: string) {
 	const htmlRw = new HTMLRewriter()
 		.on(".note-heading", {
 			element(el) {
@@ -47,7 +41,7 @@ for (const page of htmlFiles) {
 				if (src.startsWith("http")) {
 					const urlArr = src.split("/");
 					const filename = urlArr[urlArr.length - 1];
-					const path = `/${page.replace(".html", "")}/${filename}`;
+					const path = `/${filePath.replace(".html", "")}/${filename}`;
 					el.setAttribute("src", path);
 
 					const image = await fetch(src).then((r) => r.blob());
@@ -57,8 +51,18 @@ for (const page of htmlFiles) {
 		});
 	}
 
-	const html = htmlRw.transform(await Bun.file(`dist/${page}`).text());
-	Bun.write(`dist/${page}`, html);
+	return htmlRw.transform(post);
+}
+
+// Build posts
+for await (const { filePath, post } of writePosts()) {
+	Bun.write(`dist/${filePath}`, buildPost(post.toString(), filePath));
+}
+for await (const { filePath, post } of writeNotes()) {
+	Bun.write(`dist/${filePath}`, buildPost(post.toString(), filePath));
+}
+for await (const { filePath, post } of writeStories()) {
+	Bun.write(`dist/${filePath}`, buildPost(post.toString(), filePath));
 }
 
 // Build images

@@ -76,7 +76,7 @@ export function jsonFeed() {
 		items: entries,
 	};
 
-	Bun.write("dist/feed.json", JSON.stringify(feed));
+	return JSON.stringify(feed);
 }
 
 export function atomFeed() {
@@ -102,7 +102,7 @@ export function atomFeed() {
 		)
 		.join("")}</feed>`;
 
-	Bun.write("dist/feed.atom", feed);
+	return feed;
 }
 
 export function rssFeed() {
@@ -124,5 +124,5 @@ export function rssFeed() {
 		)
 		.join("")}</channel></rss>`;
 
-	Bun.write("dist/feed.rss", feed);
+	return feed;
 }

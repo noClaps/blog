@@ -1,9 +1,5 @@
-/** This was taken from Astro's MarkdownHeading type */
-type Heading = {
-	depth: number;
-	slug: string;
-	title: string;
-};
+import type { PropsWithChildren } from "@kitajs/html";
+import type { Heading } from "@noclaps/znak";
 
 interface HeadingTree extends Heading {
 	subheadings: HeadingTree[];
@@ -38,21 +34,19 @@ function TableOfContents(headings: Heading[], nested: boolean = false) {
 	);
 }
 
-export default function Post(
-	props: {
-		title: string;
-		description?: string;
-		author: {
-			name: string;
-			link: string;
-		};
-		date?: Date;
-		lastmod?: Date;
-		headings: Heading[];
-	},
-	slot: string,
-	pathname: string,
-) {
+interface PostProps {
+	title: string;
+	description?: string;
+	author: {
+		name: string;
+		link: string;
+	};
+	date?: Date;
+	lastmod?: Date;
+	headings: Heading[];
+	pathname: string;
+}
+export default function Post(props: PropsWithChildren<PostProps>) {
 	const {
 		title,
 		description = "A blog about the most random things you can think of.",
@@ -60,6 +54,8 @@ export default function Post(
 		date,
 		lastmod,
 		headings,
+		pathname,
+		children,
 	} = props;
 	const pubDate = lastmod ?? date;
 
@@ -188,7 +184,7 @@ export default function Post(
 									</p>
 								</div>
 							</div>
-							<article>{slot}</article>
+							<article>{children}</article>
 						</main>
 					</div>
 				</body>

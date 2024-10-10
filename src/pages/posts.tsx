@@ -2,7 +2,7 @@ import { headings as headingsFn, render } from "@noclaps/znak";
 import { getCollection, removeFrontmatter } from "../../scripts/utils";
 import Post from "../layouts/Post";
 
-export async function writePosts() {
+export async function* writePosts() {
 	const posts = await getCollection("posts");
 	for (const post of posts) {
 		const postContent = removeFrontmatter(
@@ -12,25 +12,26 @@ export async function writePosts() {
 
 		const headings = headingsFn(postContent);
 
-		Bun.write(
-			`dist/${post.slug}.html`,
-			Post(
-				{
-					title: post.title,
-					description: post.description,
-					author: post.author,
-					date: post.date,
-					lastmod: post.lastmod,
-					headings,
-				},
-				html,
-				`/${post.slug}`,
+		yield {
+			filePath: `${post.slug}.html`,
+			post: (
+				<Post
+					title={post.title}
+					description={post.description}
+					author={post.author}
+					date={post.date}
+					lastmod={post.lastmod}
+					headings={headings}
+					pathname={`/${post.slug}`}
+				>
+					{html}
+				</Post>
 			),
-		);
+		};
 	}
 }
 
-export async function writeNotes() {
+export async function* writeNotes() {
 	const notes = await getCollection("notes");
 	for (const note of notes) {
 		const noteContent = removeFrontmatter(
@@ -39,24 +40,25 @@ export async function writeNotes() {
 		const html = await render(noteContent);
 		const headings = headingsFn(noteContent);
 
-		Bun.write(
-			`./dist/notes/${note.slug}.html`,
-			Post(
-				{
-					title: note.title,
-					author: note.author,
-					date: note.date,
-					lastmod: note.lastmod,
-					headings,
-				},
-				html,
-				`/notes/${note.slug}`,
+		yield {
+			filePath: `notes/${note.slug}.html`,
+			post: (
+				<Post
+					title={note.title}
+					author={note.author}
+					date={note.date}
+					lastmod={note.lastmod}
+					headings={headings}
+					pathname={`/notes/${note.slug}`}
+				>
+					{html}
+				</Post>
 			),
-		);
+		};
 	}
 }
 
-export async function writeStories() {
+export async function* writeStories() {
 	const stories = await getCollection("stories");
 	for (const story of stories) {
 		const storyContent = removeFrontmatter(
@@ -65,17 +67,18 @@ export async function writeStories() {
 		const html = await render(storyContent);
 		const headings = headingsFn(storyContent);
 
-		Bun.write(
-			`./dist/stories/${story.slug}.html`,
-			Post(
-				{
-					title: story.title,
-					author: story.author,
-					headings,
-				},
-				html,
-				`/stories/${story.slug}`,
+		yield {
+			filePath: `stories/${story.slug}.html`,
+			post: (
+				<Post
+					title={story.title}
+					author={story.author}
+					headings={headings}
+					pathname={`/stories/${story.slug}`}
+				>
+					{html}
+				</Post>
 			),
-		);
+		};
 	}
 }
