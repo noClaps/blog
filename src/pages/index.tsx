@@ -5,7 +5,7 @@ import Topic from "../components/Topic";
 import Title from "../components/Title";
 import Header from "../components/Header";
 
-async function indexPage() {
+export async function indexPage() {
 	return (
 		<>
 			{`<!doctype html>`}
@@ -32,7 +32,7 @@ async function indexPage() {
 	).toString();
 }
 
-async function notesPage() {
+export async function notesPage() {
 	const notes = await getCollection("notes").then((notes) => {
 		return notes.sort((a, b) => {
 			const aDate = a.lastmod ?? a.date;
@@ -74,7 +74,7 @@ async function notesPage() {
 	).toString();
 }
 
-async function storiesPage() {
+export async function storiesPage() {
 	const stories = await getCollection("stories");
 	return (
 		<>
@@ -104,7 +104,3 @@ async function storiesPage() {
 		</>
 	).toString();
 }
-
-Bun.write("dist/index.html", await indexPage());
-Bun.write("dist/notes/index.html", await notesPage());
-Bun.write("dist/stories/index.html", await storiesPage());

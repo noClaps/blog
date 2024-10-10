@@ -1,17 +1,22 @@
-import { $ } from "bun";
+import { jsonFeed, rssFeed, atomFeed } from "../src/pages/feed";
 import { AlertTriangle, MessageSquare, StickyNote } from "lucide-static";
+import { indexPage, notesPage, storiesPage } from "../src/pages";
+import { writeNotes, writePosts, writeStories } from "../src/pages/posts";
 
-// Prepare
-await $`mkdir -p dist`;
+// Build feeds
+jsonFeed();
+rssFeed();
+atomFeed();
 
-// Copy static files
-await $`cp -a public/. dist`;
+// Build index pages
+Bun.write("dist/index.html", await indexPage());
+Bun.write("dist/notes/index.html", await notesPage());
+Bun.write("dist/stories/index.html", await storiesPage());
 
-// Build HTML
-const files = new Bun.Glob("**/**.{ts,tsx}").scanSync({ cwd: "src/pages" });
-for (const file of files) {
-	await $`bun run src/pages/${file}`;
-}
+// Build posts
+await writePosts();
+await writeNotes();
+await writeStories();
 
 // Build post components
 const htmlFiles = new Bun.Glob("**/*.html").scanSync({ cwd: "dist/" });

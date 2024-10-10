@@ -50,7 +50,7 @@ const authors = (await getCollection("authors")).map((author) => ({
 	url: author.link,
 }));
 
-function jsonFeed() {
+export function jsonFeed() {
 	const entries = items.map((item) => ({
 		id: `https://blog.zerolimits.dev/${item.slug}`,
 		url: `https://blog.zerolimits.dev/${item.slug}`,
@@ -79,7 +79,7 @@ function jsonFeed() {
 	Bun.write("dist/feed.json", JSON.stringify(feed));
 }
 
-function atomFeed() {
+export function atomFeed() {
 	const entries = items.map((item) => ({
 		id: `https://blog.zerolimits.dev/${item.slug}`,
 		title: item.title,
@@ -105,7 +105,7 @@ function atomFeed() {
 	Bun.write("dist/feed.atom", feed);
 }
 
-function rssFeed() {
+export function rssFeed() {
 	const entries = items.map((item) => ({
 		author: item.author.name,
 		description: "description" in item ? item.description : "",
@@ -126,7 +126,3 @@ function rssFeed() {
 
 	Bun.write("dist/feed.rss", feed);
 }
-
-jsonFeed();
-rssFeed();
-atomFeed();
