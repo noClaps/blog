@@ -1,0 +1,45 @@
+@import url("./global.css");
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Link */
+.link {
+    color: var(--text);
+    display: grid;
+    grid-template-columns: 14ch 1fr;
+    width: 100%;
+    align-items: center;
+    text-decoration: none;
+
+    &:hover h3 {
+        color: var(--primary);
+    }
+
+    @media (max-width: 800px) {
+        grid-template-columns: none;
+        grid-template-rows: auto;
+    }
+
+    h3 {
+        margin: 0.25rem 0;
+        transition: color 0.25s;
+    }
+}
+
+/* Title */
+.title {
+    h1 {
+        font-size: 2.25rem;
+        margin: 0;
+    }
+
+    p {
+        font-size: 1.25rem;
+        color: var(--light);
+    }
+}

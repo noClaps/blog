@@ -2,7 +2,6 @@
 title: Love and War
 description: A modern-day tragedy
 date: 2024-02-15
-author: noClaps
 ---
 
 ## A New Year's party

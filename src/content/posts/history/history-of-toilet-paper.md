@@ -2,7 +2,6 @@
 title: History of Toilet Paper
 description: The long and quite strange history of toilet paper
 date: 2021-12-26
-author: noClaps
 ---
 
 ---

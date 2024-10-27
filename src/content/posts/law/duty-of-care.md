@@ -2,7 +2,6 @@
 title: Duty of Care
 description: R v Stone and Dobinson
 date: 2023-09-15
-author: noClaps
 ---
 
 ::: note

@@ -1,7 +1,6 @@
 ---
 title: Textack - 2023
 date: 2023-12-06
-author: noClaps
 ---
 
 I've learned a lot about different things over this last year, and I thought I'd share some of the tools and things I've been using, and maybe talk a little bit about what I plan to use next year, in 2024.

@@ -2,7 +2,6 @@
 title: The Split-Brain Experiment
 description: Cutting the corpus callosum
 date: 2023-07-13
-author: noClaps
 ---
 
 ## Patient WJ

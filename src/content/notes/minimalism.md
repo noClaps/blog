@@ -1,7 +1,6 @@
 ---
 title: Minimalism
 date: 2024-06-03
-author: noClaps
 ---
 
 I was watching a [YouTube video](https://www.youtube.com/watch?v=Fd57NOavMWs) the other day by this content creator called Mrwhosetheboss, about how he bought all this minimalist tech. A lot of it was quite expensive, and while yes, some of it was pretty cool, I also felt like it wasn't really worth it.

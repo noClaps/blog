@@ -1,7 +1,6 @@
 ---
 title: A beginner's guide to Quantum and Particle Physics
 date: 2024-02-21
-author: noClaps
 ---
 
 ::: note

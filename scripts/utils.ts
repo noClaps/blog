@@ -1,180 +1,118 @@
-type AuthorCollection = {
-	name: string;
-	link: string;
-};
-export type PostsCollection = {
-	slug: string;
-	title: string;
-	description: string;
-	author: AuthorCollection;
-	date: Date;
-	lastmod?: Date;
-	series?: number;
-};
-export type NotesCollection = {
-	slug: string;
-	title: string;
-	author: AuthorCollection;
-	date: Date;
-	lastmod?: Date;
-};
-export type StoriesCollection = {
-	slug: string;
-	title: string;
-	author: AuthorCollection;
-};
-
-type PostsFrontmatter = {
-	title: string;
-	description: string;
-	author: string;
-	date: string;
-	lastmod?: string;
-	series?: string;
-};
-
-type NotesFrontmatter = {
-	title: string;
-	author: string;
-	date: string;
-	lastmod?: string;
-};
-
-type StoriesFrontmatter = {
-	title: string;
-	author: string;
-};
-
-function frontmatter<
-	T = PostsFrontmatter | NotesFrontmatter | StoriesFrontmatter,
->(md: string) {
-	const frontmatterRegex = md.match(/^---([\w:\s\S]*?)---/);
-	if (!frontmatterRegex) throw new Error("Frontmatter not found");
-
-	let frontmatter = frontmatterRegex[0];
-
-	frontmatter = frontmatter.replaceAll(/\n?---\n?/g, "");
-	const frontmatterData = frontmatter
-		.split("\n")
-		.map((str) => str.split(/:\s?/));
-
-	const dataObject: { [key: string]: string } = {};
-	for (let data of frontmatterData) {
-		data = data.map((i) => i.replaceAll(`"`, ""));
-		dataObject[data[0]] = data.slice(1).join(": ");
-	}
-
-	return dataObject as T;
+export interface PostsCollection {
+  slug: string;
+  title: string;
+  description?: string;
+  date: Date;
+  lastmod?: Date;
+  series?: number;
 }
 
-export async function getCollection(
-	name: "authors",
-): Promise<AuthorCollection[]>;
-export async function getCollection(name: "notes"): Promise<NotesCollection[]>;
-export async function getCollection(name: "posts"): Promise<PostsCollection[]>;
-export async function getCollection(
-	name: "stories",
-): Promise<StoriesCollection[]>;
-export async function getCollection(
-	name: "authors" | "notes" | "posts" | "stories",
-) {
-	switch (name) {
-		case "authors": {
-			const collection = new Bun.Glob("*.json").scanSync({
-				cwd: "src/content/authors",
-			});
-			const data: AuthorCollection[] = [];
-			for (const file of collection) {
-				data.push(await Bun.file(`src/content/authors/${file}`).json());
-			}
-			return data;
-		}
+type PostsFrontmatter = {
+  title: string;
+  description?: string;
+  date: string;
+  lastmod?: string;
+  series?: string;
+};
 
-		case "notes": {
-			const collection = new Bun.Glob("**/*.md").scanSync({
-				cwd: "src/content/notes",
-			});
+function frontmatter(md: string) {
+  const frontmatterRegex = md.match(/^---([\w:\s\S]*?)---/);
+  if (!frontmatterRegex) throw new Error("Frontmatter not found");
 
-			const data: NotesCollection[] = [];
-			for (const file of collection) {
-				const fm = frontmatter<NotesFrontmatter>(
-					await Bun.file(`src/content/notes/${file}`).text(),
-				);
-				const author = (await getCollection("authors")).find(
-					(i) => i.name === fm.author,
-				);
-				if (!author) throw new Error(`Author for ${file} not found`);
+  let frontmatter = frontmatterRegex[0];
 
-				data.push({
-					slug: file.replace(".md", ""),
-					title: fm.title,
-					author,
-					date: new Date(fm.date),
-					lastmod: fm.lastmod ? new Date(fm.lastmod) : undefined,
-				});
-			}
-			return data;
-		}
+  frontmatter = frontmatter.replaceAll(/\n?---\n?/g, "");
+  const frontmatterData = frontmatter
+    .split("\n")
+    .map((str) => str.split(/:\s?/));
 
-		case "posts": {
-			const collection = new Bun.Glob("**/*.md").scanSync({
-				cwd: "src/content/posts",
-			});
+  const dataObject: { [key: string]: string } = {};
+  for (let data of frontmatterData) {
+    data = data.map((i) => i.replaceAll(`"`, ""));
+    dataObject[data[0]] = data.slice(1).join(": ");
+  }
 
-			const data: PostsCollection[] = [];
-			for (const file of collection) {
-				const fm = frontmatter<PostsFrontmatter>(
-					await Bun.file(`src/content/posts/${file}`).text(),
-				);
-				const author = (await getCollection("authors")).find(
-					(i) => i.name === fm.author,
-				);
-				if (!author) throw new Error(`Author for ${file} not found`);
+  return dataObject as PostsFrontmatter;
+}
 
-				data.push({
-					slug: file.replace(".md", ""),
-					title: fm.title,
-					description: fm.description,
-					author,
-					date: new Date(fm.date),
-					lastmod: fm.lastmod ? new Date(fm.lastmod) : undefined,
-					series: fm.series ? Number.parseInt(fm.series) : undefined,
-				});
-			}
+export async function getCollection(name: "notes" | "posts" | "stories") {
+  switch (name) {
+    case "notes": {
+      const collection = new Bun.Glob("**/*.md").scanSync({
+        cwd: "src/content/notes",
+      });
 
-			return data;
-		}
+      const data: PostsCollection[] = [];
+      for (const file of collection) {
+        const fm = frontmatter(
+          await Bun.file(`src/content/notes/${file}`).text(),
+        );
 
-		case "stories": {
-			const collection = new Bun.Glob("**/*.md").scanSync({
-				cwd: "src/content/stories",
-			});
+        data.push({
+          slug: file.replace(".md", ""),
+          title: fm.title,
+          date: new Date(fm.date),
+          lastmod: fm.lastmod ? new Date(fm.lastmod) : undefined,
+        });
+      }
+      return data;
+    }
 
-			const data: StoriesCollection[] = [];
-			for (const file of collection) {
-				const fm = frontmatter<StoriesFrontmatter>(
-					await Bun.file(`src/content/stories/${file}`).text(),
-				);
-				const author = (await getCollection("authors")).find(
-					(i) => i.name === fm.author,
-				);
-				if (!author) throw new Error(`Author for ${file} not found`);
+    case "posts": {
+      const collection = new Bun.Glob("**/*.md").scanSync({
+        cwd: "src/content/posts",
+      });
 
-				data.push({
-					slug: file.replace(".md", ""),
-					title: fm.title,
-					author,
-				});
-			}
+      const data: PostsCollection[] = [];
+      for (const file of collection) {
+        const fm = frontmatter(
+          await Bun.file(`src/content/posts/${file}`).text(),
+        );
 
-			return data;
-		}
+        data.push({
+          slug: file.replace(".md", ""),
+          title: fm.title,
+          description: fm.description,
+          date: new Date(fm.date),
+          lastmod: fm.lastmod ? new Date(fm.lastmod) : undefined,
+          series: fm.series ? Number.parseInt(fm.series) : undefined,
+        });
+      }
 
-		default:
-			throw new Error("Invalid input");
-	}
+      return data;
+    }
+
+    case "stories": {
+      const collection = new Bun.Glob("**/*.md").scanSync({
+        cwd: "src/content/stories",
+      });
+
+      const data: PostsCollection[] = [];
+      for (const file of collection) {
+        const fm = frontmatter(
+          await Bun.file(`src/content/stories/${file}`).text(),
+        );
+
+        data.push({
+          slug: file.replace(".md", ""),
+          title: fm.title,
+          date: new Date(fm.date),
+          lastmod: fm.lastmod ? new Date(fm.lastmod) : undefined,
+        });
+      }
+
+      return data;
+    }
+
+    default:
+      throw new Error("Invalid input");
+  }
 }
 
 export function removeFrontmatter(md: string) {
-	return md.replace(/^---([\w:\s\S]*?)---/, "").trim();
+  return md.replace(/^---([\w:\s\S]*?)---/, "").trim();
+}
+
+export function formatDate(date: Date) {
+  return `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
 }

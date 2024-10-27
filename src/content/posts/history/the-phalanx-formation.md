@@ -3,7 +3,6 @@ title: The Phalanx Formation
 description: My favorite ancient Greek battle formation
 date: 2021-12-30
 lastmod: 2022-07-31
-author: noClaps
 ---
 
 ## The origin story

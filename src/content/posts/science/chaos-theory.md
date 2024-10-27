@@ -2,7 +2,6 @@
 title: Chaos Theory
 description: How the simplest things can go haywire
 date: 2021-12-02
-author: noClaps
 ---
 
 ## The main stuff
