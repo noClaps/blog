@@ -1,6 +1,6 @@
 ---
 title: What Happens When We Die?
-author: noClaps
+date: 2024-10-04
 ---
 
 You opened your eyes slowly, flinching at what you saw as a bright light. Of course, it wasn't as bright for the rest of us, since we had been there for a few hours, but this was your first view of the real world. You slowly opened your eyes, and your mouth, and the most pleasurable sound I have ever heard came out, your first cry.

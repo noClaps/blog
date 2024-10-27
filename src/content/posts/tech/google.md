@@ -3,7 +3,6 @@ title: "Google: A Misrepresented Evil"
 description: Don't be evil, sometimes.
 date: 2022-08-12
 lastmod: 2022-11-26
-author: noClaps
 ---
 
 ## Humble beginnings

@@ -1,7 +1,6 @@
 ---
 title: Mozilla
 date: 2024-01-20
-author: noClaps
 ---
 
 I have a problem with Mozilla, and there's enough here to warrant a whole post. Credits to [Bryan Lunduke](https://lunduke.locals.com/post/4387539/firefox-money-investigating-the-bizarre-finances-of-mozilla) for the idea, and you can consider this an updated version of his post. Update: He also has a [2023 version](https://lunduke.locals.com/post/5053290/mozilla-2023-annual-report-ceo-pay-skyrockets-while-firefox-marketshare-nosedives)!

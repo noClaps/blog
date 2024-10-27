@@ -1,87 +1,31 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<link rel="icon" href="/favicon.ico" />
-		<title>Feed - The Blog of Random</title>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta
-			name="description"
-			content="A blog about the most random things you can think of."
-		/>
-		<link
-			href="https://api.fontshare.com/v2/css?f[]=switzer@2,1&display=swap"
-			rel="stylesheet"
-		/>
-		<link
-			rel="alternate"
-			href="/feed.json"
-			type="application/json"
-			title="Feed"
-		/>
-		<link
-			rel="alternate"
-			href="/feed.atom"
-			type="application/atom+xml"
-			title="Feed"
-		/>
-		<link
-			rel="alternate"
-			href="/feed.rss"
-			type="application/rss+xml"
-			title="Feed"
-		/>
-		<link rel="stylesheet" href="/styles/global.css" />
-	</head>
-	<body>
-		<header>
-			<div>
-				<a class="home" href="/">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="24"
-						height="24"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						class="lucide lucide-home"
-					>
-						<path
-							d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
-						/>
-						<polyline points="9 22 9 12 15 12 15 22" />
-					</svg>
-				</a>
-				<div></div>
-			</div>
-			<a class="feed" href="/feed" title="Feed">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="24"
-					height="24"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					class="lucide lucide-rss"
-				>
-					<path d="M4 11a9 9 0 0 1 9 9"></path>
-					<path d="M4 4a16 16 0 0 1 16 16"></path>
-					<circle cx="5" cy="19" r="1"></circle>
-				</svg>
-			</a>
-		</header>
-		<main>
-			<h2>The Blog of Random Feed</h2>
-			<p>
-				Simply enter <code>https://blog.zerolimits.dev</code> into your
-				feed reader, it should automatically find and add the feed!
-			</p>
-		</main>
-	</body>
+    <head>
+        <link rel="icon" href="/favicon.ico" />
+        <title>Feed - The Blog of Random</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="A blog about the most random things you can think of."
+        />
+        <link rel="alternate" href="/feed.json" type="application/json" />
+        <link rel="alternate" href="/feed.atom" type="application/atom+xml" />
+        <link rel="alternate" href="/feed.rss" type="application/rss+xml" />
+        <link rel="stylesheet" href="/styles/global.css" />
+    </head>
+    <body>
+        <header>
+            <a class="home" href="/">
+                <h1>The Blog of Random</h1>
+            </a>
+        </header>
+        <main>
+            <h2>The Blog of Random Feed</h2>
+            <p>
+                Simply enter <code>https://blog.zerolimits.dev</code> into your
+                feed reader, it should automatically find and add the feed!
+            </p>
+        </main>
+    </body>
 </html>

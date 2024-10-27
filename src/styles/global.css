@@ -1,0 +1,95 @@
+/* Fonts */
+@font-face {
+    font-family: InterVariable;
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("https://rsms.me/inter/font-files/InterVariable.woff2?v=4.0")
+        format("woff2");
+}
+
+/* Vars */
+:root {
+    --code-bg: #24292e;
+    --code-text: #e1e4e8;
+
+    --sans: InterVariable, system-ui;
+    --serif: ui-serif, serif;
+    --mono: ui-monospace, monospace;
+
+    /* Generated using Realtime Colors: https://www.realtimecolors.com/ */
+    --text: oklch(90% 0 none);
+    --background: oklch(20% 0 none);
+    --light: oklch(from var(--text) l c h / 70%);
+    --primary: oklch(70% 0.225 256);
+}
+
+/* Root */
+:root {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+    font-family: var(--sans);
+    font-feature-settings:
+        "liga" 1,
+        "calt" 1,
+        "case" 1,
+        "ss04" 1,
+        "cv10" 1;
+    font-weight: 450;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text);
+    width: 88dvw;
+    max-width: 48rem;
+    margin: auto;
+    margin-bottom: 2rem;
+}
+
+p {
+    line-height: 1.5;
+    margin: 1rem 0;
+}
+
+/* Header */
+header {
+    display: flex;
+    padding: 2dvh 0;
+    background-color: var(--background);
+    justify-content: space-between;
+    align-items: center;
+
+    a {
+        color: var(--text);
+        text-decoration: none;
+        display: inline-flex;
+        justify-content: center;
+        align-content: center;
+        transition: color 0.25s;
+
+        &:hover {
+            color: var(--primary);
+        }
+    }
+
+    svg {
+        height: 1.25rem;
+        width: 1.25rem;
+    }
+
+    h1 {
+        font-size: 1.25rem;
+        margin: 0;
+    }
+}
+
+time {
+    margin: 0.25rem 0;
+    color: var(--light);
+    font-family: var(--mono);
+}
+
+h2 {
+    margin-top: 2.5rem;
+}

@@ -2,7 +2,6 @@
 title: Collatz Conjecture
 description: The simplest hardest problem in math history
 date: 2022-11-08
-author: noClaps
 ---
 
 ---
