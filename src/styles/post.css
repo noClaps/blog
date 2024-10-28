@@ -53,7 +53,7 @@ code:not(pre code) {
 }
 
 /* Math */
-.katex math[display="block"] {
+math[display="block"] {
     margin: 1rem;
     font-size: 1.125rem;
 }
