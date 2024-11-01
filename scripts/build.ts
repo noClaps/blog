@@ -1,5 +1,4 @@
 import { jsonFeed, rssFeed, atomFeed } from "../src/pages/feed.ts";
-import { AlertTriangle, MessageSquare, StickyNote } from "lucide-static";
 import { indexPage } from "../src/pages/index.tsx";
 import { writePosts } from "../src/pages/posts.tsx";
 
@@ -27,22 +26,7 @@ Bun.write("dist/index.html", await indexPage());
 
 // Build post components and download images
 function buildPost(post: string, filePath: string) {
-  const htmlRw = new HTMLRewriter()
-    .on(".note-heading", {
-      element(el) {
-        el.prepend(StickyNote, { html: true });
-      },
-    })
-    .on(".quote-heading", {
-      element(el) {
-        el.prepend(MessageSquare, { html: true });
-      },
-    })
-    .on(".warning-heading", {
-      element(el) {
-        el.prepend(AlertTriangle, { html: true });
-      },
-    });
+  const htmlRw = new HTMLRewriter();
 
   if (Bun.env.NODE_ENV === "production") {
     htmlRw.on("img", {

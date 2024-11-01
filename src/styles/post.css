@@ -95,10 +95,9 @@ img {
 .znak-container {
     display: grid;
     padding: 1rem;
-    border-radius: 0.5rem;
     margin: 0.5rem 0;
-    background-color: oklch(from var(--container) l c h / 25%);
-    border: 0.125rem solid var(--container);
+    background-color: oklch(from var(--container) l c h / 5%);
+    border-left: 0.25rem solid var(--container);
 
     p[class$="heading"] {
         margin: 0;
@@ -119,6 +118,10 @@ img {
             color: var(--text);
             text-decoration: underline;
         }
+    }
+
+    a {
+        color: oklch(from var(--container) 60% c h);
     }
 }
 
