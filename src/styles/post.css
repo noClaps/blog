@@ -80,6 +80,10 @@ time {
 }
 
 /* Figure */
+figure {
+    margin: auto 0;
+}
+
 figcaption {
     text-align: center;
     width: 80%;
