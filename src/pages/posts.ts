@@ -1,6 +1,6 @@
 import { render } from "@noclaps/znak";
 import { getCollection, removeFrontmatter } from "../../scripts/utils.ts";
-import Post from "../layouts/Post.tsx";
+import Post from "../layouts/Post.ts";
 
 export async function writePosts(collection: "notes" | "posts" | "stories") {
   const posts = await getCollection(collection);
@@ -12,16 +12,13 @@ export async function writePosts(collection: "notes" | "posts" | "stories") {
 
     return {
       filePath: `${post.slug}.html`,
-      post: (
-        <Post
-          title={post.title}
-          description={post.description}
-          date={post.date}
-          lastmod={post.lastmod}
-        >
-          {html}
-        </Post>
-      ),
+      post: Post({
+        title: post.title,
+        description: post.description,
+        date: post.date,
+        lastmod: post.lastmod,
+        children: html,
+      }),
     };
   });
 }

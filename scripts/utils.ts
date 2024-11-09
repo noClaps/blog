@@ -116,3 +116,19 @@ export function removeFrontmatter(md: string) {
 export function formatDate(date: Date) {
   return `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
 }
+
+// Template functions
+export function html(strings: TemplateStringsArray, ...values: any[]) {
+  let output = "";
+  for (let i = 0; i < strings.length; i++) {
+    const miniString = strings[i]
+      .split("\n")
+      .map((l) => l.trim())
+      .join(" ")
+      .trim()
+      .replaceAll("> <", "><");
+    output += miniString;
+    if (values[i]) output += values[i].toString().trim();
+  }
+  return output;
+}

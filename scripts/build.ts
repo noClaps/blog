@@ -1,6 +1,6 @@
 import { jsonFeed, rssFeed, atomFeed } from "../src/pages/feed.ts";
-import { indexPage } from "../src/pages/index.tsx";
-import { writePosts } from "../src/pages/posts.tsx";
+import { indexPage } from "../src/pages/index.ts";
+import { writePosts } from "../src/pages/posts.ts";
 
 // Copy static files
 const staticFiles = new Bun.Glob("**/*").scanSync({ cwd: "public" });
