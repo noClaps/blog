@@ -1,4 +1,4 @@
-import { jsonFeed, rssFeed, atomFeed } from "../src/pages/feed.ts";
+import { jsonFeed, rssFeed, atomFeed, feedPage } from "../src/pages/feed.ts";
 import { indexPage } from "../src/pages/index.ts";
 import { writePosts } from "../src/pages/posts.ts";
 
@@ -7,22 +7,35 @@ const staticFiles = new Bun.Glob("**/*").scanSync({ cwd: "public" });
 for (const file of staticFiles)
   Bun.write(`dist/${file}`, Bun.file(`public/${file}`));
 
-// Build stylesheets
-const stylesheets = new Bun.Glob("*.css").scanSync({ cwd: "src/styles" });
-await Bun.build({
-  entrypoints: Array.from(stylesheets).map((c) => `src/styles/${c}`),
-  experimentalCss: true,
-  minify: true,
-  outdir: "dist/styles",
-});
-
 // Build feeds
 Bun.write("dist/feed.json", jsonFeed());
 Bun.write("dist/feed.atom", atomFeed());
 Bun.write("dist/feed.rss", rssFeed());
+Bun.write("dist/feed.html", buildHtml(feedPage()));
 
 // Build index page
-Bun.write("dist/index.html", await indexPage());
+Bun.write("dist/index.html", buildHtml(await indexPage()));
+
+function buildHtml(html: string) {
+  const htmlRw = new HTMLRewriter();
+
+  htmlRw.on("link[rel=stylesheet]", {
+    async element(el) {
+      const href = el.getAttribute("href");
+      if (!href) return;
+
+      const styles = await Bun.build({
+        entrypoints: [`src/${href}`],
+        experimentalCss: true,
+        minify: true,
+      }).then((bo) => bo.outputs[0].text());
+
+      el.replace(`<style>${styles.trim()}</style>`, { html: true });
+    },
+  });
+
+  return htmlRw.transform(html);
+}
 
 // Build post components and download images
 function buildPost(post: string, filePath: string) {
@@ -47,7 +60,7 @@ function buildPost(post: string, filePath: string) {
     });
   }
 
-  return htmlRw.transform(post);
+  return htmlRw.transform(buildHtml(post));
 }
 
 // Build posts
