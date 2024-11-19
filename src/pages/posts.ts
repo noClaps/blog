@@ -1,5 +1,9 @@
 import { render } from "@noclaps/znak";
-import { getCollection, removeFrontmatter } from "../../scripts/utils.ts";
+import {
+  codeTheme,
+  getCollection,
+  removeFrontmatter,
+} from "../../scripts/utils.ts";
 import Post from "../layouts/Post.ts";
 
 export async function writePosts(collection: "notes" | "posts" | "stories") {
@@ -8,7 +12,7 @@ export async function writePosts(collection: "notes" | "posts" | "stories") {
     const postContent = removeFrontmatter(
       await Bun.file(`src/content/${collection}/${post.slug}.md`).text(),
     );
-    const html = await render(postContent);
+    const html = await render(postContent, codeTheme);
 
     return {
       filePath: `${post.slug}.html`,

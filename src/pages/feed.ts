@@ -1,5 +1,10 @@
 import { render } from "@noclaps/znak";
-import { getCollection, html, removeFrontmatter } from "../../scripts/utils";
+import {
+  codeTheme,
+  getCollection,
+  html,
+  removeFrontmatter,
+} from "../../scripts/utils";
 
 const postItems = await getCollection("posts");
 const noteItems = await getCollection("notes");
@@ -29,7 +34,7 @@ for (const item of items) {
     }.md`,
   )
     .text()
-    .then(async (md) => await render(removeFrontmatter(md)));
+    .then(async (md) => await render(removeFrontmatter(md), codeTheme));
   content[item.slug] = html;
 }
 
