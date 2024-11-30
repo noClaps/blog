@@ -137,7 +137,7 @@ export function html(strings: TemplateStringsArray, ...values: any[]) {
 
 // Zerolimits code theme
 export const codeTheme: CodeTheme = {
-  bg: "#222",
+  bg: "#111",
   fg: "#fff",
   tokenColors: [
     {
