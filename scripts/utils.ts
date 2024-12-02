@@ -66,11 +66,8 @@ export function html(strings: TemplateStringsArray, ...values: any[]) {
   let output = "";
   for (let i = 0; i < strings.length; i++) {
     const miniString = strings[i]
-      .split("\n")
-      .map((l) => l.trim())
-      .join(" ")
-      .trim()
-      .replaceAll("> <", "><");
+      .replaceAll(/>\s+</g, "><")
+      .replaceAll(/\s+/g, " ");
     output += miniString;
     if (values[i]) output += values[i].toString().trim();
   }
