@@ -70,7 +70,7 @@ export async function indexPage() {
               .map((note) =>
                 Link({
                   title: note.title,
-                  href: `notes/${note.slug}`,
+                  href: note.slug,
                   date: note.lastmod ?? note.date,
                 }),
               )
@@ -82,7 +82,7 @@ export async function indexPage() {
               .map((story) =>
                 Link({
                   title: story.title,
-                  href: `stories/${story.slug}`,
+                  href: story.slug,
                   date: story.lastmod ?? story.date,
                 }),
               )

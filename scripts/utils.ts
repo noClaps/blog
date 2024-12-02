@@ -38,77 +38,23 @@ function frontmatter(md: string) {
 }
 
 export async function getCollection(name: "notes" | "posts" | "stories") {
-  switch (name) {
-    case "notes": {
-      const collection = new Bun.Glob("**/*.md").scanSync({
-        cwd: "src/content/notes",
-      });
+  const collection = new Bun.Glob("*.md").scanSync({
+    cwd: `src/content/${name}`,
+  });
+  const data: PostsCollection[] = [];
+  for (const file of collection) {
+    const fm = frontmatter(
+      await Bun.file(`src/content/${name}/${file}`).text(),
+    );
 
-      const data: PostsCollection[] = [];
-      for (const file of collection) {
-        const fm = frontmatter(
-          await Bun.file(`src/content/notes/${file}`).text(),
-        );
-
-        data.push({
-          slug: file.replace(".md", ""),
-          title: fm.title,
-          date: new Date(fm.date),
-          lastmod: fm.lastmod ? new Date(fm.lastmod) : undefined,
-        });
-      }
-      return data;
-    }
-
-    case "posts": {
-      const collection = new Bun.Glob("**/*.md").scanSync({
-        cwd: "src/content/posts",
-      });
-
-      const data: PostsCollection[] = [];
-      for (const file of collection) {
-        const fm = frontmatter(
-          await Bun.file(`src/content/posts/${file}`).text(),
-        );
-
-        data.push({
-          slug: file.replace(".md", ""),
-          title: fm.title,
-          description: fm.description,
-          date: new Date(fm.date),
-          lastmod: fm.lastmod ? new Date(fm.lastmod) : undefined,
-          series: fm.series ? Number.parseInt(fm.series) : undefined,
-        });
-      }
-
-      return data;
-    }
-
-    case "stories": {
-      const collection = new Bun.Glob("**/*.md").scanSync({
-        cwd: "src/content/stories",
-      });
-
-      const data: PostsCollection[] = [];
-      for (const file of collection) {
-        const fm = frontmatter(
-          await Bun.file(`src/content/stories/${file}`).text(),
-        );
-
-        data.push({
-          slug: file.replace(".md", ""),
-          title: fm.title,
-          date: new Date(fm.date),
-          lastmod: fm.lastmod ? new Date(fm.lastmod) : undefined,
-        });
-      }
-
-      return data;
-    }
-
-    default:
-      throw new Error("Invalid input");
+    data.push({
+      slug: `${name}/${file.replace(".md", "")}`,
+      title: fm.title,
+      date: new Date(fm.date),
+      lastmod: fm.lastmod ? new Date(fm.lastmod) : undefined,
+    });
   }
+  return data;
 }
 
 export function removeFrontmatter(md: string) {
