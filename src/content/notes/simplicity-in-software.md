@@ -5,7 +5,7 @@ date: 2024-12-02
 
 ## Do everything okay
 
-There's been a lot of products coming out recently with all these fancy new features. You have [Arc](https://arc.net) (which recently got put into maintenance mode), [Cursor](https://cursor.com), [Zed](https://zed.dev) (which I use), [Dia](https://www.diabrowser.com) (a new browser from the Arc team), etc. I'm sure you've seen at least some of these kinds of products around somewhere on the internets.
+There's been a lot of products coming out recently with all these fancy new features. You have [Arc](https://arc.net) (which recently got [put into maintenance mode](https://www.youtube.com/watch?v=E9yZ0JusME4)), [Cursor](https://cursor.com), [Zed](https://zed.dev) (which I use), [Dia](https://www.diabrowser.com) (a new browser from the Arc team), etc. I'm sure you've seen at least some of these kinds of products around somewhere on the internets.
 
 One thing I've seen all of these have in common is that they try to do so much all in one product. Arc wanted to be your entire OS, despite being primarily a browser. Zed wants to put collaboration, AI, and code editing all into one product, and I'm honestly not even sure what Dia is trying to do. To be clear, this isn't anything new, apps have been trying to be all-in-one for a long, long time, and I'm sure they'll keep on trying for as long as there's people willing to pay for them.
 
