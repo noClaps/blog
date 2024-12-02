@@ -1,6 +1,6 @@
 import type { CodeTheme } from "@noclaps/znak";
 
-export interface PostsCollection {
+export interface Post {
   slug: string;
   title: string;
   description?: string;
@@ -9,7 +9,7 @@ export interface PostsCollection {
   content: string;
 }
 
-type PostsFrontmatter = {
+type Frontmatter = {
   title: string;
   description?: string;
   date: string;
@@ -33,14 +33,14 @@ function frontmatter(md: string) {
     dataObject[data[0]] = data.slice(1).join(": ");
   }
 
-  return dataObject as PostsFrontmatter;
+  return dataObject as Frontmatter;
 }
 
 export async function getPosts() {
   const collection = new Bun.Glob("**/*.md").scanSync({
     cwd: `src/content/`,
   });
-  const data: PostsCollection[] = [];
+  const data: Post[] = [];
   for (const file of collection) {
     const fileContent = await Bun.file(`src/content/${file}`).text();
     const fm = frontmatter(fileContent);

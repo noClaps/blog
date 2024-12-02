@@ -1,12 +1,7 @@
-import {
-  formatDate,
-  getPosts,
-  html,
-  type PostsCollection,
-} from "../../scripts/utils.ts";
+import { formatDate, getPosts, html, type Post } from "../../scripts/utils.ts";
 import { Head, Header } from "../components.ts";
 
-function sortPosts(a: PostsCollection, b: PostsCollection) {
+function sortPosts(a: Post, b: Post) {
   const aDate = a.lastmod ?? a.date;
   const bDate = b.lastmod ?? b.date;
 
