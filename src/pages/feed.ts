@@ -10,14 +10,6 @@ const postItems = await getCollection("posts");
 const noteItems = await getCollection("notes");
 const storyItems = await getCollection("stories");
 
-for (const item of noteItems) {
-  item.slug = `notes/${item.slug}`;
-}
-
-for (const item of storyItems) {
-  item.slug = `stories/${item.slug}`;
-}
-
 const items = [...postItems, ...noteItems, ...storyItems];
 
 let lastUpdate = new Date(0);
@@ -28,11 +20,7 @@ for (const item of items) {
     lastUpdate = itemDate;
   }
 
-  const html = await Bun.file(
-    `src/content/${item.slug.startsWith("notes") || item.slug.startsWith("stories") ? "" : "posts/"}${
-      item.slug
-    }.md`,
-  )
+  const html = await Bun.file(`src/content/${item.slug}.md`)
     .text()
     .then(async (md) => await render(removeFrontmatter(md), codeTheme));
   content[item.slug] = html;

@@ -38,11 +38,7 @@ function buildHtml(html: string) {
 }
 
 // Build post components and download images
-function buildPost(
-  post: string,
-  filePath: string,
-  collection: "posts" | "notes" | "stories",
-) {
+function buildPost(post: string, filePath: string) {
   const htmlRw = new HTMLRewriter();
 
   htmlRw
@@ -53,9 +49,8 @@ function buildPost(
 
         const urlArr = href.split("/");
         const filename = urlArr[urlArr.length - 1];
-        const path = `${collection != "posts" ? `/${collection}` : ""}/${filePath.replace(".html", "")}/${filename}`;
-        const inputFilePath = `/${collection}/${filePath.replace(".html", "")}/${filename}`;
-        Bun.write(`dist${path}`, Bun.file(`./src/content${inputFilePath}`));
+        const path = `${filePath.replace(".html", "")}/${filename}`;
+        Bun.write(`dist/${path}`, Bun.file(`./src/content/${path}`));
       },
     })
     .on(`img[src^="./"]`, {
@@ -65,8 +60,8 @@ function buildPost(
 
         const urlArr = src.split("/");
         const filename = urlArr[urlArr.length - 1];
-        const path = `${collection != "posts" ? `/${collection}` : ""}/${filePath.replace(".html", "")}/${filename}`;
-        Bun.write(`dist${path}`, Bun.file(`./src/content${path}`));
+        const path = `${filePath.replace(".html", "")}/${filename}`;
+        Bun.write(`dist/${path}`, Bun.file(`./src/content/${path}`));
       },
     });
 
@@ -94,14 +89,8 @@ function buildPost(
 
 // Build posts
 for await (const { filePath, post } of await writePosts("posts"))
-  Bun.write(`dist/${filePath}`, buildPost(post.toString(), filePath, "posts"));
+  Bun.write(`dist/${filePath}`, buildPost(post.toString(), filePath));
 for await (const { filePath, post } of await writePosts("notes"))
-  Bun.write(
-    `dist/notes/${filePath}`,
-    buildPost(post.toString(), filePath, "notes"),
-  );
+  Bun.write(`dist/${filePath}`, buildPost(post.toString(), filePath));
 for await (const { filePath, post } of await writePosts("stories"))
-  Bun.write(
-    `dist/stories/${filePath}`,
-    buildPost(post.toString(), filePath, "stories"),
-  );
+  Bun.write(`dist/${filePath}`, buildPost(post.toString(), filePath));

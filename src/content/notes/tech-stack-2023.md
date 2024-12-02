@@ -7,7 +7,7 @@ I've learned a lot about different things over this last year, and I thought I'd
 
 ## Hardware
 
-At the beginning of this year, I was using a Lenovo IdeaPad S340 with Fedora. I then moved to Windows around April, and finally got a MacBook Air M2 in August, and I've been using it since. macOS has been amazing for me so far, significantly better than Windows or Linux were (in fact, I wrote a [whole post about Windows and Linux](/tech/operating-systems), and operating systems in general.), and I've been able to get a lot more work done on it. I've started editing photos again, and I'd say my design skills have also gotten better than they were earlier this year. Overall, pretty happy with this purchase.
+At the beginning of this year, I was using a Lenovo IdeaPad S340 with Fedora. I then moved to Windows around April, and finally got a MacBook Air M2 in August, and I've been using it since. macOS has been amazing for me so far, significantly better than Windows or Linux were (in fact, I wrote a [whole post about Windows and Linux](/posts/operating-systems), and operating systems in general.), and I've been able to get a lot more work done on it. I've started editing photos again, and I'd say my design skills have also gotten better than they were earlier this year. Overall, pretty happy with this purchase.
 
 I also use my phone to take all of the photos that you see on [Aperturic Focus](https://gallery.zerolimits.dev), except for a few that I took using a DSLR. I don't remember the exact camera model, just that it was a Canon. Most new photos that you see on there will likely be taken on my phone.
 

@@ -10,7 +10,7 @@ export async function writePosts(collection: "notes" | "posts" | "stories") {
   const posts = await getCollection(collection);
   return posts.map(async (post) => {
     const postContent = removeFrontmatter(
-      await Bun.file(`src/content/${collection}/${post.slug}.md`).text(),
+      await Bun.file(`src/content/${post.slug}.md`).text(),
     );
     const html = await render(postContent, codeTheme);
 
