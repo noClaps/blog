@@ -6,7 +6,6 @@ export interface PostsCollection {
   description?: string;
   date: Date;
   lastmod?: Date;
-  series?: number;
 }
 
 type PostsFrontmatter = {
@@ -14,7 +13,6 @@ type PostsFrontmatter = {
   description?: string;
   date: string;
   lastmod?: string;
-  series?: string;
 };
 
 function frontmatter(md: string) {
