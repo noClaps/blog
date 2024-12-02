@@ -38,8 +38,37 @@ function buildHtml(html: string) {
 }
 
 // Build post components and download images
-function buildPost(post: string, filePath: string) {
+function buildPost(
+  post: string,
+  filePath: string,
+  collection: "posts" | "notes" | "stories",
+) {
   const htmlRw = new HTMLRewriter();
+
+  htmlRw
+    .on(`a[download]`, {
+      async element(el) {
+        const href = el.getAttribute("href");
+        if (!href) return;
+
+        const urlArr = href.split("/");
+        const filename = urlArr[urlArr.length - 1];
+        const path = `${collection != "posts" ? `/${collection}` : ""}/${filePath.replace(".html", "")}/${filename}`;
+        const inputFilePath = `/${collection}/${filePath.replace(".html", "")}/${filename}`;
+        Bun.write(`dist${path}`, Bun.file(`./src/content${inputFilePath}`));
+      },
+    })
+    .on(`img[src^="./"]`, {
+      element(el) {
+        const src = el.getAttribute("src");
+        if (!src) return;
+
+        const urlArr = src.split("/");
+        const filename = urlArr[urlArr.length - 1];
+        const path = `${collection != "posts" ? `/${collection}` : ""}/${filePath.replace(".html", "")}/${filename}`;
+        Bun.write(`dist${path}`, Bun.file(`./src/content${path}`));
+      },
+    });
 
   if (Bun.env.NODE_ENV === "production") {
     htmlRw.on("img", {
@@ -65,20 +94,14 @@ function buildPost(post: string, filePath: string) {
 
 // Build posts
 for await (const { filePath, post } of await writePosts("posts"))
-  Bun.write(`dist/${filePath}`, buildPost(post.toString(), filePath));
+  Bun.write(`dist/${filePath}`, buildPost(post.toString(), filePath, "posts"));
 for await (const { filePath, post } of await writePosts("notes"))
-  Bun.write(`dist/notes/${filePath}`, buildPost(post.toString(), filePath));
-for await (const { filePath, post } of await writePosts("stories"))
-  Bun.write(`dist/stories/${filePath}`, buildPost(post.toString(), filePath));
-
-// Build images
-const images = new Bun.Glob("**/*.{png,jpeg,jpg}").scanSync({
-  cwd: "src/content",
-});
-for (const image of images) {
-  const imagePath = image.split("/").slice(1).join("/");
   Bun.write(
-    `dist/${image.startsWith("posts") ? "" : image.split("/")[0]}/${imagePath}`,
-    Bun.file(`src/content/${image}`),
+    `dist/notes/${filePath}`,
+    buildPost(post.toString(), filePath, "notes"),
   );
-}
+for await (const { filePath, post } of await writePosts("stories"))
+  Bun.write(
+    `dist/stories/${filePath}`,
+    buildPost(post.toString(), filePath, "stories"),
+  );
