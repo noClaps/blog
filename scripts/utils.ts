@@ -6,6 +6,7 @@ export interface PostsCollection {
   description?: string;
   date: Date;
   lastmod?: Date;
+  content: string;
 }
 
 type PostsFrontmatter = {
@@ -35,28 +36,25 @@ function frontmatter(md: string) {
   return dataObject as PostsFrontmatter;
 }
 
-export async function getCollection(name: "notes" | "posts" | "stories") {
-  const collection = new Bun.Glob("*.md").scanSync({
-    cwd: `src/content/${name}`,
+export async function getPosts() {
+  const collection = new Bun.Glob("**/*.md").scanSync({
+    cwd: `src/content/`,
   });
   const data: PostsCollection[] = [];
   for (const file of collection) {
-    const fm = frontmatter(
-      await Bun.file(`src/content/${name}/${file}`).text(),
-    );
+    const fileContent = await Bun.file(`src/content/${file}`).text();
+    const fm = frontmatter(fileContent);
+    const postContent = fileContent.replace(/^---([\w:\s\S]*?)---/, "").trim();
 
     data.push({
-      slug: `${name}/${file.replace(".md", "")}`,
+      slug: file.replace(".md", ""),
       title: fm.title,
       date: new Date(fm.date),
       lastmod: fm.lastmod ? new Date(fm.lastmod) : undefined,
+      content: postContent,
     });
   }
   return data;
-}
-
-export function removeFrontmatter(md: string) {
-  return md.replace(/^---([\w:\s\S]*?)---/, "").trim();
 }
 
 export function formatDate(date: Date) {

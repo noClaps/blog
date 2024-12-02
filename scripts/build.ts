@@ -88,9 +88,5 @@ function buildPost(post: string, filePath: string) {
 }
 
 // Build posts
-for await (const { filePath, post } of await writePosts("posts"))
-  Bun.write(`dist/${filePath}`, buildPost(post.toString(), filePath));
-for await (const { filePath, post } of await writePosts("notes"))
-  Bun.write(`dist/${filePath}`, buildPost(post.toString(), filePath));
-for await (const { filePath, post } of await writePosts("stories"))
+for await (const { filePath, post } of await writePosts())
   Bun.write(`dist/${filePath}`, buildPost(post.toString(), filePath));

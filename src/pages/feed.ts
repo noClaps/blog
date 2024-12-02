@@ -1,16 +1,7 @@
 import { render } from "@noclaps/znak";
-import {
-  codeTheme,
-  getCollection,
-  html,
-  removeFrontmatter,
-} from "../../scripts/utils";
+import { codeTheme, getPosts, html } from "../../scripts/utils";
 
-const postItems = await getCollection("posts");
-const noteItems = await getCollection("notes");
-const storyItems = await getCollection("stories");
-
-const items = [...postItems, ...noteItems, ...storyItems];
+const items = await getPosts();
 
 let lastUpdate = new Date(0);
 const content: { [key: string]: string } = {};
@@ -20,9 +11,7 @@ for (const item of items) {
     lastUpdate = itemDate;
   }
 
-  const html = await Bun.file(`src/content/${item.slug}.md`)
-    .text()
-    .then(async (md) => await render(removeFrontmatter(md), codeTheme));
+  const html = await render(item.content, codeTheme);
   content[item.slug] = html;
 }
 

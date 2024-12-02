@@ -1,6 +1,6 @@
 import {
   formatDate,
-  getCollection,
+  getPosts,
   html,
   type PostsCollection,
 } from "../../scripts/utils.ts";
@@ -26,17 +26,16 @@ function Link(props: { title: string; href: string; date: Date }) {
 }
 
 export async function indexPage() {
-  const posts = await getCollection("posts").then((posts) =>
-    posts.sort(sortPosts),
-  );
-
-  const notes = await getCollection("notes").then((notes) =>
-    notes.sort(sortPosts),
-  );
-
-  const stories = await getCollection("stories").then((stories) =>
-    stories.sort(sortPosts),
-  );
+  const items = await getPosts();
+  const posts = items
+    .filter((i) => i.slug.startsWith("posts/"))
+    .sort(sortPosts);
+  const notes = items
+    .filter((i) => i.slug.startsWith("notes/"))
+    .sort(sortPosts);
+  const stories = items
+    .filter((i) => i.slug.startsWith("stories/"))
+    .sort(sortPosts);
 
   return html`
     <!doctype html>
