@@ -1,11 +1,13 @@
 ---
 title: Simplicity in Software
-date: 2024-12-02
+date: 2024-12-05
 ---
 
 There's been a lot of products coming out recently with all these fancy new features. You have [Arc](https://arc.net) (which recently got [put into maintenance mode](https://www.youtube.com/watch?v=E9yZ0JusME4)), [Cursor](https://cursor.com), [Zed](https://zed.dev) (which I use), [Dia](https://www.diabrowser.com) (a new browser from the Arc team), etc. I'm sure you've seen at least some of these kinds of products around somewhere on the internets.
 
 One thing I've seen all of these have in common is that they try to do so much all in one product. Arc wanted to be your entire OS, despite being primarily a browser. Zed wants to put collaboration, AI, and code editing all into one product, and I'm honestly not even sure what Dia is trying to do. Of course, this isn't anything new, apps have been trying to be all-in-one for a long, long time, and I'm sure they'll keep on trying for as long as there's people willing to pay for them.
+
+I think software can be, and should be, simpler than that. There's an idea in software development called the UNIX philosophy, which encapsulates simplicity in software.
 
 ## The UNIX Philosophy
 
@@ -40,9 +42,9 @@ And finally, some are just too specific to be taken literally, but we can still 
 
 ### Do one thing well
 
-However, I want to talk about the first point in this post. I put it in its own section because I have a _lot_ of thoughts on the products that have been coming out recently.
+However, I want to talk about the first point, "do one thing well". I put it in its own section because I have a _lot_ of thoughts on the products that have been coming out recently.
 
-As I mentioned before, a lot of products nowadays seem to want to take over your entire life, or some aspect of it. Let's take the browser, the primary purpose of a browser is to allow the user to browse the internet. It should have features like tabs, bookmarks, extensions, themes, etc., to enhance that browsing experience. So then, why does my browser need to collect data about my browsing habits to show me "more relevant" ads? Why do I need an AI following me around wherever I go on the internet? Why is there an entire cryptocurrency wallet built into my browser? Why do I need to _log in_ to a browser?
+As I mentioned before, a lot of products nowadays seem to want to take over your entire life, or some aspect of it. Let's take the browser, its primary purpose is to allow the user to browse the internet. It should have features like tabs, bookmarks, extensions, themes, etc., to enhance that browsing experience. So then, why does my browser need to collect data about my browsing habits to show me "more relevant" ads? Why do I need an AI following me around wherever I go on the internet? Why is there an entire cryptocurrency wallet built into my browser? Why do I need to _log in_ to a browser?
 
 Think about this like a terminal. Just like a browser is an interface to the web, the terminal is an interface to the command line and the tools built into your system. Sure, they're different enough that it's not really a fair comparison, but think about it, how would you feel if every command was logged and sent off to some external server so that companies could more effectively sell you their tools? How would you feel if you had to _log in_ to access your own computer's command line?
 
@@ -58,7 +60,7 @@ Or in other words, do one thing well.
 
 ### Conclusion
 
-This post was kind of a rant, and I'd be amazed if you got all the way here. If you did, hi, here's a cookie 🍪 for getting all the way here. Don't worry, this one won't track you.
+This post was kind of a rant, and I'd be amazed if you got all the way here. If you did, hi, here's a cookie 🍪. Don't worry, this one won't track you.
 
 I've talked about [minimalism](./minimalism) in another post, and this kinda extends that post into the tech world. I'm aware that other people probably find these features useful in their daily lives, but that's not really my workflow, and I'm sure that I'm not the only one that's been frustrated by the lack of simplicity in software nowadays. There's a lot of changes I'd like to see in the way that software is developed today, and honestly, if I can't find something that works how I want, I might just make it myself.
 
