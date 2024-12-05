@@ -5,9 +5,9 @@ date: 2024-12-05
 
 There's been a lot of products coming out recently with all these fancy new features. You have [Arc](https://arc.net) (which recently got [put into maintenance mode](https://www.youtube.com/watch?v=E9yZ0JusME4)), [Cursor](https://cursor.com), [Zed](https://zed.dev) (which I use), [Dia](https://www.diabrowser.com) (a new browser from the Arc team), etc. I'm sure you've seen at least some of these kinds of products around somewhere on the internets.
 
-One thing I've seen all of these have in common is that they try to do so much all in one product. Arc wanted to be your entire OS, despite being primarily a browser. Zed wants to put collaboration, AI, and code editing all into one product, and I'm honestly not even sure what Dia is trying to do. Of course, this isn't anything new, apps have been trying to be all-in-one for a long, long time, and I'm sure they'll keep on trying for as long as there's people willing to pay for them.
+One thing I've seen all of these have in common is that they try to do so much all in one product. Arc wanted to be your entire OS, despite being primarily a browser. Zed wants to put collaboration, AI, and code editing all into one product. I'm honestly not even sure what Dia is trying to do. Of course, this isn't anything new, apps have been trying to be all-in-one for a long, long time, and I'm sure they'll keep on trying for as long as there's people willing to pay for them.
 
-I think software can be, and should be, simpler than that. There's an idea in software development called the UNIX philosophy, which encapsulates simplicity in software.
+I think software can be, and should be, simpler than that. There's an idea in software development called the UNIX philosophy, which talks about simplicity in software.
 
 ## The UNIX Philosophy
 
@@ -50,7 +50,7 @@ Think about this like a terminal. Just like a browser is an interface to the web
 
 Of course, terminals haven't escaped this entirely, given that [Warp](https://warp.dev) required an account for the longest time, before [lifting it](https://www.warp.dev/blog/lifting-login-requirement) a week and a half ago, _2 years after their initial release_. You couldn't use Warp without logging in for 2 whole years. And of course, as with pretty much everything released in the last few years, it had an AI following you around your terminal so it could help you.
 
-I'm not sure what the big deal is with AI. The technology is cool, and it's useful in certain situations, but I'm not sure sticking it literally everywere, purely for style points, is necessarily the best idea. Because of how our current AIs work, they can not only give us incorrect responses, but they can give them with the confidence of an expert in the field. And of course, the excuse given for that is "oh it's AI, it's still in its early stages, and it might hallucinate sometimes". Why would you repeatedly pay for a product like that?
+I'm not sure what the big deal is with AI. The technology is cool, and it's useful in certain situations, but I'm not sure sticking it literally everywere, purely for style points, is necessarily the best idea. Because of how our current AIs work, they can not only give us incorrect responses, but they can give them with the confidence of an expert in the field. And of course, the excuse given for that is "oh it's AI, it's still in its early stages, and it might hallucinate sometimes". Why would you pay for a product like that?
 
 You see it in code editors, too, now. I use Zed, which has also gone deep down that AI rabbit hole. They also have other features built-in to the editor, like a chatting platform and calls. All of that combines to give a very bloated feel to Zed, at least when you first launch it. Luckily, you can turn most of those things off, or at least hide them away, and the real reason I use Zed is that it's really, really fast. The team behind it cares about performance, and it shows with how amazingly (some may even say, blazingly) fast it is.
 
