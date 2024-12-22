@@ -37,13 +37,13 @@ th {
 }
 
 /* Code */
-pre {
+.ts-highlight {
     border-radius: 0.5rem;
     padding: 1rem;
     overflow-x: auto;
 }
 
-code:not(pre code) {
+code:not(.ts-highlight code) {
     overflow-wrap: break-word;
     font-family: var(--mono);
     background-color: var(--code-bg);

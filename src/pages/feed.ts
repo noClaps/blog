@@ -11,7 +11,7 @@ for (const item of items) {
     lastUpdate = itemDate;
   }
 
-  const html = await render(item.content, codeTheme);
+  const html = render(item.content, codeTheme);
   content[item.slug] = html;
 }
 

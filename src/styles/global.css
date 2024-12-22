@@ -14,8 +14,8 @@
 
 /* Vars */
 :root {
-    --code-bg: #24292e;
-    --code-text: #e1e4e8;
+    --code-bg: #111;
+    --code-text: #fff;
 
     --sans: InterVariable, system-ui;
     --serif: ui-serif, serif;

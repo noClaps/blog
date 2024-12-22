@@ -42,21 +42,19 @@ function Post(props: PostProps) {
   `;
 }
 
-export async function writePosts() {
-  const posts = await getPosts();
-  return Promise.all(
-    posts.map(async (post) => {
-      const html = await render(post.content, codeTheme);
-      return {
-        filePath: `${post.slug}.html`,
-        post: Post({
-          title: post.title,
-          description: post.description,
-          date: post.date,
-          lastmod: post.lastmod,
-          children: html,
-        }),
-      };
-    }),
-  );
+const posts = await getPosts();
+export function writePosts() {
+  return posts.map((post) => {
+    const html = render(post.content, codeTheme);
+    return {
+      filePath: `${post.slug}.html`,
+      post: Post({
+        title: post.title,
+        description: post.description,
+        date: post.date,
+        lastmod: post.lastmod,
+        children: html,
+      }),
+    };
+  });
 }

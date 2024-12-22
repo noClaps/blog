@@ -14,7 +14,7 @@ Bun.write("dist/feed.rss", rssFeed());
 Bun.write("dist/feed.html", buildHtml(feedPage()));
 
 // Build index page
-Bun.write("dist/index.html", buildHtml(await indexPage()));
+Bun.write("dist/index.html", buildHtml(indexPage()));
 
 function buildHtml(html: string) {
   const htmlRw = new HTMLRewriter();
@@ -43,7 +43,7 @@ function buildPost(post: string, filePath: string) {
 
   htmlRw
     .on(`a[download]`, {
-      async element(el) {
+      element(el) {
         const href = el.getAttribute("href");
         if (!href) return;
 
@@ -94,5 +94,5 @@ function buildPost(post: string, filePath: string) {
 }
 
 // Build posts
-for await (const { filePath, post } of await writePosts())
+for (const { filePath, post } of writePosts())
   Bun.write(`dist/${filePath}`, buildPost(post.toString(), filePath));

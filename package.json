@@ -1,7 +1,7 @@
 {
   "name": "blog",
   "devDependencies": {
-    "@noclaps/znak": "npm:@jsr/noclaps__znak",
+    "@noclaps/znak": "npm:@jsr/noclaps__znak@0.12.2",
     "@types/bun": "^1.1.14",
     "typescript": "^5.7.2"
   },
@@ -9,5 +9,30 @@
     "build": "bun scripts/build.ts",
     "dev": "bun run build && bunx serve -n dist"
   },
-  "type": "module"
+  "type": "module",
+  "trustedDependencies": [
+    "tree-sitter",
+    "tree-sitter-bash",
+    "tree-sitter-c",
+    "tree-sitter-c-sharp",
+    "tree-sitter-cpp",
+    "tree-sitter-css",
+    "tree-sitter-glsl",
+    "tree-sitter-go",
+    "tree-sitter-haskell",
+    "tree-sitter-html",
+    "tree-sitter-java",
+    "tree-sitter-javascript",
+    "tree-sitter-jsdoc",
+    "tree-sitter-json",
+    "tree-sitter-julia",
+    "tree-sitter-ocaml",
+    "tree-sitter-php",
+    "tree-sitter-python",
+    "tree-sitter-regex",
+    "tree-sitter-ruby",
+    "tree-sitter-rust",
+    "tree-sitter-scala",
+    "tree-sitter-typescript"
+  ]
 }

@@ -20,8 +20,8 @@ function Link(props: { title: string; href: string; date: Date }) {
   </a>`;
 }
 
-export async function indexPage() {
-  const items = await getPosts();
+const items = await getPosts();
+export function indexPage() {
   const posts = items
     .filter((i) => i.slug.startsWith("posts/"))
     .sort(sortPosts);
