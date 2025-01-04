@@ -1,7 +1,7 @@
 {
   "name": "blog",
   "devDependencies": {
-    "@noclaps/znak": "^0.12.3",
+    "@noclaps/znak": "^0.12.4",
     "@types/bun": "^1.1.14",
     "typescript": "^5.7.2"
   },
