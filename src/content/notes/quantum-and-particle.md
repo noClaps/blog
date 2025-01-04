@@ -121,7 +121,7 @@ The equivalent to this would be seeing an ocean and a droplet behave the same wa
 
 Turns out, at the quantum scale, particles don't exactly exist as points in space, but more like a region in space where they _could_ be. They have clouds of probability, with each point within that cloud having a probability of the particle being at that position. So instead of a particle being exactly at x=50, it has a really high _probability_ of being at x=50, and a smaller probability of it being at x=51 or x=49, and so on. This probability is defined by something known as the **wave function**, denoted by the $$\Psi$$ symbol.
 
-![Graph of wave function against position along a single axis. Source: [Wave functions - University of Tennesse Knoxville](http://labman.phys.utk.edu/phys222core/modules/m10/wave_functions.html).](http://labman.phys.utk.edu/phys222core/modules/m10/images/The%20Sh1a.gif)
+![Graph of wave function against position along a single axis. Source: [Wave functions - University of Tennesse Knoxville](https://labs.phys.utk.edu/mbreinig/phys222core/modules/m10/wave_functions.html).](./quantum-and-particle/The_Sh1a.gif)
 
 This wave function can be converted into a probability function, which can give the probability of a particle being somewhere depending on a bunch of different factors. The wave function is defined using the Schrödinger equation:
 
