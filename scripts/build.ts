@@ -53,12 +53,6 @@ function buildPost(post: string, filePath: string) {
         Bun.write(`dist/${path}`, Bun.file(`./src/content/${path}`));
       },
     })
-    .on(`a[href^="http"]`, {
-      element(el) {
-        el.setAttribute("target", "_blank");
-        el.setAttribute("rel", "noopener noreferrer");
-      },
-    })
     .on(`img[src^="./"]`, {
       element(el) {
         const src = el.getAttribute("src");
