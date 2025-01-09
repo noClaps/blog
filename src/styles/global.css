@@ -17,7 +17,6 @@
     --serif: ui-serif, serif;
     --mono: ui-monospace, monospace;
 
-    /* Generated using Realtime Colors: https://www.realtimecolors.com/ */
     --text: oklch(90% 0 none);
     --background: oklch(20% 0 none);
     --light: oklch(from var(--text) l c h / 70%);
