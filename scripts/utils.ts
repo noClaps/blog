@@ -50,6 +50,7 @@ export async function getPosts() {
       slug: file.replace(".md", ""),
       title: fm.title,
       date: new Date(fm.date),
+      description: fm.description,
       lastmod: fm.lastmod ? new Date(fm.lastmod) : undefined,
       content: postContent,
     });
