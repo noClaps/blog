@@ -16,7 +16,7 @@ type Frontmatter = {
   lastmod?: string;
 };
 
-function frontmatter(md: string) {
+export function frontmatter(md: string) {
   const frontmatterRegex = md.match(/^---([\w:\s\S]*?)---/);
   if (!frontmatterRegex) throw new Error("Frontmatter not found");
 

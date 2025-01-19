@@ -16,7 +16,7 @@ Bun.write("dist/feed.html", buildHtml(feedPage()));
 // Build index page
 Bun.write("dist/index.html", buildHtml(indexPage()));
 
-function buildHtml(html: string) {
+export function buildHtml(html: string) {
   const htmlRw = new HTMLRewriter();
 
   htmlRw.on("link[rel=stylesheet]", {
@@ -38,8 +38,22 @@ function buildHtml(html: string) {
 }
 
 // Build post components and download images
-function buildPost(post: string, filePath: string) {
+export function buildPost(post: string, filePath: string) {
+  const dev = Bun.env.NODE_ENV !== "production";
   const htmlRw = new HTMLRewriter();
+
+  if (dev) {
+    htmlRw.on("body", {
+      async element(el) {
+        const editScript = await Bun.build({
+          entrypoints: ["src/edit.ts"],
+        }).then((bo) => bo.outputs[0].text());
+
+        el.append(`<edit-button></edit-button>`, { html: true });
+        el.append(`<script>${editScript.trim()}</script>`, { html: true });
+      },
+    });
+  }
 
   htmlRw
     .on(`a[download]`, {
@@ -50,6 +64,12 @@ function buildPost(post: string, filePath: string) {
         const urlArr = href.split("/");
         const filename = urlArr[urlArr.length - 1];
         const path = `${filePath.replace(".html", "")}/${filename}`;
+
+        if (dev) {
+          el.setAttribute("href", `/_assets/src/content/${path}`);
+          return;
+        }
+
         Bun.write(`dist/${path}`, Bun.file(`./src/content/${path}`));
       },
     })
@@ -61,6 +81,12 @@ function buildPost(post: string, filePath: string) {
         const urlArr = src.split("/");
         const filename = urlArr[urlArr.length - 1];
         const path = `${filePath.replace(".html", "")}/${filename}`;
+
+        if (dev) {
+          el.setAttribute("src", `/_assets/src/content/${path}`);
+          return;
+        }
+
         Bun.write(`dist/${path}`, Bun.file(`./src/content/${path}`));
       },
     });

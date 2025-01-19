@@ -9,7 +9,7 @@ interface PostProps {
   lastmod?: Date;
   children: string;
 }
-function Post(props: PostProps) {
+export function Post(props: PostProps) {
   const { title, description, date, lastmod, children } = props;
   const pubDate = lastmod ?? date;
 
