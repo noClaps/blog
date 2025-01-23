@@ -26,7 +26,6 @@ export function buildHtml(html: string) {
 
       const styles = await Bun.build({
         entrypoints: [`src/${href}`],
-        experimentalCss: true,
         minify: true,
       }).then((bo) => bo.outputs[0].text());
 
