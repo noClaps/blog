@@ -7,7 +7,7 @@
   },
   "scripts": {
     "build": "bun scripts/build.ts",
-    "dev": "bun scripts/dev.ts",
+    "dev": "NODE_ENV=development bun scripts/dev.ts",
     "preview": "NODE_ENV=production bun run build && bunx serve -n dist"
   },
   "type": "module"

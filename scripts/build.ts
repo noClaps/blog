@@ -38,7 +38,7 @@ export function buildHtml(html: string) {
 
 // Build post components and download images
 export function buildPost(post: string, filePath: string) {
-  const dev = Bun.env.NODE_ENV !== "production";
+  const dev = Bun.env.NODE_ENV === "development";
   const htmlRw = new HTMLRewriter();
 
   if (dev) {
