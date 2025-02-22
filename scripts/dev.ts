@@ -1,5 +1,4 @@
 import { render } from "@noclaps/znak";
-import type { BunRequest } from "bun";
 import fs from "node:fs";
 import { atomFeed, feedPage, jsonFeed, rssFeed } from "../src/pages/feed.ts";
 import { indexPage } from "../src/pages/index.ts";
@@ -49,64 +48,55 @@ function buildPostFromText(md: string, slug: string) {
   return buildPost(post, filePath);
 }
 
-const options = {
+Bun.serve({
   routes: {
-    "/": new Response(buildHtml(indexPage()), {
+    "/": new Response(buildHtml(indexPage), {
       headers: { "Content-Type": "text/html" },
     }),
-    "/feed": new Response(buildHtml(feedPage()), {
+    "/feed": new Response(buildHtml(feedPage), {
       headers: { "Content-Type": "text/html" },
     }),
-    "/feed.rss": new Response(rssFeed(), {
+    "/feed.rss": new Response(rssFeed, {
       headers: { "Content-Type": "application/rss+xml" },
     }),
-    "/feed.atom": new Response(atomFeed(), {
+    "/feed.atom": new Response(atomFeed, {
       headers: { "Content-Type": "application/atom+xml" },
     }),
-    "/feed.json": Response.json(jsonFeed()),
-    "/_assets/:asset": ({ params: { asset } }: BunRequest<"/_assets/:asset">) =>
-      new Response(Bun.file(`./${asset}`)),
-    "/edit/:post": async ({ params: { post } }: BunRequest<"/edit/:post">) =>
-      new Response(Bun.file(`src/content/${post}.md`)),
-    "/render/:post": {
-      async POST(req: BunRequest<"/render/:post">) {
-        const { post } = req.params;
+    "/feed.json": Response.json(jsonFeed),
+    "/_assets/src/content/:section/:post/:asset": ({
+      params: { section, post, asset },
+    }) => new Response(Bun.file(`src/content/${section}/${post}/${asset}`)),
+    "/edit/:section/:post": async ({ params: { section, post } }) =>
+      new Response(Bun.file(`src/content/${section}/${post}.md`)),
+    "/render/:section/:post": {
+      async POST(req) {
+        const { section, post } = req.params;
         const input = await req.text();
-        Bun.write(`src/content${post}.md`, input);
+        Bun.write(`src/content/${section}/${post}.md`, input);
 
         return new Response(buildPostFromText(input, `${post.slice(1)}.html`));
       },
     },
-    "/**": async ({ url }: BunRequest<"/**">) => {
-      const path = new URL(url).pathname;
-
+    "/:section/:post": async ({ params: { section, post } }) => {
       const pages: { [filepath: string]: string } = {};
 
       for (const { filePath, post } of writePosts()) {
         pages[filePath] = buildPost(post, filePath);
       }
 
-      if (`${path.slice(1)}.html` in pages) {
-        return new Response(pages[`${path.slice(1)}.html`], {
+      if (`${section}/${post}.html` in pages) {
+        return new Response(pages[`${section}/${post}.html`], {
           headers: { "Content-Type": "text/html" },
         });
       }
-
+      return Response.error();
+    },
+    "/**": ({ url }) => {
+      const path = new URL(url).pathname;
       if (fs.existsSync(`public${path}`)) {
         return new Response(Bun.file(`public${path}`));
       }
-
-      return new Response("Not found", { status: 404 });
+      return Response.error();
     },
   },
-};
-
-const server = Bun.serve(options);
-
-console.log(`Server started at: ${server.url}`);
-
-fs.watch("src", { recursive: true }, (event, filename) => {
-  console.log(`Detected ${event} on ${filename}`);
-  server.reload(options);
-  console.log("Reloaded.");
 });

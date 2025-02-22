@@ -8,13 +8,13 @@ for (const file of staticFiles)
   Bun.write(`dist/${file}`, Bun.file(`public/${file}`));
 
 // Build feeds
-Bun.write("dist/feed.json", jsonFeed());
-Bun.write("dist/feed.atom", atomFeed());
-Bun.write("dist/feed.rss", rssFeed());
-Bun.write("dist/feed.html", buildHtml(feedPage()));
+Bun.write("dist/feed.json", jsonFeed);
+Bun.write("dist/feed.atom", atomFeed);
+Bun.write("dist/feed.rss", rssFeed);
+Bun.write("dist/feed.html", buildHtml(feedPage));
 
 // Build index page
-Bun.write("dist/index.html", buildHtml(indexPage()));
+Bun.write("dist/index.html", buildHtml(indexPage));
 
 export function buildHtml(html: string) {
   const htmlRw = new HTMLRewriter();
