@@ -1,5 +1,5 @@
 import { render } from "@noclaps/znak";
-import type { ServeOptions } from "bun";
+import type { BunRequest } from "bun";
 import fs from "node:fs";
 import { atomFeed, feedPage, jsonFeed, rssFeed } from "../src/pages/feed.ts";
 import { indexPage } from "../src/pages/index.ts";
@@ -49,77 +49,55 @@ function buildPostFromText(md: string, slug: string) {
   return buildPost(post, filePath);
 }
 
-const options: ServeOptions = {
-  async fetch(req) {
-    const path = new URL(req.url).pathname;
+const options = {
+  routes: {
+    "/": new Response(buildHtml(indexPage()), {
+      headers: { "Content-Type": "text/html" },
+    }),
+    "/feed": new Response(buildHtml(feedPage()), {
+      headers: { "Content-Type": "text/html" },
+    }),
+    "/feed.rss": new Response(rssFeed(), {
+      headers: { "Content-Type": "application/rss+xml" },
+    }),
+    "/feed.atom": new Response(atomFeed(), {
+      headers: { "Content-Type": "application/atom+xml" },
+    }),
+    "/feed.json": Response.json(jsonFeed()),
+    "/_assets/:asset": ({ params: { asset } }: BunRequest<"/_assets/:asset">) =>
+      new Response(Bun.file(`./${asset}`)),
+    "/edit/:post": async ({ params: { post } }: BunRequest<"/edit/:post">) =>
+      new Response(Bun.file(`src/content/${post}.md`)),
+    "/render/:post": {
+      async POST(req: BunRequest<"/render/:post">) {
+        const { post } = req.params;
+        const input = await req.text();
+        Bun.write(`src/content${post}.md`, input);
 
-    const pages: { [filepath: string]: string } = {
-      "index.html": buildHtml(indexPage()),
-      "feed.html": buildHtml(feedPage()),
-      "feed.rss": rssFeed(),
-      "feed.atom": atomFeed(),
-      "feed.json": jsonFeed(),
-    };
+        return new Response(buildPostFromText(input, `${post.slice(1)}.html`));
+      },
+    },
+    "/**": async ({ url }: BunRequest<"/**">) => {
+      const path = new URL(url).pathname;
 
-    for (const { filePath, post } of writePosts()) {
-      pages[filePath] = buildPost(post, filePath);
-    }
+      const pages: { [filepath: string]: string } = {};
 
-    if (path === "/") {
-      return new Response(pages["index.html"], {
-        headers: { "Content-Type": "text/html" },
-      });
-    }
-    if (path === "/feed") {
-      return new Response(pages["feed.html"], {
-        headers: { "Content-Type": "text/html" },
-      });
-    }
-    if (path === "/feed.rss") {
-      return new Response(pages["feed.rss"], {
-        headers: { "Content-Type": "application/rss+xml" },
-      });
-    }
-    if (path === "/feed.atom") {
-      return new Response(pages["feed.atom"], {
-        headers: { "Content-Type": "application/atom+xml" },
-      });
-    }
-    if (path === "/feed.json") {
-      return new Response(pages["feed.json"], {
-        headers: { "Content-Type": "application/json" },
-      });
-    }
+      for (const { filePath, post } of writePosts()) {
+        pages[filePath] = buildPost(post, filePath);
+      }
 
-    if (`${path.slice(1)}.html` in pages) {
-      return new Response(pages[`${path.slice(1)}.html`], {
-        headers: { "Content-Type": "text/html" },
-      });
-    }
-    if (path.startsWith("/_assets")) {
-      return new Response(Bun.file(path.replace("/_assets/", "./")));
-    }
+      if (`${path.slice(1)}.html` in pages) {
+        return new Response(pages[`${path.slice(1)}.html`], {
+          headers: { "Content-Type": "text/html" },
+        });
+      }
 
-    if (fs.existsSync(`public${path}`)) {
-      return new Response(Bun.file(`public${path}`));
-    }
+      if (fs.existsSync(`public${path}`)) {
+        return new Response(Bun.file(`public${path}`));
+      }
 
-    if (path.startsWith("/edit")) {
-      const post = path.replace("/edit", "");
-      const postFile = await Bun.file(`src/content${post}.md`).text();
-      return new Response(postFile);
-    }
-
-    if (path.startsWith("/render")) {
-      const post = path.replace("/render", "");
-      const input = await req.text();
-
-      Bun.write(`src/content${post}.md`, input);
-
-      return new Response(buildPostFromText(input, `${post.slice(1)}.html`));
-    }
-
-    return new Response("Not found", { status: 404 });
+      return new Response("Not found", { status: 404 });
+    },
   },
 };
 
