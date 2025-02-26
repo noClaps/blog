@@ -27,7 +27,3 @@ A blog about the most random things you can think of.
     ```
 
     This will build the site and place it in `dist/`.
-
-## Writing posts
-
-See the [documentation](https://docs.zerolimits.dev/blog/writing-posts) for how to write posts.
