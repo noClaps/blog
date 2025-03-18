@@ -1,10 +1,11 @@
 [tools]
-node = "latest"
-"npm:vite" = "latest"
 rust = "latest"
-watchexec = "latest"
+
+[tasks.dev]
+tools = { node = "latest", "npm:vite" = "latest", watchexec = "latest" }
+depends = ["build"]
+run = ["cargo run -r", "vite dist"]
+sources = ["public/**/*", "src/**/*"]
 
 [tasks]
 build = ["cargo run -r"]
-preview = ["vite dist"]
-dev = ["watchexec -c -r -w src -w public -- 'cargo run -r && vite dist'"]
