@@ -4,8 +4,8 @@ rust = "latest"
 [tasks.dev]
 tools = { node = "latest", "npm:vite" = "latest", watchexec = "latest" }
 depends = ["build"]
-run = ["cargo run -r", "vite dist"]
+run = ["vite dist"]
 sources = ["public/**/*", "src/**/*"]
 
 [tasks]
-build = ["cargo run -r"]
+build = ["mkdir -p dist", "cp -r public/** dist", "cargo run -r"]

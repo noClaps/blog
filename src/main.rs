@@ -7,7 +7,6 @@ use std::{
     fs::{create_dir_all, read, write},
     io::Result,
     path::Path,
-    process::Command,
 };
 
 fn build_post(post: String, file_path: String) -> String {
@@ -53,8 +52,6 @@ fn build_post(post: String, file_path: String) -> String {
 }
 
 fn main() -> Result<()> {
-    let _ = Command::new("cp").args(["-r", "public/", "dist"]).spawn();
-
     create_dir_all("dist/")?;
     write("dist/index.html", index())?;
 
