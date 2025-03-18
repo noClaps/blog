@@ -2,10 +2,8 @@
 rust = "latest"
 
 [tasks.dev]
-tools = { node = "latest", "npm:vite" = "latest", watchexec = "latest" }
-depends = ["build"]
-run = ["vite dist"]
-sources = ["public/**/*", "src/**/*"]
+tools = { "watchexec" = "latest", "bun" = "latest" }
+run = ["watchexec -c -r -w public -w src 'mise build && bunx vite dist/'"]
 
 [tasks]
 build = ["mkdir -p dist", "cp -r public/** dist", "cargo run -r"]
