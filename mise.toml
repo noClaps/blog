@@ -1,0 +1,10 @@
+[tools]
+node = "latest"
+"npm:vite" = "latest"
+rust = "latest"
+watchexec = "latest"
+
+[tasks]
+build = ["cargo run -r"]
+preview = ["vite dist"]
+dev = ["watchexec -c -r -w src -w public -- 'cargo run -r && vite dist'"]
