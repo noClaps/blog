@@ -210,7 +210,7 @@ dependencies = [
 [[package]]
 name = "highlight"
 version = "0.7.0"
-source = "git+https://gitlab.com/noClaps/highlight#1c54824c54ee8791b2369c751c78a6450b815c35"
+source = "git+https://github.com/noClaps/highlight#7096e736d142fb40f14259787226638fb4a8229f"
 dependencies = [
  "serde",
  "toml",
@@ -1068,7 +1068,7 @@ dependencies = [
 [[package]]
 name = "znak-lang"
 version = "0.15.1"
-source = "git+https://gitlab.com/noClaps/znak-lang.git#12482b4129df8ea7a8091a14e24f8533d03c2d96"
+source = "git+https://github.com/noClaps/znak.git#a93f3892e3bd193b6dc944618cdea3b11f5d4223"
 dependencies = [
  "highlight",
  "pulldown-latex",

@@ -7,7 +7,7 @@ A blog about the most random things you can think of.
 1.  Clone the respository.
 
     ```sh
-    git clone https://gitlab.com/noClaps/blog.git
+    git clone https://github.com/noClaps/blog.git
     cd blog
     ```
 

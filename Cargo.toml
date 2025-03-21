@@ -9,4 +9,4 @@ lol_html = "2.2.0"
 serde = { version = "1.0.219", features = ["derive"] }
 serde_json = "1.0.140"
 time = { version = "0.3.39", features = ["formatting", "macros", "parsing"] }
-znak-lang = { git = "https://gitlab.com/noClaps/znak-lang.git", version = "0.15.1"}
+znak-lang = { git = "https://github.com/noClaps/znak.git", version = "0.15.1"}

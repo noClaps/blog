@@ -21,7 +21,7 @@ Another nice thing about VSCode is that a lot of tools officially support it, fo
 
 ### Languages
 
-I mainly use TypeScript, Python, C and Bash for most programming that I do. I mostly use C to solve [Project Euler problems](https://gitlab.com/noClaps/project-euler), Bash to write basic scripts to automate stuff, Python for university work and TypeScript for both Project Euler and web development. I've also used Dart and Swift before, but don't have much experience in either. You can see most of the scripts and stuff I've made in my [coding playground](https://gitlab.com/noClaps/playground).
+I mainly use TypeScript, Python, C and Bash for most programming that I do. I mostly use C to solve [Project Euler problems](https://github.com/noClaps/project-euler), Bash to write basic scripts to automate stuff, Python for university work and TypeScript for both Project Euler and web development. I've also used Dart and Swift before, but don't have much experience in either. You can see most of the scripts and stuff I've made in my [coding playground](https://github.com/noClaps/playground).
 
 I use the Python and Clang that come with Xcode, although I don't use Xcode itself. I have found the tools around C to be a bit lacking, though, which pushes me towards Swift. However, the simplicity and power of C keeps bringing me back. I will fully transition to Swift at some point, once I can find some proper editor tooling for it. Hopefully Fleet does better in this regard than VSCode does.
 
