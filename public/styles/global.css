@@ -8,6 +8,10 @@
         format("woff2");
 }
 
+@view-transition {
+    navigation: auto;
+}
+
 /* Vars */
 :root {
     --code-bg: #111;
