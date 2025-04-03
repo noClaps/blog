@@ -11,11 +11,10 @@ A blog about the most random things you can think of.
     cd blog
     ```
 
-2.  Install dependencies.
+2.  Start the development server.
 
     ```sh
-    bun install
-    bun dev
+    make dev
     ```
 
     Then open `localhost:3000` in your browser to see the live preview of the site.
@@ -23,7 +22,7 @@ A blog about the most random things you can think of.
 3.  Build the site.
 
     ```sh
-    bun run build
+    make
     ```
 
     This will build the site and place it in `dist/`.
