@@ -2,10 +2,10 @@
 <html lang="en">
     <head>
         <link rel="icon" href="/favicon.ico" />
-        <title>{{ title }}</title>
+        <title>{{ .Title }}</title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="{{ description }}" />
+        <meta name="description" content="{{ .Description }}" />
         <link rel="alternate" href="/feed.json" type="application/json" />
         <link rel="alternate" href="/feed.atom" type="application/atom+xml" />
         <link rel="alternate" href="/feed.rss" type="application/rss+xml" />
@@ -36,11 +36,11 @@
         </header>
         <main>
             <div class="post-header">
-                <time datetime="{{ pub_date }}">{{ pub_date }}</time>
-                <h1>{{ title }}</h1>
-                {{ post_desc }}
+                <time datetime="{{ .PubDate }}">{{ .PubDate }}</time>
+                <h1>{{ .Title }}</h1>
+                {{- .PostDesc }}
             </div>
-            <article>{{ children }}</article>
+            <article>{{ .Children }}</article>
         </main>
     </body>
 </html>
