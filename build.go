@@ -78,15 +78,16 @@ func buildPost(post string, filePath string) (string, error) {
 					if err != nil {
 						return err
 					}
-					_, format, err := image.DecodeConfig(bytes.NewReader(content))
+					data, format, err := image.DecodeConfig(bytes.NewReader(content))
 					if err != nil {
 						return err
 					}
 					output := base64.StdEncoding.EncodeToString(content)
-					n.Attr = append(n.Attr, html.Attribute{
-						Key: "src",
-						Val: fmt.Sprintf("data:image/%s;base64,%s", format, output),
-					})
+					n.Attr = append(n.Attr,
+						html.Attribute{Key: "src", Val: fmt.Sprintf("data:image/%s;base64,%s", format, output)},
+						html.Attribute{Key: "width", Val: fmt.Sprint(data.Width)},
+						html.Attribute{Key: "height", Val: fmt.Sprint(data.Height)},
+					)
 				}
 			}
 		}
