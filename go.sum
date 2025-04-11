@@ -2,6 +2,10 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/mattn/go-pointer v0.0.1 h1:n+XhsuGeVO6MEAp7xyEukFINEa+Quek5psIR/ylA6o0=
 github.com/mattn/go-pointer v0.0.1/go.mod h1:2zXcozF6qYGgmsG+SeTZz3oAbFLdD3OWqnUbNvJZAlc=
+github.com/noClaps/znak v0.16.0 h1:UQFDTDwoiAgwDQy73rUS3MxdKOjKBj70S8u9zZWBOwk=
+github.com/noClaps/znak v0.16.0/go.mod h1:D8rn0o0kj3K8l+GKxYCS15BoZNqzXkv1Kr4xV0SVnP8=
+github.com/noClaps/znak v0.16.2 h1:MuPf1XGq+eOFa9rITC+gEvD7tk0uZ4Y8GxxVfoQKHX4=
+github.com/noClaps/znak v0.16.2/go.mod h1:I5tRpqXZCs5JDePkhqO1HTNIjVm2RQv7geU8QcSycQE=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/stretchr/testify v1.10.0 h1:Xv5erBjTwe/5IxqUQTdXv5kgmIvbHo3QQyRwhJsOfJA=
@@ -50,8 +54,8 @@ github.com/tree-sitter/tree-sitter-scala v0.23.4 h1:YZvk3rEQVEKnc82Wltq1DdCJsmlN
 github.com/tree-sitter/tree-sitter-scala v0.23.4/go.mod h1:BmDV0f9rgsnGuG9QtKXQZnqJvECyR9fM8wVg984ulBo=
 github.com/tree-sitter/tree-sitter-typescript v0.23.2 h1:/Odvphn18PniVixb9e97X0DbNVsU6Qocv9mfkyzdXwU=
 github.com/tree-sitter/tree-sitter-typescript v0.23.2/go.mod h1:zjzMXT/Ulffel2xfOcAkQQkiAkmgnbtPGlFQw/5X4xA=
-github.com/wyatt915/treeblood v0.1.6 h1:RvbsSo1agr5APKf3XkxfFgcmbTkjJ/72q0bl/oIpcFo=
-github.com/wyatt915/treeblood v0.1.6/go.mod h1:wQmihhy7SYtGTnq5MxgNfxoaNW+ULr8oWPJJMreH4p8=
+github.com/wyatt915/treeblood v0.1.7 h1:DyuDkvcU1dkxHbMtBJdsrGAY6SU66/i8keEEO4iM5Rk=
+github.com/wyatt915/treeblood v0.1.7/go.mod h1:wQmihhy7SYtGTnq5MxgNfxoaNW+ULr8oWPJJMreH4p8=
 go.gopad.dev/go-tree-sitter-highlight v0.0.0-20241203223050-3ffb64c3a650 h1:EC4MD0mMOYGK//R6+FPApJU8/4qDllfcbQ/T9X1RDYA=
 go.gopad.dev/go-tree-sitter-highlight v0.0.0-20241203223050-3ffb64c3a650/go.mod h1:6AlBoTHE0mpau8lRs2Xn45LZdJEj22Fw2sf5AXKxZP0=
 golang.org/x/net v0.39.0 h1:ZCu7HMWDxpXpaiKdhzIfaltL9Lp31x/3fCP11bc6/fY=
