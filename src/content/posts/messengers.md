@@ -222,7 +222,7 @@ I know I missed out on a lot of popular messengers like Snapchat, Slack, WeChat,
 - How is the app's security? Are they utilising end-to-end encryption, and if so, which protocol? Has it been audited? How often is it updated? These are all highly important for security. [I've already covered why e2ee is necessary](/posts/intro#end-to-end-encryption-e2ee). Unaudited apps could have undiscovered security flaws and outdated apps may be behind on security patches.
 - Is it open source?
 - How is the company's reputation? Are they transparent with their customers? Do they interact with their community often? This can have a bigger impact on the trustworthiness of a company than most people realise.
-- How's the company's privacy policy? You can look them up at [ToS;DR](https://tosdr.org "Terms of Service; Didn't Read") to get a general rating as well as simplified details of the privacy policy and terms of service for most popular services. This doesn't necessarily mean much, since companies can change or break their terms of service and privacy policy any time they want, but a privacy-friendly privacy policy is still nice to have.
+- How's the company's privacy policy? You can look them up at [ToS;DR](https://tosdr.org) to get a general rating as well as simplified details of the privacy policy and terms of service for most popular services. This doesn't necessarily mean much, since companies can change or break their terms of service and privacy policy any time they want, but a privacy-friendly privacy policy is still nice to have.
 
 Those questions should about cover most messenger applications out there.
 
