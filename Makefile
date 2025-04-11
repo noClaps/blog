@@ -6,4 +6,4 @@ build:
 	@go run .
 
 dev:
-	@watchexec -c -r -w public -w src 'make build && bunx vite dist/'
+	@watchexec -c -r -i dist 'make build && bunx vite dist/'

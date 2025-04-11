@@ -16,7 +16,6 @@ type feeds struct {
 	Json string
 	Rss  string
 	Atom string
-	Html string
 }
 
 func jsonFeed(items []utils.Post, content map[string]string) (string, error) {
