@@ -95,8 +95,8 @@ r_1 & = -\frac{b'}{2} + \sqrt{\frac{b'^2}{4} - c'} \\
 & = -\frac{b}{2a} + \sqrt{\frac{b^2}{4a^2} - \frac{c}{a}} \\
 & = -\frac{b}{2a} + \sqrt{\frac{b^2 - 4ac}{4a^2}} \\
 & = -\frac{b}{2a} + \frac{\sqrt{b^2 - 4ac}}{2a} \\
-& = -\frac{b + \sqrt{b^2 - 4ac}}{2a} \\
-r_2 & = -\frac{b - \sqrt{b^2 - 4ac}}{2a}
+& = \frac{-b + \sqrt{b^2 - 4ac}}{2a} \\
+r_2 & = \frac{-b - \sqrt{b^2 - 4ac}}{2a}
 \end{align}
 $$
 
