@@ -11,7 +11,7 @@
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url("/STIXTwoMath.woff2");
+    src: local("STIX Two Math"), url("/STIXTwoMath.woff2");
 }
 
 @view-transition {
