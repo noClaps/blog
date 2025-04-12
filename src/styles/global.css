@@ -7,11 +7,11 @@
     src: url("/InterVariable.woff2");
 }
 @font-face {
-    font-family: LMMath;
+    font-family: STIX Two Math;
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url("/LMMath.otf");
+    src: url("/STIXTwoMath.woff2");
 }
 
 @view-transition {
@@ -26,7 +26,7 @@
     --sans: InterVariable, system-ui;
     --serif: ui-serif, serif;
     --mono: ui-monospace, monospace;
-    --math: LMMath, math;
+    --math: "STIX Two Math", math;
 
     --text: oklch(90% 0 none);
     --background: oklch(20% 0 none);

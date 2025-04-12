@@ -12,8 +12,8 @@ dev:
 font:
 	@curl 'https://rsms.me/inter/font-files/InterVariable.woff2' -o public/InterVariable.woff2
 
-	@curl -L 'https://www.gust.org.pl/projects/e-foundry/lm-math/download/latinmodern-math-1959.zip' -o LMMath.zip
-	@unzip LMMath.zip -d LMMath
-	@rm LMMath.zip
-	@cp LMMath/latinmodern-math-1959/otf/latinmodern-math.otf public/LMMath.otf
-	@rm -rf LMMath
+	@curl -L 'https://github.com/stipub/stixfonts/releases/latest/download/fonts.zip' -o STIX2.zip
+	@unzip STIX2.zip -d STIX2
+	@rm STIX2.zip
+	@cp STIX2/fonts/STIXTwoMath/OTFWOFF2/STIXTwoMath.woff2 public/
+	@rm -rf STIX2
