@@ -35,6 +35,10 @@ th {
 }
 
 /* Code */
+code {
+    font-family: var(--mono);
+}
+
 .ts-highlight {
     border-radius: 0.5rem;
     padding: 1rem;
@@ -43,7 +47,6 @@ th {
 
 code:not(.ts-highlight code) {
     overflow-wrap: break-word;
-    font-family: var(--mono);
     background-color: var(--code-bg);
     color: var(--code-text);
     border-radius: 0.25rem;
