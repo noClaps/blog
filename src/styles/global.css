@@ -6,6 +6,13 @@
     font-display: swap;
     src: url("/InterVariable.woff2");
 }
+@font-face {
+    font-family: LMMath;
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/LMMath.otf");
+}
 
 @view-transition {
     navigation: auto;
@@ -19,6 +26,7 @@
     --sans: InterVariable, system-ui;
     --serif: ui-serif, serif;
     --mono: ui-monospace, monospace;
+    --math: LMMath, math;
 
     --text: oklch(90% 0 none);
     --background: oklch(20% 0 none);

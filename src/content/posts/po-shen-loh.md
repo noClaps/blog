@@ -91,7 +91,7 @@ If we plug in our new values of $$b' = \frac{b}{a}$$ and $$c' = \frac{c}{a}$$ in
 
 $$
 \begin{align}
-r_1 & = -\frac{b'}{2} + \sqrt{\frac{b'^2}{4} - c'} \\
+r_1 & = -\frac{b'}{2} + \sqrt{\frac{{b'}^2}{4} - c'} \\
 & = -\frac{b}{2a} + \sqrt{\frac{b^2}{4a^2} - \frac{c}{a}} \\
 & = -\frac{b}{2a} + \sqrt{\frac{b^2 - 4ac}{4a^2}} \\
 & = -\frac{b}{2a} + \frac{\sqrt{b^2 - 4ac}}{2a} \\

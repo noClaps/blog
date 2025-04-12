@@ -168,3 +168,8 @@ hr {
     border: none;
     border-top: solid 0.125rem var(--light);
 }
+
+/* Math */
+math {
+    font-family: var(--math);
+}
