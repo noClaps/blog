@@ -161,26 +161,34 @@ func buildPost(post string, filePath string) (string, error) {
 			}
 
 			// TODO: remove this when Treeblood supports MathML Core
-			if slices.ContainsFunc(n.Attr, func(attr html.Attribute) bool {
+			if n.Parent.Parent != nil && slices.ContainsFunc(n.Parent.Parent.Attr, func(attr html.Attribute) bool {
 				return attr.Key == "columnalign"
 			}) {
-				align := ""
-				attrIndex := 0
-				for i, attr := range n.Attr {
+				style := ""
+				for _, attr := range n.Parent.Parent.Attr {
 					if attr.Key == "columnalign" {
-						align = attr.Val
-						attrIndex = i
-						break
+						style = fmt.Sprintf("text-align:%s", attr.Val)
 					}
 				}
 
-				if align != "" {
-					n.Attr = slices.Delete(n.Attr, attrIndex, attrIndex+1)
-					n.Attr = append(n.Attr, html.Attribute{
-						Key: "style",
-						Val: fmt.Sprintf("text-align:%s", align),
-					})
+				if slices.ContainsFunc(n.Attr, func(attr html.Attribute) bool {
+					return attr.Key == "columnalign"
+				}) {
+					for i, attr := range n.Attr {
+						if attr.Key == "columnalign" {
+							style = fmt.Sprintf("text-align:%s", attr.Val)
+							n.Attr = slices.Delete(n.Attr, i, i+1)
+							break
+						}
+					}
 				}
+				n.Attr = append(n.Attr, html.Attribute{
+					Key: "style",
+					Val: style,
+				})
+				n.Parent.Parent.Attr = slices.DeleteFunc(n.Parent.Parent.Attr, func(attr html.Attribute) bool {
+					return attr.Key == "rowalign"
+				})
 			}
 		}
 
