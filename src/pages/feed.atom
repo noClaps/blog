@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://blog.zerolimits.dev/</id>
+    <title>The Blog of Random</title>
+    <updated>{{ .LastUpdate }}</updated>
+    <link rel="self" href="https://blog.zerolimits.dev/feed.atom" />
+    <icon>https://blog.zerolimits.dev/favicon.ico</icon>
+    <subtitle>A blog about the most random things you can think of.</subtitle>
+    <author>
+        <name>noClaps</name>
+        <email>contact@zerolimits.dev</email>
+        <uri>https://zerolimits.dev</uri>
+    </author>
+    {{- range $entry := .Entries -}}
+    <entry>
+        <id>{{ $entry.Id }}</id>
+        <title>{{ $entry.Title }}</title>
+        <updated>{{ $entry.Updated }}</updated>
+        <content type="html">{{ $entry.Content }}</content>
+        <link rel="alternate" href="{{ $entry.Link }}" />
+        {{- if $entry.Summary }}<summary>{{ $entry.Summary }}</summary>{{ end -}}
+        <published>{{ $entry.Published }}</published>
+    </entry>
+    {{- end -}}
+</feed>
