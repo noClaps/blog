@@ -159,6 +159,37 @@ func buildPost(post string, filePath string) (string, error) {
 					)
 				}
 			}
+
+			// TODO: remove this when Treeblood supports MathML Core
+			if n.Parent.Parent != nil && slices.ContainsFunc(n.Parent.Parent.Attr, func(attr html.Attribute) bool {
+				return attr.Key == "columnalign"
+			}) {
+				style := ""
+				for _, attr := range n.Parent.Parent.Attr {
+					if attr.Key == "columnalign" {
+						style = fmt.Sprintf("text-align:%s", attr.Val)
+					}
+				}
+
+				if slices.ContainsFunc(n.Attr, func(attr html.Attribute) bool {
+					return attr.Key == "columnalign"
+				}) {
+					for i, attr := range n.Attr {
+						if attr.Key == "columnalign" {
+							style = fmt.Sprintf("text-align:%s", attr.Val)
+							n.Attr = slices.Delete(n.Attr, i, i+1)
+							break
+						}
+					}
+				}
+				n.Attr = append(n.Attr, html.Attribute{
+					Key: "style",
+					Val: style,
+				})
+				n.Parent.Parent.Attr = slices.DeleteFunc(n.Parent.Parent.Attr, func(attr html.Attribute) bool {
+					return attr.Key == "rowalign"
+				})
+			}
 		}
 
 		for c := n.FirstChild; c != nil; c = c.NextSibling {

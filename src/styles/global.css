@@ -4,7 +4,30 @@
     font-style: normal;
     font-weight: 100 900;
     font-display: swap;
+    font-feature-settings:
+        "liga" 1,
+        "calt" 1,
+        "case" 1,
+        "ss04" 1,
+        "cv10" 1;
     src: url("/InterVariable.woff2");
+}
+@font-face {
+    font-family: STIX Two Math;
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local("STIX Two Math"), url("/STIXTwoMath.woff2");
+}
+@font-face {
+    font-family: MonaspaceNeon;
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    font-feature-settings:
+        "liga" 1,
+        "calt" 1;
+    src: url("/MonaspaceNeon.woff2");
 }
 
 @view-transition {
@@ -18,7 +41,8 @@
 
     --sans: InterVariable, system-ui;
     --serif: ui-serif, serif;
-    --mono: ui-monospace, monospace;
+    --mono: MonaspaceNeon, ui-monospace, monospace;
+    --math: "STIX Two Math", math;
 
     --text: oklch(90% 0 none);
     --background: oklch(20% 0 none);
@@ -31,12 +55,6 @@
     color-scheme: dark;
     scroll-behavior: smooth;
     font-family: var(--sans);
-    font-feature-settings:
-        "liga" 1,
-        "calt" 1,
-        "case" 1,
-        "ss04" 1,
-        "cv10" 1;
     font-weight: 450;
 }
 
