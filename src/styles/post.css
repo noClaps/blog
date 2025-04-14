@@ -173,30 +173,3 @@ hr {
 math {
     font-family: var(--math);
 }
-
-/* TODO: remove when Treeblood supports MathML Core */
-/* Make the columnalign attribute behave correctly */
-mtable[columnalign="left"] mtd {
-    text-align: left;
-    text-align: -webkit-left;
-}
-mtr[columnalign="left"] mtd {
-    text-align: left;
-    text-align: -webkit-left;
-}
-mtd[columnalign="left"] {
-    text-align: left;
-    text-align: -webkit-left;
-}
-mtable[columnalign="right"] mtd {
-    text-align: right;
-    text-align: -webkit-right;
-}
-mtr[columnalign="right"] mtd {
-    text-align: right;
-    text-align: -webkit-right;
-}
-mtd[columnalign="right"] {
-    text-align: right;
-    text-align: -webkit-right;
-}
