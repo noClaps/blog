@@ -27,7 +27,7 @@ func build() {
 	if err != nil {
 		log.Println("[ERROR]", err)
 	}
-	if err = os.WriteFile("dist/index.html", []byte(index), 0666); err != nil {
+	if err = os.WriteFile("dist/index.html", []byte(index), 0o666); err != nil {
 		log.Println("[ERROR]", err)
 	}
 	if err = feeds(); err != nil {
@@ -48,8 +48,8 @@ func build() {
 			log.Println("[ERROR]", err)
 		}
 		parentDir := path.Dir(path.Join("dist", post.FilePath))
-		os.MkdirAll(parentDir, 0777)
-		if err = os.WriteFile(path.Join("dist", post.FilePath), []byte(post.Post), 0666); err != nil {
+		os.MkdirAll(parentDir, 0o777)
+		if err = os.WriteFile(path.Join("dist", post.FilePath), []byte(post.Post), 0o666); err != nil {
 			log.Println("[ERROR]", err)
 		}
 	}
@@ -60,7 +60,7 @@ func feeds() error {
 	if err != nil {
 		return err
 	}
-	if err = os.WriteFile("dist/feed.atom", []byte(feed), 0666); err != nil {
+	if err = os.WriteFile("dist/feed.atom", []byte(feed), 0o666); err != nil {
 		return err
 	}
 
@@ -72,7 +72,7 @@ func feeds() error {
 	if err != nil {
 		return err
 	}
-	if err = os.WriteFile("dist/feed.html", []byte(feedPage), 0666); err != nil {
+	if err = os.WriteFile("dist/feed.html", []byte(feedPage), 0o666); err != nil {
 		return err
 	}
 
