@@ -63,19 +63,6 @@ func feeds() error {
 	if err = os.WriteFile("dist/feed.atom", []byte(feed), 0o666); err != nil {
 		return err
 	}
-
-	feedHtml, err := os.ReadFile("src/pages/feed.html")
-	if err != nil {
-		return err
-	}
-	feedPage, err := buildHtml(string(feedHtml))
-	if err != nil {
-		return err
-	}
-	if err = os.WriteFile("dist/feed.html", []byte(feedPage), 0o666); err != nil {
-		return err
-	}
-
 	return nil
 }
 
