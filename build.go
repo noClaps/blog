@@ -56,17 +56,11 @@ func build() {
 }
 
 func feeds() error {
-	feeds, err := pages.Feed()
+	feed, err := pages.Feed()
 	if err != nil {
 		return err
 	}
-	if err = os.WriteFile("dist/feed.json", []byte(feeds.Json), 0666); err != nil {
-		return err
-	}
-	if err = os.WriteFile("dist/feed.atom", []byte(feeds.Atom), 0666); err != nil {
-		return err
-	}
-	if err = os.WriteFile("dist/feed.rss", []byte(feeds.Rss), 0666); err != nil {
+	if err = os.WriteFile("dist/feed.atom", []byte(feed), 0666); err != nil {
 		return err
 	}
 
