@@ -2,6 +2,7 @@
 title: Collatz Conjecture
 description: The simplest hardest problem in math history
 date: 2022-11-08
+lastmod: 2025-04-12
 ---
 
 ---
@@ -111,8 +112,6 @@ Follow these few easy steps and you'll be on your way to solving this problem in
    num = int(input("Enter a number to test: ")) # ask user for number to test
    collatz(num) # run the collatz function with the number you type in
    ```
-
-Alternatively, you can <a href="./collatz-conjecture/collatz-conjecture.py" download="collatz-conjecture.py">download the code here</a>.
 
 4. Hit save and double-click the .py file to run it.
 5. Enter a number when it tells you to "Enter a number to test: "

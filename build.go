@@ -98,35 +98,6 @@ func buildPost(post string, filePath string) (string, error) {
 		nodesToRemove := []html.Node{}
 
 		if n.Type == html.ElementNode {
-			if n.Data == "a" {
-				hasDownload := false
-				href := ""
-				for _, attr := range n.Attr {
-					if attr.Key == "download" {
-						hasDownload = true
-					}
-					if attr.Key == "href" {
-						href = attr.Val
-					}
-				}
-
-				if hasDownload && href != "" {
-					fileName := path.Base(href)
-					filePath := path.Join(dirPath, fileName)
-
-					if err = os.MkdirAll(path.Dir(path.Join("dist", filePath)), 0777); err != nil {
-						return err
-					}
-					content, err := os.ReadFile(path.Join("src/content", filePath))
-					if err != nil {
-						return err
-					}
-					if err = os.WriteFile(path.Join("dist", filePath), content, 0666); err != nil {
-						return err
-					}
-				}
-			}
-
 			if n.Data == "img" {
 				src := ""
 				attrIndex := 0
