@@ -4,7 +4,7 @@
     <title>The Blog of Random</title>
     <updated>{{ .LastUpdate }}</updated>
     <link rel="self" href="https://blog.zerolimits.dev/feed.atom" />
-    <icon>https://blog.zerolimits.dev/favicon.ico</icon>
+    <icon>https://zerolimits.dev/cookie.png</icon>
     <subtitle>A blog about the most random things you can think of.</subtitle>
     <author>
         <name>noClaps</name>
