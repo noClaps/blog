@@ -5,14 +5,14 @@ h3 {
 }
 
 /* Links */
-article a:has(code) {
-    text-decoration: underline;
-}
-
 article a {
     text-decoration: none;
     color: var(--primary);
     white-space: break-spaces;
+
+    &:has(code) {
+        text-decoration: underline;
+    }
 
     &:hover {
         text-decoration: underline;
