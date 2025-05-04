@@ -1,7 +1,2 @@
+.DS_Store
 dist/
-node_modules/
-blog
-
-# Added by cargo
-
-/target
