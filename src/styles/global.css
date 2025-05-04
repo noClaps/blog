@@ -69,13 +69,13 @@ body {
 
 p {
     line-height: 1.5;
-    margin: 1rem 0;
+    margin-block: 1lh;
 }
 
 /* Header */
 header {
     display: flex;
-    padding: 2dvh 0;
+    padding-block: 2dvh;
     background-color: var(--background);
     justify-content: space-between;
     align-items: center;
