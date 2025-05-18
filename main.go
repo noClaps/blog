@@ -14,12 +14,16 @@ func main() {
 		case "build":
 			build()
 			return
+		case "fonts":
+			fonts()
+			return
 		}
 	}
 
 	fmt.Println(`
 ARGUMENTS:
   serve    Start an HTTP server serving the dist/ directory.
-  build    Build the site.`)
+  build    Build the site.
+  fonts    Fetch the fonts used on the site.`)
 	os.Exit(1)
 }

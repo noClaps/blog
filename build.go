@@ -10,6 +10,7 @@ import (
 	_ "image/png"
 	"log"
 	"os"
+	"os/exec"
 	"path"
 	"slices"
 	"strings"
@@ -19,6 +20,16 @@ import (
 )
 
 func build() {
+	if err := exec.Command("rm", "-rf", "dist").Run(); err != nil {
+		log.Println(err)
+	}
+	if err := exec.Command("mkdir", "-p", "dist").Run(); err != nil {
+		log.Println(err)
+	}
+	if err := exec.Command("/bin/sh", "-c", "cp -r public/** dist").Run(); err != nil {
+		log.Println(err)
+	}
+
 	index, err := pages.Index()
 	if err != nil {
 		log.Println("[ERROR]", err)
