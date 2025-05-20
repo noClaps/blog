@@ -38,15 +38,9 @@ func Posts() ([]renderedPost, error) {
 		filePath := fmt.Sprintf("%s.html", post.Slug)
 
 		description := "A blog about the most random things you can think of."
-		if post.Description != "" {
-			description = post.Description
-		}
-		pubDate := post.Date
-		if !post.LastMod.IsZero() {
-			pubDate = post.LastMod
-		}
 		postDesc := ""
 		if post.Description != "" {
+			description = post.Description
 			postDesc = fmt.Sprintf(`<p class="description">%s</p>`, post.Description)
 		}
 
@@ -63,7 +57,7 @@ func Posts() ([]renderedPost, error) {
 		vals := tmplVals{
 			Title:       post.Title,
 			Description: description,
-			PubDate:     pubDate.Format(time.DateOnly),
+			PubDate:     post.Date.Format(time.DateOnly),
 			PostDesc:    postDesc,
 			Children:    content,
 		}

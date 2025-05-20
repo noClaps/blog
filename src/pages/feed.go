@@ -11,7 +11,7 @@ import (
 	"github.com/noClaps/znak"
 )
 
-func atomFeed(items []utils.Post, content map[string]string, lastUpdate time.Time) (string, error) {
+func atomFeed(items []utils.Post, content map[string]string) (string, error) {
 	type Entry struct {
 		Id        string
 		Title     string
@@ -26,12 +26,17 @@ func atomFeed(items []utils.Post, content map[string]string, lastUpdate time.Tim
 		Entries    []Entry
 	}
 
+	lastUpdate := time.Time{}
 	atomEntries := []Entry{}
 	for _, item := range items {
 		updated := item.Date
 		if !item.LastMod.IsZero() {
 			updated = item.LastMod
 		}
+		if updated.Compare(lastUpdate) == 1 {
+			lastUpdate = updated
+		}
+
 		atomEntries = append(atomEntries, Entry{
 			Id:        fmt.Sprintf("https://blog.zerolimits.dev%s", item.Slug),
 			Title:     item.Title,
@@ -67,18 +72,8 @@ func Feed() (string, error) {
 		return "", err
 	}
 
-	lastUpdate := time.Time{}
 	content := map[string]string{}
-
 	for _, item := range items {
-		itemDate := item.Date
-		if !item.LastMod.IsZero() {
-			itemDate = item.LastMod
-		}
-		if itemDate.Compare(lastUpdate) == 1 {
-			lastUpdate = itemDate
-		}
-
 		theme, err := utils.GetTheme()
 		if err != nil {
 			return "", err
@@ -90,7 +85,7 @@ func Feed() (string, error) {
 		content[item.Slug] = html
 	}
 
-	atom, err := atomFeed(items, content, lastUpdate)
+	atom, err := atomFeed(items, content)
 	if err != nil {
 		return "", err
 	}

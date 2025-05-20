@@ -17,22 +17,14 @@ func Index() (string, error) {
 	}
 
 	sortFunc := func(a utils.Post, b utils.Post) int {
-		aDate := a.Date
-		if !a.LastMod.IsZero() {
-			aDate = a.LastMod
-		}
-		bDate := b.Date
-		if !b.LastMod.IsZero() {
-			bDate = b.LastMod
-		}
-
-		if aDate.After(bDate) {
+		switch {
+		case a.Date.After(b.Date):
 			return -1
-		}
-		if aDate.Before(bDate) {
+		case a.Date.Before(b.Date):
 			return 1
+		default:
+			return 0
 		}
-		return 0
 	}
 
 	items, err := utils.GetPosts()
@@ -48,13 +40,9 @@ func Index() (string, error) {
 	slices.SortFunc(posts, sortFunc)
 	postsTmpl := []postTmpl{}
 	for _, post := range posts {
-		date := post.Date
-		if !post.LastMod.IsZero() {
-			date = post.LastMod
-		}
 		postsTmpl = append(postsTmpl, postTmpl{
 			Href:  post.Slug,
-			Date:  date.Format(time.DateOnly),
+			Date:  post.Date.Format(time.DateOnly),
 			Title: post.Title,
 		})
 	}
@@ -65,13 +53,9 @@ func Index() (string, error) {
 	slices.SortFunc(notes, sortFunc)
 	notesTmpl := []postTmpl{}
 	for _, note := range notes {
-		date := note.Date
-		if !note.LastMod.IsZero() {
-			date = note.LastMod
-		}
 		notesTmpl = append(notesTmpl, postTmpl{
 			Href:  note.Slug,
-			Date:  date.Format(time.DateOnly),
+			Date:  note.Date.Format(time.DateOnly),
 			Title: note.Title,
 		})
 	}
@@ -82,13 +66,9 @@ func Index() (string, error) {
 	slices.SortFunc(stories, sortFunc)
 	storiesTmpl := []postTmpl{}
 	for _, story := range stories {
-		date := story.Date
-		if !story.LastMod.IsZero() {
-			date = story.LastMod
-		}
 		storiesTmpl = append(storiesTmpl, postTmpl{
 			Href:  story.Slug,
-			Date:  date.Format(time.DateOnly),
+			Date:  story.Date.Format(time.DateOnly),
 			Title: story.Title,
 		})
 	}
