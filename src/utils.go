@@ -103,7 +103,7 @@ func GetTheme() (highlight.Theme, error) {
 	if err != nil {
 		return highlight.Theme{}, err
 	}
-	theme, err := highlight.NewTheme(string(themeFile))
+	theme, err := highlight.NewTheme(themeFile)
 	if err != nil {
 		return highlight.Theme{}, err
 	}
