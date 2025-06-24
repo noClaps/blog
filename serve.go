@@ -52,7 +52,8 @@ func serve() {
 		startServerWithReload()
 	}
 
-	// Start the server initially
+	// Build site and start the server initially
+	build()
 	startServerWithReload()
 
 	// Watch for file changes and restart server
