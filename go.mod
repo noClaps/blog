@@ -4,7 +4,7 @@ go 1.24.4
 
 require (
 	github.com/fsnotify/fsnotify v1.9.0
-	github.com/noClaps/znak v0.18.0
+	github.com/noClaps/znak v0.18.1
 	golang.org/x/net v0.41.0
 )
 
