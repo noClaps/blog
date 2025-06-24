@@ -54,9 +54,13 @@ code:not(.ts-highlight code) {
 }
 
 /* Math */
-math[display="block"] {
-    margin: 1rem;
-    font-size: 1.125rem;
+math {
+    font-family: var(--math);
+
+    &[display="block"] {
+        margin: 1rem;
+        font-size: 1.125rem;
+    }
 }
 
 /* Layout */
@@ -167,9 +171,4 @@ em {
 hr {
     border: none;
     border-top: solid 0.125rem var(--light);
-}
-
-/* Math */
-math {
-    font-family: var(--math);
 }
