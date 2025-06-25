@@ -26,7 +26,3 @@ A blog about the most random things you can think of.
     ```
 
     This will build the site and place it in `dist/`.
-
-## Acknowledgements
-
-The code theme is taken from [PyaeSoneAungRgn/github-zed-theme](https://github.com/PyaeSoneAungRgn/github-zed-theme).
