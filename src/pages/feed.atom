@@ -18,7 +18,6 @@
         <updated>{{ $entry.Updated }}</updated>
         <content type="html">{{ $entry.Content }}</content>
         <link rel="alternate" href="{{ $entry.Link }}" />
-        {{- if $entry.Summary }}<summary>{{ $entry.Summary }}</summary>{{ end -}}
         <published>{{ $entry.Published }}</published>
     </entry>
     {{- end -}}

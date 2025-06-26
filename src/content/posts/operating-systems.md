@@ -1,6 +1,5 @@
 ---
 title: How to Make an OS
-description: The various pros and cons of different operating systems
 date: 2023-02-02
 lastmod: 2023-02-05
 ---

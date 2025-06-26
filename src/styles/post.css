@@ -78,12 +78,6 @@ time {
     font-weight: bold;
 }
 
-.description {
-    color: var(--light);
-    margin: 1rem 0;
-    font-weight: bold;
-}
-
 /* Figure */
 figure {
     margin: auto 0;

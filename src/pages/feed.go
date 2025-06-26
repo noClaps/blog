@@ -18,7 +18,6 @@ func atomFeed(items []utils.Post, content map[string]string) (string, error) {
 		Updated   string
 		Content   string
 		Link      string
-		Summary   string
 		Published string
 	}
 	type Feed struct {
@@ -43,7 +42,6 @@ func atomFeed(items []utils.Post, content map[string]string) (string, error) {
 			Updated:   updated.Format(time.RFC3339),
 			Content:   html.EscapeString(content[item.Slug]),
 			Link:      fmt.Sprintf("https://blog.zerolimits.dev%s", item.Slug),
-			Summary:   item.Description,
 			Published: item.Date.Format(time.RFC3339),
 		})
 	}

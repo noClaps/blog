@@ -1,6 +1,5 @@
 ---
 title: Battle of the Browsers
-description: A comparison of different browsers, and a peace treaty
 date: 2024-01-22
 ---
 

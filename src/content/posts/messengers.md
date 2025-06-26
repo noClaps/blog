@@ -1,6 +1,5 @@
 ---
 title: Messengers
-description: The right and wrong places to talk to people
 date: 2022-05-06
 lastmod: 2023-01-18
 ---

@@ -1,6 +1,5 @@
 ---
 title: Be Social
-description: What's your [enter social media here]?
 date: 2022-11-27
 lastmod: 2023-01-31
 ---

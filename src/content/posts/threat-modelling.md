@@ -1,6 +1,5 @@
 ---
 title: Threat Modelling
-description: Why are you running?
 date: 2023-01-18
 ---
 

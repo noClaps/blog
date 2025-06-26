@@ -11,29 +11,23 @@ import (
 )
 
 type Post struct {
-	Slug        string
-	Title       string
-	Description string
-	Date        time.Time
-	LastMod     time.Time
-	Content     string
+	Slug    string
+	Title   string
+	Date    time.Time
+	LastMod time.Time
+	Content string
 }
 
 type frontmatter struct {
-	title       string
-	description string
-	date        string
-	lastmod     string
+	title   string
+	date    string
+	lastmod string
 }
 
 func parseFrontmatter(parsed map[string]string) (frontmatter, error) {
 	title, ok := parsed["title"]
 	if !ok {
 		return frontmatter{}, fmt.Errorf("Title not found: %v", parsed)
-	}
-	description, ok := parsed["description"]
-	if !ok {
-		description = ""
 	}
 	date, ok := parsed["date"]
 	if !ok {
@@ -44,7 +38,7 @@ func parseFrontmatter(parsed map[string]string) (frontmatter, error) {
 		lastmod = ""
 	}
 
-	return frontmatter{title, description, date, lastmod}, nil
+	return frontmatter{title, date, lastmod}, nil
 }
 
 //go:embed content
@@ -84,12 +78,11 @@ func GetPosts() ([]Post, error) {
 		}
 
 		data = append(data, Post{
-			Slug:        slug,
-			Title:       fm.title,
-			Description: fm.description,
-			Date:        date,
-			LastMod:     lastmod,
-			Content:     string(md),
+			Slug:    slug,
+			Title:   fm.title,
+			Date:    date,
+			LastMod: lastmod,
+			Content: string(md),
 		})
 	}
 	return data, nil

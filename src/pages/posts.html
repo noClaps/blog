@@ -5,7 +5,10 @@
         <title>{{ .Title }}</title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="{{ .Description }}" />
+        <meta
+            name="description"
+            content="A blog about the most random things you can think of."
+        />
         <link rel="alternate" href="/feed.atom" type="application/atom+xml" />
         <link rel="stylesheet" href="/styles/global.css" />
         <link rel="stylesheet" href="/styles/post.css" />
@@ -51,7 +54,6 @@
             <div class="post-header">
                 <time datetime="{{ .PubDate }}">{{ .PubDate }}</time>
                 <h1>{{ .Title }}</h1>
-                {{- .PostDesc }}
             </div>
             <article>{{ .Children }}</article>
         </main>

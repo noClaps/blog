@@ -1,6 +1,5 @@
 ---
 title: Po-Shen Loh Quadratic Method
-description: An easier way of solving quadratic equations
 date: 2025-04-12
 ---
 
