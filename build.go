@@ -26,6 +26,9 @@ func build() {
 	if err := exec.Command("mkdir", "-p", "dist").Run(); err != nil {
 		log.Println(err)
 	}
+	if err := exec.Command("/bin/sh", "-c", "cp -r public/** dist").Run(); err != nil {
+		log.Println(err)
+	}
 
 	index, err := pages.Index()
 	if err != nil {

@@ -14,6 +14,9 @@ func main() {
 		case "build":
 			build()
 			return
+		case "fonts":
+			fonts()
+			return
 		}
 	}
 
