@@ -1,5 +1,0 @@
-/history/*  /posts/:splat
-/law/*      /posts/:splat
-/science/*  /posts/:splat
-/tech/psa/* /posts/:splat
-/tech/*     /posts/:splat
