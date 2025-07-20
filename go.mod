@@ -3,7 +3,6 @@ module github.com/noclaps/blog
 go 1.24.4
 
 require (
-	github.com/fsnotify/fsnotify v1.9.0
 	github.com/noclaps/znak v0.19.0
 	golang.org/x/net v0.42.0
 )
@@ -33,5 +32,4 @@ require (
 	github.com/tree-sitter/tree-sitter-scala v0.24.0 // indirect
 	github.com/tree-sitter/tree-sitter-typescript v0.23.2 // indirect
 	github.com/wyatt915/treeblood v0.1.14 // indirect
-	golang.org/x/sys v0.34.0 // indirect
 )
