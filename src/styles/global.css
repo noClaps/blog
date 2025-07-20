@@ -1,10 +1,10 @@
 /* Fonts */
 @font-face {
-    font-family: STIX Two Math;
+    font-family: NewComputerModernMath;
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: local("STIX Two Math"), url("/STIXTwoMath.woff2");
+    src: url("/NewCMMath-Regular.woff2");
 }
 
 @view-transition {
@@ -18,8 +18,8 @@
 
     --sans: system-ui;
     --serif: ui-serif, serif;
-    --math: "STIX Two Math", math;
     --mono: ui-monospace, monospace;
+    --math: "NewComputerModernMath", math;
 
     --text: oklch(90% 0 none);
     --background: oklch(20% 0 none);
