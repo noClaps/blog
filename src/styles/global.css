@@ -1,33 +1,10 @@
 /* Fonts */
 @font-face {
-    font-family: InterVariable;
-    font-style: normal;
-    font-weight: 100 900;
-    font-display: swap;
-    font-feature-settings:
-        "liga" 1,
-        "calt" 1,
-        "case" 1,
-        "ss04" 1,
-        "cv10" 1;
-    src: url("/InterVariable.woff2");
-}
-@font-face {
     font-family: STIX Two Math;
     font-style: normal;
     font-weight: 400;
     font-display: swap;
     src: local("STIX Two Math"), url("/STIXTwoMath.woff2");
-}
-@font-face {
-    font-family: MonaspaceNeon;
-    font-style: normal;
-    font-weight: 100 900;
-    font-display: swap;
-    font-feature-settings:
-        "liga" 1,
-        "calt" 1;
-    src: url("/MonaspaceNeon.woff2");
 }
 
 @view-transition {
@@ -39,10 +16,10 @@
     --code-bg: #222;
     --code-text: #ccc;
 
-    --sans: InterVariable, system-ui;
+    --sans: system-ui;
     --serif: ui-serif, serif;
-    --mono: MonaspaceNeon, ui-monospace, monospace;
     --math: "STIX Two Math", math;
+    --mono: ui-monospace, monospace;
 
     --text: oklch(90% 0 none);
     --background: oklch(20% 0 none);
