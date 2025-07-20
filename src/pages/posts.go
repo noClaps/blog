@@ -6,8 +6,8 @@ import (
 	"text/template"
 	"time"
 
-	utils "github.com/noClaps/blog/src"
-	"github.com/noClaps/znak"
+	utils "github.com/noclaps/blog/src"
+	"github.com/noclaps/znak"
 )
 
 type renderedPost struct {

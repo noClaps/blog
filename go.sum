@@ -4,8 +4,10 @@ github.com/fsnotify/fsnotify v1.9.0 h1:2Ml+OJNzbYCTzsxtv8vKSFD9PbJjmhYF14k/jKC7S
 github.com/fsnotify/fsnotify v1.9.0/go.mod h1:8jBTzvmWwFyi3Pb8djgCCO5IBqzKJ/Jwo8TRcHyHii0=
 github.com/mattn/go-pointer v0.0.1 h1:n+XhsuGeVO6MEAp7xyEukFINEa+Quek5psIR/ylA6o0=
 github.com/mattn/go-pointer v0.0.1/go.mod h1:2zXcozF6qYGgmsG+SeTZz3oAbFLdD3OWqnUbNvJZAlc=
-github.com/noClaps/znak v0.18.1 h1:vdZfi47t+K3Pm1jjcV/Oi4bTISxcBM6/QfEJH61ONQA=
-github.com/noClaps/znak v0.18.1/go.mod h1:Kk6OHKHSKK5HMZxQfkjp4SpJ/t0b5O4H3ABzhL1Zk9s=
+github.com/noclaps/go-tree-sitter-highlight v0.1.0 h1:1yodOUliQfo7m1dfeHN3FE+XqWtfyPmcyuYNSZEzmg4=
+github.com/noclaps/go-tree-sitter-highlight v0.1.0/go.mod h1:cTajfpuo5lW8wNv2AgBsQhpHhBo028yCKhnzAhImxmU=
+github.com/noclaps/znak v0.19.0 h1:U7RguZuagso4oXitobL65n8hwdDoKQceINBVs39mjRA=
+github.com/noclaps/znak v0.19.0/go.mod h1:IT/K6mggbD6uTLjbyLo1fMCthMJHFKMZYIgiOGJb02s=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/stretchr/testify v1.10.0 h1:Xv5erBjTwe/5IxqUQTdXv5kgmIvbHo3QQyRwhJsOfJA=
@@ -54,10 +56,8 @@ github.com/tree-sitter/tree-sitter-scala v0.24.0 h1:F8UcZQdNQSkOGtkW8tUsFrqifOVX
 github.com/tree-sitter/tree-sitter-scala v0.24.0/go.mod h1:BmDV0f9rgsnGuG9QtKXQZnqJvECyR9fM8wVg984ulBo=
 github.com/tree-sitter/tree-sitter-typescript v0.23.2 h1:/Odvphn18PniVixb9e97X0DbNVsU6Qocv9mfkyzdXwU=
 github.com/tree-sitter/tree-sitter-typescript v0.23.2/go.mod h1:zjzMXT/Ulffel2xfOcAkQQkiAkmgnbtPGlFQw/5X4xA=
-github.com/wyatt915/treeblood v0.1.12 h1:AEsJuvss3r+SKwOYaolKPUz8wKjKH9ZQZoS9ivNSqMs=
-github.com/wyatt915/treeblood v0.1.12/go.mod h1:wQmihhy7SYtGTnq5MxgNfxoaNW+ULr8oWPJJMreH4p8=
-go.gopad.dev/go-tree-sitter-highlight v0.0.0-20241203223050-3ffb64c3a650 h1:EC4MD0mMOYGK//R6+FPApJU8/4qDllfcbQ/T9X1RDYA=
-go.gopad.dev/go-tree-sitter-highlight v0.0.0-20241203223050-3ffb64c3a650/go.mod h1:6AlBoTHE0mpau8lRs2Xn45LZdJEj22Fw2sf5AXKxZP0=
+github.com/wyatt915/treeblood v0.1.14 h1:3+/lRcUG1u2RldmI1hdnzO6BCHhtnmk8+G68oaEf7u0=
+github.com/wyatt915/treeblood v0.1.14/go.mod h1:i7+yhhmzdDP17/97pIsOSffw74EK/xk+qJ0029cSXUY=
 golang.org/x/net v0.42.0 h1:jzkYrhi3YQWD6MLBJcsklgQsoAcw89EcZbJw8Z614hs=
 golang.org/x/net v0.42.0/go.mod h1:FF1RA5d3u7nAYA4z2TkclSCKh68eSXtiFwcWQpPXdt8=
 golang.org/x/sys v0.34.0 h1:H5Y5sJ2L2JRdyv7ROF1he/lPdvFsd0mJHFw2ThKHxLA=

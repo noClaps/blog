@@ -6,7 +6,7 @@ import (
 	"text/template"
 	"time"
 
-	utils "github.com/noClaps/blog/src"
+	utils "github.com/noclaps/blog/src"
 )
 
 func Index() (string, error) {

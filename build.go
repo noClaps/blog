@@ -15,7 +15,7 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/noClaps/blog/src/pages"
+	"github.com/noclaps/blog/src/pages"
 	"golang.org/x/net/html"
 )
 
