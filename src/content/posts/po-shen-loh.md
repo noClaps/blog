@@ -128,8 +128,8 @@ int main() {
   double r1 = -b_prime / 2 + u;
   double r2 = -b_prime / 2 - u;
 
-  printf("r₁ = %f\n"
-         "r₂ = %f\n",
+  printf("r1 = %f\n"
+         "r2 = %f\n",
          r1, r2);
 }
 ```
