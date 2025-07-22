@@ -97,7 +97,6 @@ img {
 
 /* Containers */
 .znak-container {
-    display: grid;
     padding: 1rem;
     margin: 0.5rem 0;
     background-color: oklch(from var(--container) l c h / 5%);
