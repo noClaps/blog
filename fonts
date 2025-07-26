@@ -1,3 +1,0 @@
-#!/bin/sh
-
-curl -L https://github.com/noClaps/math-font/releases/latest/download/NewCMMath-Regular.woff2 -o public/NewCMMath-Regular.woff2

@@ -1,3 +1,0 @@
-#!/bin/sh
-
-watchexec --clear --restart --ignore dist 'go run . && serve dist'
