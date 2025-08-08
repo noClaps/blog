@@ -4,7 +4,7 @@ go 1.24.4
 
 require (
 	github.com/noclaps/znak v0.19.0
-	golang.org/x/net v0.42.0
+	golang.org/x/net v0.43.0
 )
 
 require (
