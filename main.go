@@ -120,12 +120,6 @@ func buildPost(post string, filePath string) (string, error) {
 						html.Attribute{Key: "width", Val: fmt.Sprint(data.Width)},
 						html.Attribute{Key: "height", Val: fmt.Sprint(data.Height)},
 					)
-				} else if src != "" {
-					n.Attr = slices.Delete(n.Attr, attrIndex, attrIndex+1)
-					n.Attr = append(n.Attr, html.Attribute{
-						Key: "src",
-						Val: fmt.Sprintf("/cdn-cgi/image/format=avif,fit=scale-down,width=auto/%s", src),
-					})
 				}
 			}
 		}
