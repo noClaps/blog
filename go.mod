@@ -1,6 +1,6 @@
 module github.com/noclaps/blog
 
-go 1.24.4
+go 1.25.0
 
 require (
 	github.com/noclaps/znak v0.19.0
@@ -24,7 +24,7 @@ require (
 	github.com/tree-sitter/tree-sitter-jsdoc v0.23.2 // indirect
 	github.com/tree-sitter/tree-sitter-json v0.24.8 // indirect
 	github.com/tree-sitter/tree-sitter-ocaml v0.24.2 // indirect
-	github.com/tree-sitter/tree-sitter-php v0.23.12 // indirect
+	github.com/tree-sitter/tree-sitter-php v0.24.2 // indirect
 	github.com/tree-sitter/tree-sitter-python v0.23.6 // indirect
 	github.com/tree-sitter/tree-sitter-regex v0.24.3 // indirect
 	github.com/tree-sitter/tree-sitter-ruby v0.23.1 // indirect
