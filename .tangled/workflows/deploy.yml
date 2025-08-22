@@ -1,0 +1,14 @@
+when:
+  - events: ["push"]
+    branch: ["main"]
+
+engine: "nixery"
+
+dependencies:
+  nixpkgs:
+    - wrangler
+    - go
+
+steps:
+  - command: make build
+  - command: wrangler deploy
