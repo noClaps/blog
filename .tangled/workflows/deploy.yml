@@ -4,11 +4,5 @@ when:
 
 engine: "nixery"
 
-dependencies:
-  nixpkgs:
-    - wrangler
-    - go
-
 steps:
-  - command: make build
-  - command: wrangler deploy
+  - command: echo "hello world"
