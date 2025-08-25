@@ -11,6 +11,6 @@ dependencies:
 
 steps:
   - name: Build the site
-    command: make build
+    command: go run .
   - name: Deploy the site
     command: npx wrangler deploy
