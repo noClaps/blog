@@ -1,5 +1,5 @@
 when:
-  - events: ["push"]
+  - event: ["push"]
     branch: ["main"]
 
 engine: "nixery"
