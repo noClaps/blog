@@ -6,11 +6,11 @@ engine: "nixery"
 
 dependencies:
   nixpkgs:
-    - wrangler
+    - nodejs
     - go
 
 steps:
   - name: Build the site
     command: make build
   - name: Deploy the site
-    command: wrangler deploy
+    command: npx wrangler deploy
