@@ -7,8 +7,8 @@ import (
 	"text/template"
 	"time"
 
-	utils "github.com/noclaps/blog/src"
 	"github.com/noclaps/znak"
+	utils "tangled.sh/zerolimits.dev/blog/src"
 )
 
 func atomFeed(items []utils.Post, content map[string]string) (string, error) {

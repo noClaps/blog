@@ -6,8 +6,8 @@ import (
 	"text/template"
 	"time"
 
-	utils "github.com/noclaps/blog/src"
 	"github.com/noclaps/znak"
+	utils "tangled.sh/zerolimits.dev/blog/src"
 )
 
 type renderedPost struct {
