@@ -8,6 +8,7 @@ dependencies:
   nixpkgs:
     - nodejs
     - go
+    - musl
 
 steps:
   - name: Build the site
