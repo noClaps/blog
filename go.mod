@@ -3,7 +3,7 @@ module github.com/noclaps/blog
 go 1.25.0
 
 require (
-	github.com/noclaps/znak v0.19.0
+	github.com/noclaps/znak v0.19.1
 	golang.org/x/net v0.43.0
 )
 
@@ -31,5 +31,5 @@ require (
 	github.com/tree-sitter/tree-sitter-rust v0.24.0 // indirect
 	github.com/tree-sitter/tree-sitter-scala v0.24.0 // indirect
 	github.com/tree-sitter/tree-sitter-typescript v0.23.2 // indirect
-	github.com/wyatt915/treeblood v0.1.14 // indirect
+	github.com/wyatt915/treeblood v0.1.15 // indirect
 )
