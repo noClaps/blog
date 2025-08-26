@@ -8,13 +8,14 @@ dependencies:
   nixpkgs:
     - nodejs
     - go
-    - musl
+    - gcc
 
 steps:
-  - name: Build the site
-    command: go run .
+  - name: "Build the site"
+    command: "go run ."
     environment:
-      GOOS: linux
-      GOARCH: amd64
-  - name: Deploy the site
-    command: npx wrangler deploy
+      GOOS: "linux"
+      GOARCH: "amd64"
+      CGO_ENABLED: "1"
+  - name: "Deploy the site"
+    command: "npx wrangler deploy"
