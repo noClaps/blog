@@ -12,5 +12,8 @@ dependencies:
 steps:
   - name: Build the site
     command: go run .
+    environment:
+      GOOS: linux
+      GOARCH: amd64
   - name: Deploy the site
     command: npx wrangler deploy
