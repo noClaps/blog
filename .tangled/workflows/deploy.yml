@@ -14,8 +14,6 @@ steps:
   - name: "Build the site"
     command: "go run ."
     environment:
-      GOOS: "linux"
-      GOARCH: "amd64"
       CGO_ENABLED: "1"
   - name: "Deploy the site"
     command: "npx wrangler deploy"
