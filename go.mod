@@ -3,7 +3,7 @@ module tangled.sh/zerolimits.dev/blog
 go 1.25.0
 
 require (
-	github.com/noclaps/znak v0.19.1
+	github.com/noclaps/znak v0.20.0
 	golang.org/x/net v0.43.0
 )
 
@@ -16,11 +16,11 @@ require (
 	github.com/tree-sitter/tree-sitter-c v0.24.1 // indirect
 	github.com/tree-sitter/tree-sitter-cpp v0.23.4 // indirect
 	github.com/tree-sitter/tree-sitter-css v0.23.2 // indirect
-	github.com/tree-sitter/tree-sitter-go v0.23.4 // indirect
+	github.com/tree-sitter/tree-sitter-go v0.25.0 // indirect
 	github.com/tree-sitter/tree-sitter-haskell v0.23.1 // indirect
 	github.com/tree-sitter/tree-sitter-html v0.23.2 // indirect
 	github.com/tree-sitter/tree-sitter-java v0.23.5 // indirect
-	github.com/tree-sitter/tree-sitter-javascript v0.23.1 // indirect
+	github.com/tree-sitter/tree-sitter-javascript v0.25.0 // indirect
 	github.com/tree-sitter/tree-sitter-jsdoc v0.23.2 // indirect
 	github.com/tree-sitter/tree-sitter-json v0.24.8 // indirect
 	github.com/tree-sitter/tree-sitter-ocaml v0.24.2 // indirect

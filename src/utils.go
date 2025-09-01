@@ -88,11 +88,11 @@ func GetPosts() ([]Post, error) {
 	return data, nil
 }
 
-//go:embed theme.json
+//go:embed styles/syntax.css
 var themeFile embed.FS
 
 func GetTheme() (highlight.Theme, error) {
-	themeFile, err := themeFile.ReadFile("theme.json")
+	themeFile, err := themeFile.ReadFile("styles/syntax.css")
 	if err != nil {
 		return highlight.Theme{}, err
 	}
