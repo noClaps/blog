@@ -7,7 +7,7 @@ import (
 	"text/template"
 	"time"
 
-	"github.com/noclaps/znak"
+	"tangled.org/zerolimits.dev/znak"
 	utils "tangled.sh/zerolimits.dev/blog/src"
 )
 

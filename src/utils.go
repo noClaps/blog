@@ -6,8 +6,8 @@ import (
 	"io/fs"
 	"time"
 
-	"github.com/noclaps/znak"
-	"github.com/noclaps/znak/highlight"
+	"tangled.org/zerolimits.dev/znak"
+	"tangled.org/zerolimits.dev/znak/highlight"
 )
 
 type Post struct {
