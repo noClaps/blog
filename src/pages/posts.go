@@ -7,7 +7,7 @@ import (
 	"time"
 
 	utils "github.com/noclaps/blog/src"
-	"tangled.org/zerolimits.dev/znak"
+	"github.com/noclaps/znak"
 )
 
 type renderedPost struct {

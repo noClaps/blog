@@ -8,7 +8,7 @@ import (
 	"time"
 
 	utils "github.com/noclaps/blog/src"
-	"tangled.org/zerolimits.dev/znak"
+	"github.com/noclaps/znak"
 )
 
 func atomFeed(items []utils.Post, content map[string]string) (string, error) {

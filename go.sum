@@ -2,6 +2,8 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/mattn/go-pointer v0.0.1 h1:n+XhsuGeVO6MEAp7xyEukFINEa+Quek5psIR/ylA6o0=
 github.com/mattn/go-pointer v0.0.1/go.mod h1:2zXcozF6qYGgmsG+SeTZz3oAbFLdD3OWqnUbNvJZAlc=
+github.com/noclaps/znak v0.20.1 h1:8cSCvCCZXYNIWbaS+EhgNivZelvakX98607eliZKm74=
+github.com/noclaps/znak v0.20.1/go.mod h1:Qkkzx2dGUpUteWwi1MDXocm65hrpgkuWRQe+qGJRBI4=
 github.com/nushell/tree-sitter-nu v0.0.0-20250919171352-0e6c59c46db3 h1:GWck4ENrIrs9QabHQFWwGv0zduerKi+kgDXAnpMnAlg=
 github.com/nushell/tree-sitter-nu v0.0.0-20250919171352-0e6c59c46db3/go.mod h1:VyBdf3z3bE/IYBFVXV1yDUuVPuuO830f5NOhnF9Lbxc=
 github.com/phoenixframework/tree-sitter-heex v0.8.0 h1:LUc9XL4uMHYE35rAXNcNCzjrQ2mIsrjkmmAffDDN1W4=
@@ -76,11 +78,9 @@ github.com/victorhqc/tree-sitter-prisma v1.5.1 h1:wtHYXan/jZnEDcamCdH0YrXK0WnO2b
 github.com/victorhqc/tree-sitter-prisma v1.5.1/go.mod h1:WivlS6+J2tmRy4oBFilik4Tj8efHUiTmiHwMnQQ++Is=
 github.com/wyatt915/treeblood v0.1.16 h1:byxNbWZhnPDxdTp7W5kQhCeaY8RBVmojTFz1tEHgg8Y=
 github.com/wyatt915/treeblood v0.1.16/go.mod h1:i7+yhhmzdDP17/97pIsOSffw74EK/xk+qJ0029cSXUY=
-golang.org/x/net v0.43.0 h1:lat02VYK2j4aLzMzecihNvTlJNQUq316m2Mr9rnM6YE=
-golang.org/x/net v0.43.0/go.mod h1:vhO1fvI4dGsIjh73sWfUVjj3N7CA9WkKJNQm2svM6Jg=
+golang.org/x/net v0.46.0 h1:giFlY12I07fugqwPuWJi68oOnpfqFnJIJzaIIm2JVV4=
+golang.org/x/net v0.46.0/go.mod h1:Q9BGdFy1y4nkUwiLvT5qtyhAnEHgnQ/zd8PfU6nc210=
 gopkg.in/yaml.v3 v3.0.1 h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=
 gopkg.in/yaml.v3 v3.0.1/go.mod h1:K4uyk7z7BCEPqu6E+C64Yfv1cQ7kz7rIZviUmN+EgEM=
-tangled.org/zerolimits.dev/znak v0.21.0 h1:J4itzSZ+blHiuX0OfJ+e8dzwzEFb7+AnSOeqYU03nHQ=
-tangled.org/zerolimits.dev/znak v0.21.0/go.mod h1:d4rw9yjywQxQRDeI2oYFF3PhNUripsNqLpSqxWiUCMo=
 tangled.sh/zerolimits.dev/go-tree-sitter-highlight v0.2.2 h1:BlYLpjkqr/tTckcQxX0dnINi7C9H8HcyN0LtaxfLhTk=
 tangled.sh/zerolimits.dev/go-tree-sitter-highlight v0.2.2/go.mod h1:zGpVYoqugpFCgshunUZ5WeZv9i45CgdBpyqYIko9LIs=
