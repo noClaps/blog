@@ -15,8 +15,8 @@ import (
 	"slices"
 	"strings"
 
+	"github.com/noclaps/blog/src/pages"
 	"golang.org/x/net/html"
-	"tangled.sh/zerolimits.dev/blog/src/pages"
 )
 
 func main() {

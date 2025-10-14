@@ -1,4 +1,4 @@
-module tangled.sh/zerolimits.dev/blog
+module github.com/noclaps/blog
 
 go 1.25.1
 

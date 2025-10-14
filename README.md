@@ -7,7 +7,7 @@ A blog about the most random things you can think of.
 1.  Clone the respository.
 
     ```sh
-    git clone https://tangled.sh/@zerolimits.dev/blog
+    git clone https://github.com/noClaps/blog
     cd blog
     ```
 

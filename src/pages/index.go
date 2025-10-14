@@ -6,7 +6,7 @@ import (
 	"text/template"
 	"time"
 
-	utils "tangled.sh/zerolimits.dev/blog/src"
+	utils "github.com/noclaps/blog/src"
 )
 
 func Index() (string, error) {
