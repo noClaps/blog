@@ -1,0 +1,17 @@
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - run: brew install woff2
+      - run: curl -L https://mirrors.ctan.org/fonts/newcomputermodern/otf/NewCMMath-Regular.otf > NewCMMath-Regular.otf
+      - run: woff2_compress NewCMMath-Regular.otf
+      - uses: actions/upload-artifact@v4
+        with:
+          name: NewCMMath-Regular
+          path: NewCMMath-Regular.woff2
