@@ -57,30 +57,30 @@
             </div>
             <h2>Posts</h2>
             <section id="posts">
-                {{- range $link := .Posts -}}
-                <a class="link" href="{{ $link.Href }}"
-                    ><time datetime="{{ $link.Date }}">{{ $link.Date }}</time>
-                    <h3>{{ $link.Title}}</h3></a
+                {%- for link in posts %}
+                <a class="link" href="{{ link.href }}"
+                    ><time datetime="{{ link.date }}">{{ link.date }}</time>
+                    <h3>{{ link.title }}</h3></a
                 >
-                {{- end -}}
+                {%- endfor %}
             </section>
             <h2>Notes</h2>
             <section id="notes">
-                {{- range $link := .Notes -}}
-                <a class="link" href="{{ $link.Href }}"
-                    ><time datetime="{{ $link.Date }}">{{ $link.Date }}</time>
-                    <h3>{{ $link.Title}}</h3></a
+                {%- for link in notes %}
+                <a class="link" href="{{ link.href }}"
+                    ><time datetime="{{ link.date }}">{{ link.date }}</time>
+                    <h3>{{ link.title }}</h3></a
                 >
-                {{- end -}}
+                {%- endfor %}
             </section>
             <h2>Stories</h2>
             <section id="stories">
-                {{- range $link := .Stories -}}
-                <a class="link" href="{{ $link.Href }}"
-                    ><time datetime="{{ $link.Date }}">{{ $link.Date }}</time>
-                    <h3>{{ $link.Title }}</h3></a
+                {%- for link in stories %}
+                <a class="link" href="{{ link.href }}"
+                    ><time datetime="{{ link.date }}">{{ link.date }}</time>
+                    <h3>{{ link.title }}</h3></a
                 >
-                {{- end -}}
+                {%- endfor %}
             </section>
         </main>
     </body>

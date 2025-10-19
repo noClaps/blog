@@ -25,7 +25,7 @@ At this point, this had completely captured our attention, and we decided to inv
 
 As I am better at frontend development, I decided to investigate Copilot and its chat UI. It looks and behaves similar to [ChatGPT](https://chatgpt.com), with a text box and a messaging-app-style UI for conversations with the chatbot. Without being logged in, the website blocks you from sending further messages after about 10 messages or so, and asks you to sign in to continue sending messages. The signed in limit is about 100 messages, and for higher usage, you have to purchase their Copilot Plus subscription.
 
-![Secton Copilot landing page](./secton-homepage.png)
+![Secton Copilot landing page](./secton/secton-homepage.png)
 
 In order to do this, the website would simply add a `disabled` attribute to the input `<textarea>` and submit `<button>` HTML elements. For context, the `disabled` attribute can be added to HTML elements to disable their interaction logic. For buttons, this would prevent you from clicking them, and for inputs, this would prevent you from entering text.
 
@@ -102,7 +102,7 @@ data: [DONE]
 
 The server wasn't checking where the request was coming from, and I could call the API on my own without any authentication or limits! Using this, over the span of around 20 mins, RollViral and I built (using [Claude](https://claude.ai)) a small proof of concept of a chat UI using this API and deployed it. This allowed us to have unlimited access to Copilot without facing the annoyance of having to remove the `disabled` attribute.
 
-![Our proof of concept website using the Copilot API](./copilot-poc.png)
+![Our proof of concept website using the Copilot API](./secton/copilot-poc.png)
 
 ### Platform
 
@@ -110,7 +110,7 @@ While I was playing around with Copilot, InsidiousFiddler was busy exploring Sec
 
 However, instead of using the user's authentication token or something similar, the playground simply uses a completely public and free to use token: `playground`. And just like the Copilot API, this did not have any limits on its usage.
 
-![A successful HTTP request using the `playground` Bearer Token](./platform-playground.png)
+![A successful HTTP request using the `playground` Bearer Token](./secton/platform-playground.png)
 
 ### Other endpoints and rate limiting
 
@@ -118,7 +118,7 @@ After seeing this, InsidiousFiddler decided to explore Secton's other subdomains
 
 The former was properly authenticated and refused entry, returning a `401 Unauthorized`:
 
-![A failing HTTP request to `speech-compute.secton.org`](./speech-compute.png)
+![A failing HTTP request to `speech-compute.secton.org`](./secton/speech-compute.png)
 
 However, the latter also allowed unauthenticated access, similar to Platform and Copilot.
 

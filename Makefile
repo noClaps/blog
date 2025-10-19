@@ -1,8 +1,8 @@
 build:
-	@go run .
+	rm -rf dist
+	mkdir -p dist
+	cp -r public/** dist
+	cargo run -r
 
 serve:
-	@watchexec --clear --restart --ignore dist 'go run . && serve dist'
-
-fonts:
-	@curl --location https://github.com/noClaps/math-font/releases/latest/download/NewCMMath-Regular.woff2 --output public/NewCMMath-Regular.woff2
+	watchexec --clear --restart --ignore dist 'make build && serve dist'

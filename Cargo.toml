@@ -1,0 +1,23 @@
+[package]
+name = "blog"
+edition = "2024"
+
+[dependencies]
+askama = "0.14.0"
+base64 = "0.22.1"
+chrono = "0.4.42"
+highlight = { git = "https://github.com/noClaps/znak", features = [
+  "bash",
+  "c",
+  "html",
+  "json",
+  "python",
+  "typescript"
+] }
+image = { version = "0.25.8", default-features = false, features = [
+  "gif",
+  "png"
+] }
+include_dir = { version = "0.7.4", features = ["glob"] }
+lol_html = "2.7.0"
+znak = { git = "https://github.com/noClaps/znak" }

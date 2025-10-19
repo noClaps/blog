@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <link rel="icon" href="https://zerolimits.dev/cookie.png" />
-        <title>{{ .Title }}</title>
+        <title>{{ title }}</title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
@@ -52,10 +52,10 @@
         </header>
         <main>
             <div class="post-header">
-                <time datetime="{{ .PubDate }}">{{ .PubDate }}</time>
-                <h1>{{ .Title }}</h1>
+                <time datetime="{{ pub_date }}">{{ pub_date }}</time>
+                <h1>{{ title }}</h1>
             </div>
-            <article>{{ .Children }}</article>
+            <article>{{ children }}</article>
         </main>
     </body>
 </html>

@@ -37,6 +37,7 @@ th {
 /* Code */
 code {
     font-family: var(--mono);
+    line-height: 0;
 }
 
 .ts-highlight {

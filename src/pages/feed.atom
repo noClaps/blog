@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.zerolimits.dev/</id>
     <title>The Blog of Random</title>
-    <updated>{{ .LastUpdate }}</updated>
+    <updated>{{ last_update }}</updated>
     <link rel="self" href="https://blog.zerolimits.dev/feed.atom" />
     <icon>https://zerolimits.dev/cookie.png</icon>
     <subtitle>A blog about the most random things you can think of.</subtitle>
@@ -11,14 +11,14 @@
         <email>contact@zerolimits.dev</email>
         <uri>https://zerolimits.dev</uri>
     </author>
-    {{- range $entry := .Entries -}}
+    {%- for entry in entries %}
     <entry>
-        <id>{{ $entry.Id }}</id>
-        <title>{{ $entry.Title }}</title>
-        <updated>{{ $entry.Updated }}</updated>
-        <content type="html">{{ $entry.Content }}</content>
-        <link rel="alternate" href="{{ $entry.Link }}" />
-        <published>{{ $entry.Published }}</published>
+        <id>{{ entry.id }}</id>
+        <title>{{ entry.title }}</title>
+        <updated>{{ entry.updated }}</updated>
+        <content type="html">{{ entry.content }}</content>
+        <link rel="alternate" href="{{ entry.link }}" />
+        <published>{{ entry.published }}</published>
     </entry>
-    {{- end -}}
+    {%- endfor %}
 </feed>
