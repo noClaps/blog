@@ -34,11 +34,11 @@ which gives us two values for $$x$$, where plugging them into the original quadr
 However, let's try expanding our factorised equation back into the quadratic form:
 
 $$
-\begin{align}
+\begin{aligned}
 (x - r_1)(x - r_2) & = 0 \\
 x^2 - r_2 x - r_1 x + r_1 r_2 & = 0 \\
 x^2 - (r_1 + r_2)x + r_1 r_2 & = 0
-\end{align}
+\end{aligned}
 $$
 
 We can see that $$-b = r_1 + r_2$$ and $$c = r_1 r_2$$. Now, we could try to guess which values for $$r_1$$ and $$r_2$$ fit for these constraints, which works for some simple quadratic equations with integer roots, but gets complicated to do for non-integer roots.
@@ -48,30 +48,30 @@ Instead, we can realise that $$r_1, r_2 = -\frac{b}{2} \pm u$$ for some real num
 Next, we can see that $$c = r_1 r_2$$. Since we already know that $$r_1 = -\frac{b}{2}+u$$ and $$r_2 = -\frac{b}{2}-u$$, we can simply multiply them together to get $$c$$:
 
 $$
-\begin{align}
+\begin{aligned}
 c & = r_1 r_2 \\
 & = \left( -\frac{b}{2} + u \right) \left( -\frac{b}{2} - u \right) \\
 & = \frac{b^2}{4} - u^2
-\end{align}
+\end{aligned}
 $$
 
 The third line leads from $$(a+b)(a-b)=a^2-b^2$$. Since the values of $$b$$ and $$c$$ are already known from the original quadratic equation, we can simply rearrange this equation to get the value of $$u$$:
 
 $$
-\begin{align}
+\begin{aligned}
 c & = \frac{b^2}{4} - u^2 \\
 u^2 & = \frac{b^2}{4} - c \\
 u & = \sqrt{\frac{b^2}{4} - c}
-\end{align}
+\end{aligned}
 $$
 
 Finally, we can plug in this value into our previous equations for $$r_1$$ and $$r_2$$:
 
 $$
-\begin{align}
+\begin{aligned}
 r_1 & = -\frac{b}{2} + \sqrt{\frac{b^2}{4} - c} \\
-r_2 & = -\frac{b}{2} - \sqrt{\frac{b^2}{4} - c} \\
-\end{align}
+r_2 & = -\frac{b}{2} - \sqrt{\frac{b^2}{4} - c}
+\end{aligned}
 $$
 
 Now you might be thinking, "well this is all great, but what if we have a coefficient in front of the $$x^2$$ term?". Great question, let's see what happens! We start with:
@@ -89,14 +89,14 @@ $$
 If we plug in our new values of $$b' = \frac{b}{a}$$ and $$c' = \frac{c}{a}$$ into the equation for our roots from earlier, we get:
 
 $$
-\begin{align}
+\begin{aligned}
 r_1 & = -\frac{b'}{2} + \sqrt{\frac{{b'}^2}{4} - c'} \\
 & = -\frac{b}{2a} + \sqrt{\frac{b^2}{4a^2} - \frac{c}{a}} \\
 & = -\frac{b}{2a} + \sqrt{\frac{b^2 - 4ac}{4a^2}} \\
 & = -\frac{b}{2a} + \frac{\sqrt{b^2 - 4ac}}{2a} \\
 & = \frac{-b + \sqrt{b^2 - 4ac}}{2a} \\
 r_2 & = \frac{-b - \sqrt{b^2 - 4ac}}{2a}
-\end{align}
+\end{aligned}
 $$
 
 Seem familiar? These are the roots given by the original quadratic formula. If you were wondering where the formula comes from, this is it.
