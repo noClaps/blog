@@ -1,7 +1,7 @@
-use std::collections::HashMap;
+use std::{collections::HashMap, fs};
 
 use chrono::{NaiveDate, NaiveDateTime, NaiveTime};
-use include_dir::include_dir;
+use glob::glob;
 use znak::{Theme, parse_frontmatter};
 
 #[derive(Clone)]
@@ -14,16 +14,15 @@ pub struct Post {
 }
 impl Post {
     pub fn get() -> Vec<Post> {
-        let files = include_dir!("src/content").find("**/*.md").unwrap();
+        glob("src/content/**/*.md")
+            .unwrap()
+            .map(|path| path.unwrap().to_string_lossy().replace("src/content/", ""))
+            .map(|path| {
+                let md = fs::read_to_string(format!("src/content/{}", path)).unwrap();
 
-        files
-            .map(|file| {
-                let file = file.as_file().unwrap();
-                let md = file.contents_utf8().unwrap();
-                let path = file.path().to_str().unwrap();
                 // exclude `.md` from end and add `/` to start
-                let slug = format!("/{}", &path[..path.len() - ".md".len()]);
-                let fm = parse_frontmatter(md).unwrap();
+                let slug = format!("/{}", path.strip_suffix(".md").unwrap());
+                let fm = parse_frontmatter(&md).unwrap();
                 let fm = Frontmatter::parse(fm);
 
                 let date = NaiveDate::parse_from_str(&fm.date, "%Y-%m-%d")

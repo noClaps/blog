@@ -1,13 +1,13 @@
 use std::{
-    fs::{File, create_dir_all},
+    fs::{self, File, create_dir_all},
     io::Write,
     path::Path,
 };
 
 use askama::Template;
 use base64::{Engine, prelude::BASE64_STANDARD};
+use glob::glob;
 use image::{GenericImageView, guess_format, load_from_memory_with_format};
-use include_dir::include_dir;
 use lol_html::{RewriteStrSettings, element, html_content::ContentType, rewrite_str};
 
 use crate::pages::{feed::feed, index::index, posts::posts};
@@ -39,7 +39,11 @@ fn main() {
 }
 
 fn build_post(input: String, file_path: String) -> String {
-    let images = include_dir!("src/content");
+    let images = glob("src/content/**/*.png")
+        .unwrap()
+        .chain(glob("src/content/**/*.gif").unwrap())
+        .map(|path| path.unwrap().to_string_lossy().replace("src/content/", ""))
+        .collect::<Vec<String>>();
     let dir_path = file_path[1..].split_once("/").unwrap().0;
 
     rewrite_str(
@@ -52,11 +56,12 @@ fn build_post(input: String, file_path: String) -> String {
                 }
                 let src = src.trim_start_matches("./");
                 let content = images
-                    .get_file(format!("{}/{}", dir_path, src))
+                    .iter()
+                    .find(|&img| *img == format!("{}/{}", dir_path, src))
+                    .and_then(|img| fs::read(format!("src/content/{}", img)).ok())
                     .expect(format!("Unable to find image: {}/{}", dir_path, src).as_str());
-                let content = content.contents();
-                let format = guess_format(content)?;
-                let image = load_from_memory_with_format(content, format)?;
+                let format = guess_format(&content)?;
+                let image = load_from_memory_with_format(&content, format)?;
                 let (width, height) = image.dimensions();
                 let mime_type = format.to_mime_type();
                 let base64 = BASE64_STANDARD.encode(content);
@@ -77,7 +82,10 @@ fn build_post(input: String, file_path: String) -> String {
 }
 
 fn build_html(input: String) -> String {
-    let styles = include_dir!("src/styles");
+    let styles = glob("src/styles/*.css")
+        .unwrap()
+        .map(|path| path.unwrap().to_string_lossy().replace("src/styles/", ""))
+        .collect::<Vec<String>>();
 
     rewrite_str(
         input.as_str(),
@@ -93,9 +101,12 @@ fn build_html(input: String) -> String {
                     Ok(())
                 }),
                 element!("link[rel=stylesheet]", |el| {
-                    let href = el.get_attribute("href").unwrap();
-                    let css = styles.get_file(href.replace("/styles/", "")).unwrap();
-                    let css = css.contents_utf8().unwrap();
+                    let href = el.get_attribute("href").unwrap().replace("/styles/", "");
+                    let css = styles
+                        .iter()
+                        .find(|style| **style == href)
+                        .and_then(|css| fs::read_to_string(format!("src/styles/{}", css)).ok())
+                        .expect(format!("Unable to find CSS: {}", href).as_str());
                     el.replace(
                         format!("<style>{}</style>", css).as_str(),
                         ContentType::Html,
