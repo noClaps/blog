@@ -14,10 +14,6 @@ highlight = { git = "https://github.com/noClaps/znak", features = [
   "python",
   "typescript"
 ] }
-image = { version = "0.25.8", default-features = false, features = [
-  "gif",
-  "png"
-] }
 jiff = { version = "0.2.15", default-features = false, features = [
   "perf-inline",
 ] }

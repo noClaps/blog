@@ -7,7 +7,6 @@ use std::{
 use askama::Template;
 use base64::{Engine, prelude::BASE64_STANDARD};
 use glob::glob;
-use image::{GenericImageView, guess_format, load_from_memory_with_format};
 use lol_html::{RewriteStrSettings, element, html_content::ContentType, rewrite_str};
 
 use crate::pages::{feed::feed, index::index, posts::posts};
@@ -64,18 +63,12 @@ fn build_post(input: String, file_path: String) -> String {
                     .find(|&img| *img == format!("{}/{}", dir_path, src))
                     .and_then(|img| fs::read(format!("src/content/{}", img)).ok())
                     .expect(format!("Unable to find image: {}/{}", dir_path, src).as_str());
-                let format = guess_format(&content)?;
-                let image = load_from_memory_with_format(&content, format)?;
-                let (width, height) = image.dimensions();
-                let mime_type = format.to_mime_type();
                 let base64 = BASE64_STANDARD.encode(content);
 
-                el.set_attribute(
-                    "src",
-                    format!("data:{};base64,{}", mime_type, base64).as_str(),
-                )?;
-                el.set_attribute("width", width.to_string().as_str())?;
-                el.set_attribute("height", height.to_string().as_str())?;
+                // don't need mime type as browser should parse automatically
+                // if i find a situation where this isn't the case,
+                // i'll find a different way to parse the image format
+                el.set_attribute("src", format!("data:;base64,{}", base64).as_str())?;
 
                 Ok(())
             })],
