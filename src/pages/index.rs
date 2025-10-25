@@ -38,7 +38,7 @@ pub fn index() -> Templ {
         .into_iter()
         .map(|post| PostTmpl {
             href: post.slug,
-            date: post.date.format("%Y-%m-%d").to_string(),
+            date: post.date.strftime("%F").to_string(),
             title: post.title,
         })
         .collect::<Vec<PostTmpl>>();
@@ -53,7 +53,7 @@ pub fn index() -> Templ {
         .into_iter()
         .map(|post| PostTmpl {
             href: post.slug,
-            date: post.date.format("%Y-%m-%d").to_string(),
+            date: post.date.strftime("%F").to_string(),
             title: post.title,
         })
         .collect::<Vec<PostTmpl>>();
@@ -67,7 +67,7 @@ pub fn index() -> Templ {
         .into_iter()
         .map(|post| PostTmpl {
             href: post.slug,
-            date: post.date.format("%Y-%m-%d").to_string(),
+            date: post.date.strftime("%F").to_string(),
             title: post.title,
         })
         .collect::<Vec<PostTmpl>>();

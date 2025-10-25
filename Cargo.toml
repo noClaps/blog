@@ -5,7 +5,6 @@ edition = "2024"
 [dependencies]
 askama = "0.14.0"
 base64 = "0.22.1"
-chrono = "0.4.42"
 glob = "0.3.3"
 highlight = { git = "https://github.com/noClaps/znak", features = [
   "bash",
@@ -18,6 +17,9 @@ highlight = { git = "https://github.com/noClaps/znak", features = [
 image = { version = "0.25.8", default-features = false, features = [
   "gif",
   "png"
+] }
+jiff = { version = "0.2.15", default-features = false, features = [
+  "perf-inline",
 ] }
 lol_html = "2.7.0"
 znak = { git = "https://github.com/noClaps/znak" }

@@ -12,7 +12,11 @@ use lol_html::{RewriteStrSettings, element, html_content::ContentType, rewrite_s
 
 use crate::pages::{feed::feed, index::index, posts::posts};
 
-mod pages;
+mod pages {
+    pub mod feed;
+    pub mod index;
+    pub mod posts;
+}
 mod utils;
 
 fn main() {

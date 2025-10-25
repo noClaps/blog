@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
 use askama::Template;
-use chrono::NaiveDateTime;
+use jiff::civil::DateTime;
 use znak::render;
 
 use crate::utils::{Post, get_theme};
@@ -23,7 +23,7 @@ pub struct Feed {
 }
 
 fn atom_feed(items: Vec<Post>, content: HashMap<String, String>) -> Feed {
-    let mut last_update = NaiveDateTime::default();
+    let mut last_update = DateTime::default();
     let atom_entries = items
         .into_iter()
         .map(|item| {
@@ -38,16 +38,16 @@ fn atom_feed(items: Vec<Post>, content: HashMap<String, String>) -> Feed {
             Entry {
                 id: format!("https://blog.zerolimits.dev{}", item.slug),
                 title: item.title,
-                updated: updated.format("%Y-%m-%dT%H:%M:%SZ").to_string(),
+                updated: updated.to_string(),
                 content: content.get(&item.slug).cloned().unwrap(),
                 link: format!("https://blog.zerolimits.dev{}", item.slug),
-                published: item.date.format("%Y-%m-%dT%H:%M:%SZ").to_string(),
+                published: item.date.to_string(),
             }
         })
         .collect();
 
     let feed = Feed {
-        last_update: last_update.format("%Y-%m-%dT%H:%M:%SZ").to_string(),
+        last_update: last_update.to_string(),
         entries: atom_entries,
     };
     feed

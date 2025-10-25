@@ -1,15 +1,15 @@
 use std::{collections::HashMap, fs};
 
-use chrono::{NaiveDate, NaiveDateTime, NaiveTime};
 use glob::glob;
+use jiff::civil::DateTime;
 use znak::{Theme, parse_frontmatter};
 
 #[derive(Clone)]
 pub struct Post {
     pub slug: String,
     pub title: String,
-    pub date: NaiveDateTime,
-    pub lastmod: Option<NaiveDateTime>,
+    pub date: DateTime,
+    pub lastmod: Option<DateTime>,
     pub content: String,
 }
 impl Post {
@@ -25,15 +25,9 @@ impl Post {
                 let fm = parse_frontmatter(&md).unwrap();
                 let fm = Frontmatter::parse(fm);
 
-                let date = NaiveDate::parse_from_str(&fm.date, "%Y-%m-%d")
-                    .unwrap()
-                    .and_time(NaiveTime::default());
-                let lastmod = match fm.lastmod {
-                    Some(lastmod) => Some(
-                        NaiveDate::parse_from_str(&lastmod, "%Y-%m-%d")
-                            .unwrap()
-                            .and_time(NaiveTime::default()),
-                    ),
+                let date: DateTime = fm.date.parse().unwrap();
+                let lastmod: Option<DateTime> = match fm.lastmod {
+                    Some(lastmod) => Some(lastmod.parse().unwrap()),
                     None => None,
                 };
 

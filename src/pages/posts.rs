@@ -28,7 +28,7 @@ pub fn posts() -> Vec<RenderedPost> {
             let content = render(post.content, theme);
             let post = Templ {
                 title: post.title,
-                pub_date: post.date.format("%Y-%m-%d").to_string(),
+                pub_date: post.date.strftime("%F").to_string(),
                 children: content,
             };
 
