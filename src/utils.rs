@@ -2,7 +2,7 @@ use std::{collections::HashMap, fs};
 
 use glob::glob;
 use jiff::civil::DateTime;
-use znak::{Theme, parse_frontmatter};
+use znak::{Highlight, Theme, parse_frontmatter};
 
 #[derive(Clone)]
 pub struct Post {
@@ -61,7 +61,8 @@ impl Frontmatter {
     }
 }
 
-pub fn get_theme() -> Theme {
+pub fn get_hl() -> Highlight {
     let css = include_str!("./styles/syntax.css");
-    Theme::new(css).unwrap()
+    let theme = Theme::new(css).unwrap();
+    Highlight::new(theme)
 }

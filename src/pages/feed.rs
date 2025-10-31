@@ -4,7 +4,7 @@ use askama::Template;
 use jiff::civil::DateTime;
 use znak::render;
 
-use crate::utils::{Post, get_theme};
+use crate::utils::{Post, get_hl};
 
 struct Entry {
     id: String,
@@ -58,8 +58,8 @@ pub fn feed() -> Feed {
 
     let mut content = HashMap::new();
     for item in items.clone() {
-        let theme = get_theme();
-        let html = render(item.content, theme);
+        let hl = get_hl();
+        let html = render(item.content, &hl);
         content.insert(item.slug, html);
     }
 
