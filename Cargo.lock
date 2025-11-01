@@ -95,9 +95,9 @@ dependencies = [
 
 [[package]]
 name = "cc"
-version = "1.2.43"
+version = "1.2.44"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "739eb0f94557554b3ca9a86d2d37bebd49c5e6d0c1d2bda35ba5bdac830befc2"
+checksum = "37521ac7aabe3d13122dc382493e20c9416f299d2ccd5b3a5340a2570cdeb0f3"
 dependencies = [
  "find-msvc-tools",
  "shlex",
@@ -226,8 +226,9 @@ checksum = "2304e00983f87ffb38b55b444b5e3b60a884b5d30c0fca7d82fe33449bbe55ea"
 [[package]]
 name = "highlight"
 version = "0.0.0"
-source = "git+https://github.com/noClaps/znak#103af73eb3de3e21c97405853a621a624169732e"
+source = "git+https://github.com/noClaps/znak#5e34115b56d8372abf6c1f6d3151c5abe2c3eb95"
 dependencies = [
+ "html",
  "tree-sitter-bash",
  "tree-sitter-c",
  "tree-sitter-highlight",
@@ -237,6 +238,11 @@ dependencies = [
  "tree-sitter-python",
  "tree-sitter-typescript",
 ]
+
+[[package]]
+name = "html"
+version = "0.0.0"
+source = "git+https://github.com/noClaps/znak#5e34115b56d8372abf6c1f6d3151c5abe2c3eb95"
 
 [[package]]
 name = "indexmap"
@@ -303,7 +309,7 @@ dependencies = [
 [[package]]
 name = "math"
 version = "0.0.0"
-source = "git+https://github.com/noClaps/znak#103af73eb3de3e21c97405853a621a624169732e"
+source = "git+https://github.com/noClaps/znak#5e34115b56d8372abf6c1f6d3151c5abe2c3eb95"
 dependencies = [
  "math-core",
 ]
@@ -812,9 +818,10 @@ dependencies = [
 [[package]]
 name = "znak"
 version = "0.0.0"
-source = "git+https://github.com/noClaps/znak#103af73eb3de3e21c97405853a621a624169732e"
+source = "git+https://github.com/noClaps/znak#5e34115b56d8372abf6c1f6d3151c5abe2c3eb95"
 dependencies = [
  "highlight",
+ "html",
  "math",
  "regex",
 ]
