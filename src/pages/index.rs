@@ -25,9 +25,8 @@ fn sort_func(a: &Post, b: &Post) -> Ordering {
     }
 }
 
-pub fn index() -> Templ {
-    let items = Post::get();
-
+pub fn index(items: &[Post]) -> Templ {
+    let items = items.to_vec();
     let mut posts = items
         .clone()
         .into_iter()

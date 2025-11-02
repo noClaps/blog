@@ -2,6 +2,7 @@ use std::{
     fs::{self, File, create_dir_all},
     io::Write,
     path::Path,
+    time::Instant,
 };
 
 use askama::Template;
@@ -9,7 +10,10 @@ use base64::{Engine, prelude::BASE64_STANDARD};
 use glob::glob;
 use lol_html::{RewriteStrSettings, element, html_content::ContentType, rewrite_str};
 
-use crate::pages::{feed::feed, index::index, posts::posts};
+use crate::{
+    pages::{feed::atom_feed, index::index, posts::posts},
+    utils::Post,
+};
 
 mod pages {
     pub mod feed;
@@ -19,14 +23,17 @@ mod pages {
 mod utils;
 
 fn main() {
+    let t0 = Instant::now();
+    let items = Post::get();
+
     let mut f = File::create("dist/feed.atom").unwrap();
-    feed().write_into(&mut f).unwrap();
+    atom_feed(&items).write_into(&mut f).unwrap();
 
     let mut f = File::create("dist/index.html").unwrap();
-    let index = build_html(index().render().unwrap());
+    let index = build_html(index(&items).render().unwrap());
     write!(f, "{}", index).unwrap();
 
-    let posts = posts();
+    let posts = posts(&items);
     for post in posts {
         let file_path = post.file_path.as_str();
         let post = post.post;
@@ -39,6 +46,7 @@ fn main() {
         let mut f = File::create(format!("dist{}", file_path)).unwrap();
         write!(f, "{}", post).unwrap();
     }
+    eprintln!("Finished in {} ms", t0.elapsed().as_millis());
 }
 
 fn build_post(input: String, file_path: String) -> String {

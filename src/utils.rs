@@ -2,7 +2,7 @@ use std::{collections::HashMap, fs};
 
 use glob::glob;
 use jiff::civil::DateTime;
-use znak::{Highlight, Theme, parse_frontmatter};
+use znak::{Highlight, Theme, parse_frontmatter, render};
 
 #[derive(Clone)]
 pub struct Post {
@@ -14,10 +14,11 @@ pub struct Post {
 }
 impl Post {
     pub fn get() -> Vec<Post> {
+        let hl = get_hl();
         glob("src/content/**/*.md")
             .unwrap()
-            .map(|path| path.unwrap().to_string_lossy().replace("src/content/", ""))
             .map(|path| {
+                let path = path.unwrap().to_string_lossy().replace("src/content/", "");
                 let md = fs::read_to_string(format!("src/content/{}", path)).unwrap();
 
                 // exclude `.md` from end and add `/` to start
@@ -31,12 +32,14 @@ impl Post {
                     None => None,
                 };
 
+                let content = render(&md, &hl);
+
                 Post {
                     slug: slug,
                     title: fm.title,
                     date: date,
                     lastmod: lastmod,
-                    content: md.to_string(),
+                    content,
                 }
             })
             .collect()
@@ -61,7 +64,7 @@ impl Frontmatter {
     }
 }
 
-pub fn get_hl() -> Highlight {
+fn get_hl() -> Highlight {
     let css = include_str!("./styles/syntax.css");
     let theme = Theme::new(css).unwrap();
     Highlight::new(theme)

@@ -1,10 +1,7 @@
-use std::collections::HashMap;
-
 use askama::Template;
 use jiff::civil::DateTime;
-use znak::render;
 
-use crate::utils::{Post, get_hl};
+use crate::utils::Post;
 
 struct Entry {
     id: String,
@@ -22,11 +19,12 @@ pub struct Feed {
     entries: Vec<Entry>,
 }
 
-fn atom_feed(items: Vec<Post>, content: HashMap<String, String>) -> Feed {
+pub fn atom_feed(items: &[Post]) -> Feed {
     let mut last_update = DateTime::default();
     let atom_entries = items
-        .into_iter()
+        .iter()
         .map(|item| {
+            let item = item.clone();
             let updated = match item.lastmod {
                 Some(lastmod) => lastmod,
                 None => item.date,
@@ -39,7 +37,7 @@ fn atom_feed(items: Vec<Post>, content: HashMap<String, String>) -> Feed {
                 id: format!("https://blog.zerolimits.dev{}", item.slug),
                 title: item.title,
                 updated: updated.to_string(),
-                content: content.get(&item.slug).cloned().unwrap(),
+                content: item.content,
                 link: format!("https://blog.zerolimits.dev{}", item.slug),
                 published: item.date.to_string(),
             }
@@ -51,17 +49,4 @@ fn atom_feed(items: Vec<Post>, content: HashMap<String, String>) -> Feed {
         entries: atom_entries,
     };
     feed
-}
-
-pub fn feed() -> Feed {
-    let items = Post::get();
-
-    let mut content = HashMap::new();
-    for item in items.clone() {
-        let hl = get_hl();
-        let html = render(item.content, &hl);
-        content.insert(item.slug, html);
-    }
-
-    atom_feed(items, content)
 }

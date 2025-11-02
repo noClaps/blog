@@ -1,7 +1,6 @@
 use askama::Template;
-use znak::render;
 
-use crate::utils::{Post, get_hl};
+use crate::utils::Post;
 
 pub struct RenderedPost {
     pub file_path: String,
@@ -16,20 +15,17 @@ pub struct Templ {
     children: String,
 }
 
-pub fn posts() -> Vec<RenderedPost> {
-    let posts = Post::get();
-
+pub fn posts(posts: &[Post]) -> Vec<RenderedPost> {
     posts
-        .into_iter()
+        .iter()
         .map(|post| {
+            let post = post.clone();
             let file_path = format!("{}.html", post.slug);
-            let hl = get_hl();
 
-            let content = render(post.content, &hl);
             let post = Templ {
                 title: post.title,
                 pub_date: post.date.strftime("%F").to_string(),
-                children: content,
+                children: post.content,
             };
 
             RenderedPost { file_path, post }
