@@ -2,7 +2,6 @@ use std::{
     fs::{self, File, create_dir_all},
     io::Write,
     path::Path,
-    time::Instant,
 };
 
 use askama::Template;
@@ -23,7 +22,6 @@ mod pages {
 mod utils;
 
 fn main() {
-    let t0 = Instant::now();
     let items = Post::get();
 
     let mut f = File::create("dist/feed.atom").unwrap();
@@ -46,7 +44,6 @@ fn main() {
         let mut f = File::create(format!("dist{}", file_path)).unwrap();
         write!(f, "{}", post).unwrap();
     }
-    eprintln!("Finished in {} ms", t0.elapsed().as_millis());
 }
 
 fn build_post(input: String, file_path: String) -> String {
