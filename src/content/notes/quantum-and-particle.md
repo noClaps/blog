@@ -41,7 +41,7 @@ Okay, there's a lot to take in there. Let's break it down part by part
 
   On the other side of the slits, we see the 2 circular waves intersecting. This is known as interference, and there's 2 types: constructive and destructive.
 
-  ![A diagram showing constructive and destructive interference. It shows the basic idea, but real interference is a bit more complex than this, because the waves don't always cancel out. Source: [Constructive and destructive interference - Britannica Kids](https://kids.britannica.com/students/assembly/view/53869).](https://cdn.britannica.com/07/62907-004-A3A6351E.jpg)
+  ![A diagram showing constructive and destructive interference. It shows the basic idea, but real interference is a bit more complex than this, because the waves don't always cancel out. Source: [Constructive and destructive interference - Britannica Kids](https://kids.britannica.com/students/assembly/view/53869).](./quantum-and-particle/62907-004-A3A6351E.jpg)
 
   Constructive interference occurs when 2 waves add up to make an even bigger wave, and destructive interference happens when 2 waves cancel each other out, either fully or partially, to make a smaller wave than either starting wave. You can see this happening if you drop 2 rocks into still water and see their waves collide with each other. Anyway, the waves colliding create an interference pattern of light and dark, which correspond to high and low waves.
 
@@ -173,7 +173,7 @@ In the quantum realm, we can imagine the ball to be particles. The hills are now
 
 However, do you remember how particles aren't particles, but waves of probability? If you look at the wave function graph above, you can see how that wave spreads over an area. That means, if the hill is thin enough and that graph is wide enough, there's a small chance that the particle can appear on the other side.
 
-![A graph showing the probability of a particle being on the other side of a barrier. This isn't exactly how the graph looks since the probability decreases exponentially inside the barrier, but it's good enough for a basic explanation. Source: [Physics I for Dummies](https://www.dummies.com/article/academics-the-arts/science/physics/string-theory-access-parallel-universes-with-quantum-tunneling-177689/).](https://www.dummies.com/wp-content/uploads/316773.image0.jpg)
+![A graph showing the probability of a particle being on the other side of a barrier. This isn't exactly how the graph looks since the probability decreases exponentially inside the barrier, but it's good enough for a basic explanation. Source: [Physics I for Dummies](https://www.dummies.com/article/academics-the-arts/science/physics/string-theory-access-parallel-universes-with-quantum-tunneling-177689/).](./quantum-and-particle/316773.image0.jpg)
 
 From Schrödinger's cat, we know that if there's a probability of something happen, it will happen given enough attempts. So sometimes, the particle will get through the barrier, which is known as **quantum tunnelling**.
 
@@ -225,7 +225,7 @@ We can now combine these quarks simply by adding their charges. So 2/3 + 2/3 - 1
 
 The Standard Model of Particle Physics (the Standard Model for short) defines these fundamental particles. It technically exists as an equation, but most sources will lay it out in a table so that it's easier to understand. The Standard Model can generally be separated into 2 categories: fermions and bosons.
 
-![The Standard Model of Particle Physics. Source: [Standard Model, Physik-Institut, Universität Zürich](https://www.physik.uzh.ch/groups/serra/StandardModel.html).](https://www.physik.uzh.ch/groups/serra/images/SM1.png)
+![The Standard Model of Particle Physics. Source: [Standard Model, Physik-Institut, Universität Zürich](https://www.physik.uzh.ch/groups/serra/StandardModel.html).](./quantum-and-particle/SM1.png)
 
 ### Fermions
 

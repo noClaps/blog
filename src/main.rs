@@ -45,6 +45,7 @@ fn build_post(input: String, file_path: String) -> String {
     let images = glob("src/content/**/*.png")
         .unwrap()
         .chain(glob("src/content/**/*.gif").unwrap())
+        .chain(glob("src/content/**/*.jpg").unwrap())
         .map(|path| path.unwrap().to_string_lossy().replace("src/content/", ""))
         .collect::<Vec<String>>();
     let dir_path = file_path[1..].split_once("/").unwrap().0;

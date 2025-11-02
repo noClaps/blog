@@ -164,11 +164,11 @@ While it's probably enough to use just one of those sources, many implementation
 
 One of the more famous examples of using the real world for randomness is [LavaRand at Cloudflare](https://blog.cloudflare.com/lavarand-in-production-the-nitty-gritty-technical-details/). There's even a [Tom Scott video](https://www.youtube.com/watch?v=1cUUfMeOijg) about it!
 
-![The view of the wall of lava lamps from the camera. Source: [LavaRand in Production: The Nitty-Gritty Technical Details](https://blog.cloudflare.com/lavarand-in-production-the-nitty-gritty-technical-details/).](https://cf-assets.www.cloudflare.com/zkvhlag99gkb/1thY8qByl6CmiTCI9tIgOG/5de49269d8aeae96359870cad09d3a16/lava-lamps-camera.jpg)
+![The view of the wall of lava lamps from the camera. Source: [LavaRand in Production: The Nitty-Gritty Technical Details](https://blog.cloudflare.com/lavarand-in-production-the-nitty-gritty-technical-details/).](./random-numbers/lava-lamps-camera.jpg)
 
 LavaRand is a wall of lava lamps at Cloudflare's San Francisco office, with a camera pointed at it. Because computers store images as bits, the image can effectively be converted into a number, and that number can be used as a seed for a random number generator. The camera periodically takes pictures of the wall and uses it as the seed for a CSPRNG. There's a lot of sources of entropy (randomness) throughout the system, which just adds to the overall unpredictability of the system.
 
-![The flow of entropy in LavaRand. Source: [LavaRand in Production: The Nitty-Gritty Technical Details](https://blog.cloudflare.com/lavarand-in-production-the-nitty-gritty-technical-details/).](https://cf-assets.www.cloudflare.com/zkvhlag99gkb/HQnazwt1tj0ywVtjZ0HTX/4cbe7db55b4792b1b86dcea4a57b5474/Screen-Shot-2017-10-31-at-3.57.19-PM.png)
+![The flow of entropy in LavaRand. Source: [LavaRand in Production: The Nitty-Gritty Technical Details](https://blog.cloudflare.com/lavarand-in-production-the-nitty-gritty-technical-details/).](./random-numbers/Screen-Shot-2017-10-31-at-3.57.19-PM.png)
 
 ::: note
 Cloudflare wasn't actually the first company to come up with this system. The [original Lavarand system](https://en.wikipedia.org/wiki/Lavarand) was designed and [patented](https://patents.google.com/patent/US5732138) by Silicon Graphics in 1996. The patent expired in 2016, and Cloudflare's LavaRand system was launched in 2017.

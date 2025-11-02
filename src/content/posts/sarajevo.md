@@ -51,10 +51,10 @@ Love took them to their deaths. That’s proof this is not a war between Serbs a
 
 ## Sources
 
-- [Kurt Schork Memorial](http://www.ksmemorial.com) - Kurt Schork was a journalist for the Reuters News Agency. He and his cameraman, [Miguel Gil Moreno de Mora](http://ksmemorial.com/miguel.htm) were shot to death in an ambush in Sierra Leone, on 24 May 2000. This website is a memorial to him, and hosts [his story on Boško Brkić and Admira Ismić](http://www.ksmemorial.com/romeo.htm). According to the website:
+- [Kurt Schork Memorial](https://www.ksmemorial.com) - Kurt Schork was a journalist for the Reuters News Agency. He and his cameraman, [Miguel Gil Moreno de Mora](https://ksmemorial.com/miguel.htm) were shot to death in an ambush in Sierra Leone, on 24 May 2000. This website is a memorial to him, and hosts [his story on Boško Brkić and Admira Ismić](https://www.ksmemorial.com/romeo.htm). According to the website:
 
   ::: quote Kurt's Death, Kurt Schork Memorial {href="http://www.ksmemorial.com"}
-  Half of Kurt's ashes were buried next to his mother, Margaret, on May 31, 2000 near Washington, D.C.. Kurt's remaining ashes were buried in Sarajevo on August 2, 2000. The grave lies next to those of two lovers, whose deaths Kurt [wrote poignantly about](http://www.ksmemorial.com/romeo.htm) in 1993.
+  Half of Kurt's ashes were buried next to his mother, Margaret, on May 31, 2000 near Washington, D.C.. Kurt's remaining ashes were buried in Sarajevo on August 2, 2000. The grave lies next to those of two lovers, whose deaths Kurt [wrote poignantly about](https://www.ksmemorial.com/romeo.htm) in 1993.
   :::
 
 - [Bosnian War Anniversary: Sarajevo's 'Romeo and Juliet' Still Resonate, NBC News](https://www.nbcnews.com/news/world/bosnian-war-anniversary-sarajevo-s-romeo-juliet-still-resonate-n723681)
