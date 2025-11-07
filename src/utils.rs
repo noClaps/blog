@@ -2,6 +2,7 @@ use std::{collections::HashMap, fs};
 
 use glob::glob;
 use jiff::civil::DateTime;
+use tree_sitter_languages::{bash, c, html, json, python, typescript};
 use znak::{Highlight, parse_frontmatter, render};
 
 #[derive(Clone)]
@@ -66,5 +67,12 @@ impl Frontmatter {
 
 fn get_hl() -> Highlight {
     let theme = include_str!("./styles/syntax.css").parse().unwrap();
-    Highlight::new(theme)
+    let mut hl = Highlight::new(theme);
+    hl.add_language(&["py"], python::highlight_configuration());
+    hl.add_language(&["sh"], bash::highlight_configuration());
+    hl.add_language(&["c"], c::highlight_configuration());
+    hl.add_language(&["ts"], typescript::highlight_configuration_typescript());
+    hl.add_language(&["html"], html::highlight_configuration());
+    hl.add_language(&["json"], json::highlight_configuration());
+    hl
 }
