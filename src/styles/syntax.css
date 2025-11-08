@@ -9,7 +9,7 @@ property {
 }
 
 boolean,
-link_text,
+markup.link,
 number {
     color: #ff732e;
 }
@@ -18,29 +18,26 @@ comment,
 punctuation,
 punctuation.bracket,
 punctuation.delimiter,
-punctuation.list_marker {
+markup.list {
     color: #666;
 }
 
-constant,
-label {
+constant {
     color: #99c7ff;
 }
 
 constructor,
-enum,
 string,
-text.literal,
 type {
     color: #ff9f5b;
 }
 
-emphasis {
+markup.italic {
     font-style: italic;
 }
 
-emphasis.strong,
-title {
+markup.bold,
+markup.heading {
     font-weight: 700;
 }
 
@@ -49,12 +46,11 @@ function {
 }
 
 keyword,
-preproc,
 tag {
     color: #ff6b68;
 }
 
-link_uri {
+markup.link.url {
     color: #3984f2;
 }
 
