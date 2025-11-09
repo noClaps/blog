@@ -227,7 +227,7 @@ checksum = "2304e00983f87ffb38b55b444b5e3b60a884b5d30c0fca7d82fe33449bbe55ea"
 [[package]]
 name = "highlight"
 version = "0.0.0"
-source = "git+https://github.com/noClaps/znak#5eb679d9edfb6df77d614d14da37608b8f91e8b1"
+source = "git+https://github.com/noClaps/znak#04df27b6baae4606e72ce59a9107d1767caa6912"
 dependencies = [
  "html",
  "tree-sitter-highlight",
@@ -236,7 +236,7 @@ dependencies = [
 [[package]]
 name = "html"
 version = "0.0.0"
-source = "git+https://github.com/noClaps/znak#5eb679d9edfb6df77d614d14da37608b8f91e8b1"
+source = "git+https://github.com/noClaps/znak#04df27b6baae4606e72ce59a9107d1767caa6912"
 
 [[package]]
 name = "indexmap"
@@ -303,7 +303,7 @@ dependencies = [
 [[package]]
 name = "math"
 version = "0.0.0"
-source = "git+https://github.com/noClaps/znak#5eb679d9edfb6df77d614d14da37608b8f91e8b1"
+source = "git+https://github.com/noClaps/znak#04df27b6baae4606e72ce59a9107d1767caa6912"
 dependencies = [
  "math-core",
 ]
@@ -749,16 +749,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "tree-sitter-javascript"
-version = "0.25.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "68204f2abc0627a90bdf06e605f5c470aa26fdcb2081ea553a04bdad756693f5"
-dependencies = [
- "cc",
- "tree-sitter-language",
-]
-
-[[package]]
 name = "tree-sitter-json"
 version = "0.24.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -777,13 +767,12 @@ checksum = "c4013970217383f67b18aef68f6fb2e8d409bc5755227092d32efb0422ba24b8"
 [[package]]
 name = "tree-sitter-languages"
 version = "0.0.0"
-source = "git+https://github.com/noClaps/znak#5eb679d9edfb6df77d614d14da37608b8f91e8b1"
+source = "git+https://github.com/noClaps/znak#04df27b6baae4606e72ce59a9107d1767caa6912"
 dependencies = [
  "tree-sitter-bash",
  "tree-sitter-c",
  "tree-sitter-highlight",
  "tree-sitter-html",
- "tree-sitter-javascript",
  "tree-sitter-json",
  "tree-sitter-language",
  "tree-sitter-python",
@@ -828,7 +817,7 @@ dependencies = [
 [[package]]
 name = "znak"
 version = "0.0.0"
-source = "git+https://github.com/noClaps/znak#5eb679d9edfb6df77d614d14da37608b8f91e8b1"
+source = "git+https://github.com/noClaps/znak#04df27b6baae4606e72ce59a9107d1767caa6912"
 dependencies = [
  "highlight",
  "html",

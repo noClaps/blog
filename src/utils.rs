@@ -73,6 +73,6 @@ fn get_hl() -> Highlight {
     hl.add_language(&["c"], c::highlight_configuration());
     hl.add_language(&["ts"], typescript::highlight_configuration_typescript());
     hl.add_language(&["html"], html::highlight_configuration());
-    hl.add_language(&["json"], json::highlight_configuration());
+    hl.add_language(&["json"], json::highlight_configuration_json());
     hl
 }
