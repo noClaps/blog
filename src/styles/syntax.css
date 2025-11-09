@@ -4,13 +4,13 @@
 }
 
 attribute,
-property {
+variable.other.member {
     color: #83d288;
 }
 
-boolean,
-markup.link,
-number {
+constant.builtin.boolean,
+markup.link.text,
+constant.numeric {
     color: #ff732e;
 }
 
@@ -46,6 +46,7 @@ function {
 }
 
 keyword,
+keyword.function,
 tag {
     color: #ff6b68;
 }
@@ -55,7 +56,7 @@ markup.link.url {
 }
 
 operator,
-string.escape {
+constant.character.escape {
     color: #aaa;
 }
 
