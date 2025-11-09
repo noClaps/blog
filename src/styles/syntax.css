@@ -47,6 +47,7 @@ function {
 
 keyword,
 keyword.function,
+keyword.storage.type,
 tag {
     color: #ff6b68;
 }
