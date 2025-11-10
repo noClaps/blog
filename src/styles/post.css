@@ -40,13 +40,13 @@ code {
     line-height: 0;
 }
 
-.ts-highlight {
+.znak-highlight {
     border-radius: 0.5rem;
     padding: 1rem;
     overflow-x: auto;
 }
 
-code:not(.ts-highlight code) {
+code:not(.znak-highlight code) {
     overflow-wrap: break-word;
     background-color: var(--code-bg);
     color: var(--code-text);
