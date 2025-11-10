@@ -22,17 +22,17 @@ Along with that, there's manipulation for things [as big as US presidential elec
 
 Don't expect the government to come and save you either. The unfortunate part of all of this is that laws aren't able to catch up with the rapid development of the internet. In many cases, it's hindered by power-hungry politicians or greedy companies lobbying and manipulating said power-hungry politicians, making a never-ending loop of power and corruption. That leaves people like you and me in a state of helplessness, constantly being controlled and profited on, without getting any returns out of it.
 
-I hope this explains why you should care about your own privacy. It's because **no one else does**.
+I hope this explains why you should care about your own privacy. It's because *no one else does*.
 
 ## PSA - Privacy, Security and Anonymity
 
 People often confuse these 3 terms, and while they can be interchangeable in a few situations, they are very different things and should be treated as such.
 
-- [**Privacy**](https://en.wikipedia.org/wiki/Privacy) is when you have control over your personal information and who can see it.
-- [**Security**](https://en.wikipedia.org/wiki/Computer_security) is when you have protection from unauthorized malicious actors.
-- [**Anonymity**](https://en.wikipedia.org/wiki/Anonymity) is when you have a completely unknown/untraceable identity.
+- [*Privacy*](https://en.wikipedia.org/wiki/Privacy) is when you have control over your personal information and who can see it.
+- [*Security*](https://en.wikipedia.org/wiki/Computer_security) is when you have protection from unauthorized malicious actors.
+- [*Anonymity*](https://en.wikipedia.org/wiki/Anonymity) is when you have a completely unknown/untraceable identity.
 
-It's possible to have one but not the others, and depending on what you're looking for, the tools you use will differ. For instance, [Tor](https://www.torproject.org/) is a much better tool for **anonymity**, whereas it's not as good as [Chromium](https://www.chromium.org/Home/) for **security**, which is not as good as [Firefox](https://www.mozilla.org/en-US/firefox/new/) for **privacy**.
+It's possible to have one but not the others, and depending on what you're looking for, the tools you use will differ. For instance, [Tor](https://www.torproject.org/) is a much better tool for *anonymity*, whereas it's not as good as [Chromium](https://www.chromium.org/Home/) for *security*, which is not as good as [Firefox](https://www.mozilla.org/en-US/firefox/new/) for *privacy*.
 
 There aren't many tools that'll give you privacy, security as well as anonymity, so make sure you know the difference between these 3 concepts, because it will really help you choose the right tools and services for the job. Also, whatever you choose, make sure it actually works for you, and you aren't just picking it because some person on the internet told you to. A lot of the time, people get frustrated with trying to achieve privacy because the things that internet strangers "force" them to use doesn't work for them, and they give up entirely.
 
@@ -97,7 +97,7 @@ Obviously, e2ee is quite a bit more complicated than that, but that's about the 
 
 The simplest way to define metadata is "data about data".
 
-Imagine you take a photo of a tree on your phone. The data in this case would be the photo itself: the colors and positions of each pixel in the photo, basically what makes the photo a **photo**. The metadata would be additional information about the photo, like the location you took the photo at, the kind of lens you used, the date and time you took the photo, the ISO and focal length, etc. It's basically data about the photo.
+Imagine you take a photo of a tree on your phone. The data in this case would be the photo itself: the colors and positions of each pixel in the photo, basically what makes the photo a *photo*. The metadata would be additional information about the photo, like the location you took the photo at, the kind of lens you used, the date and time you took the photo, the ISO and focal length, etc. It's basically data about the photo.
 
 In the context of messaging, the message you send, whether that's text, images, files, videos, audio, whatever, is the data. Everything about the message, like who you're sending it to, when you're sending it, when it's received, what type of data is being sent, etc.
 

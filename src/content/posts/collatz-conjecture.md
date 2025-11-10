@@ -150,4 +150,4 @@ I found a thesis by Jose William Porras that claims to be the "Solution to Colla
 
 [YouTube playlist about Collatz conjecture (includes Veritasium video)](https://www.youtube.com/playlist?list=PLPa2dwCo_Eqker6ktrUs7dC7FkKwa7Q2h)
 
-**All other sources are linked in the main text**
+*All other sources are linked in the main text*

@@ -59,7 +59,7 @@ Back in those days, toilet paper was made from rice straw, not necessarily becau
 
 ### Made in China
 
-The mass-production of toilet paper didn't happen for a really long time, until 1393. Even then, it was for the Hongwu Emperor's imperial family. In 1393, the Bureau of Imperial Supplies (**Pao Chhao Ssu**) manufactured 720 000 sheets for the general use of the court. Each sheet was 2ft by 3ft in size. They also produced 15 000 3-square-inch sheets specially for the imperial family. These special sheets were yellow, thick but soft, and perfumed. Basically the highest quality treatment for cleaning your behind.
+The mass-production of toilet paper didn't happen for a really long time, until 1393. Even then, it was for the Hongwu Emperor's imperial family. In 1393, the Bureau of Imperial Supplies (*Pao Chhao Ssu*) manufactured 720 000 sheets for the general use of the court. Each sheet was 2ft by 3ft in size. They also produced 15 000 3-square-inch sheets specially for the imperial family. These special sheets were yellow, thick but soft, and perfumed. Basically the highest quality treatment for cleaning your behind.
 
 By the 15^th^ century, toilet paper had become widely available for everyone to use, at least in the East. The Western world still had a long way to go before they would get there.
 

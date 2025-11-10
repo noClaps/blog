@@ -30,13 +30,13 @@ It gets worse. There's a global telecom network known as [Signaling System 7 (SS
 
 Until of course, [someone did](https://thehackernews.com/2017/05/ss7-vulnerability-bank-hacking.html).
 
-And that's why you **don't use SMS for anything** even remotely important. Use encrypted platforms like [**Signal**](#signal), [**Threema**](#threema), [**Session**](#session), [**Element**](#elementmatrix) or any other end-to-end encrypted messenger.
+And that's why you *don't use SMS for anything* even remotely important. Use encrypted platforms like [*Signal*](#signal), [*Threema*](#threema), [*Session*](#session), [*Element*](#elementmatrix) or any other end-to-end encrypted messenger.
 
 ### Twitter DMs and Reddit Chat
 
 These are encrypted with your standard [HTTPS encryption](/posts/intro#the-green-lock) that comes with most websites and web-based apps. However, they don't have any dedicated encryption protocols, which is why they're in this section. This has lead to [data leaking](https://arstechnica.com/information-technology/2020/07/hackers-obtained-twitter-dms-for-36-high-profile-account-holders/) from these platforms in the past.
 
-I would recommend using other platforms like [**Session**](#session), [**Element**](#elementmatrix) or [**Threema**](#threema) instead, if you want to remain "anonymous" like you can on Twitter or Reddit.
+I would recommend using other platforms like [*Session*](#session), [*Element*](#elementmatrix) or [*Threema*](#threema) instead, if you want to remain "anonymous" like you can on Twitter or Reddit.
 
 ## Encryption with trust
 
@@ -60,7 +60,7 @@ This means that Discord was able to listen to and watch everything that was goin
 
 I want to list some pros of Discord, just to balance the argument, but from a privacy and security perspective there don't seem to be many. Discord and its founder have had a [long history of shady practices](https://youtu.be/uvNkdAggUGU), and I have no doubt that this is something that will continue for a long, long time.
 
-In conclusion, not a good service, do not recommend. Use [**Element**](#elementmatrix) or [**Revolt**](https://revolt.chat/) instead. If you _must_ use Discord, try [**Fosscord**](https://fosscord.com/).
+In conclusion, not a good service, do not recommend. Use [*Element*](#elementmatrix) or [*Revolt*](https://revolt.chat/) instead. If you _must_ use Discord, try [*Fosscord*](https://fosscord.com/).
 
 ### WhatsApp
 
@@ -83,7 +83,7 @@ Along with that, WhatsApp backups to Google Drive are [not encrypted by default]
 In addition to that, WhatsApp is owned by Meta/Facebook, one of the world's most privacy-invasive companies (just look at the [lawsuits they're involved in](https://en.wikipedia.org/wiki/Lawsuits_involving_Meta_Platforms)), which doesn't help its case.
 
 [WhatsApp also doesn't encrypt metadata](https://medium.com/@m.muslimiblog/metadata-the-whatsapp-issue-affecting-you-2bf13e77d065), so Meta/Facebook can see all of that and use it to [shadow-profile](https://en.wikipedia.org/wiki/Shadow_profile) you.
-However, since WhatsApp (probably) does use end-to-end encryption, it's one of the less bad options on this list. Security-wise, I think WhatsApp is fine, most of its issues come from the privacy-invasive practices of Meta/Facebook. If you have **absolutely no other option**, or you trust Meta/Facebook for whatever reason, WhatsApp is mostly fine to use. However, I would recommend that you try out other platforms like [**Signal**](#signal), [**Threema**](#threema) or [**Session**](#session) first, since they are much more private and secure than WhatsApp ever will be.
+However, since WhatsApp (probably) does use end-to-end encryption, it's one of the less bad options on this list. Security-wise, I think WhatsApp is fine, most of its issues come from the privacy-invasive practices of Meta/Facebook. If you have *absolutely no other option*, or you trust Meta/Facebook for whatever reason, WhatsApp is mostly fine to use. However, I would recommend that you try out other platforms like [*Signal*](#signal), [*Threema*](#threema) or [*Session*](#session) first, since they are much more private and secure than WhatsApp ever will be.
 
 ::: note
 I keep saying "Meta/Facebook" because so many people think of them as separate companies, and not just the renaming that it was. One of the main reasons for the rebranding was so that people would forget about all the horrible things that Facebook had done over the years when it was renamed, and Meta could have a fresh start. Admittedly, I never thought it would work, because you don't just forget years and years of privacy violations and security vulnerabilities, but it turns out people either completely ignorant or oblivious, or both.
@@ -101,11 +101,11 @@ However, this is a relatively easily solved problem. You can use Telegram's secr
 
 One of the main reasons that people choose to trust Telegram is their [refusal to process data requests](https://telegram.org/faq#q-do-you-process-data-requests) from law enforcement, governments, etc.
 
-In conclusion, I would not recommend this app unless you're willing to use **only secret chats**. Using normal or group chats in Telegram places a lot of trust in them, and trust can be dangerous. For most people, you're better off using [**Signal**](#signal), [**Threema**](#threema) or [**Session**](#session) for small groups and 1-on-1 chats, and [**Element**](#elementmatrix) or [**Revolt**](https://revolt.chat/) for the larger communities. Honestly, I believe even WhatsApp is better than using Telegram for most people, especially if you have group chats or aren't willing to set up secret chats for every contact you have.
+In conclusion, I would not recommend this app unless you're willing to use *only secret chats*. Using normal or group chats in Telegram places a lot of trust in them, and trust can be dangerous. For most people, you're better off using [*Signal*](#signal), [*Threema*](#threema) or [*Session*](#session) for small groups and 1-on-1 chats, and [*Element*](#elementmatrix) or [*Revolt*](https://revolt.chat/) for the larger communities. Honestly, I believe even WhatsApp is better than using Telegram for most people, especially if you have group chats or aren't willing to set up secret chats for every contact you have.
 
 ### iMessage
 
-iMessage is [end-to-end encrypted](https://www.apple.com/privacy/features/#imessage) **only** if you're in blue-bubble mode. Green-bubble mode is SMS, which is completely unencrypted. You do have to trust that Apple really is encrypting your messages on your device, and they aren't able to see them without your knowledge or permission.
+iMessage is [end-to-end encrypted](https://www.apple.com/privacy/features/#imessage) *only* if you're in blue-bubble mode. Green-bubble mode is SMS, which is completely unencrypted. You do have to trust that Apple really is encrypting your messages on your device, and they aren't able to see them without your knowledge or permission.
 
 However, if you happen to have iCloud backups turned on, [all of your messages are stored unencrypted on Apple's servers](https://www.howtogeek.com/710509/apples-imessage-is-secure...-unless-you-have-icloud-enabled/), freely available for Apple, the government, and anyone who Apple allows to look at them.
 
@@ -115,7 +115,7 @@ Sure, Apple's security is probably strong enough that most hackers won't be able
 
 Facebook Messenger has an option to enable end-to-end encrypted [chats, voice and video calls](https://messengernews.fb.com/2021/08/13/messenger-updates-end-to-end-encrypted-chats-with-new-features/) . Meta/Facebook are also testing [end-to-end encryption in Instagram DMs](https://about.fb.com/news/2021/12/metas-approach-to-safer-private-messaging/). However, since these aren't enabled by default, most people don't use them, because such is the power of defaults.
 
-Again, use other platforms like [**Signal**](#signal), [**Threema**](#threema) or [**Session**](#session), or at the very least enable end-to-end encryption where you can.
+Again, use other platforms like [*Signal*](#signal), [*Threema*](#threema) or [*Session*](#session), or at the very least enable end-to-end encryption where you can.
 
 ## Trustless Encryption
 
@@ -123,17 +123,17 @@ This section has end-to-end encrypted open-source apps with reproducible builds,
 
 ### Signal
 
-**Signal** is an open source messenger (and a [nonprofit foundation](https://en.wikipedia.org/wiki/Signal_Foundation)) that uses their own [Signal Protocol](https://en.wikipedia.org/wiki/Signal_Protocol) for end-to-end encryption. This protocol is used by a whole bunch of other messengers, like [WhatsApp](https://signal.org/blog/whatsapp-complete/), [Google's RCS Chat](https://www.theverge.com/2020/11/19/21574451/android-rcs-encryption-message-end-to-end-beta), [Facebook Messenger's Secret Conversations](https://signal.org/blog/facebook-messenger/) and [Skype's Private Conversations](https://signal.org/blog/skype-partnership/).
+*Signal* is an open source messenger (and a [nonprofit foundation](https://en.wikipedia.org/wiki/Signal_Foundation)) that uses their own [Signal Protocol](https://en.wikipedia.org/wiki/Signal_Protocol) for end-to-end encryption. This protocol is used by a whole bunch of other messengers, like [WhatsApp](https://signal.org/blog/whatsapp-complete/), [Google's RCS Chat](https://www.theverge.com/2020/11/19/21574451/android-rcs-encryption-message-end-to-end-beta), [Facebook Messenger's Secret Conversations](https://signal.org/blog/facebook-messenger/) and [Skype's Private Conversations](https://signal.org/blog/skype-partnership/).
 
-The Signal Protocol has been [audited](https://en.wikipedia.org/wiki/Signal_Protocol#History) multiple times and has been found to be "cryptographically sound". It's used by some of the largest companies out there, so clearly they've done it right. Nothing is 100% secure, but the Signal Protocol is one of, if not **the** best, encryption protocol out there for messengers.
+The Signal Protocol has been [audited](https://en.wikipedia.org/wiki/Signal_Protocol#History) multiple times and has been found to be "cryptographically sound". It's used by some of the largest companies out there, so clearly they've done it right. Nothing is 100% secure, but the Signal Protocol is one of, if not *the* best, encryption protocol out there for messengers.
 
 One thing I have to clarify, Signal will not make you anonymous. You need a phone number to sign up. In many countries, your phone number is tied to your identity, so if you're looking for complete anonymity, then this might not be the solution for you. However, if you want world-class security and privacy in a messaging app to use with your friends and family, Signal might be the solution for you. I can recommend it as an alternative to platforms like WhatsApp, Facebook Messenger, iMessage, SMS, RCS Chat, Telegram, and most other instant messaging platforms.
 
-Signal has most of the features that people use in messaging apps, but it may not have **all** of the features that are available on other platforms yet. The developers are working hard on adding new features while maintaining your privacy and security, but since other platforms do not focus as much on user privacy and security, they can add features much more quickly than Signal can. If you want to suggest a feature, you can do so on their [community](https://community.signalusers.org/) or by opening an issue on their [GitHub](https://github.com/signalapp) in the respective repo. You can [donate to them here](https://signal.org/donate/), or if you do it through the app, you can get a cool [Donor badge](https://support.signal.org/hc/en-us/articles/4408365318426-Sustainers-Boost-Badges).
+Signal has most of the features that people use in messaging apps, but it may not have *all* of the features that are available on other platforms yet. The developers are working hard on adding new features while maintaining your privacy and security, but since other platforms do not focus as much on user privacy and security, they can add features much more quickly than Signal can. If you want to suggest a feature, you can do so on their [community](https://community.signalusers.org/) or by opening an issue on their [GitHub](https://github.com/signalapp) in the respective repo. You can [donate to them here](https://signal.org/donate/), or if you do it through the app, you can get a cool [Donor badge](https://support.signal.org/hc/en-us/articles/4408365318426-Sustainers-Boost-Badges).
 
 Signal also provides a [list of government orders](https://signal.org/bigbrother/) that they receive, and what they're able to provide. Usually it's not much, since Signal collects little to no data/metadata.
 
-One thing I have to add, Signal's server code is almost fully open source. This doesn't really matter since you can't see what's actually running on the servers anyway, and they won't be able to see your messages with end-to-end encryption. However, I say **almost** because there's a small part related to [spam blocking](https://signal.org/blog/keeping-spam-off-signal/) that's closed source, since it's a bit difficult to stop spammers when they can see the code being used to block them. Personally, I don't have a problem with this, but I could understand it being an issue if you're looking for 100% transparency. However, one could argue that you can't really verify that the published server code is the same code actually running on the servers, so it wouldn't really matter either way.
+One thing I have to add, Signal's server code is almost fully open source. This doesn't really matter since you can't see what's actually running on the servers anyway, and they won't be able to see your messages with end-to-end encryption. However, I say *almost* because there's a small part related to [spam blocking](https://signal.org/blog/keeping-spam-off-signal/) that's closed source, since it's a bit difficult to stop spammers when they can see the code being used to block them. Personally, I don't have a problem with this, but I could understand it being an issue if you're looking for 100% transparency. However, one could argue that you can't really verify that the published server code is the same code actually running on the servers, so it wouldn't really matter either way.
 
 In conclusion, an excellent app for most use cases with world-class privacy and security. I would highly recommend it for most people as their regular messenger. There's a few features I'd personally really like it to have, but for the most part I'm fine with it.
 
@@ -144,7 +144,7 @@ In conclusion, an excellent app for most use cases with world-class privacy and 
 
 ### Session
 
-**Session** is a fork of Signal that's meant to provide you with complete anonymity. Just like Signal, it's open source. That's about where the similarities end, though.
+*Session* is a fork of Signal that's meant to provide you with complete anonymity. Just like Signal, it's open source. That's about where the similarities end, though.
 
 Session uses their own [Session Protocol](https://getsession.org/blog/session-protocol-technical-information) for end-to-end encryption. If you're worried about security as compared to Signal, Session has been [audited](https://blog.quarkslab.com/resources/2021-05-04_audit-of-session-secure-messaging-application/20-08-Oxen-REP-v1.4.pdf) before. Also, since it's open source, you can look through the code and audit it yourself if you choose / are able to do so.
 
@@ -152,7 +152,7 @@ Session is also completely [decentralised](https://en.wikipedia.org/wiki/Decentr
 
 The Oxen network is based on the Oxen blockchain, which a lot of people aren't very fond of. However, the $OXEN cryptocurrency has very little to do with the actual Session app itself, it's only related to the hosting of Oxen service nodes, which most people shouldn't have to worry about.
 
-In addition to all of that, messages in Session are [onion routed](https://en.wikipedia.org/wiki/Onion_routing). If you don't know what onion routing is, essentially the messages are covered in several layers of encryption. When you send a message, say from Estonia, the outermost layer of encryption only reveals the data of where it needs to go next. Say it goes to a node in Germany. There, a layer of encryption will be "peeled" away, like an onion's layer, revealing an inner layer of encryption, which reveals where the data needs to head next. From there, it could go to Canada, for instance. Again, another layer is "peeled" away, revealing the data's next destination. This is repeated a few times (usually 3-4) until the data reached the recipient's device, where it is decrypted so that they can read it. However, since each node only knows where the data is coming from and where it's going next, and nodes can handle a _lot_ of traffic, it's **really** hard to tell where the message came from. That's what makes Session (and other onion routed stuff, like [Tor](https://www.torproject.org/)) anonymous. It's not perfect, but it's good enough to work for most high-risk [threat models](/posts/threat-modelling).
+In addition to all of that, messages in Session are [onion routed](https://en.wikipedia.org/wiki/Onion_routing). If you don't know what onion routing is, essentially the messages are covered in several layers of encryption. When you send a message, say from Estonia, the outermost layer of encryption only reveals the data of where it needs to go next. Say it goes to a node in Germany. There, a layer of encryption will be "peeled" away, like an onion's layer, revealing an inner layer of encryption, which reveals where the data needs to head next. From there, it could go to Canada, for instance. Again, another layer is "peeled" away, revealing the data's next destination. This is repeated a few times (usually 3-4) until the data reached the recipient's device, where it is decrypted so that they can read it. However, since each node only knows where the data is coming from and where it's going next, and nodes can handle a _lot_ of traffic, it's *really* hard to tell where the message came from. That's what makes Session (and other onion routed stuff, like [Tor](https://www.torproject.org/)) anonymous. It's not perfect, but it's good enough to work for most high-risk [threat models](/posts/threat-modelling).
 
 Session also doesn't use any identifiers, like phone numbers or email addresses, and they collect almost zero data, so there's really [nothing to leak](https://getsession.org/faq#identity-protection) or give away even if some government agency comes knocking on their door. All they have to identify you is an autogenerated Session ID so other people can contact you, and a [recovery phrase](https://getsession.org/faq#recovery-phrase) so that you can carry your Session ID over to other devices. Your contacts and messages are [locally stored](https://getsession.org/faq#restored-contacts-and-messages), so you won't be able to carry them over to new devices. There's currently no backup system either, though it is [planned](https://getsession.org/faq#backups) to be added.
 
@@ -167,7 +167,7 @@ In conclusion, Session isn't for most people. It's not a very effective replacem
 
 ### Element/Matrix
 
-**Element** is an open source decentralised messenger that uses the **Matrix** protocol to work. You can use [other Matrix clients](https://matrix.org/clients/) that may provide different UIs and features. I recommend Element since it provides the most complete Matrix experience, having been [founded by the team behind Matrix](https://element.io/#matrix-card).
+*Element* is an open source decentralised messenger that uses the *Matrix* protocol to work. You can use [other Matrix clients](https://matrix.org/clients/) that may provide different UIs and features. I recommend Element since it provides the most complete Matrix experience, having been [founded by the team behind Matrix](https://element.io/#matrix-card).
 
 Matrix behaves similarly to email, since you have multiple "homeservers" that you can get your Matrix ID from. You can talk to people using other homeservers, just like you can do with email providers. You can also [host your own homeserver](https://matrix.org/docs/guides/installing-synapse), which gives you much more control over what happens in it. (This is called [decentralisation](https://en.wikipedia.org/wiki/Decentralization), by the way. And yes, email is technically decentralised.)
 
@@ -200,7 +200,7 @@ I've used Element for a while on Android, and I haven't had the best experience 
 
 ### Threema
 
-**Threema** is probably one of the most feature-rich messengers that actually keeps your privacy and security in mind. They use [end-to-end encryption](https://threema.ch/en/faq/why_secure) with the open source [NaCl](https://nacl.cr.yp.to/) library. They have open source clients and have been [audited](https://threema.ch/en/blog/posts/audit-2020-en), which makes them quite easy to recommend. Threema is also based in Switzerland, the country with some of the [strongest data](https://en.wikipedia.org/wiki/Information_privacy_law#Switzerland) [protection laws](https://datenrecht.ch/ndsg-en/) in the world, which, in my opinion, gives them an edge over the other messengers, most of which are [based in the US](https://en.wikipedia.org/wiki/Information_privacy_law#United_States).
+*Threema* is probably one of the most feature-rich messengers that actually keeps your privacy and security in mind. They use [end-to-end encryption](https://threema.ch/en/faq/why_secure) with the open source [NaCl](https://nacl.cr.yp.to/) library. They have open source clients and have been [audited](https://threema.ch/en/blog/posts/audit-2020-en), which makes them quite easy to recommend. Threema is also based in Switzerland, the country with some of the [strongest data](https://en.wikipedia.org/wiki/Information_privacy_law#Switzerland) [protection laws](https://datenrecht.ch/ndsg-en/) in the world, which, in my opinion, gives them an edge over the other messengers, most of which are [based in the US](https://en.wikipedia.org/wiki/Information_privacy_law#United_States).
 
 I can't give too many details about Threema, simply because I haven't used it enough, but it seems to be one of the best, most polished, open source messengers out there. This may largely be due to its business model, which involves the user paying to use the app. Now, before you question how giving Threema your credit card can be considered private, you have the option to pay by Bitcoin if you wish. You also have the usual options of Visa/MasterCard, PayPal, bank transfer or going through your app store. This is a one-time payment, and you can use the app indefinitely after that.
 

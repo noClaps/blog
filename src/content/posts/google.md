@@ -95,7 +95,7 @@ While Startpage has decent results (they use Google Search for their results), i
 
 I do recommend Brave Search, however. They use their own search index for results, and it's worked flawlessly for ~95% of my searches. If you like Brave Search, you can set it as the [default search engine](https://search.brave.com/default) in your browser.
 
-**I am not affiliated with any of these companies.** This recommendation is purely based on personal experience.
+*I am not affiliated with any of these companies.* This recommendation is purely based on personal experience.
 :::
 
 Google also makes Android, which is used by [over 70% of all mobile devices](https://gs.statcounter.com/os-market-share/mobile), most of which are also using Google Play Services and Google's apps.

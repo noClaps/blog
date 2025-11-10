@@ -37,7 +37,7 @@ Here, let's look at a diagram:
 
 Okay, there's a lot to take in there. Let's break it down part by part
 
-- In part (a), we see a series of parallel waves heading towards 2 slits in a wall. The waves then radiate outwards from the slits. This bending of waves is known as diffraction. You don't have to worry about what diffraction actually is and why it works the way it does, just that it **only happens in waves** and makes straight parallel waves into the circular ones, as long as the slit is much smaller than the distance between one wave peak and its neighbor (which is known as the wavelength).
+- In part (a), we see a series of parallel waves heading towards 2 slits in a wall. The waves then radiate outwards from the slits. This bending of waves is known as diffraction. You don't have to worry about what diffraction actually is and why it works the way it does, just that it *only happens in waves* and makes straight parallel waves into the circular ones, as long as the slit is much smaller than the distance between one wave peak and its neighbor (which is known as the wavelength).
 
   On the other side of the slits, we see the 2 circular waves intersecting. This is known as interference, and there's 2 types: constructive and destructive.
 
@@ -45,11 +45,11 @@ Okay, there's a lot to take in there. Let's break it down part by part
 
   Constructive interference occurs when 2 waves add up to make an even bigger wave, and destructive interference happens when 2 waves cancel each other out, either fully or partially, to make a smaller wave than either starting wave. You can see this happening if you drop 2 rocks into still water and see their waves collide with each other. Anyway, the waves colliding create an interference pattern of light and dark, which correspond to high and low waves.
 
-  Remember that this is something that **only happens in waves**.
+  Remember that this is something that *only happens in waves*.
 
 - Part (b) is about shooting particles through the slits. If you imagine particles to be like tiny balls, it makes sense that they would pass through the slit in a straight line, and end up on the other side. Since there's 2 slits, we see 2 spots where there's a bunch of particles. All you need to really test this is a paintball gun, a small hole, and really good aim.
 
-  The main takeaway here is that **particles travel in straight lines**.
+  The main takeaway here is that *particles travel in straight lines*.
 
 - Part (c) is where things get a little confusing. We can see the particles from (b), but they end up in the interference pattern from (a)? Seems like someone, somewhere messed up real bad.
 
@@ -81,7 +81,7 @@ $$
 c = f \lambda
 $$
 
-where $$c$$ is the speed of light, $$f$$ the frequency of the light wave (remember that light is both a wave and particle!), and $$\lambda$$ is the wavelength (the distance between successive peaks in a wave).
+where $c$ is the speed of light, $f$ the frequency of the light wave (remember that light is both a wave and particle!), and $\lambda$ is the wavelength (the distance between successive peaks in a wave).
 
 Using the frequency, we can use this equation:
 
@@ -89,9 +89,9 @@ $$
 E = hf
 $$
 
-to determine the amount of energy that the light has, where $$E$$ is the energy and $$h$$ is a constant known as Planck's constant.
+to determine the amount of energy that the light has, where $E$ is the energy and $h$ is a constant known as Planck's constant.
 
-However, we're still talking about light as a whole, when we want to look at individual photons. Let's forget that photons are particles. We can instead consider them packets of energy, that, when combined together, make up $$E$$. These packets are called "quanta", and that's where "quantum" comes from!
+However, we're still talking about light as a whole, when we want to look at individual photons. Let's forget that photons are particles. We can instead consider them packets of energy, that, when combined together, make up $E$. These packets are called "quanta", and that's where "quantum" comes from!
 
 Different wavelengths make up different types of light, from radio waves and microwaves being low frequency/high wavelength to visible light being somewhere in the middle, and x-rays and gamma rays being really high frequency/really low wavelength.
 
@@ -119,7 +119,7 @@ So they tried it, and discovered that only shooting one photon randomly through 
 
 The equivalent to this would be seeing an ocean and a droplet behave the same way. Makes no sense, right?
 
-Turns out, at the quantum scale, particles don't exactly exist as points in space, but more like a region in space where they _could_ be. They have clouds of probability, with each point within that cloud having a probability of the particle being at that position. So instead of a particle being exactly at x=50, it has a really high _probability_ of being at x=50, and a smaller probability of it being at x=51 or x=49, and so on. This probability is defined by something known as the **wave function**, denoted by the $$\Psi$$ symbol.
+Turns out, at the quantum scale, particles don't exactly exist as points in space, but more like a region in space where they _could_ be. They have clouds of probability, with each point within that cloud having a probability of the particle being at that position. So instead of a particle being exactly at x=50, it has a really high _probability_ of being at x=50, and a smaller probability of it being at x=51 or x=49, and so on. This probability is defined by something known as the *wave function*, denoted by the $\Psi$ symbol.
 
 ![Graph of wave function against position along a single axis. Source: [Wave functions - University of Tennesse Knoxville](https://labs.phys.utk.edu/mbreinig/phys222core/modules/m10/wave_functions.html).](./quantum-and-particle/The_Sh1a.gif)
 
@@ -137,7 +137,7 @@ Let's go back to the double-slit experiment (told you it was gonna be useful!). 
 
 What the scientists actually saw was (b), the particles were accumulating in one spot as if they were going through in a straight line. This happened with photons, electrons, and pretty much every small particle they used. So when there was only one slit, the particle behaved as a particle and travelled in a straight line!
 
-This happened because of something called **superposition**. You might have heard about it in a thought experiment called Schrödinger's cat. It goes something like this:
+This happened because of something called *superposition*. You might have heard about it in a thought experiment called Schrödinger's cat. It goes something like this:
 
 1. Place a cat into a box and close it. You cannot tell what's happening in the box.
 2. When the cat is in the box, it has a 50% chance of dying. (Theoretically. No real cats were harmed in the making of this experiment!)
@@ -175,7 +175,7 @@ However, do you remember how particles aren't particles, but waves of probabilit
 
 ![A graph showing the probability of a particle being on the other side of a barrier. This isn't exactly how the graph looks since the probability decreases exponentially inside the barrier, but it's good enough for a basic explanation. Source: [Physics I for Dummies](https://www.dummies.com/article/academics-the-arts/science/physics/string-theory-access-parallel-universes-with-quantum-tunneling-177689/).](./quantum-and-particle/316773.image0.jpg)
 
-From Schrödinger's cat, we know that if there's a probability of something happen, it will happen given enough attempts. So sometimes, the particle will get through the barrier, which is known as **quantum tunnelling**.
+From Schrödinger's cat, we know that if there's a probability of something happen, it will happen given enough attempts. So sometimes, the particle will get through the barrier, which is known as *quantum tunnelling*.
 
 This happens all over the universe, but most importantly, it happens in stars like our Sun. Because stars have so many tiny atoms like hydrogen and helium, the nuclei (centers) of these atoms don't have that much of a barrier to cross. The barrier in question is the same repulsion that we feel with magnets, since the nuclei of both atoms are positive, while the outer shells are both negative. We'll look at the structure of atoms in a bit, and this will make more sense.
 

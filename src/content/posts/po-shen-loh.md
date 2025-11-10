@@ -15,13 +15,13 @@ $$
 x^2 + bx + c = 0
 $$
 
-where $$a$$, $$b$$ and $$c$$ are real numbers. We want to factorise this into the form:
+where $a$, $b$ and $c$ are real numbers. We want to factorise this into the form:
 
 $$
 (x - r_1)(x - r_2) = 0
 $$
 
-where $$r_{1}$$ and $$r_{2}$$ are also real numbers, known as the _roots_ of the quadratic. These are essentially points where, if the equation was plotted, the graph would cross the $$x$$-axis.
+where $r_{1}$ and $r_{2}$ are also real numbers, known as the _roots_ of the quadratic. These are essentially points where, if the equation was plotted, the graph would cross the $x$-axis.
 
 The standard method for solving quadratics is using a formula that we've all learned in school:
 
@@ -29,7 +29,7 @@ $$
 x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
 $$
 
-which gives us two values for $$x$$, where plugging them into the original quadratic equation would give us 0. These are the two roots, $$r_1$$ and $$r_2$$.
+which gives us two values for $x$, where plugging them into the original quadratic equation would give us 0. These are the two roots, $r_1$ and $r_2$.
 
 However, let's try expanding our factorised equation back into the quadratic form:
 
@@ -41,11 +41,11 @@ x^2 - (r_1 + r_2)x + r_1 r_2 & = 0
 \end{aligned}
 $$
 
-We can see that $$-b = r_1 + r_2$$ and $$c = r_1 r_2$$. Now, we could try to guess which values for $$r_1$$ and $$r_2$$ fit for these constraints, which works for some simple quadratic equations with integer roots, but gets complicated to do for non-integer roots.
+We can see that $-b = r_1 + r_2$ and $c = r_1 r_2$. Now, we could try to guess which values for $r_1$ and $r_2$ fit for these constraints, which works for some simple quadratic equations with integer roots, but gets complicated to do for non-integer roots.
 
-Instead, we can realise that $$r_1, r_2 = -\frac{b}{2} \pm u$$ for some real number $$u$$. This is basically like saying that since $$r_1$$ and $$r_2$$ add up to $$-b$$, $$-\frac{b}{2}$$ must be exactly in between them, and we can simply add or subtract a value $$u$$ to get to $$r_1$$ and $$r_2$$. For example, if we have $$r_1=3$$ and $$r_2=5$$, then $$-b=r_1+r_2=3+5=8$$. From this, we can see that $$-\frac{b}{2} = 4$$, and we can simply add and subtract $$u=1$$ to get back $$r_1=3$$ and $$r_2=5$$.
+Instead, we can realise that $r_1, r_2 = -\frac{b}{2} \pm u$ for some real number $u$. This is basically like saying that since $r_1$ and $r_2$ add up to $-b$, $-\frac{b}{2}$ must be exactly in between them, and we can simply add or subtract a value $u$ to get to $r_1$ and $r_2$. For example, if we have $r_1=3$ and $r_2=5$, then $-b=r_1+r_2=3+5=8$. From this, we can see that $-\frac{b}{2} = 4$, and we can simply add and subtract $u=1$ to get back $r_1=3$ and $r_2=5$.
 
-Next, we can see that $$c = r_1 r_2$$. Since we already know that $$r_1 = -\frac{b}{2}+u$$ and $$r_2 = -\frac{b}{2}-u$$, we can simply multiply them together to get $$c$$:
+Next, we can see that $c = r_1 r_2$. Since we already know that $r_1 = -\frac{b}{2}+u$ and $r_2 = -\frac{b}{2}-u$, we can simply multiply them together to get $c$:
 
 $$
 \begin{aligned}
@@ -55,7 +55,7 @@ c & = r_1 r_2 \\
 \end{aligned}
 $$
 
-The third line leads from $$(a+b)(a-b)=a^2-b^2$$. Since the values of $$b$$ and $$c$$ are already known from the original quadratic equation, we can simply rearrange this equation to get the value of $$u$$:
+The third line leads from $(a+b)(a-b)=a^2-b^2$. Since the values of $b$ and $c$ are already known from the original quadratic equation, we can simply rearrange this equation to get the value of $u$:
 
 $$
 \begin{aligned}
@@ -65,7 +65,7 @@ u & = \sqrt{\frac{b^2}{4} - c}
 \end{aligned}
 $$
 
-Finally, we can plug in this value into our previous equations for $$r_1$$ and $$r_2$$:
+Finally, we can plug in this value into our previous equations for $r_1$ and $r_2$:
 
 $$
 \begin{aligned}
@@ -74,19 +74,19 @@ r_2 & = -\frac{b}{2} - \sqrt{\frac{b^2}{4} - c}
 \end{aligned}
 $$
 
-Now you might be thinking, "well this is all great, but what if we have a coefficient in front of the $$x^2$$ term?". Great question, let's see what happens! We start with:
+Now you might be thinking, "well this is all great, but what if we have a coefficient in front of the $x^2$ term?". Great question, let's see what happens! We start with:
 
 $$
 ax^2 + bx + c = 0
 $$
 
-where, again, $$a$$, $$b$$ and $$c$$ are all real numbers. All we need to do to apply our previous method is to divide the entire equation by $$a$$:
+where, again, $a$, $b$ and $c$ are all real numbers. All we need to do to apply our previous method is to divide the entire equation by $a$:
 
 $$
 x^2 + \frac{b}{a} x + \frac{c}{a} = 0
 $$
 
-If we plug in our new values of $$b' = \frac{b}{a}$$ and $$c' = \frac{c}{a}$$ into the equation for our roots from earlier, we get:
+If we plug in our new values of $b' = \frac{b}{a}$ and $c' = \frac{c}{a}$ into the equation for our roots from earlier, we get:
 
 $$
 \begin{aligned}

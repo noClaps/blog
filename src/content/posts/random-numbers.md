@@ -46,13 +46,13 @@ $$
 \mathcal{N} = \{1, 2, 3, 4, 5, 6, 7, 8, 9\}
 $$
 
-The size of $$\mathcal{N}$$ is 9, and each number you pull is equally likely, meaning the probability of pulling a number $$n$$ out of set $$\mathcal{N}$$ is:
+The size of $\mathcal{N}$ is 9, and each number you pull is equally likely, meaning the probability of pulling a number $n$ out of set $\mathcal{N}$ is:
 
 $$
 \text{Prob}(n) = \frac{1}{9}
 $$
 
-When you want to calculate the probability of event A _and_ event B happening, you multiply their probabilities together. So if we want to calculate the probability of getting $$n_1$$ _and_ $$n_2$$ out of our set:
+When you want to calculate the probability of event A _and_ event B happening, you multiply their probabilities together. So if we want to calculate the probability of getting $n_1$ _and_ $n_2$ out of our set:
 
 $$
 \text{Prob}(n_1 \text{ and } n_2) = \frac{1}{9} \times \frac{1}{9} = {\left( \frac{1}{9} \right)}^{2}
@@ -61,10 +61,10 @@ $$
 We can continue doing this until we reach 10 numbers:
 
 $$
-\text{Prob}(n_1 \text{ and } n_2 \text{ and } \dots \text{ and } n_10) = {\left( \frac{1}{9} \right)}^{10}
+\text{Prob}(n_1 \text{ and } n_2 \text{ and } \dots \text{ and } n_{10}) = {\left( \frac{1}{9} \right)}^{10}
 $$
 
-Note that each number was chosen independently and randomly, which means that each number independently had an equal probability of being anything from the set $$\mathcal{N}$$, that is, the numbers 1–9. This means that a sequence like `1111111111` is equally as probable as `1826421937`, because we never specified what $$n_{1 \dots 10}$$ are.
+Note that each number was chosen independently and randomly, which means that each number independently had an equal probability of being anything from the set $\mathcal{N}$, that is, the numbers 1–9. This means that a sequence like `1111111111` is equally as probable as `1826421937`, because we never specified what $n_{1 \dots 10}$ are.
 
 Going back to Spotify, this means that if you have 3 songs in your playlist from artist A, 5 from artist B and 2 from artist C, and you shuffle play, the probability of getting `AAABBBBBCC` is equal to the probability of getting `ABCABCBAB`, but to humans, the latter _feels_ more random than the former.
 
@@ -183,7 +183,7 @@ Taking inspiration from the algorithms in [The art of shuffling music](https://k
 The way it works is that they take all of the songs in your playlist and separate them by artist. Then, they create a timeline, and try to spread the songs by each artist evenly across the timeline, and once that's been done for all the artists, they merge together the songs as best they can, giving a seemingly random output.
 
 ::: quote How to shuffle songs? — Lukáš Poláček, Spotify {href="https://web.archive.org/web/20240813071829/https://engineering.atspotify.com/2014/02/how-to-shuffle-songs/"}
-We can take inspiration from the dithering algorithms to solve our problem with clusters of songs by the same artist; we will try to spread them throughout the whole playlist. Suppose we have a playlist containing some songs by **The White Stripes**, **The xx**, **Bonobo**, **Britney Spears** ([Toxic](https://open.spotify.com/track/26nr9XnFCYWxBTIP7HyWXg)!) and **Jaga Jazzist**. For each artist we take their songs and try to stretch them as evenly as possible along the whole playlist. Then we collect all songs and order them by their position.
+We can take inspiration from the dithering algorithms to solve our problem with clusters of songs by the same artist; we will try to spread them throughout the whole playlist. Suppose we have a playlist containing some songs by *The White Stripes*, *The xx*, *Bonobo*, *Britney Spears* ([Toxic](https://open.spotify.com/track/26nr9XnFCYWxBTIP7HyWXg)!) and *Jaga Jazzist*. For each artist we take their songs and try to stretch them as evenly as possible along the whole playlist. Then we collect all songs and order them by their position.
 :::
 
 ![Spotify's merge algorithm for shuffle. The circles are songs, and the colors represent the different artists. As you can see at the bottom, the final output looks fairly random. Source: [How to shuffle songs?](https://web.archive.org/web/20240813071829/https://engineering.atspotify.com/2014/02/how-to-shuffle-songs/) (Internet Archive link).](./random-numbers/spotify-merge-algorithm.png)
