@@ -6,8 +6,12 @@ edition = "2024"
 askama = "0.14.0"
 base64 = "0.22.1"
 glob = "0.3.3"
-highlight = { git = "https://github.com/noClaps/znak" }
 jiff = { version = "0.2.15", default-features = false, features = ["perf-inline"] }
 lol_html = "2.7.0"
-tree-sitter-languages = { git = "https://github.com/noClaps/znak", features = ["bash", "c", "html", "json", "python", "typescript"] }
+tree-sitter-bash = "0.25.0"
+tree-sitter-c = "0.24.1"
+tree-sitter-html = "0.23.2"
+tree-sitter-json = "0.24.8"
+tree-sitter-python = "0.25.0"
+tree-sitter-typescript = "0.23.2"
 znak = { git = "https://github.com/noClaps/znak" }
