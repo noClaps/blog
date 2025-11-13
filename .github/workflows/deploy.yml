@@ -13,6 +13,7 @@ jobs:
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
             target/
+            ~/.bun/install/cache
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
       - run: make
       - uses: oven-sh/setup-bun@v2
