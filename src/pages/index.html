@@ -57,30 +57,30 @@
             </div>
             <h2>Posts</h2>
             <section id="posts">
-                {%- for link in posts %}
-                <a class="link" href="{{ link.href }}"
-                    ><time datetime="{{ link.date }}">{{ link.date }}</time>
-                    <h3>{{ link.title }}</h3></a
+                {{ for posts }}
+                <a class="link" href="{{ href }}"
+                    ><time datetime="{{ date }}">{{ date }}</time>
+                    <h3>{{ title }}</h3></a
                 >
-                {%- endfor %}
+                {{ end }}
             </section>
             <h2>Notes</h2>
             <section id="notes">
-                {%- for link in notes %}
-                <a class="link" href="{{ link.href }}"
-                    ><time datetime="{{ link.date }}">{{ link.date }}</time>
-                    <h3>{{ link.title }}</h3></a
+                {{ for notes }}
+                <a class="link" href="{{ href }}"
+                    ><time datetime="{{ date }}">{{ date }}</time>
+                    <h3>{{ title }}</h3></a
                 >
-                {%- endfor %}
+                {{ end }}
             </section>
             <h2>Stories</h2>
             <section id="stories">
-                {%- for link in stories %}
-                <a class="link" href="{{ link.href }}"
-                    ><time datetime="{{ link.date }}">{{ link.date }}</time>
-                    <h3>{{ link.title }}</h3></a
+                {{ for stories }}
+                <a class="link" href="{{ href }}"
+                    ><time datetime="{{ date }}">{{ date }}</time>
+                    <h3>{{ title }}</h3></a
                 >
-                {%- endfor %}
+                {{ end }}
             </section>
         </main>
     </body>

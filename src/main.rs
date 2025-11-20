@@ -4,10 +4,10 @@ use std::{
     path::Path,
 };
 
-use askama::Template;
 use base64::{Engine, prelude::BASE64_STANDARD};
 use glob::glob;
 use lol_html::{RewriteStrSettings, element, html_content::ContentType, rewrite_str};
+use tmpl::Tmpl;
 
 use crate::{
     pages::{feed::atom_feed, index::index, posts::posts},
@@ -25,17 +25,18 @@ fn main() {
     let items = Post::get();
 
     let mut f = File::create("dist/feed.atom").unwrap();
-    atom_feed(&items).write_into(&mut f).unwrap();
+    let atom_feed = atom_feed(&items).render(include_str!("./pages/feed.atom"));
+    write!(f, "{}", atom_feed).unwrap();
 
     let mut f = File::create("dist/index.html").unwrap();
-    let index = build_html(index(&items).render().unwrap());
+    let index = build_html(index(&items).render(include_str!("./pages/index.html")));
     write!(f, "{}", index).unwrap();
 
     let posts = posts(&items);
     for post in posts {
         let file_path = post.file_path.as_str();
         let post = post.post;
-        let post = post.render().unwrap();
+        let post = post.render(include_str!("./pages/posts.html"));
         let post = build_post(post, file_path.to_string());
         let post = build_html(post);
         let path = format!("dist{}", file_path);

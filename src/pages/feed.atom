@@ -11,14 +11,14 @@
         <email>contact@zerolimits.dev</email>
         <uri>https://zerolimits.dev</uri>
     </author>
-    {%- for entry in entries %}
+    {{ for entries }}
     <entry>
-        <id>{{ entry.id }}</id>
-        <title>{{ entry.title }}</title>
-        <updated>{{ entry.updated }}</updated>
-        <content type="html">{{ entry.content }}</content>
-        <link rel="alternate" href="{{ entry.link }}" />
-        <published>{{ entry.published }}</published>
+        <id>{{ id }}</id>
+        <title>{{ title }}</title>
+        <updated>{{ updated }}</updated>
+        <content type="html">{{ content }}</content>
+        <link rel="alternate" href="{{ link }}" />
+        <published>{{ published }}</published>
     </entry>
-    {%- endfor %}
+    {{ end }}
 </feed>

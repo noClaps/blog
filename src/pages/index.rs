@@ -1,20 +1,35 @@
 use std::cmp::Ordering;
 
-use askama::Template;
+use tmpl::{Tmpl, apply_field};
 
 use crate::utils::Post;
 
-struct PostTmpl {
+struct PostTemplate {
     href: String,
     date: String,
     title: String,
 }
-#[derive(Template)]
-#[template(path = "index.html", escape = "none")]
-pub struct Templ {
-    posts: Vec<PostTmpl>,
-    notes: Vec<PostTmpl>,
-    stories: Vec<PostTmpl>,
+impl Tmpl for PostTemplate {
+    fn render(&self, template: &str) -> String {
+        apply_field!(self, href, template);
+        apply_field!(self, date, template);
+        apply_field!(self, title, template);
+        template
+    }
+}
+
+pub struct Template {
+    posts: Vec<PostTemplate>,
+    notes: Vec<PostTemplate>,
+    stories: Vec<PostTemplate>,
+}
+impl Tmpl for Template {
+    fn render(&self, template: &str) -> String {
+        apply_field!(self, [posts], template);
+        apply_field!(self, [notes], template);
+        apply_field!(self, [stories], template);
+        template
+    }
 }
 
 fn sort_func(a: &Post, b: &Post) -> Ordering {
@@ -25,7 +40,7 @@ fn sort_func(a: &Post, b: &Post) -> Ordering {
     }
 }
 
-pub fn index(items: &[Post]) -> Templ {
+pub fn index(items: &[Post]) -> Template {
     let items = items.to_vec();
     let mut posts = items
         .clone()
@@ -35,12 +50,12 @@ pub fn index(items: &[Post]) -> Templ {
     posts.sort_by(sort_func);
     let posts = posts
         .into_iter()
-        .map(|post| PostTmpl {
+        .map(|post| PostTemplate {
             href: post.slug,
             date: post.date.strftime("%F").to_string(),
             title: post.title,
         })
-        .collect::<Vec<PostTmpl>>();
+        .collect::<Vec<PostTemplate>>();
 
     let mut notes = items
         .clone()
@@ -50,12 +65,12 @@ pub fn index(items: &[Post]) -> Templ {
     notes.sort_by(sort_func);
     let notes = notes
         .into_iter()
-        .map(|post| PostTmpl {
+        .map(|post| PostTemplate {
             href: post.slug,
             date: post.date.strftime("%F").to_string(),
             title: post.title,
         })
-        .collect::<Vec<PostTmpl>>();
+        .collect::<Vec<PostTemplate>>();
 
     let mut stories = items
         .into_iter()
@@ -64,14 +79,14 @@ pub fn index(items: &[Post]) -> Templ {
     stories.sort_by(sort_func);
     let stories = stories
         .into_iter()
-        .map(|post| PostTmpl {
+        .map(|post| PostTemplate {
             href: post.slug,
             date: post.date.strftime("%F").to_string(),
             title: post.title,
         })
-        .collect::<Vec<PostTmpl>>();
+        .collect::<Vec<PostTemplate>>();
 
-    let tmpl = Templ {
+    let tmpl = Template {
         posts,
         notes,
         stories,

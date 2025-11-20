@@ -1,5 +1,6 @@
-use askama::Template;
+use html::escape_html;
 use jiff::civil::DateTime;
+use tmpl::{Tmpl, apply_field};
 
 use crate::utils::Post;
 
@@ -11,12 +12,28 @@ struct Entry {
     link: String,
     published: String,
 }
+impl Tmpl for Entry {
+    fn render(&self, template: &str) -> String {
+        apply_field!(self, id, template);
+        apply_field!(self, title, template);
+        apply_field!(self, updated, template);
+        apply_field!(self, content, template);
+        apply_field!(self, link, template);
+        apply_field!(self, published, template);
+        template
+    }
+}
 
-#[derive(Template)]
-#[template(path = "feed.atom", escape = "xml")]
 pub struct Feed {
     last_update: String,
     entries: Vec<Entry>,
+}
+impl Tmpl for Feed {
+    fn render(&self, template: &str) -> String {
+        apply_field!(self, last_update, template);
+        apply_field!(self, [entries], template);
+        template
+    }
 }
 
 pub fn atom_feed(items: &[Post]) -> Feed {
@@ -37,7 +54,7 @@ pub fn atom_feed(items: &[Post]) -> Feed {
                 id: format!("https://blog.zerolimits.dev{}", item.slug),
                 title: item.title,
                 updated: updated.to_string(),
-                content: item.content,
+                content: escape_html!(item.content),
                 link: format!("https://blog.zerolimits.dev{}", item.slug),
                 published: item.date.to_string(),
             }
