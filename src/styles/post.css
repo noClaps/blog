@@ -64,6 +64,10 @@ math {
     }
 }
 
+mover > mo {
+    margin-bottom: 0.25rem;
+}
+
 /* Layout */
 .post-header {
     display: flex;
