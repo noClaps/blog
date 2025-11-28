@@ -59,26 +59,33 @@ fn build_post(input: String, file_path: String) -> String {
     rewrite_str(
         input.as_str(),
         RewriteStrSettings {
-            element_content_handlers: vec![element!("img", |el| {
-                let src = el.get_attribute("src").unwrap();
-                if !src.starts_with("./") {
-                    return Ok(());
-                }
-                let src = src.trim_start_matches("./");
-                let content = images
-                    .iter()
-                    .find(|&img| *img == format!("{}/{}", dir_path, src))
-                    .and_then(|img| fs::read(format!("src/content/{}", img)).ok())
-                    .expect(format!("Unable to find image: {}/{}", dir_path, src).as_str());
-                let base64 = BASE64_STANDARD.encode(content);
+            element_content_handlers: vec![
+                element!("img", |el| {
+                    let src = el.get_attribute("src").unwrap();
+                    if !src.starts_with("./") {
+                        return Ok(());
+                    }
+                    let src = src.trim_start_matches("./");
+                    let content = images
+                        .iter()
+                        .find(|&img| *img == format!("{}/{}", dir_path, src))
+                        .and_then(|img| fs::read(format!("src/content/{}", img)).ok())
+                        .expect(format!("Unable to find image: {}/{}", dir_path, src).as_str());
+                    let base64 = BASE64_STANDARD.encode(content);
 
-                // don't need mime type as browser should parse automatically
-                // if i find a situation where this isn't the case,
-                // i'll find a different way to parse the image format
-                el.set_attribute("src", format!("data:;base64,{}", base64).as_str())?;
+                    // don't need mime type as browser should parse automatically
+                    // if i find a situation where this isn't the case,
+                    // i'll find a different way to parse the image format
+                    el.set_attribute("src", format!("data:;base64,{}", base64).as_str())?;
 
-                Ok(())
-            })],
+                    Ok(())
+                }),
+                element!("math[display=block]", |el| {
+                    el.before("<div class=\"math-block\">", ContentType::Html);
+                    el.after("</div>", ContentType::Html);
+                    Ok(())
+                }),
+            ],
             ..RewriteStrSettings::new()
         },
     )

@@ -55,6 +55,10 @@ code:not(.znak-highlight code) {
 }
 
 /* Math */
+.math-block {
+    overflow-x: auto;
+}
+
 math {
     font-family: var(--math);
 
