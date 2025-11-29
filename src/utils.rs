@@ -2,6 +2,7 @@ use std::{collections::HashMap, fs};
 
 use glob::glob;
 use jiff::civil::DateTime;
+use rayon::iter::{IntoParallelRefIterator, ParallelIterator};
 use znak::{Highlight, HighlightConfiguration, parse_frontmatter, render};
 
 #[derive(Clone)]
@@ -67,71 +68,69 @@ impl Frontmatter {
 fn get_hl() -> Highlight {
     let theme = include_str!("./styles/syntax.css").parse().unwrap();
     let mut hl = Highlight::new(theme);
-    hl.add_language(
-        &["py"],
-        HighlightConfiguration::new(
-            tree_sitter_python::LANGUAGE.into(),
-            "python",
+    let languages: Vec<_> = [
+        (
+            ["py"],
+            tree_sitter_python::LANGUAGE,
             include_str!("./queries/python/highlights.scm"),
             "",
             "",
-        )
-        .unwrap(),
-    );
-    hl.add_language(
-        &["sh"],
-        HighlightConfiguration::new(
-            tree_sitter_bash::LANGUAGE.into(),
-            "bash",
+        ),
+        (
+            ["sh"],
+            tree_sitter_bash::LANGUAGE,
             include_str!("./queries/bash/highlights.scm"),
             "",
             "",
-        )
-        .unwrap(),
-    );
-    hl.add_language(
-        &["c"],
-        HighlightConfiguration::new(
-            tree_sitter_c::LANGUAGE.into(),
-            "c",
+        ),
+        (
+            ["c"],
+            tree_sitter_c::LANGUAGE,
             include_str!("./queries/c/highlights.scm"),
             include_str!("./queries/c/injections.scm"),
             "",
-        )
-        .unwrap(),
-    );
-    hl.add_language(
-        &["ts"],
-        HighlightConfiguration::new(
-            tree_sitter_typescript::LANGUAGE_TYPESCRIPT.into(),
-            "typescript",
+        ),
+        (
+            ["ts"],
+            tree_sitter_typescript::LANGUAGE_TYPESCRIPT,
             include_str!("./queries/typescript/highlights.scm"),
             include_str!("./queries/typescript/injections.scm"),
             "",
-        )
-        .unwrap(),
-    );
-    hl.add_language(
-        &["html"],
-        HighlightConfiguration::new(
-            tree_sitter_html::LANGUAGE.into(),
-            "html",
+        ),
+        (
+            ["html"],
+            tree_sitter_html::LANGUAGE,
             include_str!("./queries/html/highlights.scm"),
             include_str!("./queries/html/injections.scm"),
             "",
-        )
-        .unwrap(),
-    );
-    hl.add_language(
-        &["json"],
-        HighlightConfiguration::new(
-            tree_sitter_json::LANGUAGE.into(),
-            "json",
+        ),
+        (
+            ["json"],
+            tree_sitter_json::LANGUAGE,
             include_str!("./queries/json/highlights.scm"),
             "",
             "",
+        ),
+    ]
+    .par_iter()
+    .map(|language| {
+        (
+            &language.0,
+            HighlightConfiguration::new(
+                language.1.into(),
+                language.0[0],
+                language.2,
+                language.3,
+                language.4,
+            )
+            .unwrap(),
         )
-        .unwrap(),
-    );
+    })
+    .collect();
+
+    for (names, config) in languages {
+        hl.add_language(names, config);
+    }
+
     hl
 }
