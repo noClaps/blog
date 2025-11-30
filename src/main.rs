@@ -5,9 +5,7 @@ use std::{
 };
 
 use base64::{Engine, prelude::BASE64_STANDARD};
-use glob::glob;
 use lol_html::{RewriteStrSettings, element, html_content::ContentType, rewrite_str};
-use tmpl::Tmpl;
 
 use crate::{
     pages::{feed::atom_feed, index::index, posts::posts},
@@ -25,19 +23,16 @@ fn main() {
     let items = Post::get();
 
     let mut f = File::create("dist/feed.atom").unwrap();
-    let atom_feed = atom_feed(&items).render(include_str!("./pages/feed.atom"));
-    write!(f, "{}", atom_feed).unwrap();
+    write!(f, "{}", atom_feed(&items)).unwrap();
 
     let mut f = File::create("dist/index.html").unwrap();
-    let index = build_html(index(&items).render(include_str!("./pages/index.html")));
+    let index = build_html(index(&items));
     write!(f, "{}", index).unwrap();
 
     let posts = posts(&items);
     for post in posts {
         let file_path = post.file_path.as_str();
-        let post = post.post;
-        let post = post.render(include_str!("./pages/posts.html"));
-        let post = build_post(post, file_path.to_string());
+        let post = build_post(post.post, file_path.to_string());
         let post = build_html(post);
         let path = format!("dist{}", file_path);
         let parent_dir = Path::new(&path).parent().unwrap();
@@ -48,12 +43,6 @@ fn main() {
 }
 
 fn build_post(input: String, file_path: String) -> String {
-    let images = glob("src/content/**/*.png")
-        .unwrap()
-        .chain(glob("src/content/**/*.gif").unwrap())
-        .chain(glob("src/content/**/*.jpg").unwrap())
-        .map(|path| path.unwrap().to_string_lossy().replace("src/content/", ""))
-        .collect::<Vec<String>>();
     let dir_path = file_path[1..].split_once("/").unwrap().0;
 
     rewrite_str(
@@ -66,11 +55,8 @@ fn build_post(input: String, file_path: String) -> String {
                         return Ok(());
                     }
                     let src = src.trim_start_matches("./");
-                    let content = images
-                        .iter()
-                        .find(|&img| *img == format!("{}/{}", dir_path, src))
-                        .and_then(|img| fs::read(format!("src/content/{}", img)).ok())
-                        .expect(format!("Unable to find image: {}/{}", dir_path, src).as_str());
+                    let content = fs::read(format!("src/content/{}/{}", dir_path, src))
+                        .expect(&format!("Unable to find image: {}/{}", dir_path, src));
                     let base64 = BASE64_STANDARD.encode(content);
 
                     // don't need mime type as browser should parse automatically
@@ -93,38 +79,18 @@ fn build_post(input: String, file_path: String) -> String {
 }
 
 fn build_html(input: String) -> String {
-    let styles = glob("src/styles/*.css")
-        .unwrap()
-        .map(|path| path.unwrap().to_string_lossy().replace("src/styles/", ""))
-        .collect::<Vec<String>>();
-
     rewrite_str(
         input.as_str(),
         RewriteStrSettings {
-            element_content_handlers: vec![
-                element!("a", |el| {
-                    let href = el.get_attribute("href").unwrap();
-                    if !href.starts_with("https://") {
-                        return Ok(());
-                    }
-                    el.set_attribute("target", "_blank")?;
-                    el.set_attribute("rel", "noopener noreferrer")?;
-                    Ok(())
-                }),
-                element!("link[rel=stylesheet]", |el| {
-                    let href = el.get_attribute("href").unwrap().replace("/styles/", "");
-                    let css = styles
-                        .iter()
-                        .find(|style| **style == href)
-                        .and_then(|css| fs::read_to_string(format!("src/styles/{}", css)).ok())
-                        .expect(format!("Unable to find CSS: {}", href).as_str());
-                    el.replace(
-                        format!("<style>{}</style>", css).as_str(),
-                        ContentType::Html,
-                    );
-                    Ok(())
-                }),
-            ],
+            element_content_handlers: vec![element!("a", |el| {
+                let href = el.get_attribute("href").unwrap();
+                if !href.starts_with("https://") {
+                    return Ok(());
+                }
+                el.set_attribute("target", "_blank")?;
+                el.set_attribute("rel", "noopener noreferrer")?;
+                Ok(())
+            })],
             ..RewriteStrSettings::new()
         },
     )

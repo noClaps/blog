@@ -10,8 +10,10 @@
             content="A blog about the most random things you can think of."
         />
         <link rel="alternate" href="/feed.atom" type="application/atom+xml" />
-        <link rel="stylesheet" href="/styles/global.css" />
-        <link rel="stylesheet" href="/styles/index.css" />
+        <style>
+            {}
+            {}
+        </style>
     </head>
     <body>
         <header>
@@ -56,32 +58,11 @@
                 <p>A blog about the most random things you can think of.</p>
             </div>
             <h2>Posts</h2>
-            <section id="posts">
-                {{ for posts }}
-                <a class="link" href="{{ href }}"
-                    ><time datetime="{{ date }}">{{ date }}</time>
-                    <h3>{{ title }}</h3></a
-                >
-                {{ end }}
-            </section>
+            <section id="posts">{}</section>
             <h2>Notes</h2>
-            <section id="notes">
-                {{ for notes }}
-                <a class="link" href="{{ href }}"
-                    ><time datetime="{{ date }}">{{ date }}</time>
-                    <h3>{{ title }}</h3></a
-                >
-                {{ end }}
-            </section>
+            <section id="notes">{}</section>
             <h2>Stories</h2>
-            <section id="stories">
-                {{ for stories }}
-                <a class="link" href="{{ href }}"
-                    ><time datetime="{{ date }}">{{ date }}</time>
-                    <h3>{{ title }}</h3></a
-                >
-                {{ end }}
-            </section>
+            <section id="stories">{}</section>
         </main>
     </body>
 </html>

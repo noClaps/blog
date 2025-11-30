@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <link rel="icon" href="https://zerolimits.dev/cookie.png" />
-        <title>{{ title }}</title>
+        <title>{}</title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
@@ -10,8 +10,10 @@
             content="A blog about the most random things you can think of."
         />
         <link rel="alternate" href="/feed.atom" type="application/atom+xml" />
-        <link rel="stylesheet" href="/styles/global.css" />
-        <link rel="stylesheet" href="/styles/post.css" />
+        <style>
+            {}
+            {}
+        </style>
     </head>
     <body>
         <header>
@@ -52,10 +54,10 @@
         </header>
         <main>
             <div class="post-header">
-                <time datetime="{{ pub_date }}">{{ pub_date }}</time>
-                <h1>{{ title }}</h1>
+                <time datetime="{}">{}</time>
+                <h1>{}</h1>
             </div>
-            <article>{{ children }}</article>
+            <article>{}</article>
         </main>
     </body>
 </html>

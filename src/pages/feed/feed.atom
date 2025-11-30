@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.zerolimits.dev/</id>
     <title>The Blog of Random</title>
-    <updated>{{ last_update }}</updated>
+    <updated>{}</updated>
     <link rel="self" href="https://blog.zerolimits.dev/feed.atom" />
     <icon>https://zerolimits.dev/cookie.png</icon>
     <subtitle>A blog about the most random things you can think of.</subtitle>
@@ -11,14 +11,5 @@
         <email>contact@zerolimits.dev</email>
         <uri>https://zerolimits.dev</uri>
     </author>
-    {{ for entries }}
-    <entry>
-        <id>{{ id }}</id>
-        <title>{{ title }}</title>
-        <updated>{{ updated }}</updated>
-        <content type="html">{{ content }}</content>
-        <link rel="alternate" href="{{ link }}" />
-        <published>{{ published }}</published>
-    </entry>
-    {{ end }}
+    {}
 </feed>
