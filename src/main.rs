@@ -31,8 +31,8 @@ fn main() {
 
     let posts = posts(&items);
     for post in posts {
-        let file_path = post.file_path.as_str();
-        let post = build_post(post.post, file_path.to_string());
+        let file_path = post.file_path;
+        let post = build_post(&post.post, &file_path);
         let post = build_html(&post);
         let path = format!("dist{}", file_path);
         let parent_dir = Path::new(&path).parent().unwrap();
@@ -42,11 +42,11 @@ fn main() {
     }
 }
 
-fn build_post(input: String, file_path: String) -> String {
+fn build_post(input: &str, file_path: &str) -> String {
     let dir_path = file_path[1..].split_once("/").unwrap().0;
 
     rewrite_str(
-        input.as_str(),
+        input,
         RewriteStrSettings {
             element_content_handlers: vec![
                 element!("img", |el| {
@@ -62,7 +62,7 @@ fn build_post(input: String, file_path: String) -> String {
                     // don't need mime type as browser should parse automatically
                     // if i find a situation where this isn't the case,
                     // i'll find a different way to parse the image format
-                    el.set_attribute("src", format!("data:;base64,{}", base64).as_str())?;
+                    el.set_attribute("src", &format!("data:;base64,{}", base64))?;
 
                     Ok(())
                 }),
