@@ -22,7 +22,7 @@ pub fn index(items: &[Post]) -> String {
         .into_iter()
         .map(|post| {
             let href = post.slug;
-            let date = post.date.strftime("%F");
+            let date = post.date;
             let title = post.title;
             format!(include_str!("./post.html"), href, date, date, title)
         })
@@ -38,7 +38,7 @@ pub fn index(items: &[Post]) -> String {
         .into_iter()
         .map(|post| {
             let href = post.slug;
-            let date = post.date.strftime("%F");
+            let date = post.date;
             let title = post.title;
             format!(include_str!("./post.html"), href, date, date, title)
         })
@@ -53,7 +53,7 @@ pub fn index(items: &[Post]) -> String {
         .into_iter()
         .map(|post| {
             let href = post.slug;
-            let date = post.date.strftime("%F");
+            let date = post.date;
             let title = post.title;
             format!(include_str!("./post.html"), href, date, date, title)
         })

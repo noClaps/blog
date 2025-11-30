@@ -13,7 +13,7 @@ pub fn posts(posts: &[Post]) -> Vec<RenderedPost> {
             let file_path = format!("{}.html", post.slug);
 
             let title = post.title;
-            let pub_date = post.date.strftime("%F");
+            let pub_date = post.date;
             let children = post.content;
             let post = format!(
                 include_str!("./posts.html"),

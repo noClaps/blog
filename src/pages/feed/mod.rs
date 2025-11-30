@@ -1,10 +1,9 @@
 use html::escape_html;
-use jiff::civil::DateTime;
 
-use crate::utils::Post;
+use crate::utils::{Date, Post};
 
 pub fn atom_feed(items: &[Post]) -> String {
-    let mut last_update = DateTime::default();
+    let mut last_update = Date::default();
     let atom_entries: String = items
         .iter()
         .map(|item| {
@@ -24,7 +23,12 @@ pub fn atom_feed(items: &[Post]) -> String {
             let published = item.date;
             format!(
                 include_str!("./entry.atom"),
-                id, title, updated, content, link, published
+                id,
+                title,
+                updated.fmt_time(),
+                content,
+                link,
+                published.fmt_time()
             )
         })
         .collect();
