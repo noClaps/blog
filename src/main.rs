@@ -16,6 +16,13 @@ mod pages {
 mod utils;
 
 fn main() {
+    fs::create_dir_all("dist").unwrap();
+    fs::copy(
+        "public/NewCMMath-Regular.woff2",
+        "dist/NewCMMath-Regular.woff2",
+    )
+    .unwrap();
+
     let items = Post::get();
     fs::write("dist/feed.atom", atom_feed(&items)).unwrap();
 
