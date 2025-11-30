@@ -1,8 +1,4 @@
-use std::{
-    fs::{self, File, create_dir_all},
-    io::Write,
-    path::Path,
-};
+use std::{fs, path::Path};
 
 use base64::{Engine, prelude::BASE64_STANDARD};
 use lol_html::{RewriteStrSettings, element, html_content::ContentType, rewrite_str};
@@ -21,13 +17,10 @@ mod utils;
 
 fn main() {
     let items = Post::get();
+    fs::write("dist/feed.atom", atom_feed(&items)).unwrap();
 
-    let mut f = File::create("dist/feed.atom").unwrap();
-    write!(f, "{}", atom_feed(&items)).unwrap();
-
-    let mut f = File::create("dist/index.html").unwrap();
-    write!(f, "{}", index).unwrap();
     let index = build_html(&index(&items));
+    fs::write("dist/index.html", index).unwrap();
 
     let posts = posts(&items);
     for post in posts {
@@ -36,9 +29,8 @@ fn main() {
         let post = build_html(&post);
         let path = format!("dist{}", file_path);
         let parent_dir = Path::new(&path).parent().unwrap();
-        create_dir_all(parent_dir).unwrap();
-        let mut f = File::create(format!("dist{}", file_path)).unwrap();
-        write!(f, "{}", post).unwrap();
+        fs::create_dir_all(parent_dir).unwrap();
+        fs::write(path, post).unwrap();
     }
 }
 
