@@ -26,14 +26,14 @@ fn main() {
     write!(f, "{}", atom_feed(&items)).unwrap();
 
     let mut f = File::create("dist/index.html").unwrap();
-    let index = build_html(index(&items));
     write!(f, "{}", index).unwrap();
+    let index = build_html(&index(&items));
 
     let posts = posts(&items);
     for post in posts {
         let file_path = post.file_path.as_str();
         let post = build_post(post.post, file_path.to_string());
-        let post = build_html(post);
+        let post = build_html(&post);
         let path = format!("dist{}", file_path);
         let parent_dir = Path::new(&path).parent().unwrap();
         create_dir_all(parent_dir).unwrap();
@@ -78,21 +78,9 @@ fn build_post(input: String, file_path: String) -> String {
     .unwrap()
 }
 
-fn build_html(input: String) -> String {
-    rewrite_str(
-        input.as_str(),
-        RewriteStrSettings {
-            element_content_handlers: vec![element!("a", |el| {
-                let href = el.get_attribute("href").unwrap();
-                if !href.starts_with("https://") {
-                    return Ok(());
-                }
-                el.set_attribute("target", "_blank")?;
-                el.set_attribute("rel", "noopener noreferrer")?;
-                Ok(())
-            })],
-            ..RewriteStrSettings::new()
-        },
+fn build_html(input: &str) -> String {
+    input.replace(
+        "<a href=\"https://",
+        "<a target=\"_blank\" rel=\"noopener noreferrer\" href=\"http://",
     )
-    .unwrap()
 }
