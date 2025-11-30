@@ -4,7 +4,6 @@ edition = "2024"
 
 [dependencies]
 base64 = "0.22.1"
-glob = "0.3.3"
 html = { git = "https://github.com/noClaps/znak", version = "0.0.0" }
 jiff = { version = "0.2.15", default-features = false, features = ["perf-inline"] }
 lol_html = "2.7.0"

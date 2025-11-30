@@ -1,6 +1,5 @@
-use std::{collections::HashMap, fs};
+use std::{collections::HashMap, fs, path::PathBuf};
 
-use glob::glob;
 use jiff::civil::DateTime;
 use znak::{Highlight, HighlightConfiguration, parse_frontmatter, render};
 
@@ -15,10 +14,10 @@ pub struct Post {
 impl Post {
     pub fn get() -> Vec<Post> {
         let hl = get_hl();
-        glob("src/content/**/*.md")
-            .unwrap()
+        Self::get_files(PathBuf::from("src/content"))
+            .iter()
             .map(|path| {
-                let path = path.unwrap().to_string_lossy().replace("src/content/", "");
+                let path = path.to_string_lossy().replace("src/content/", "");
                 let md = fs::read_to_string(format!("src/content/{}", path)).unwrap();
 
                 // exclude `.md` from end and add `/` to start
@@ -43,6 +42,22 @@ impl Post {
                 }
             })
             .collect()
+    }
+
+    fn get_files(path: PathBuf) -> Vec<PathBuf> {
+        let mut files = vec![];
+
+        for dir_entry in fs::read_dir(path).unwrap() {
+            let dir_entry = dir_entry.unwrap();
+            let path = dir_entry.path();
+            if path.is_dir() {
+                files.append(&mut Self::get_files(path));
+            } else if path.is_file() && path.extension().is_some_and(|ext| ext == "md") {
+                files.push(path);
+            }
+        }
+
+        files
     }
 }
 
