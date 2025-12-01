@@ -3,7 +3,6 @@ name = "blog"
 edition = "2024"
 
 [dependencies]
-base64 = "0.22.1"
 html = { git = "https://github.com/noClaps/znak" }
 lol_html = "2.7.0"
 tree-sitter-bash = "0.25.0"

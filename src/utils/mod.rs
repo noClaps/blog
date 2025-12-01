@@ -1,3 +1,4 @@
+pub mod base64;
 mod date;
 mod frontmatter;
 mod highlight;

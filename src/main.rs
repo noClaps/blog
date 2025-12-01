@@ -1,11 +1,10 @@
 use std::{fs, path::Path};
 
-use base64::{Engine, prelude::BASE64_STANDARD};
 use lol_html::{RewriteStrSettings, element, html_content::ContentType, rewrite_str};
 
 use crate::{
     pages::{feed::atom_feed, index::index, posts::posts},
-    utils::Post,
+    utils::{Post, base64::base64_encode},
 };
 
 mod pages {
@@ -56,7 +55,7 @@ fn build_post(input: &str, file_path: &str) -> String {
                     let src = src.trim_start_matches("./");
                     let content = fs::read(format!("src/content/{}/{}", dir_path, src))
                         .expect(&format!("Unable to find image: {}/{}", dir_path, src));
-                    let base64 = BASE64_STANDARD.encode(content);
+                    let base64 = base64_encode(&content);
 
                     // don't need mime type as browser should parse automatically
                     // if i find a situation where this isn't the case,
