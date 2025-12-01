@@ -1,6 +1,6 @@
 use std::cmp::Ordering;
 
-use crate::utils::Post;
+use crate::utils::post::Post;
 
 fn sort_func(a: &Post, b: &Post) -> Ordering {
     match (a.date, b.date) {

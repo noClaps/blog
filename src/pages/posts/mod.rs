@@ -1,4 +1,4 @@
-use crate::utils::Post;
+use crate::utils::post::Post;
 
 pub struct RenderedPost {
     pub file_path: String,

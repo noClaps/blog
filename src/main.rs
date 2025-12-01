@@ -4,7 +4,7 @@ use lol_html::{RewriteStrSettings, element, html_content::ContentType, rewrite_s
 
 use crate::{
     pages::{feed::atom_feed, index::index, posts::posts},
-    utils::{Post, base64::base64_encode},
+    utils::{base64::base64_encode, post::Post},
 };
 
 mod pages {
@@ -12,7 +12,11 @@ mod pages {
     pub mod index;
     pub mod posts;
 }
-mod utils;
+mod utils {
+    pub mod base64;
+    pub mod date;
+    pub mod post;
+}
 
 fn main() {
     fs::create_dir_all("dist").unwrap();

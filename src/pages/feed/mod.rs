@@ -1,6 +1,6 @@
 use html::escape_html;
 
-use crate::utils::{Date, Post};
+use crate::utils::{date::Date, post::Post};
 
 pub fn atom_feed(items: &[Post]) -> String {
     let mut last_update = Date::default();
