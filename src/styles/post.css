@@ -40,13 +40,15 @@ code {
     line-height: 0;
 }
 
-.znak-highlight {
+pre:has(code) {
     border-radius: 0.5rem;
     padding: 1rem;
     overflow-x: auto;
+    background-color: var(--code-bg);
+    color: var(--code-text);
 }
 
-code:not(.znak-highlight code) {
+code:not(pre code) {
     overflow-wrap: break-word;
     background-color: var(--code-bg);
     color: var(--code-text);
@@ -55,7 +57,13 @@ code:not(.znak-highlight code) {
 }
 
 /* Math */
-.math-block {
+/* TODO: Remove and uncomment below when Typst supports MathML */
+.typst-frame:not(span .typst-frame) {
+    width: calc(100% - 2rem) !important;
+    margin: 1rem;
+}
+
+/*.math-block {
     overflow-x: auto;
 }
 
@@ -70,21 +78,25 @@ math {
 
 mover > mo {
     margin-bottom: 0.25rem;
-}
+}*/
 
 /* Layout */
 .post-header {
     display: flex;
     flex-direction: column;
-}
 
-h1 {
-    margin-bottom: 0.5rem;
-    font-size: 1.625rem;
-}
+    h1 {
+        margin-bottom: 0.5rem;
+        font-size: 1.625rem;
+    }
 
-time {
-    font-weight: bold;
+    p {
+        margin: 0.25rem 0;
+    }
+
+    time {
+        font-weight: bold;
+    }
 }
 
 /* Figure */

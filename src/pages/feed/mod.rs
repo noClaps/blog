@@ -1,5 +1,3 @@
-use html::escape_html;
-
 use crate::utils::{date::Date, post::Post};
 
 pub fn atom_feed(items: &[Post]) -> String {
