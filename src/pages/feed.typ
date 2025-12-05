@@ -16,11 +16,11 @@
           + "</id><title>"
           + meta.title
           + "</title><updated>"
-          + updated.display()
+          + updated.display("[year]-[month]-[day]T00:00:00Z")
           + "</updated><link rel=\"alternate\" href=\"https://blog.zerolimits.dev/"
           + slug
           + "\" /><published>"
-          + meta.date.display()
+          + meta.date.display("[year]-[month]-[day]T00:00:00Z")
           + "</published>"
           + "</entry>",
       )
@@ -38,7 +38,7 @@
 
   (
     "<?xml version=\"1.0\" encoding=\"utf-8\"?><feed xmlns=\"http://www.w3.org/2005/Atom\"><id>https://blog.zerolimits.dev/</id><title>The Blog of Random</title><updated>"
-      + lastmod.display()
+      + lastmod.display("[year]-[month]-[day]T00:00:00Z")
       + "</updated><link rel=\"self\" href=\"https://blog.zerolimits.dev/feed.atom\" /><icon>https://zerolimits.dev/cookie.png</icon><subtitle>A blog about the most random things you can think of.</subtitle><author><name>noClaps</name><uri>https://zerolimits.dev</uri></author>"
       + entries
       + "</feed>"
