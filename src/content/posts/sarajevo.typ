@@ -1,7 +1,10 @@
-#import "../../pages/macros.typ": *
+#import "../../pages/post.typ": *
 
-#let title = [Love and War]
-#let date = datetime(year: 2024, month: 2, day: 15)
+#metadata((
+  title: [Love and War],
+  date: datetime(year: 2024, month: 2, day: 15),
+))
+#show: post
 
 = A New Year's party
 

@@ -1,7 +1,10 @@
-#import "../../pages/macros.typ": *
+#import "../../pages/post.typ": *
 
-#let title = [Random Numbers]
-#let date = datetime(year: 2025, month: 7, day: 23)
+#metadata((
+  title: [Random Numbers],
+  date: datetime(year: 2025, month: 7, day: 23),
+))
+#show: post
 
 = Every day I'm shufflin'
 

@@ -1,8 +1,11 @@
-#import "../../pages/macros.typ": *
+#import "../../pages/post.typ": *
 
-#let title = [Collatz Conjecture]
-#let date = datetime(year: 2022, month: 11, day: 8)
-#let lastmod = datetime(year: 2025, month: 4, day: 12)
+#metadata((
+  title: [Collatz Conjecture],
+  date: datetime(year: 2022, month: 11, day: 8),
+  lastmod: datetime(year: 2025, month: 4, day: 12),
+))
+#show: post
 
 #quote(
   title: [Jeffery Lagarias, expert on the Collatz conjecture, mathematician at the University of Michigan],

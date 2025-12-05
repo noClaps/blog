@@ -1,5 +1,10 @@
-#let title = [Po-Shen Loh Quadratic Method]
-#let date = datetime(year: 2025, month: 4, day: 12)
+#import "../../pages/post.typ": *
+
+#metadata((
+  title: [Po-Shen Loh Quadratic Method],
+  date: datetime(year: 2025, month: 4, day: 12),
+))
+#show: post
 
 I found out about the Po-Shen Loh method of solving quadratic equations a few years ago, and I've been meaning to write a post about it since, and only just got around to it.
 

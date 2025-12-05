@@ -1,5 +1,10 @@
-#let title = [Chaos Theory]
-#let date = datetime(year: 2021, month: 12, day: 2)
+#import "../../pages/post.typ": *
+
+#metadata((
+  title: [Chaos Theory],
+  date: datetime(year: 2021, month: 12, day: 2),
+))
+#show: post
 
 = The main stuff
 

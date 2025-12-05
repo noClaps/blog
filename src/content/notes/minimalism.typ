@@ -1,5 +1,10 @@
-#let title = [Minimalism]
-#let date = datetime(year: 2024, month: 6, day: 03)
+#import "../../pages/post.typ": *
+
+#metadata((
+  title: [Minimalism],
+  date: datetime(year: 2024, month: 6, day: 03),
+))
+#show: post
 
 I was watching a #link("https://www.youtube.com/watch?v=Fd57NOavMWs")[YouTube video] the other day by this content creator called Mrwhosetheboss, about how he bought all this minimalist tech. A lot of it was quite expensive, and while yes, some of it was pretty cool, I also felt like it wasn't really worth it.
 

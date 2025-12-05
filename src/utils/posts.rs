@@ -1,28 +1,5 @@
-use std::{fs, path::PathBuf};
-
 use highlight::Highlight;
 use kuchikiki::{parse_html, traits::TendrilSink};
-
-pub fn get_posts(path: PathBuf) -> Vec<String> {
-    let mut files = vec![];
-
-    for dir_entry in fs::read_dir(path).unwrap() {
-        let dir_entry = dir_entry.unwrap();
-        let path = dir_entry.path();
-        if path.is_dir() {
-            files.append(&mut get_posts(path));
-        } else if path.is_file() && path.extension().is_some_and(|ext| ext == "typ") {
-            let path = path.to_string_lossy();
-            let path = path
-                .trim_end_matches(".typ")
-                .trim_start_matches("src/content/")
-                .to_string();
-            files.push(path);
-        }
-    }
-
-    files
-}
 
 pub fn process_post(html: &str, hl: &Highlight) -> String {
     let document = parse_html().one(html);

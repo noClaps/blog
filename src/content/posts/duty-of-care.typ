@@ -1,7 +1,10 @@
-#import "../../pages/macros.typ": *
+#import "../../pages/post.typ": *
 
-#let title = [Duty of Care]
-#let date = datetime(year: 2023, month: 9, day: 15)
+#metadata((
+  title: [Duty of Care],
+  date: datetime(year: 2023, month: 9, day: 15),
+))
+#show: post
 
 #note[
   The "R" in "R v ..." stands for "Regina", which is Latin for the Queen. This is because public criminal prosecutions are usually brought in the Queen's name. This case is from the UK, which is why the Queen's name is used. The equivalent in your country may be "The People", "The State", "The Commonwealth", etc.

@@ -1,7 +1,10 @@
-#import "../../pages/macros.typ": *
+#import "../../pages/post.typ": *
 
-#let title = [Finding vulnerabilities in Secton]
-#let date = datetime(year: 2025, month: 06, day: 26)
+#metadata((
+  title: [Finding vulnerabilities in Secton],
+  date: datetime(year: 2025, month: 06, day: 26),
+))
+#show: post
 
 #note(
   title: [Acknowledgements],

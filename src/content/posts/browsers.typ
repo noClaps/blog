@@ -1,7 +1,10 @@
-#import "../../pages/macros.typ": *
+#import "../../pages/post.typ": *
 
-#let title = [Battle of the Browsers]
-#let date = datetime(year: 2024, month: 1, day: 22)
+#metadata((
+  title: [Battle of the Browsers],
+  date: datetime(year: 2024, month: 1, day: 22),
+))
+#show: post
 
 I've heard from many people that I should be using some browser because "Browser X is the best" or "Browser X is better than your browser". Most of the time, these people don't really have a very clear reason for _why_ it's the best, just that it is. Now, I'm not really against people having opinions on what they think is the best, and defending their choices and preferences, but it's also important to recognise that others also have their own preferences, and to not try to force or shame them into doing something they don't want to do.
 

@@ -1,5 +1,10 @@
-#let title = [Textack - 2024]
-#let date = datetime(year: 2024, month: 12, day: 16)
+#import "../../pages/post.typ": *
+
+#metadata((
+  title: [Textack - 2024],
+  date: datetime(year: 2024, month: 12, day: 16),
+))
+#show: post
 
 #link("./tech-stack-2023")[Last year's Textack]
 

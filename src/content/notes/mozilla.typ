@@ -1,7 +1,10 @@
-#import "../../pages/macros.typ": *
+#import "../../pages/post.typ": *
 
-#let title = [Mozilla]
-#let date = datetime(year: 2024, month: 1, day: 20)
+#metadata((
+  title: [Mozilla],
+  date: datetime(year: 2024, month: 1, day: 20),
+))
+#show: post
 
 I have a problem with Mozilla, and there's enough here to warrant a whole post. Credits to #link("https://lunduke.locals.com/post/4387539/firefox-money-investigating-the-bizarre-finances-of-mozilla")[Bryan Lunduke] for the idea, and you can consider this an updated version of his post. Update: He also has a #link("https://lunduke.locals.com/post/5053290/mozilla-2023-annual-report-ceo-pay-skyrockets-while-firefox-marketshare-nosedives")[2023 version]!
 

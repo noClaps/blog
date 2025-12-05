@@ -1,4 +1,4 @@
-#{
+#let post(body) = context {
   // TODO: Remove when Typst supports MathML
   show math.equation: html.frame
   show math.equation.where(block: false): html.span
@@ -21,11 +21,9 @@
     )
   }
 
-  let post = sys.inputs.post
-  import "../content/" + post + ".typ" as content
-  let title = content.title
-  let date = content.date
-  let body = include "../content/" + post + ".typ"
+  let metadata = query(metadata).first().value
+  let title = metadata.title
+  let date = metadata.date
 
   html.html(lang: "en", {
     html.head({
@@ -61,5 +59,63 @@
         html.article(body)
       })
     })
+  })
+}
+
+#let quote(title: none, href: none, body) = {
+  if title == none { title = [QUOTE] }
+  html.div(class: "blog-container quote", {
+    html.p(class: "quote-heading", {
+      html.b(if href == none {
+        title
+      } else if href.starts-with("https") {
+        html.a(target: "_blank", rel: ("noreferrer", "noopener"), href: href, title)
+      } else {
+        html.a(href: href, title)
+      })
+    })
+    body
+  })
+}
+
+#let note(title: none, href: none, body) = {
+  if title == none { title = [NOTE] }
+  html.div(class: "blog-container note", {
+    html.p(class: "note-heading", {
+      html.b(if href == none {
+        title
+      } else if href.starts-with("https") {
+        html.a(
+          target: "_blank",
+          rel: ("noreferrer", "noopener"),
+          href: href,
+          title,
+        )
+      } else {
+        html.a(href: href, title)
+      })
+    })
+    body
+  })
+}
+
+#let warning(title: none, href: none, body) = {
+  if title == none { title = [WARNING] }
+  html.div(class: "blog-container warning", {
+    html.p(class: "warning-heading", {
+      html.b(if href == none {
+        title
+      } else if href.starts-with("https") {
+        html.a(
+          target: "_blank",
+          rel: ("noreferrer", "noopener"),
+          href: href,
+          title,
+        )
+      } else {
+        html.a(href: href, title)
+      })
+    })
+    body
   })
 }

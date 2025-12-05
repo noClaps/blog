@@ -1,6 +1,11 @@
-#let title = [The Phalanx Formation]
-#let date = datetime(year: 2021, month: 12, day: 30)
-#let lastmod = datetime(year: 2022, month: 07, day: 31)
+#import "../../pages/post.typ": *
+
+#metadata((
+  title: [The Phalanx Formation],
+  date: datetime(year: 2021, month: 12, day: 30),
+  lastmod: datetime(year: 2022, month: 07, day: 31),
+))
+#show: post
 
 = The origin story
 

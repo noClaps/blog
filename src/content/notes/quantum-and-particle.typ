@@ -1,7 +1,10 @@
-#import "../../pages/macros.typ": *
+#import "../../pages/post.typ": *
 
-#let title = [A beginner's guide to Quantum and Particle Physics]
-#let date = datetime(year: 2024, month: 2, day: 21)
+#metadata((
+  title: [A beginner's guide to Quantum and Particle Physics],
+  date: datetime(year: 2024, month: 2, day: 21),
+))
+#show: post
 
 #note[
   I should probably say that being a physics student, I do have some idea of what I'm talking about. However, this post covers a lot of the topics in a very high-level way and doesn't really dive into a lot of the _really_ confusing details of those topics. If you find quantum and particle physics interesting, you should look up how a lot of these things actually work, and read textbooks and research papers about it.

@@ -1,8 +1,11 @@
-#import "../../pages/macros.typ": *
+#import "../../pages/post.typ": *
 
-#let title = [How to Make an OS]
-#let date = datetime(year: 2023, month: 2, day: 2)
-#let lastmod = datetime(year: 2023, month: 2, day: 5)
+#metadata((
+  title: [How to Make an OS],
+  date: datetime(year: 2023, month: 2, day: 2),
+  lastmod: datetime(year: 2023, month: 2, day: 5),
+))
+#show: post
 
 #note(
   title: [DISCLAIMERS],

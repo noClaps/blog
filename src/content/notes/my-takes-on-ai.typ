@@ -1,7 +1,10 @@
-#import "../../pages/macros.typ": *
+#import "../../pages/post.typ": *
 
-#let title = [My takes on AI]
-#let date = datetime(year: 2025, month: 2, day: 1)
+#metadata((
+  title: [My takes on AI],
+  date: datetime(year: 2025, month: 2, day: 1),
+))
+#show: post
 
 There's been a lot happening in the AI world recently. There's a new model, DeepSeek R1, that's just come out that everyone's going crazy over, because it performs better than GPT o1 and Claude 3.5 while being significantly cheaper and, more importantly, open source. Of course, before this, all the hype was about GPT o1, and Claude before that.
 

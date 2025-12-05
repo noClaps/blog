@@ -1,9 +1,11 @@
-#import "../../pages/macros.typ": *
+#import "../../pages/post.typ": *
 
-#let title = [Google: A Misrepresented Evil]
-#let date = datetime(year: 2022, month: 8, day: 12)
-#let lastmod = datetime(year: 2022, month: 11, day: 26)
-
+#metadata((
+  title: [Google: A Misrepresented Evil],
+  date: datetime(year: 2022, month: 8, day: 12),
+  lastmod: datetime(year: 2022, month: 11, day: 26),
+))
+#show: post
 
 = Humble beginnings
 

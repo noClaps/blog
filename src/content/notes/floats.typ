@@ -1,5 +1,10 @@
-#let title = [Floats]
-#let date = datetime(year: 2025, month: 11, day: 27)
+#import "../../pages/post.typ": *
+
+#metadata((
+  title: [Floats],
+  date: datetime(year: 2025, month: 11, day: 27),
+))
+#show: post
 
 Long story short, I got really bored over the summer and made a new floating point format.
 

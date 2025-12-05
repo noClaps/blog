@@ -1,8 +1,11 @@
-#import "../../pages/macros.typ": *
+#import "../../pages/post.typ": *
 
-#let title = [Be Social]
-#let date = datetime(year: 2022, month: 11, day: 27)
-#let lastmod = datetime(year: 2023, month: 1, day: 31)
+#metadata((
+  title: [Be Social],
+  date: datetime(year: 2022, month: 11, day: 27),
+  lastmod: datetime(year: 2023, month: 1, day: 31),
+))
+#show: post
 
 = Origins
 
