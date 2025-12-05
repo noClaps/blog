@@ -1,8 +1,11 @@
 #let files = (
-  eval(sys.inputs.files)
+  sys
+    .inputs
+    .files
+    .split(" ")
     .map(it => {
+      let it = it.slice(12, -4)
       import "../content/" + it + ".typ" as data
-      include "../content/" + it + ".typ"
       return (
         slug: it,
         title: data.title,

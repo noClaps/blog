@@ -5,6 +5,7 @@ edition = "2024"
 [dependencies]
 highlight = { git = "https://github.com/noClaps/znak" }
 kuchikiki = "0.8.2"
+rayon = "1.11.0"
 tree-sitter-bash = "0.25.1"
 tree-sitter-c = "0.24.1"
 tree-sitter-html = "0.23.2"
