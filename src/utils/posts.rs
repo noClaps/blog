@@ -1,32 +1,56 @@
 use highlight::Highlight;
-use kuchikiki::{parse_html, traits::TendrilSink};
+use html::{Node, unescape_html};
 
 pub fn process_post(html: &str, hl: &Highlight) -> String {
-    let document = parse_html().one(html);
-    let mut to_detach = vec![];
-    for css_match in document.select("code[data-lang]").unwrap() {
-        let attributes = css_match.attributes.borrow();
-        let lang = attributes.get("data-lang").unwrap();
-        let text_node = css_match
-            .as_node()
-            .children()
-            .filter_map(|c| match c.as_element() {
-                None => Some(c.text_contents()),
-                Some(_) => Some("\n".to_string()),
-            });
-        let code = text_node.collect::<Vec<_>>().join("");
+    let document: Node = html.parse().unwrap();
+    walk(document, hl).to_string()
+}
 
-        let highlighted = hl.highlight(&code, lang);
-        let highlighted = kuchikiki::parse_html().one(highlighted);
-        let new_node = highlighted.select_first("code").unwrap().as_node().clone();
-
-        let old_node = css_match.as_node().clone();
-        old_node.insert_after(new_node);
-        to_detach.push(old_node);
+fn walk(node: Node, hl: &Highlight) -> Node {
+    match node {
+        Node::Root(els) => Node::Root(els.into_iter().map(|el| walk(el, hl)).collect()),
+        Node::Element {
+            tag_name,
+            properties,
+            children,
+        } => {
+            if tag_name != "code" || !properties.contains_key("data-lang") {
+                return Node::Element {
+                    tag_name: tag_name.clone(),
+                    properties: properties.clone(),
+                    children: if children.len() > 0 {
+                        children.into_iter().map(|c| walk(c, hl)).collect()
+                    } else {
+                        vec![]
+                    },
+                };
+            }
+            let lang = properties.get("data-lang").unwrap();
+            let text: String = children
+                .iter()
+                .filter_map(|c| match c {
+                    Node::Text(text) => Some(unescape_html!(text.clone())),
+                    Node::Element {
+                        tag_name,
+                        properties: _,
+                        children: _,
+                    } => (tag_name == "br").then_some("\n".to_string()),
+                    _ => None,
+                })
+                .collect();
+            let highlighted = hl.highlight(&text, &lang);
+            match highlighted.parse().unwrap() {
+                Node::Root(nodes) => match nodes[0].clone() {
+                    Node::Element {
+                        tag_name: _,
+                        properties: _,
+                        children,
+                    } => children[0].clone(),
+                    _ => unreachable!(),
+                },
+                _ => unreachable!(),
+            }
+        }
+        _ => node.clone(),
     }
-    for node in to_detach {
-        node.detach();
-    }
-
-    document.to_string()
 }
