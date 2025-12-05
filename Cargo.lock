@@ -56,7 +56,7 @@ checksum = "841d1cc9bed7f9236f321df977030373f4a4163ae1a7dbfe1a51a2c1a51d9100"
 [[package]]
 name = "highlight"
 version = "0.0.0"
-source = "git+https://github.com/noClaps/znak#a1e73f2f7fa3fe4792d2a05fb42f7cb7bb049ca6"
+source = "git+https://github.com/noClaps/znak#5c02cbfc1a11cf41dcf7196e841d207c43694cb9"
 dependencies = [
  "html",
  "tree-sitter-highlight",
@@ -65,7 +65,7 @@ dependencies = [
 [[package]]
 name = "html"
 version = "0.0.0"
-source = "git+https://github.com/noClaps/znak#a1e73f2f7fa3fe4792d2a05fb42f7cb7bb049ca6"
+source = "git+https://github.com/noClaps/znak#5c02cbfc1a11cf41dcf7196e841d207c43694cb9"
 
 [[package]]
 name = "indexmap"
