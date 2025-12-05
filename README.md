@@ -14,7 +14,7 @@ A blog about the most random things you can think of.
 2.  Start the development server.
 
     ```sh
-    make serve
+    ./build.sh serve
     ```
 
     Then open `localhost:3000` in your browser to see the live preview of the site.
@@ -22,7 +22,7 @@ A blog about the most random things you can think of.
 3.  Build the site.
 
     ```sh
-    make build
+    ./build.sh build
     ```
 
     This will build the site and place it in `dist/`.
