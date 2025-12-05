@@ -226,7 +226,7 @@ checksum = "841d1cc9bed7f9236f321df977030373f4a4163ae1a7dbfe1a51a2c1a51d9100"
 [[package]]
 name = "highlight"
 version = "0.0.0"
-source = "git+https://github.com/noClaps/znak#b8a222839589143c2b58a3e8c5541e9bc9827d1d"
+source = "git+https://github.com/noClaps/znak#b68dc56960894f6b6616363b0f74ea506d79622d"
 dependencies = [
  "html",
  "tree-sitter-highlight",
@@ -235,7 +235,7 @@ dependencies = [
 [[package]]
 name = "html"
 version = "0.0.0"
-source = "git+https://github.com/noClaps/znak#b8a222839589143c2b58a3e8c5541e9bc9827d1d"
+source = "git+https://github.com/noClaps/znak#b68dc56960894f6b6616363b0f74ea506d79622d"
 
 [[package]]
 name = "html5ever"

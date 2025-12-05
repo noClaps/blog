@@ -10,11 +10,11 @@ Before we get into that, let's dive a little deeper into how computers store dat
 As I'm sure you probably know by now, computers can only read and write 0s and 1s, in a format known as "binary". In fact, that's what a "bit" is, a "*b*inary dig*it*". This works out conveniently for storing integers, since any integer can be converted into binary by simply dividing by two and taking the remainders. For example, to convert 25 into binary:
 
 $
-  25 & -> & 25 div 2 = 12 "remainder" 1 \
-  12 & -> &  12 div 2 = 6 "remainder" 0 \
-   6 & -> &   6 div 2 = 3 "remainder" 0 \
-   3 & -> &   3 div 2 = 1 "remainder" 1 \
-   1 & -> &   1 div 2 = 0 "remainder" 1
+  25 & -> 25 div 2 = 12 "remainder" 1 \
+  12 & -> 12 div 2 = 6 "remainder" 0 \
+   6 & -> 6 div 2 = 3 "remainder" 0 \
+   3 & -> 3 div 2 = 1 "remainder" 1 \
+   1 & -> 1 div 2 = 0 "remainder" 1
 $
 
 So, 25 is `11001` in binary. Similarly, we can convert any binary number to the equivalent number in decimal by multiplying each bit by its corresponding power of 2:
@@ -93,9 +93,12 @@ You might be thinking, "hold on, how are we supposed to write 0.5625 in binary?"
 Using all of this, we can write 25 in our floating point format as:
 
 $
-       0 & 10000000011 & 1001000000000000000000000000000000000000000000000000 \
-       0 & 4           &                                               0.5625 \
-  "sign" & "exponent"  &                                           "mantissa"
+  mat(
+    delim: #none,
+    0, 10000000011, 1001000000000000000000000000000000000000000000000000;
+    0, 4, 0.5625;
+    "sign", "exponent", "mantissa"
+  )
 $
 
 There are a lot of additional details about the floating point format that I won't go into here, because it's not really relevant to the main point of this post. There's a #link("https://ciechanow.ski/exposing-floating-point/")[great blog post] by Bartosz Ciechanowski going over how floating point works in much more detail, and if you had any questions, chances are that the answer is in that post. Ciechanowski also made #link("https://float.exposed")[Float Exposed], which gives you a more interactive way to understand how floats work.

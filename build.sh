@@ -11,10 +11,13 @@ serve() {
 }
 
 case $1 in
-    *|build)
+    build)
         build
         ;;
     serve)
         serve
+        ;;
+    *)
+        build
         ;;
 esac
