@@ -1,6 +1,6 @@
 #let quote(title: none, href: none, body) = {
   if title == none { title = [QUOTE] }
-  html.div(class: "znak-container quote", {
+  html.div(class: "blog-container quote", {
     html.p(class: "quote-heading", {
       html.b(if href == none {
         title
@@ -16,7 +16,7 @@
 
 #let note(title: none, href: none, body) = {
   if title == none { title = [NOTE] }
-  html.div(class: "znak-container note", {
+  html.div(class: "blog-container note", {
     html.p(class: "note-heading", {
       html.b(if href == none {
         title
@@ -37,7 +37,7 @@
 
 #let warning(title: none, href: none, body) = {
   if title == none { title = [WARNING] }
-  html.div(class: "znak-container warning", {
+  html.div(class: "blog-container warning", {
     html.p(class: "warning-heading", {
       html.b(if href == none {
         title
