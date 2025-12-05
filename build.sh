@@ -12,6 +12,7 @@ build() {
 
     files="${files[@]}"
     typst compile src/pages/index.typ dist/index.html --format html --root . --features html --input data="$files"
+    typst compile src/pages/feed.typ - --format html --root . --features html --input data="$files" | ./target/release/blog feed > "dist/feed.atom"
 
     wait
 }

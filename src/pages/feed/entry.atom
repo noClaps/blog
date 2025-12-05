@@ -1,8 +1,0 @@
-<entry>
-    <id>{}</id>
-    <title>{}</title>
-    <updated>{}</updated>
-    <content type="html">{}</content>
-    <link rel="alternate" href="{}" />
-    <published>{}</published>
-</entry>
