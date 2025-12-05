@@ -8,12 +8,7 @@
 
   show link: it => {
     if it.dest.starts-with("https") {
-      html.a(
-        target: "_blank",
-        rel: ("noreferrer", "noopener"),
-        href: it.dest,
-        it.body,
-      )
+      html.a(target: "_blank", rel: ("noreferrer", "noopener"), href: it.dest, it.body)
     } else {
       html.a(href: it.dest, it.body)
     }
@@ -37,14 +32,8 @@
       html.link(rel: "icon", href: "https://zerolimits.dev/cookie.png")
       html.title(title)
       html.meta(charset: "utf-8")
-      html.meta(
-        name: "viewport",
-        content: "width=device-width, initial-scale=1.0",
-      )
-      html.meta(
-        name: "description",
-        content: "A blog about the most random things you can think of.",
-      )
+      html.meta(name: "viewport", content: "width=device-width, initial-scale=1.0")
+      html.meta(name: "description", content: "A blog about the most random things you can think of.")
       html.style({
         read("../styles/global.css")
         read("../styles/post.css")
@@ -52,9 +41,7 @@
     })
     html.body({
       html.header({
-        html.h1({
-          html.a(href: "/", [The Blog of Random])
-        })
+        html.h1(html.a(href: "/", [The Blog of Random]))
         html.nav({
           html.a(href: "/feed.atom", title: "Feed", include "../assets/rss.typ")
           html.a(
