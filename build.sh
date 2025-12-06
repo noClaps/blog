@@ -1,4 +1,5 @@
 build() {
+    rm -rf dist/
     files=($(echo src/content/**/*.typ))
     mkdir -p dist
     # cp -r public/** dist # TODO: Uncomment when Typst supports MathML
@@ -11,7 +12,7 @@ build() {
     done
 
     files="${files[@]}"
-    typst compile src/pages/index.typ dist/index.html --format html --root . --features html --input data="$files"
+    typst compile src/pages/index.typ dist/index.html --root . --features html --input data="$files"
     typst compile src/pages/feed.typ - --format html --root . --features html --input data="$files" | ./target/release/blog feed > "dist/feed.atom"
 
     wait
