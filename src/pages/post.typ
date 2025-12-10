@@ -2,9 +2,7 @@
   // TODO: Remove when Typst supports MathML
   import "../../packages/mathyml/src/lib.typ": to-mathml
   show math.equation: to-mathml
-  show math.equation.where(block: true): it => {
-    html.div(class: "math-block", it)
-  }
+  show math.equation.where(block: true): block
 
   set raw(theme: none)
 
