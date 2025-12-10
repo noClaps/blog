@@ -15,6 +15,8 @@ jobs:
             target/
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
       - uses: typst-community/setup-typst@v4
+      # TODO: Remove when Typst supports MathML
+      - run: git clone https://codeberg.org/akida/mathyml.git packages/mathyml
       - run: ./build.sh
       - run: npx wrangler deploy
         env:

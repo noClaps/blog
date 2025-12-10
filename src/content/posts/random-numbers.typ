@@ -1,4 +1,6 @@
 #import "../../pages/post.typ": *
+// TODO: Remove when Typst supports MathML
+#import "../../../packages/mathyml/src/prelude.typ": cal
 
 #metadata((
   title: [Random Numbers],
@@ -17,13 +19,9 @@ Spotify launched in 2010 with a feature to let you shuffle your songs, allowing 
   The modern version of the Fisher-Yates shuffle works as follows:
 
   1. Start from the last element of the array (index n-1)
-
   2. Generate a random index j between 0 and i (inclusive)
-
   3. Swap the elements at positions i and j
-
   4. Move to the previous element (i-1)
-
   5. Repeat steps 2-4 until you reach the beginning of the array
 
   [...]
@@ -109,9 +107,7 @@ to far more complex ones like the #link("https://www.pcg-random.org/")[PCG famil
   Why would you want to repeat the same result more than once?
 
   - Ability to revisit the same level/world. For example a certain level/world can be created from a specific seed. If the same seed is used again, you will get the same level/world again. You can for example do this in Minecraft.
-
   - Persistent world that's generated on the fly. If you have a world that's generated on the fly as the player moves around in it, you may want locations to remain the same the first and subsequent times the player visit those locations (like in Minecraft, the upcoming game No Man's Sky, and others), rather than being different each time as if driven by dream logic.
-
   - Same world for everyone. Maybe you want your game world to be the same for everyone who play it, exactly as if it wasn't procedurally generated. This is for example the case in No Man's Sky. This is essentially the same as the ability to revisit the same level/world mentioned above, except that the same seed is always used.
 ]
 

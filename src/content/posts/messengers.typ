@@ -147,11 +147,8 @@ One thing I have to add, Signal's server code is almost fully open source. This 
 In conclusion, an excellent app for most use cases with world-class privacy and security. I would highly recommend it for most people as their regular messenger. There's a few features I'd personally really like it to have, but for the most part I'm fine with it.
 
 - #link("https://signal.org/")[Website]
-
 - #link("https://github.com/signalapp")[GitHub]
-
 - #link("https://signal.org/legal/")[Terms and Privacy Policy]
-
 - #link("https://signal.org/donate/")[Donate]
 
 == Session
@@ -173,11 +170,8 @@ Session also has a feature called #link("https://getsession.org/faq#open-groups"
 In conclusion, Session isn't for most people. It's not a very effective replacement for messengers like WhatsApp, since it's missing a lot of the features that people use. However, if you need a messenger that can give you near-complete anonymity, privacy and security at the cost of convenience, then Session might be the solution for you.
 
 - #link("https://getsession.org/")[Website]
-
 - #link("https://github.com/oxen-io")[GitHub]
-
 - #link("https://getsession.org/privacy-policy")[Privacy Policy]
-
 - #link("https://getsession.org/terms-of-service")[Terms of Service]
 
 == Element/Matrix
@@ -203,19 +197,14 @@ In conclusion, Matrix can work great for a whole variety of use cases. It's most
 === Element
 
 - #link("https://element.io/")[Element Website]
-
 - #link("https://github.com/vector-im")[GitHub]
-
 - #link("https://element.io/legal")[Legal]
 
 === Matrix
 
 - #link("https://matrix.org/")[Matrix Website]
-
 - #link("https://github.com/matrix-org")[GitHub]
-
 - #link("https://matrix.org/legal/")[Legal]
-
 - #link("https://matrix.org/supporters/")[Supporters]
 
 == Threema
@@ -231,9 +220,7 @@ The biggest disadvantage of Threema that I can see is that #link("https://threem
 In conclusion, a great messenger from a country with great privacy laws. I really wish they were a bit more mainstream, but alas it's a paid app, and not everyone wants/is able to pay for their privacy. With great alternatives like Signal, Session or Matrix, I don't see much reason for people to use this app, despite how great it is. If your friends, your family and you are able and willing to pay for your privacy, I would highly recommend Threema to be your messenger.
 
 - #link("https://threema.ch/en")[Website]
-
 - #link("https://github.com/threema-ch")[GitHub]
-
 - #link("https://threema.ch/privacy_policy/")[Privacy Policy]
 
 = Conclusion
@@ -241,11 +228,8 @@ In conclusion, a great messenger from a country with great privacy laws. I reall
 I know I missed out on a lot of popular messengers like Snapchat, Slack, WeChat, Line, Viber, Skype, etc., but there's so many out there I couldn't possibly fit them all into one post. However, if you're wondering how good your messenger app is in terms of privacy and security, here's a simple checklist for you:
 
 - How is the app's security? Are they utilising end-to-end encryption, and if so, which protocol? Has it been audited? How often is it updated? These are all highly important for security. #link("/posts/intro-psa#end-to-end-encryption-e2ee")[I've already covered why e2ee is necessary]. Unaudited apps could have undiscovered security flaws and outdated apps may be behind on security patches.
-
 - Is it open source?
-
 - How is the company's reputation? Are they transparent with their customers? Do they interact with their community often? This can have a bigger impact on the trustworthiness of a company than most people realise.
-
 - How's the company's privacy policy? You can look them up at #link("https://tosdr.org")[ToS;DR] to get a general rating as well as simplified details of the privacy policy and terms of service for most popular services. This doesn't necessarily mean much, since companies can change or break their terms of service and privacy policy any time they want, but a privacy-friendly privacy policy is still nice to have.
 
 Those questions should about cover most messenger applications out there.

@@ -10,25 +10,18 @@
 #note(
   title: [DISCLAIMERS],
 )[
-  1. This post is based on my own personal experience using Windows and various Linux distributions, and may not reflect your experience with it.
-
-  2. Many of the things I talk about here might be possible to change by messing around with different configurations and system files in the OSes, but that's not something I am willing to do, and neither are most people. Default settings matter a lot, and that is what I'm going to focus on.
-
-  3. I may mention certain things that certain OSes do well, and that others don't. This doesn't mean I'm biased towards or against something. I'm not sponsored by any companies or organisations, and there is no reason for me to praise something unless I really believe it's good, or point out concerns I don't think are valid.
-
-  4. This post may be a bit more technical than my other ones, so if you're feeling a bit lost with what I'm talking about, don't worry it's not your fault.
-
-  5. I don't care if you think it's Linux or GNU/Linux, I'm saying Linux.
+  + This post is based on my own personal experience using Windows and various Linux distributions, and may not reflect your experience with it.
+  + Many of the things I talk about here might be possible to change by messing around with different configurations and system files in the OSes, but that's not something I am willing to do, and neither are most people. Default settings matter a lot, and that is what I'm going to focus on.
+  + I may mention certain things that certain OSes do well, and that others don't. This doesn't mean I'm biased towards or against something. I'm not sponsored by any companies or organisations, and there is no reason for me to praise something unless I really believe it's good, or point out concerns I don't think are valid.
+  + This post may be a bit more technical than my other ones, so if you're feeling a bit lost with what I'm talking about, don't worry it's not your fault.
+  + I don't care if you think it's Linux or GNU/Linux, I'm saying Linux.
 ]
 
 When I'm looking for an OS to use for every day of my life for the next few years, there's certain criteria I want it to meet. It should be:
 
 - simple,
-
 - stable,
-
 - secure, and
-
 - up to date.
 
 It's not quite as easy as that, since all 4 of those tie into each other. For instance, an up to date package is generally more secure, but might lead to instability if it hasn't been tested properly on the OS.
@@ -46,47 +39,26 @@ Hence, for an OS to be usable, there needs to be tools and software surrounding 
 As an example of that, here's a small list of distros available to you#super[1]:
 
 - #link("https://www.debian.org/")[Debian]
-
   - #link("https://ubuntu.com/")[Ubuntu]
-
     - #link("https://kubuntu.org/")[Kubuntu]
-
     - #link("https://lubuntu.me/")[Lubuntu]
-
     - #link("https://xubuntu.org/")[Xubuntu]
-
     - #link("https://elementary.io/")[ElementaryOS]
-
     - #link("https://vanillaos.org/")[VanillaOS]
-
     - #link("https://linuxmint.com/")[Linux Mint]
-
     - #link("https://www.linuxliteos.com/")[Linux Lite]
-
     - #link("https://pop.system76.com/")[Pop!\_OS]
-
   - #link("https://www.devuan.org/")[Devuan]
-
 - #link("https://getfedora.org/")[Fedora]
-
   - #link("https://nobaraproject.org/")[Nobara]
-
 - #link("https://www.centos.org/")[CentOS]
-
 - #link("https://www.gentoo.org/")[Gentoo]
-
   - #link("https://www.funtoo.org/Welcome")[Funtoo]
-
 - #link("https://archlinux.org/")[Arch Linux]
-
   - #link("https://manjaro.org/")[Manjaro]
-
   - #link("https://garudalinux.org/")[Garuda Linux]
-
   - #link("https://endeavouros.com/")[EndeavourOS]
-
 - #link("https://www.opensuse.org/")[OpenSUSE]
-
 - #link("https://getsol.us/")[Solus]
 
 == Package managers
@@ -179,41 +151,23 @@ There are two main third-party repositories on the macOS side of things: #link("
 Linux distros and package management is such a huge and ridiculous topic that it deserves its own section. There are _so_ many packaging solutions for Linux, and none of them work as well as any of the other package managers I mentioned above. Here's a list of just the main ones:
 
 - Distribution package managers:
-
   - dpkg (Debian/Ubuntu)
-
   - RPM (Red Hat/Fedora/CentOS/OpenSUSE)
-
   - Pacman (Arch)
-
   - Portage (Gentoo)
-
   - eopkg (Solus)
-
   - APK (Alpine, different from the Android package format)
-
   - PiSi (Pardus)
-
   - Puppy Package Manager (Puppy Linux)
-
   - slackpkg (Slackware)
-
   - XBPS (Void Linux)
-
   - opkg (OpenWrt)
-
 - Cross-distro package managers
-
   - Flatpak
-
   - Snap
-
   - Nix (default on NixOS, can be installed on most Linux distros and macOS)
-
   - AppImage (not a package manager exactly, more like a package format)
-
   - Linuxbrew (Homebrew ported over to Linux)
-
   - GNU Guix (default on GNU Guix System, can be installed on other distros, based on Nix)
 
 Most people tend to use the distribution's own package managers and repositories, as they're enabled by default and built-in to the system. However, oftentimes the packages that these package managers provide are #link("https://unix.stackexchange.com/questions/196693/why-are-the-packages-in-the-official-repo-often-very-out-of-date")[out of date], and therefore may be riddled with unpatched bugs and security holes. This happens because the distro #link("https://docs.fedoraproject.org/en-US/package-maintainers/")[maintains the packages themselves], instead of letting the package developers keep it up to date. This means you are fully dependent on the maintainer for the package you want to update it quickly after the package developer releases a new version.
@@ -250,7 +204,5 @@ What's needed is a level of standardisation to bring everything together, and or
 = Footnotes
 
 1. The indentations mean that the indented distro is based off of the parent. For instance, Ubuntu is based on Debian. This is also a very small list compared to the total number of distributions out there.
-
 2. This doesn't target any one distribution, but instead is a representation of the Linux ecosystem as a whole. Some distros like Fedora may be more secure but not as up to date, while others like Arch are more up to date but not simple, and some like Ubuntu or Linux Mint are simple, but not up to date or secure.
-
 3. This excludes usage of the Linux dev environment. For results for that, refer to the Linux row of the table.

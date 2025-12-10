@@ -69,19 +69,13 @@ Admira's and Boško's bodies were left on the bridge for the next 7 days. Admira
 - #link(
     "https://www.nbcnews.com/news/world/bosnian-war-anniversary-sarajevo-s-romeo-juliet-still-resonate-n723681",
   )[Bosnian War Anniversary: Sarajevo's 'Romeo and Juliet' Still Resonate, NBC News]
-
 - #link(
     "https://rarehistoricalphotos.com/sarajevo-romeo-juliet-bosko-brkic-admira-ismic-1993/",
   )[The story of Sarajevo’s Romeo and Juliet, 1993, Rare Historical Photos]
-
 - #link("https://genius.com/Watsky-sarajevo-lyrics")[Watsky - Sarajevo Lyrics | Genius Lyrics] - This song was a big inspiration for this blog post, and how I found out about this story in the first place.
-
 - #link("https://olympics.com/en/olympic-games/sarajevo-1984")[Sarajevo 1984 Winter Olympics]
-
 - #link("https://www.britannica.com/place/Yugoslavia-former-federated-nation-1929-2003")[Yugoslavia | Britannica]
-
 - #link("https://www.britannica.com/event/Paris-Peace-Conference")[Paris Peace Conference | Britannica]
-
 - #link(
     "https://sarajevo.travel/en/text/the-sarajevo-bridge-of-love/329",
   )[The Sarajevo Bridge of Love - Destination Sarajevo]

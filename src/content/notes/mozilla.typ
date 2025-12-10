@@ -103,15 +103,12 @@ Is there something illegal going on here? Probably not. Like I said, I'm no mone
 Here's a small list of political organisations that Mozilla invested in:
 
 - #link("https://www.fairtrials.org")[Fair Trials] - \$15000
-
 - #link("https://whoseknowledge.org/")[Whose Knowledge?] - I can see why Mozilla would invest in them, but it's a political organisation and so I'm adding it here. - \$50000
-
 - #link("https://www.womensmarch.com")[Women's March Network] - \$50000
 
 And some others I couldn't find anything about
 
 - Good Mirrors Aren't Cheap, LLC
-
 - Start Somewhere, LLC
 
 Now, I'm not against people fighting for what they believe in (even if I don't necessarily agree with them), and if anyone from Mozilla wants to invest their own money to further those causes, then I'm all the happier for them. However, I don't see why that has to go through a tech company's accounts. Most of the organisations that "Mozilla" seems to invest in generally align with its CEO's views. On the other hand, they've been known to lay off their own employees that were working on innovative projects like the #link("https://blog.rust-lang.org/2020/08/18/laying-the-foundation-for-rusts-future.html")[Rust programming language] or the Servo team.
@@ -130,9 +127,7 @@ There's a lot more to the story, and Mozilla keeps doing things that make me dis
 Also a few things I want to note:
 
 - Yes, I'm aware that other browsers exist and I should simply use those instead. That's not the point of this post. The point is to highlight my issues with Mozilla as a company, and their handling of Firefox. Mozilla can, and should, do better.
-
 - I know a lot of the arguments I make here can be applied to basically every other company. But I don't think Mozilla should be like every other company, especially considering how they advertise themselves as a non-profit while acting like every for-profit. Just because Google, Microsoft or Facebook act a certain way, doesn't mean Mozilla should follow.
-
 - Before someone responds with "We need Firefox so that Google doesn't have a monopoly", it's a tad bit late for that. Chromium is already effectively a monopoly (and also open source, by the way), and WebKit (also open source) is next up on that list. Firefox stands at about 3% market share, which I don't think is nearly enough to be considered competition. And with the EU forcing Apple to allow other browser engines on iOS, I imagine the Chromium market share is only going to increase from here.
 
 Anyway, thanks for coming to my TED talk. That's all folks!

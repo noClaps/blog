@@ -31,17 +31,11 @@ In 1992, in the remains of an old Han Dynasty military base, an interesting obje
 Many other cultures have many, many different ways to clean your bum that vary with location, availability of resources, etc., and I simply don't have the energy or motivation to read about every single one and list out the details here. Plus, it would make this way too long and far more boring than it already is. So here's just a list of some of the things that people in other cultures have used to clean poop.
 
 - Animal furs
-
 - Pieces of tapestry
-
 - Leaves, grass, moss, hay, straw, basically plant parts
-
 - Snow (that seems either really comfortable or really uncomfortable)
-
 - Corn cobs (yeah, it's weird but this was really popular in the Western world until actually relatively recently)
-
 - Hands (it sounds gross, but I can see the reasoning behind it)
-
 - Seashells (how?)
 
 = The beginnings of toilet paper
@@ -78,9 +72,8 @@ By the 15#super[th] century, toilet paper had become widely available for everyo
 
 Originally, Americans used some creative methods to clean up after doing their business:
 
-1. Corn cobs. As I said before, weird but used fairly commonly in the Western world.
-
-2. Newspapers and magazines, which were first introduced in the 18#super[th] century.
++ Corn cobs. As I said before, weird but used fairly commonly in the Western world.
++ Newspapers and magazines, which were first introduced in the 18#super[th] century.
 
 #quote(
   title: [Barry Kudrowitz, associate professor and director of product design at the University of Minnesota],
@@ -121,7 +114,6 @@ I'm not sure I should put this in here, seeing as these religions have long and 
 == Judaism
 
 - _Pessoi_ (remember the stone that the Greeks used to do their business on?) was mentioned in the _Talmud_, which is the central text of Rabbinic Judaism.
-
 - All Orthodox Jewish dudes are expected to memorise and recite an ancient blessing, the _Asher Yatzar_, after going number two.
 
 == Buddhism
@@ -137,7 +129,6 @@ I'm not sure I should put this in here, seeing as these religions have long and 
   ]
 
 - _Vinaya Pitaka_ is a Buddhist scripture that lays out the rules of behavior for monks and nuns. It also mentions pooping and cleaning up, because apparently those also need discipline.
-
 - People thought the feces of the Dalai Lama had magical healing properties.
 
 = Conclusion

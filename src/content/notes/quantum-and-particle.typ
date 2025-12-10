@@ -151,11 +151,9 @@ What the scientists actually saw was (b), the particles were accumulating in one
 
 This happened because of something called *superposition*. You might have heard about it in a thought experiment called Schrödinger's cat. It goes something like this:
 
-1. Place a cat into a box and close it. You cannot tell what's happening in the box.
-
-2. When the cat is in the box, it has a 50% chance of dying. (Theoretically. No real cats were harmed in the making of this experiment!)
-
-3. After some time, you come back to the box. Before you open the box, the cat can either be alive or dead, with a 50% chance of each.
++ Place a cat into a box and close it. You cannot tell what's happening in the box.
++ When the cat is in the box, it has a 50% chance of dying. (Theoretically. No real cats were harmed in the making of this experiment!)
++ After some time, you come back to the box. Before you open the box, the cat can either be alive or dead, with a 50% chance of each.
 
 That seems fairly logical, but superposition states that, instead of the cat being either alive _or_ dead, the cat is both alive _and_ dead at the same time. That is, it's in a superposition of both living and dead states.
 
@@ -312,11 +310,8 @@ And that's it! You now have a basic starting point to get going on your journey 
 Some other resources to get you started:
 
 - Quantum (#link("https://play.google.com/store/apps/details?id=brychta.stepan.quantum_en")[Google Play Store]) - This app taught me a lot of the basics of quantum mechanics, and really piqued my interest in the subject. I'm not sure how often it's been updated since I used it, but I'm fairly certain it's still a great resource.
-
 - #link("https://paulskrzypczyk.github.io/qm-lecture-notes/")[Quantum Mechanics I lecture notes by Paul Skrzypczyk at the University of Bristol] - These notes are aimed at a 2nd year physics student, so if you've done 1st year physics these might be helpful. There's also short lecture videos to go alongside the written content, and problem sheets with questions to solve for practice. NOTE: I am not Paul Skrzypczyk.
-
 - #link("https://home.cern")[CERN] - The experiments that scientists do at CERN are probably some of the coolest things ever, and a lot of the discoveries came from the Large Hadron collider in CERN. Fun fact: the World Wide Web was also founded by Tim Berners-Lee at CERN!
-
 - The internet - Looking stuff up is probably the best way to learn in today's world. My parents keep telling me about how I have it easy with all the world's knowledge at my fingertips, and they're right. The internet is probably humanity's greatest invention so far, and with the crazy amount of information on here, you'd be a fool not to take advantage of it. Just be careful and verify any claims that you see, try to stick to reputable sources, and try not to get distrac- ooh, a squirrel!
 
 I hope you have fun with this guide and with quantum and particle physics in general. A lot of the concepts here are things I wish I'd had an easier time finding and understanding when I was getting started. Unfortunately, I couldn't find any great explanations for these things, and so I've written this post so that hopefully others can get those resources that I didn't really get, and hopefully understand this incredibly exciting part of physics a little bit better.

@@ -171,9 +171,8 @@ You could go online and try to find definitions for censorship and moderation, a
 
 Using those definitions, a few problems are immediately visible:
 
-1. Who defines "reasonable limits", or even what "reasonable" is? If I were to run a social media platform, I could just say that anything to do with a certain political party is "unreasonable", and so should be removed from my platform. However, the person whose content got removed may argue otherwise, claiming that their content was completely reasonable and should never have been removed, and that I'm censoring them and their political viewpoint. Who's right in this case?
-
-2. Who defines what's "offensive and harmful"? Something that may offend you might be nothing more than a joke to me. Some people take constructive criticism in an offensive way, and others take offense constructively. As the concept of "offense" is subjective, is there really any way to solve this problem?
++ Who defines "reasonable limits", or even what "reasonable" is? If I were to run a social media platform, I could just say that anything to do with a certain political party is "unreasonable", and so should be removed from my platform. However, the person whose content got removed may argue otherwise, claiming that their content was completely reasonable and should never have been removed, and that I'm censoring them and their political viewpoint. Who's right in this case?
++ Who defines what's "offensive and harmful"? Something that may offend you might be nothing more than a joke to me. Some people take constructive criticism in an offensive way, and others take offense constructively. As the concept of "offense" is subjective, is there really any way to solve this problem?
 
 One of the main situations in which this problem arises is #link("https://en.wikipedia.org/wiki/Cancel_culture")[cancel culture]. This is when the public stops supporting a public figure, company or other entity, and instead starts defaming them, usually on social media platforms.
 
@@ -201,9 +200,7 @@ Others supported it:
   href: "https://www.procon.org/headlines/is-cancel-culture-or-callout-culture-good-for-society/",
 )[
   1. Cancel culture allows marginalized people to seek accountability where the justice system fails.
-
   2. Cancel culture gives a voice to disenfranchised or less powerful people.
-
   3. Cancel culture is simply a new form of boycott, a cherished tactic in the civil rights movement, to bring about social change.
 ]
 

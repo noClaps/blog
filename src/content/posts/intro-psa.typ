@@ -78,13 +78,10 @@ You've probably seen the green lock icon in your browser when you visit websites
 
 The way that it works is:
 
-1. You type in a URL into your search bar, like https://blog.zerolimits.dev.
-
-2. This is then sent to your domain name service (DNS), which then converts the URL into an IP address.
-
-3. This IP address, along with your IP address, is then sent to your internet service provider (ISP), which then sends it to the correct server for https://blog.zerolimits.dev.
-
-4. The server sees your IP address, and sends back the HTML, CSS and JS files for the website, which then goes to your ISP, and finally back to your browser, which displays the page to you.
++ You type in a URL into your search bar, like https://blog.zerolimits.dev.
++ This is then sent to your domain name service (DNS), which then converts the URL into an IP address.
++ This IP address, along with your IP address, is then sent to your internet service provider (ISP), which then sends it to the correct server for https://blog.zerolimits.dev.
++ The server sees your IP address, and sends back the HTML, CSS and JS files for the website, which then goes to your ISP, and finally back to your browser, which displays the page to you.
 
 HTTPS encrypts your requests in transit, which means it can't be intercepted by any attackers, at least until it reaches the server you're connecting to. However, metadata about that connection, like the domain, is still exposed. What this means is that if you connect to a website, like `https://blog.zerolimits.dev/tech/psa/intro/`, the `/tech/psa/intro/` part will not be decrypted until it reaches its final destination. However, the `blog.zerolimits.dev` part of the URL will be visible to your ISP and DNS server, since they need that information to send you to the right place. This is a simplified explanation of HTTPS, and a more detailed explanation can be found at #link("https://howhttps.works/")[How HTTPS Works].
 
@@ -131,11 +128,8 @@ Think of it like this: if you see someone having a conversation with a known dru
   href: "https://www.eff.org/fr/deeplinks/2013/06/why-metadata-matters",
 )[
   - They know you received a call from the local NRA office while it was having a campaign against gun legislation, and then called your senators and congressional representatives immediately after. But the content of those calls remains safe from government intrusion.
-
   - They know you called a gynecologist, spoke for a half hour, and then called the local Planned Parenthood's number later that day. But nobody knows what you spoke about.
-
   - They know you spoke with an HIV testing service, then your doctor, then your health insurance company in the same hour. But they don't know what was discussed.
-
   - They know you called the suicide prevention hotline from the Golden Gate Bridge. But the topic of the call remains a secret.
 ]
 

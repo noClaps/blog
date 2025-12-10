@@ -45,19 +45,12 @@ I recently started using #link("https://htmx.org")[HTMX], and I've found it very
 Here's some things that I want to do in the future, whether in 2024 or beyond:
 
 - I want to get off of VSCode at some point, and hopefully move on to a better editor. I'm keeping an eye on #link("https://zed.dev")[Zed] and #link("https://www.jetbrains.com/fleet")[Fleet], since they look interesting to me. If I can get Neovim working for me, then I'd be more than happy to use that too.
-
 - I plan on sticking to macOS for as long as I can, and eventually getting more into the Apple ecosystem, most likely with an iPhone. I don't really like buying a lot of things, so I reckon a laptop, mouse, phone and headphones should be enough tech for me to do 90% of the things I need to do.
-
 - I want to learn more low-level programming concepts. This is mostly because I'm a speed freak, and will spend hours trying to squeeze every drop of performance out of a program that I've written. I feel like I can't get very far with that at the moment, and learning how stuff works at a lower level will help me understand how I can optimise stuff even better. Plus, being able to understand those concepts will also help a lot in learning and doing stuff at a higher level, as I'll have a better idea of what my code is actually doing, and how I can make it better.
-
 - I want to get into app development. I'll probably be making apps for Apple platforms, since Swift feels a lot nicer to use than Java or Kotlin, and I can use the same codebase for iOS, iPadOS and macOS. I'm not fully sure if I want to earn money from this or just do it for fun, but it is something I want to do at least a little bit.
-
 - I want to make my own static site generator. Although I like Astro, I feel like it offers more features than I could possibly need. I like having as few dependencies as possible, and most JavaScript-based frameworks don't really do that too well. I'll probably end up writing the generator in TypeScript too, but I'll try my best to have as few dependencies as I possibly can. I'll also try to use the fastest and most optimised tools available, and stick to web standards as much as possible. I have no clue how easy or difficult this will be, but I'm excited to try.
-
 - I want to start self-hosting at some point, most probably in a VPS or something. Even though I don't really own the servers, I feel like I'll have more control compared to, say, hosting on Vercel or Netlify or something.
-
 - Although using Turborepo is handy, I'm considering moving back to having separate repositories for my different websites. I can share layouts and components with a simple GitHub repo, so I don't even have to publish it to NPM. This will also allow me to use components that I made for my own site, in other sites that I make.
-
 - I want to get back into designing things, and possibly start making themes and stuff for Astro. There's a lot of cool tools for design, like #link("https://realtimecolors.com")[Realtime Colors] and #link("https://stacksorted.com")[Stack Sorted] (both made by Juxtopposed!), and I'd like to utilise them for my designs. I also want to get better at typography and picking the right fonts for different designs. I know that #link("https://fontshare.com")[Fontshare] has a lot of really nice fonts and I'd like to be able to use them.
 
 = Conclusion

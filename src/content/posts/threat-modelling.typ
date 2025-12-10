@@ -34,9 +34,7 @@ Do you see how having a plan or idea of what you needed helped you make the deci
 Let's look at an example. Let's say you're someone who needs a lot of security, but not necessarily too much privacy or anonymity. It's okay if your data is used by the service to sell ads, as long as it doesn't get leaked or hacked to the public. Those working in areas like government research programs or big companies have a threat model like this. For a threat model like this:
 
 - The best OS for you would be Android with Google's #link("https://landing.google.com/advancedprotection/")[Advanced Protection Program], #link("https://grapheneos.org/")[GrapheneOS], or iOS with #link("https://support.apple.com/en-us/HT202303#advanced")[Advanced Data Protection]. If a desktop is necessary, then #link("https://www.chromium.org/chromium-os/chromiumos-design-docs/security-overview/")[ChromeOS] (which has a similar security model to #link("https://source.android.com/docs/security")[Android]) or #link("https://support.apple.com/en-gb/guide/security/welcome/web")[macOS] would be far better than Windows or #link("https://privsec.dev/posts/linux/linux-insecurities/")[Linux distributions]. Ideally, just a phone would be enough.
-
 - Unless you're on iOS, where all #link("https://developer.apple.com/app-store/review/guidelines/#software-requirements")[browsers are just Safari], the most secure browser is #link("https://www.chromium.org/Home/chromium-security/")[Chromium/Chrome], not #link("https://madaidans-insecurities.github.io/firefox-chromium.html")[Firefox], contrary to what many in the privacy community may have you believe.
-
 - Apart from that, the best advice would be to have as few trusted parties as possible. Meaning if you're using Google stuff (Android and Chrome) then don't go and use Dropbox and unnecessarily trust a third party, since that's an additional point that you could get hacked from. In general, you'd want to minimise the number of services you use, to have as few points of attack as possible.
 
 #warning[
@@ -46,9 +44,7 @@ Let's look at an example. Let's say you're someone who needs a lot of security, 
 Now compare that to someone who maybe wants to protect their data from being used by Big Tech companies to sell ads and track them across the internet. They'd have a threat model that calls for higher privacy at the cost of some minimal security. For someone like that:
 
 - Linux distributions may be a good option for a desktop OS, with their lack of tracking built-in to the system and generally open nature. An OS like GrapheneOS or iOS may be sufficient, without the Advanced Data Protection or Advanced Protection Program, or perhaps even without an Apple or Google account entirely.
-
 - Browsers like Brave or Firefox (hardened with #link("https://github.com/arkenfox/user.js/")[Arkenfox]) would be much better options with their tracking protection and adblocking (built-in on Brave, with an extension like #link("https://github.com/gorhill/uBlock")[uBlock Origin] for Firefox) features.
-
 - Instead of having fewer trusted parties, the advice would be to put as few eggs in one basket as possible. So in a situation like this, using #link("https://ente.io")[Ente] for photos, #link("https://proton.me/drive")[Proton Drive] for cloud storage, and #link("https://tutanota.com/")[Tutanota] for email would be beneficial, so one company doesn't hold _all_ of your data.
 
 Someone who wishes to stay anonymous would have a different set of tools, like #link("https://www.torproject.org/")[Tor Browser] and #link("https://www.whonix.org/")[Whonix] or #link("https://tails.boum.org/")[Tails].
@@ -64,13 +60,9 @@ There's many guides and tools out there to help you create a threat model, but i
   href: "https://www.privacyguides.org/basics/threat-modeling/",
 )[
   1. What do I want to protect?
-
   2. Who do I want to protect it from?
-
   3. How likely is it that I will need to protect it?
-
   4. How bad are the consequences if I fail?
-
   5. How much trouble am I willing to go through to try to prevent potential consequences?
 ]
 

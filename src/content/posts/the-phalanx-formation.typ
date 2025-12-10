@@ -26,15 +26,10 @@ Individually, hoplites were weak. After all, they were pretty much just normal g
 The equipment that the hoplites used was collectively called the _panoply_. It included:
 
 - A shield. But not just any shield, a special shield called a _hoplon_, which is what the hoplites were named after.
-
 - A helmet. This was usually decorated with a horsehair crest, bronze animal horns or ears, or paint. Which means it was entirely possible that someone had cat ear helmets in ancient Greece.
-
 - A cuirass, which is basically a breastplate and backplate strapped together. Most of the time this was just made of layers of linen or canvas stuck together to make it stiff, though some of the richer hoplites had ones made of bronze.
-
 - A pair of greaves, which are just plate armor that protects your lower legs. Like shin guards but heavier and more effective.
-
 - A double-edged, one-handed iron shortsword called a _xiphos_. Believe it or not, this was their secondary weapon, usually only used as a last resort if they had nothing else and needed to defend themselves.
-
 - A spear. This was the main weapon. The spear used in the Greek phalanxes was called a _dory_, and it was an 8-foot-long killing machine. The _dory_ had an iron spearhead at the top, as well as a bronze spike at the bottom, so that the weight of the spear was perfectly balanced, as all things should be. It could also be used as yet another way to stab other people, just in case the pointy spear and the iron sword weren't enough.
 
 By the way, all the bronze armor (the helmet, cuirass, and greaves) was _really_ heavy, so much so that the soldiers didn't even wear it until just before they had to actually go fight. The helmet was usually tilted back on the head when not actively murdering people. It's similar to how you may put your sunglasses on your head when you're not in the sun, except with probably a lot more neck problems.

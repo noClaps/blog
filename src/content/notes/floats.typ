@@ -12,7 +12,7 @@ Before we get into that, let's dive a little deeper into how computers store dat
 
 = How computers store data
 
-As I'm sure you probably know by now, computers can only read and write 0s and 1s, in a format known as "binary". In fact, that's what a "bit" is, a "*b*inary dig*it*". This works out conveniently for storing integers, since any integer can be converted into binary by simply dividing by two and taking the remainders. For example, to convert 25 into binary:
+As I'm sure you probably know by now, computers can only read and write 0s and 1s, in a format known as "binary". In fact, that's what a "bit" is, a "#strong[b]inary dig#strong[it]". This works out conveniently for storing integers, since any integer can be converted into binary by simply dividing by two and taking the remainders. For example, to convert 25 into binary:
 
 $
   25 & -> 25 div 2 = 12 "remainder" 1 \
@@ -44,9 +44,7 @@ I'll use the 64-bit version since most people nowadays have 64-bit computers, bu
 Given 64 bits, going from left to right, we can split them up into different sections:
 
 - The first bit can be the "sign" bit. If the sign bit is 1, then the number is negative, otherwise it's positive.
-
 - The next 11 bits can be "exponent" bits.
-
 - The final 52 bits can be "significand" or "mantissa" bits.
 
 == Scientific notation
@@ -82,9 +80,7 @@ $
 Now, we have a way to split up our number into the different parts that we listed above.
 
 - The sign, let's call it $s$, is 0 here, since our number is positive.
-
 - The exponent, let's call it $e$, is 4.
-
 - The mantissa, let's call it $m$, is 0.5625.
 
 Thus, we can represent our number as:
@@ -108,7 +104,7 @@ $
 
 There are a lot of additional details about the floating point format that I won't go into here, because it's not really relevant to the main point of this post. There's a #link("https://ciechanow.ski/exposing-floating-point/")[great blog post] by Bartosz Ciechanowski going over how floating point works in much more detail, and if you had any questions, chances are that the answer is in that post. Ciechanowski also made #link("https://float.exposed")[Float Exposed], which gives you a more interactive way to understand how floats work.
 
-Nowadays, nearly all CPUs and GPUs support this floating point format in their built-in instructions. If you've ever heard the term "flops" when talking about processor speed, that's short for *fl*oating point *op*eration per s*econd.
+Nowadays, nearly all CPUs and GPUs support this floating point format in their built-in instructions. If you've ever heard the term "flops" when talking about processor speed, that's short for #strong[fl]oating point #strong[op]eration per s*econd.
 
 However, despite its ubiquity, there's one big drawback to the format: precision.
 
@@ -139,12 +135,9 @@ And this brings me to my new, probably very impractical, number format.
 
 My arbitrary base floating point format works very similarly to the existing floating point format, in that it uses scientific notation to represent numbers, but with one key difference: you can customise the base. You have:
 
-- 1 sign bit ($s$)
-
+- a sign bit ($s$)
 - 8 exponent bits ($e$)
-
 - 8 base bits ($b$)
-
 - 47 mantissa bits ($m$)
 
 which you can combine into a number using:

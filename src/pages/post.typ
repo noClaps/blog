@@ -1,8 +1,10 @@
 #let post(body) = context {
   // TODO: Remove when Typst supports MathML
-  show math.equation: html.frame
-  show math.equation.where(block: false): html.span
-  show math.equation: text.with(fill: rgb("#ccc"), stroke: 0.375pt + rgb("#ccc"))
+  import "../../packages/mathyml/src/lib.typ": to-mathml
+  show math.equation: to-mathml
+  show math.equation.where(block: true): it => {
+    html.div(class: "math-block", it)
+  }
 
   set raw(theme: none)
 

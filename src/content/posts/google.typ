@@ -24,27 +24,18 @@ Alphabet and Google own #link("https://www.kamilfranek.com/what-companies-alphab
 === Alphabet
 
 - #link("https://en.wikipedia.org/wiki/Google")[Google]
-
 - #link("https://en.wikipedia.org/wiki/Waymo")[Waymo (self-driving cars)]
-
 - #link("https://en.wikipedia.org/wiki/Verily")[Verily (study of life sciences)]
-
 - #link("https://en.wikipedia.org/wiki/X_Development")[X (research and development)]
-
   - #link("https://en.wikipedia.org/wiki/Loon_LLC")[Loon (provide internet access to rural areas)]
-
   - #link("https://en.wikipedia.org/wiki/Wing_(company)")[Wing (drone-based delivery)]
 
 === Google
 
 - #link("https://en.wikipedia.org/wiki/YouTube")[YouTube (video hosting)]
-
 - #link("https://en.wikipedia.org/wiki/Waze")[Waze (satellite navigation)]
-
 - #link("https://en.wikipedia.org/wiki/DoubleClick")[DoubleClick (ads)]
-
 - #link("https://en.wikipedia.org/wiki/Google_Nest")[Google Nest (IoT devices)]
-
 - #link("https://en.wikipedia.org/wiki/Google_Fiber")[Google Fiber (Internet access provider)]
 
 Combining revenue from all of these companies, Alphabet earned over #link("https://www.theverge.com/2022/2/1/22912196/google-alphabet-200-billion-annual-revenue-youtube-pixel-search")[\$250 billion] in 2021.
@@ -54,15 +45,10 @@ Combining revenue from all of these companies, Alphabet earned over #link("https
 Google also has other, minor sources of income, such as:
 
 - #link("https://en.wikipedia.org/wiki/Google_One")[Google One]
-
 - #link("https://en.wikipedia.org/wiki/YouTube_Premium")[YouTube Premium]
-
 - Hardware devices
-
   - #link("https://en.wikipedia.org/wiki/Google_Pixel")[Pixel devices]
-
   - #link("https://en.wikipedia.org/wiki/Fitbit")[Fitbit fitness trackers]
-
   - #link("https://en.wikipedia.org/wiki/Google_Nest")[Google Nest smart home devices]
 
 However, these contribute to a very small percentage of Google's total income.
@@ -180,8 +166,7 @@ From what I've understood, one of Chromium's best security features is #link("ht
 Android and ChromeOS are Google's operating systems for mobile and desktop, respectively. Similar to Google Chrome, they are leaders in operating system security, challenged only by Apple's iOS/iPadOS and macOS. They are both based on open source projects:
 
 - Android is based on the #link("https://source.android.com/")[Android Open Source Project]. Google Play Services and all of the pre-installed Google and manufacturer apps are not part of AOSP, and Android doesn't need them to run. See #link("https://grapheneos.org")[GrapheneOS] for a Google-free Android OS.
-
-- ChromeOS is based on #link("https://www.chromium.org/chromium-os/")[ChromiumOS]
+- ChromeOS is based on #link("https://www.chromium.org/chromium-os/")[ChromiumOS].
 
 Both Android and ChromeOS are based on Linux, and while most consumer Linux distributions by themselves are #link("https://privsec.dev/os/linux-insecurities/")[very] #link("https://madaidans-insecurities.github.io/linux.html")[insecure], ChromeOS and Android have modified the Linux kernel and base so much that they could very well qualify as completely independent operating systems built on a Linux-like kernel.
 
@@ -206,7 +191,6 @@ On the ChromeOS side of things, a similar story can be seen. Chromebooks take #l
 Both ChromeOS and Android have security features like:
 
 - Verified boot, which ensures that the OS you're loading is coming from an authentic source, such as your device manufacturer. #link("https://source.android.com/security/verifiedboot")[On Android], this also allows #link("https://source.android.com/security/verifiedboot/verified-boot#rollback-protection")[rollback protection], which prevents you from rolling back to older, more insecure, versions of the OS. ChromeOS has a similar #link("https://www.chromium.org/chromium-os/chromiumos-design-docs/verified-boot/")[verified boot] implementation.
-
 - #link("https://source.android.com/security/app-sandbox")[Application sandboxing], which isolates each app into a "sandbox" so that it cannot access the data of another app without explicit permission from the user. This is why you have to approve all those permission requests every time you install an app.
 - #link("https://source.android.com/security/encryption")[Encryption], per-file for Android 7.0+, and full-disk for Android 5.0 to Android 9. This protects your files from any outside attackers who may try to access your files while your phone is powered off or locked. You have to unlock your phone to decrypt your files and access them.
 
@@ -232,13 +216,9 @@ This starts with the #link("https://security.googleblog.com/2018/10/building-tit
   Titan M performs several security sensitive functions, including:
 
   - Storing and enforcing the locks and rollback counters used by #link("https://source.android.com/security/verifiedboot/avb")[Android Verified Boot].
-
   - Securely storing secrets and rate-limiting invalid attempts at retrieving them using the #link("https://source.android.com/reference/hidl/android/hardware/weaver/1.0/IWeaver")[Weaver API].
-
   - Providing backing for the #link("https://developer.android.com/training/articles/keystore#HardwareSecurityModule")[Android Strongbox Keymaster] module, including #link("https://developer.android.com/reference/android/security/keystore/KeyInfo?authuser=0&hl=nn#isTrustedUserPresenceRequired()")[Trusted User Presence] and #link("https://developer.android.com/training/articles/security-android-protected-confirmation")[Protected Confirmation]. Titan M has direct electrical connections to the Pixel's side buttons, so a remote attacker can't fake button presses. These features are available to third-party apps, such as #link("https://fidoalliance.org/specifications/overview/")[FIDO U2F] Authentication.
-
   - Enforcing factory-reset policies, so that lost or stolen phones can only be restored to operation by the authorized owner.
-
   - Ensuring that even Google can't unlock a phone or install firmware updates without the owner's cooperation with #link("https://android-developers.googleblog.com/2018/05/insider-attack-resistance.html")[Insider Attack Resistance].
 ]
 

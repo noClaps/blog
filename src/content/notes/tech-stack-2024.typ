@@ -66,19 +66,14 @@ I do still use Astro for larger projects, where just trying to use ```ts Bun.ser
 I've already mentioned a few things I wanted to do in 2025, but I'll collect them here and add some more.
 
 - I want to get back into photo editing. I have a ton of photos from over the years just sitting around, and even though most of them probably won't make it to the gallery, there's bound to be some good ones in there I can edit. Luminar AI is EOL now, and so if I can find an alternative that's not too expensive, and keeps getting updates, I'd be happy to switch over. Keeping an eye on Affinity Photo and Photomator for now.
-
 - I want to try out other languages, like Gleam, and give some languages another go, like Rust and Zig. I'm not sure what projects they'd be good for that my existing set of languages can't already do pretty well, but it's worth a try to find out, I suppose.
-
 - I want to stop using TypeScript for a lot of the things I use it for now, and maybe switch them over to Go. I also want to figure out how to use WASM for some of my projects, like Znak, so that I can use them on the web, but still work in native languages. I did try using Go and Rust for it, but Go's WASM didn't seem to work with Bun, and I didn't quite understand how to use Rust properly. I'm not 100% on this, and I might just keep the distinction of TypeScript for web projects and Go/C/[native language] for everything else.
 
 Here's some updates from last year's future list:
 
 - I'm still interested in learning more low-level concepts, but maybe not in the sense of just theoretical knowledge, but more of how I can actually build things that take advantage of those ideas. I feel like knowing and working with C is probably a good enough stopping point, I don't really plan on dropping down into Assembly anytime soon.
-
 - I don't really want to get into app development anymore. Though Swift does feel nice to use, app dev would mean I'm either locked into whatever platform I'm building apps for, or I'm using web technologies to make apps, using Electron or Tauri. At that point, I'd rather just make a website or a CLI tool, whichever is more appropriate for the job, and not worry about permission systems or native APIs or porting apps from one platform to another.
-
 - I did try to make my own documentation site generator, like #link("https://vitepress.dev")[VitePress], called ZnakPress, but I didn't get very far and I gave up. I might get back to that at some point next year, because I do want to complete that project, but as for making a full static site generator like Astro or Hugo, I don't really have any plans to do that anymore. I suppose making build scripts that generate the HTML for me is probably close enough.
-
 - I did enjoy designing things, but I don't think that's what I really want to do. I've made new designs for most of my websites, and a whole code theme for Zed, but it's a lot more fun to just code than it is to think about designing UIs, though I still do it if I need/want to. I like pretty-looking UIs, and it's nice to think artistically sometimes.
 
 = Conclusion

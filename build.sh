@@ -2,7 +2,7 @@ build() {
     rm -rf dist/
     files=($(echo src/content/**/*.typ))
     mkdir -p dist
-    # cp -r public/** dist # TODO: Uncomment when Typst supports MathML
+    cp -r public/** dist
     cargo build --release
     for f in ${files[@]}; do
         f="${f%.*}"

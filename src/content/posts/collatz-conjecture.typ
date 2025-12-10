@@ -37,15 +37,11 @@ So, I wasted my time on this.
 
 So what's this Collatz conjecture thing? Well, if you haven't already watched #link("https://www.youtube.com/watch?v=094y1Z2wpJg")[Veritasium's video] about it, then here's the explanation.
 
-1. Take a positive whole number.
-
-2. If it's even, halve it. If it's odd, multiply it by 3 and add 1.
-
-3. Repeat step 2 until you reach 1.
-
-4. Be confused about what the problem is here.
-
-5. Read explanation below.
++ Take a positive whole number.
++ If it's even, halve it. If it's odd, multiply it by 3 and add 1.
++ Repeat step 2 until you reach 1.
++ Be confused about what the problem is here.
++ Read explanation below.
 
 The problem here is, we need to find a number that doesn't eventually reach 1 when you continue this sequence. Why? I have no clue, but it's an interesting puzzle nonetheless.
 
@@ -59,16 +55,12 @@ The conjecture suggests that there is no positive whole number that doesn't even
 
 Collatz studied at a total of 4 universities before he got his doctorate. Yes, four.
 
-1. University of Greifswald
-
-2. Ludwig Maximilian University of Munich
-
-3. University of Göttingen
-
-4. Humboldt University of Berlin
++ University of Greifswald
++ Ludwig Maximilian University of Munich
++ University of Göttingen
++ Humboldt University of Berlin
 
   - This is where he studied for his doctorate under #link("https://de.wikipedia.org/wiki/Alfred_Klose_(Mathematiker)")[Alfred Klose], a German mathematician who's Wikipedia page is only available in German.
-
   - Collatz was awarded his doctorate in 1935 for his dissertation _Das Differenzenverfahren mit höherer Approximation für lineare Differentialgleichungen_ (The finite difference method with higher approximation for linear differential equations).
 
 After becoming a non-medical doctor, he worked as an assistant at the University of Berlin, and moved to the Technical University of Karlsruhe later that year.
@@ -113,11 +105,9 @@ Now that we have those, we can turn it into a program to make the computer do al
 
 Follow these few easy steps and you'll be on your way to solving this problem in no time:
 
-1. Download and install #link("https://www.python.org/")[Python (programming language)]
-
-2. Download and install a code editor. I used #link("https://atom.io/")[Atom] and later IDLE (included with Python, would not recommend using) for this, but you can use any code editor you like. If you use an online one, you may not have to install Python at all.
-
-3. Make a new Python program and type in the following code:
++ Download and install #link("https://www.python.org/")[Python (programming language)]
++ Download and install a code editor. I used #link("https://atom.io/")[Atom] and later IDLE (included with Python, would not recommend using) for this, but you can use any code editor you like. If you use an online one, you may not have to install Python at all.
++ Make a new Python program and type in the following code:
 
   ```py
   def collatz(n:int): # make collatz function
@@ -132,11 +122,9 @@ Follow these few easy steps and you'll be on your way to solving this problem in
   collatz(num) # run the collatz function with the number you type in
   ```
 
-4. Hit save and double-click the .py file to run it.
-
-5. Enter a number when it tells you to "Enter a number to test: "
-
-6. Wait until the output reaches 1.
++ Hit save and double-click the .py file to run it.
++ Enter a number when it tells you to "Enter a number to test: "
++ Wait until the output reaches 1.
 
 Seems simple enough, wouldn't you say?
 
