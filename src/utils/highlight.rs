@@ -1,73 +1,49 @@
-use highlight::{Highlight, HighlightConfiguration};
+use highlight::Highlight;
 
 pub fn get_hl() -> Highlight {
     let theme = include_str!("../styles/syntax.css").parse().unwrap();
     let mut hl = Highlight::new(theme);
     hl.add_language(
         &["py"],
-        HighlightConfiguration::new(
-            tree_sitter_python::LANGUAGE.into(),
-            "python",
-            include_str!("../queries/python/highlights.scm"),
-            "",
-            "",
-        )
-        .unwrap(),
+        tree_sitter_python::LANGUAGE.into(),
+        include_str!("../queries/python/highlights.scm"),
+        "",
+        "",
     );
     hl.add_language(
         &["sh"],
-        HighlightConfiguration::new(
-            tree_sitter_bash::LANGUAGE.into(),
-            "bash",
-            include_str!("../queries/bash/highlights.scm"),
-            "",
-            "",
-        )
-        .unwrap(),
+        tree_sitter_bash::LANGUAGE.into(),
+        include_str!("../queries/bash/highlights.scm"),
+        "",
+        "",
     );
     hl.add_language(
         &["c"],
-        HighlightConfiguration::new(
-            tree_sitter_c::LANGUAGE.into(),
-            "c",
-            include_str!("../queries/c/highlights.scm"),
-            include_str!("../queries/c/injections.scm"),
-            "",
-        )
-        .unwrap(),
+        tree_sitter_c::LANGUAGE.into(),
+        include_str!("../queries/c/highlights.scm"),
+        include_str!("../queries/c/injections.scm"),
+        "",
     );
     hl.add_language(
         &["ts"],
-        HighlightConfiguration::new(
-            tree_sitter_typescript::LANGUAGE_TYPESCRIPT.into(),
-            "typescript",
-            include_str!("../queries/typescript/highlights.scm"),
-            include_str!("../queries/typescript/injections.scm"),
-            "",
-        )
-        .unwrap(),
+        tree_sitter_typescript::LANGUAGE_TYPESCRIPT.into(),
+        include_str!("../queries/typescript/highlights.scm"),
+        include_str!("../queries/typescript/injections.scm"),
+        "",
     );
     hl.add_language(
         &["html"],
-        HighlightConfiguration::new(
-            tree_sitter_html::LANGUAGE.into(),
-            "html",
-            include_str!("../queries/html/highlights.scm"),
-            include_str!("../queries/html/injections.scm"),
-            "",
-        )
-        .unwrap(),
+        tree_sitter_html::LANGUAGE.into(),
+        include_str!("../queries/html/highlights.scm"),
+        include_str!("../queries/html/injections.scm"),
+        "",
     );
     hl.add_language(
         &["json"],
-        HighlightConfiguration::new(
-            tree_sitter_json::LANGUAGE.into(),
-            "json",
-            include_str!("../queries/json/highlights.scm"),
-            "",
-            "",
-        )
-        .unwrap(),
+        tree_sitter_json::LANGUAGE.into(),
+        include_str!("../queries/json/highlights.scm"),
+        "",
+        "",
     );
     hl
 }
