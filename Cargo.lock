@@ -27,9 +27,9 @@ dependencies = [
 
 [[package]]
 name = "cc"
-version = "1.2.48"
+version = "1.2.49"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c481bdbf0ed3b892f6f806287d72acd515b352a4ec27a208489b8c1bc839633a"
+checksum = "90583009037521a116abf44494efecd645ba48b6622457080f080b85544e2215"
 dependencies = [
  "find-msvc-tools",
  "shlex",
@@ -56,7 +56,7 @@ checksum = "841d1cc9bed7f9236f321df977030373f4a4163ae1a7dbfe1a51a2c1a51d9100"
 [[package]]
 name = "highlight"
 version = "0.0.0"
-source = "git+https://github.com/noClaps/znak#5c02cbfc1a11cf41dcf7196e841d207c43694cb9"
+source = "git+https://github.com/noClaps/znak#d337bc80ca58da3739468bd1648376c344d038ff"
 dependencies = [
  "html",
  "tree-sitter-highlight",
@@ -65,7 +65,7 @@ dependencies = [
 [[package]]
 name = "html"
 version = "0.0.0"
-source = "git+https://github.com/noClaps/znak#5c02cbfc1a11cf41dcf7196e841d207c43694cb9"
+source = "git+https://github.com/noClaps/znak#d337bc80ca58da3739468bd1648376c344d038ff"
 
 [[package]]
 name = "indexmap"
@@ -230,9 +230,9 @@ dependencies = [
 
 [[package]]
 name = "tree-sitter"
-version = "0.25.10"
+version = "0.26.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "78f873475d258561b06f1c595d93308a7ed124d9977cb26b148c2084a4a3cc87"
+checksum = "2135256a14d38ef69702cf6afdb6a36805d8914523de06eb4e2756cee08736f2"
 dependencies = [
  "cc",
  "regex",
@@ -264,9 +264,9 @@ dependencies = [
 
 [[package]]
 name = "tree-sitter-highlight"
-version = "0.25.10"
+version = "0.26.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "adc5f880ad8d8f94e88cb81c3557024cf1a8b75e3b504c50481ed4f5a6006ff3"
+checksum = "6b2b220da77e58e4986f9c04a9f80c9d97f5d0f1cda107d99ad2fdeaa3822451"
 dependencies = [
  "regex",
  "streaming-iterator",
@@ -296,9 +296,9 @@ dependencies = [
 
 [[package]]
 name = "tree-sitter-language"
-version = "0.1.5"
+version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c4013970217383f67b18aef68f6fb2e8d409bc5755227092d32efb0422ba24b8"
+checksum = "4ae62f7eae5eb549c71b76658648b72cc6111f2d87d24a1e31fa907f4943e3ce"
 
 [[package]]
 name = "tree-sitter-python"
