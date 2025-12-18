@@ -42,6 +42,6 @@ section {
 
     p {
         font-size: 1.25rem;
-        color: var(--light);
+        opacity: var(--light);
     }
 }

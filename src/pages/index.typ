@@ -34,13 +34,13 @@
       html.header({
         html.div()
         html.nav({
-          html.a(href: "/feed.atom", title: "Feed", include "../assets/rss.typ")
+          html.a(href: "/feed.atom", title: "Feed", image("../assets/rss.svg"))
           html.a(
             target: "_blank",
             rel: ("noopener", "noreferrer"),
-            href: "https://github.com/noClaps/blog",
+            href: "https://codeberg.org/noClaps/blog",
             title: "Source code",
-            include "../assets/github.typ",
+            image("../assets/codeberg.svg"),
           )
         })
       })

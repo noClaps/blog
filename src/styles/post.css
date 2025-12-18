@@ -6,17 +6,8 @@ h3 {
 
 /* Links */
 article a {
-    text-decoration: none;
     color: var(--primary);
     white-space: break-spaces;
-
-    &:has(code) {
-        text-decoration: underline;
-    }
-
-    &:hover {
-        text-decoration: underline;
-    }
 }
 
 /* Tables */
@@ -178,10 +169,4 @@ article p {
 
 em {
     font-family: var(--serif);
-}
-
-/* Horizontal rule */
-hr {
-    border: none;
-    border-top: solid 0.125rem var(--light);
 }

@@ -3,8 +3,8 @@ name = "blog"
 edition = "2024"
 
 [dependencies]
-highlight = { git = "https://github.com/noClaps/znak" }
-html = { git = "https://github.com/noClaps/znak" }
+highlight = { git = "https://codeberg.org/noClaps/znak" }
+html = { git = "https://codeberg.org/noClaps/znak" }
 tree-sitter-bash = "0.25.1"
 tree-sitter-c = "0.24.1"
 tree-sitter-html = "0.23.2"
