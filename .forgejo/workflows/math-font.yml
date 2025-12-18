@@ -1,17 +1,17 @@
-on:
-  workflow_dispatch:
+on: [workflow_dispatch]
 
 permissions:
   contents: write
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: codeberg-tiny-lazy
     steps:
+      - uses: https://github.com/Homebrew/actions/setup-homebrew@main
       - run: brew install woff2
       - run: curl -L https://mirrors.ctan.org/fonts/newcomputermodern/otf/NewCMMath-Regular.otf > NewCMMath-Regular.otf
       - run: woff2_compress NewCMMath-Regular.otf
-      - uses: actions/upload-artifact@v4
+      - uses: https://code.forgejo.org/actions/upload-artifact@v6
         with:
           name: NewCMMath-Regular
           path: NewCMMath-Regular.woff2
