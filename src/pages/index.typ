@@ -33,16 +33,7 @@
     html.body({
       html.header({
         html.div()
-        html.nav({
-          html.a(href: "/feed.atom", title: "Feed", image("../assets/rss.svg"))
-          html.a(
-            target: "_blank",
-            rel: ("noopener", "noreferrer"),
-            href: "https://codeberg.org/noClaps/blog",
-            title: "Source code",
-            image("../assets/codeberg.svg"),
-          )
-        })
+        html.nav(html.a(href: "/feed.atom", title: "Feed", image("../assets/rss.svg")))
       })
       html.main({
         html.div(class: "title", {
