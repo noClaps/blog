@@ -18,7 +18,7 @@ Quantum and particle physics are some of the newer, cooler and arguably more dif
 
 I'm getting a little ahead of myself there. I suppose the best place to start would be the beginning.
 
-== The beginning
+= The beginning
 
 From the dawn of time, people have wondered how to get food and shelter, and survive. After they figured those things out, they had a lot more free time to think about other things. One of those things was how the universe works.
 
@@ -28,9 +28,9 @@ These atoms were important because they allowed us to make up pretty much anythi
 
 Most philosophers agree that it was actually the ancient Indians who came up with the idea of these "uncuttable" particles, but the name (like the names of so many other concepts in science) came from the Greek word. Either way, we're not here to learn about the history, let's do the science!
 
-== Quantum physics
+= Quantum physics
 
-=== Wave-particle duality
+== Wave-particle duality
 
 There's a lot of fancy words there, but I promise it's relatively simple. It's one of the earliest scientific discoveries that was made about something relating to quantum mechanics, and it'll help explain a lot of concepts down the road. The experiment that made this discovery is known as Young's double-slit experiment, and was performed by British physicist Thomas Young in 1801.
 
@@ -68,7 +68,7 @@ Okay, there's a lot to take in there. Let's break it down part by part
 
 When Young discovered this, he changed the scientific world. A lot of old questions were answered, and a lot of new questions were raised.
 
-=== Quantums
+== Quantums
 
 We'll come back to the double slit experiment and wave-particle duality in a bit, first let's talk about light and energy.
 
@@ -116,11 +116,11 @@ This is why x-ray machines have big warning symbols on them, and why areas like 
 
 Anyway, coming back to why this is important, we now have a way to get energy from the Sun to the Earth, but it's all just glorified light! This is where energy conversion comes in. Plants, for example, can use that light energy to activate chemical processes that turn carbon dioxide and water into carbohydrates, which are plant food. The energy is now stored in that food, and we can eat those plants, or animals that eat the plants, and transfer that energy to us. And so, life!
 
-=== Wave-particle duality 2: Electric boogaloo
+== Wave-particle duality 2: Electric boogaloo
 
 When scientists saw that light had properties of both particles and waves, they wondered what else could do cool stuff like that. When they repeated the experiment with electrons, they saw the same thing! This lead to a lot more questions than answers, since while light was a bit confusing with its behavior, people were pretty certain that electrons were definitely particles.
 
-=== The wave function
+== The wave function
 
 Desperate to find answers, scientists tried something different. They figured, "well if we're shooting a bunch of particles it behaves like a wave. Maybe that's because a bunch of particles all together simply make a wave (like water). What happens if we only shoot one particle at a time?"
 
@@ -143,7 +143,7 @@ $
 
 This looks very scary, and it's not nearly as bad as it might seem, but we're not gonna be using it either way so it doesn't matter (unless you're actually studying the field, in which case it matters a lot)! You might see different versions of this equation online, but all of them mean pretty much the same thing.
 
-=== Quantum superposition
+== Quantum superposition
 
 Let's go back to the double-slit experiment (told you it was gonna be useful!). After sending particles through one at a time, they figured that it must always behave as a wave of probability moving outwards from the source, so they tried to block off one of the holes, expecting to see a wave-like pattern behind with the number of photons decreasing going away from the center. If it were a wave, it should behave like one regardless of how many slits there are, right? Before I tell you what happened, scroll back up to the double-slit experiment diagram and try to imagine what would happen in each case if one of the holes was blocked off.
 
@@ -169,7 +169,7 @@ This is why laser pointers and flashlights don't spread out like waves, because 
 
 If you think this is a bit much, I don't blame you. It's a very different way of thinking about things than how we perceive them in our day-to-day lives. But the truth is, so much of our universe works on these phenomenon, that it might seem crazy that we didn't discover them until quite recently. Anyway, if you want to take a break, I don't blame you. Once you're ready, we can move on.
 
-=== Quantum tunnelling
+== Quantum tunnelling
 
 I keep talking about how important these things are to the universe and our existence, and you might be wondering why. In my opinion, one of the most important phenomenon displayed by these particles is quantum tunnelling.
 
@@ -198,19 +198,19 @@ Once the nuclei cross this barrier, they fuse together (called nuclear fusion), 
 
 And you get a star! Of course, we know that the Sun is a star, and we need the Sun to survive.
 
-=== Conclusion
+== Conclusion
 
 There's a lot more fun stuff that happens in quantum physics, like entanglement, which is how quantum computers work. However, a lot of those get complicated, and would probably make more sense once you have a better understanding of quantum mechanics. I'm still learning, and don't have that level of understanding just yet (skill issues, I know), so maybe I'll come back and update this post once I do.
 
 Anyway, enough about quantum physics and particle's behaviors, let's actually look at what these particles even are. Time for particle physics (my favorite)!
 
-== Particle physics
+= Particle physics
 
 Particle physics differs from quantum physics in that it deals with the properties of the particles themselves and some of the interactions between them, instead of the mechanics and behaviors of the particles with the rest of the universe. I would argue it's sometimes even more complicated and confusing than quantum physics, and the answers to a lot of questions in this field are, "we don't know yet".
 
 However, I do enjoy particle physics a lot more than quantum. It's an even newer field that looks at the absolute lowest level of the universe, and I believe that a lot of interactions and behaviors of objects and vaccums that we can see and interact with can be explained at this fundamental level.
 
-=== Inside the atom
+== Inside the atom
 
 Most people probably assume atoms to be the smallest units of matter, kind of like the pixels of our universe. That's a fair assumption to make, considering we learn that relatively early on in science classes in school. However, there's a lot more that's going on inside atoms, including even smaller particles and interactions between them.
 
@@ -226,7 +226,7 @@ They figured out that there was a strong positive charge somewhere inside the at
 
 Of course, the electrons aren't actually orbiting around the nucleus, since the momentum and acceleration from that rotation would basically cause the atom to destroy itself immediately, but we don't really need to worry about that too much.
 
-=== The Standard Model
+== The Standard Model
 
 Okay, let's dive a little bit deeper. Since the Geiger-Marsden experiments, we've found out that the nucleus contains positively charged particles called protons, as well as neutral particles called neutrons. We also have electrons hanging out outside the nucleus. But what exactly _are_ these?
 
@@ -245,11 +245,11 @@ The Standard Model of Particle Physics (the Standard Model for short) defines th
   caption: [The Standard Model of Particle Physics. Source: #link("https://www.physik.uzh.ch/groups/serra/StandardModel.html")[Standard Model, Physik-Institut, Universität Zürich].],
 )
 
-=== Fermions
+== Fermions
 
 Named after Enrico Fermi, these are the particles that make up all of the matter in the universe. There are 3 generations of these matter particles, and fermions can be further split up into 2 categories: leptons and quarks.
 
-==== Leptons
+=== Leptons
 
 Each generation of lepton consists of a particle and its corresponding neutrino. First generation leptons are electrons and electron neutrinos. Second generation are muons and muon neutrinos. Third generation are tau and tau neutrinos.
 
@@ -257,21 +257,21 @@ The particles themselves aren't that interesting. Each particle similar properti
 
 Neutrinos, on the other hand, are a bit more interesting. They have 0 charge, extremely low mass, and generally don't interact with most matter. In fact, there's trillions of them going through your hands every second! This is why they were, and still are, so difficult to detect. The only reason we know about them is because without having them there a bunch of our calculations weren't making sense.
 
-==== Quarks
+=== Quarks
 
 There are 6 quarks in total. The first generation consists of the quarks we've already encountered: up and down. The second generation is similar to the first, with the charm (+2/3) and strange (-1/3) quarks. The third generation is also similar, with top (+2/3) and bottom (-1/3). Like with the leptons, quarks get heavier the higher the generation. The top quark, for instance, weighs almost 100 000 times as much as an up quark!
 
-=== Bosons
+== Bosons
 
 Bosons, named by Paul Dirac in honor of Indian physicist Satyendra Nath Bose, are the force carrier particles, which represent the forces we encounter in our daily lives. Remember, forces are just pushes and pulls, but things you might not think of as forces can be.
 
 For example, you might think of pushing on a box as a force, and you'd be right. By pushing on a box, you are doing work on it to move it a certain distance. However, the repulsion and attraction of a magnet is also a force, since it is also doing work on the magnetic object to move it a certain distance, either away from or towards itself.
 
-==== Electromagnetic interaction
+=== Electromagnetic interaction
 
 This force is known as the electromagnetic force, or electromagnetic interaction, and its carrier is the photon. This doesn't mean that magnets don't work in dark rooms, it just means that whenever there's an electromagnetic interaction, a photon is involved in some way. For example, particles like electrons can absorb and emit photons to jump to higher or lower energy levels. The details of it are a bit complicated, but the gist of it is that this interaction only works with charged particles, so no neutrinos allowed.
 
-==== Strong interaction
+=== Strong interaction
 
 "Now wait a minute", you might be thinking, "if like charges repel each other, how are there so many positive charges all in one place in the nucleus?" Great question! The nucleus indeed has some pretty strong repulsion because of the electromagnetic interaction. In a universe where that was the only interaction, there wouldn't be nuclei, and there wouldn't be atoms, and cookies wouldn't exist and I'd be very sad. Luckily, we don't live in such a world, because the strong force, or strong interaction, exists!
 
@@ -279,7 +279,7 @@ This force is carried, or _mediated_, by gluons. If the name "gluons" sounds lik
 
 The strong interaction, like the electromagnetic interaction, is a bit picky about what it'll work with. Specifically, the strong force only works with "colored" particles, which are pretty much just quarks. Yes, the naming of things in particle physics sucks, but the things that happen at this scale are so weird and abstract that I don't think any language has the words to really describe it, and any name we give it would sound just as weird.
 
-==== Weak interaction
+=== Weak interaction
 
 "Now wait another minute", you might be thinking again, "I've heard of atoms decaying and stuff. If this strong force is as strong as you claim, how does that happen?" Another excellent question. That happens, as you can probably guess from the title of this section, due to the weak force, which are mediated by the W and Z bosons.
 
@@ -287,15 +287,15 @@ The weak interaction isn't directly responsible for radioactivity, but it does c
 
 The reason it can do this is because, unlike the gluons and photons, the W and Z bosons have charge and mass. The W boson can have positive or negative charge, while the Z boson is neutral.
 
-==== Higgs
+=== Higgs
 
 The Higgs boson and Higgs field is far too complicated even for me. All I can really tell you is that the Higgs field is the reason that mass exists. It's also a fairly recent development in particle physics, and I'm quite excited to see where it goes.
 
-=== Force fields
+== Force fields
 
 Before I move on, I figured I'd talk a little about what force fields are. While they sound cool, like something out of science fiction, they're pretty simple. A force field is basically just an area in space where a force can act. The force fields for the electromagnetic interaction or gravitational interaction are infinite, for example, while those for the strong and weak interactions are limited in range.
 
-=== Gravity
+== Gravity
 
 You might have noticed that I didn't talk about gravity when going through the bosons. It's a fundamental force of the universe, surely it must have a particle, right? Well scientists thought the same, and so they tried adding a graviton to the list of bosons. However, when they did a lot of calculations started breaking down, and they realised they'd made a mistake.
 
@@ -303,7 +303,7 @@ You see, gravity isn't like the other forces. In fact, #link("https://www.youtub
 
 Gravity is far more complicated than most people realise, and definitely out of the scope of this post. If you want to learn more, I'd recommend checking out this #link("https://www.youtube.com/watch?v=XRr1kaXKBsU")[Veritasium video] and the Sabine Hossenfelder video I linked above.
 
-== Conclusion
+= Conclusion
 
 And that's it! You now have a basic starting point to get going on your journey through quantum and particle physics. It's a very fast and innovative field, and there's new developments and ideas being shared all the time! Pretty much everyone has their own idea of how the universe works, and as long as you can prove it mathematically and/or experimentally, you might even be right!
 
