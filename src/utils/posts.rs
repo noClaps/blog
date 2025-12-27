@@ -13,44 +13,46 @@ fn walk(node: &Node, hl: &Highlight) -> Node {
             tag_name,
             properties,
             children,
-        } => {
-            if tag_name == "code"
-                && let Some(lang) = properties.get("data-lang")
-            {
-                let text: String = children
-                    .iter()
-                    .filter_map(|c| match c {
-                        Node::Text(text) => Some(unescape_html!(text.clone())),
-                        Node::Element {
-                            tag_name,
-                            properties: _,
-                            children: _,
-                        } => (tag_name == "br").then_some("\n".to_string()),
-                        _ => None,
-                    })
-                    .collect();
-                let highlighted = hl.highlight(&text, &lang);
-                return match highlighted.parse().unwrap() {
-                    Node::Root(nodes) => match nodes[0].clone() {
-                        Node::Element {
-                            tag_name: _,
-                            properties: _,
-                            children,
-                        } => children[0].clone(),
-                        _ => unreachable!(),
-                    },
-                    _ => unreachable!(),
-                };
+        } if tag_name == "code" && properties.contains_key("data-lang") => {
+            let Some(lang) = properties.get("data-lang") else {
+                unreachable!()
+            };
+            let text: String = children
+                .iter()
+                .filter_map(|c| match c {
+                    Node::Text(text) => Some(unescape_html!(text.clone())),
+                    Node::Element {
+                        tag_name,
+                        properties: _,
+                        children: _,
+                    } => (tag_name == "br").then_some("\n".to_string()),
+                    _ => None,
+                })
+                .collect();
+            let highlighted = hl.highlight(&text, &lang);
+            let Node::Root(nodes) = highlighted.parse().unwrap() else {
+                unreachable!()
+            };
+            let Node::Element {
+                tag_name: _,
+                properties: _,
+                children,
+            } = nodes[0].clone()
+            else {
+                unreachable!()
             };
 
-            Node::Element {
-                tag_name: tag_name.clone(),
-                properties: properties.clone(),
-                children: (children.len() > 0)
-                    .then_some(children.iter().map(|c| walk(c, hl)).collect())
-                    .unwrap_or_default(),
-            }
+            children[0].clone()
         }
+        Node::Element {
+            tag_name,
+            properties,
+            children,
+        } => Node::Element {
+            tag_name: tag_name.clone(),
+            properties: properties.clone(),
+            children: children.iter().map(|c| walk(c, hl)).collect(),
+        },
         _ => node.clone(),
     }
 }
