@@ -3,11 +3,12 @@ use std::{
     io::{self, Read},
 };
 
-use crate::utils::{feed::process_feed, highlight::get_hl, posts::process_post};
+use highlight::Highlight;
+
+use crate::utils::{feed::process_feed, posts::process_post};
 
 mod utils {
     pub mod feed;
-    pub mod highlight;
     pub mod posts;
 }
 
@@ -23,7 +24,8 @@ fn main() {
     let mut html = String::new();
     io::stdin().read_to_string(&mut html).unwrap();
 
-    let hl = get_hl();
+    let theme = include_str!("./styles/syntax.css").parse().unwrap();
+    let hl = Highlight::new(theme);
     let out = process_post(&html, &hl);
     println!("{}", out);
 }
