@@ -50,7 +50,7 @@ checksum = "841d1cc9bed7f9236f321df977030373f4a4163ae1a7dbfe1a51a2c1a51d9100"
 [[package]]
 name = "highlight"
 version = "0.0.0"
-source = "git+https://codeberg.org/noClaps/znak#000912838526e6115601ca37cca9fc3ef2931e23"
+source = "git+https://codeberg.org/noClaps/znak#29c52d6e418fa765ce75c7f94326326a197b1753"
 dependencies = [
  "html",
  "tree-sitter",
@@ -66,7 +66,7 @@ dependencies = [
 [[package]]
 name = "html"
 version = "0.0.0"
-source = "git+https://codeberg.org/noClaps/znak#000912838526e6115601ca37cca9fc3ef2931e23"
+source = "git+https://codeberg.org/noClaps/znak#29c52d6e418fa765ce75c7f94326326a197b1753"
 
 [[package]]
 name = "indexmap"

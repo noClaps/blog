@@ -28,7 +28,19 @@ th {
 /* Code */
 code {
     font-family: var(--mono);
-    line-height: 0;
+
+    &:not(pre code) {
+        line-height: 0;
+        overflow-wrap: break-word;
+        background-color: var(--code-bg);
+        color: var(--code-text);
+        border-radius: 0.25rem;
+        padding: 0.25rem;
+    }
+
+    &:is(pre code) {
+        line-height: 1.5;
+    }
 }
 
 pre:has(code) {
@@ -37,14 +49,6 @@ pre:has(code) {
     overflow-x: auto;
     background-color: var(--code-bg);
     color: var(--code-text);
-}
-
-code:not(pre code) {
-    overflow-wrap: break-word;
-    background-color: var(--code-bg);
-    color: var(--code-text);
-    border-radius: 0.25rem;
-    padding: 0.25rem;
 }
 
 /* Math */
