@@ -24,8 +24,7 @@ fn main() {
     let mut html = String::new();
     io::stdin().read_to_string(&mut html).unwrap();
 
-    let theme = include_str!("./styles/syntax.css").parse().unwrap();
-    let hl = Highlight::new(theme);
+    let hl = Highlight::new();
     let out = process_post(&html, &hl);
     println!("{}", out);
 }
