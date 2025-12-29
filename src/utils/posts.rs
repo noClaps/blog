@@ -29,20 +29,11 @@ fn walk(node: &Node, hl: &Highlight) -> Node {
                     _ => None,
                 })
                 .collect();
-            let highlighted = hl.highlight(&text, &lang);
+            let highlighted = format!("<code>{}</code>", hl.highlight(&text, &lang));
             let Node::Root(nodes) = highlighted.parse().unwrap() else {
                 unreachable!()
             };
-            let Node::Element {
-                tag_name: _,
-                properties: _,
-                children,
-            } = nodes[0].clone()
-            else {
-                unreachable!()
-            };
-
-            children[0].clone()
+            nodes[0].clone()
         }
         Node::Element {
             tag_name,
