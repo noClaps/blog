@@ -4,25 +4,17 @@ A blog about the most random things you can think of.
 
 ## Build instructions
 
-1.  Clone the respository.
+1. Clone the respository.
 
-    ```sh
-    git clone https://codeberg.org/noClaps/blog
-    cd blog
-    ```
+   ```sh
+   git clone https://codeberg.org/noClaps/blog
+   cd blog
+   ```
 
-2.  Start the development server.
+2. Build the site.
 
-    ```sh
-    ./build.sh serve
-    ```
+   ```sh
+   ./build.sh
+   ```
 
-    Then open `localhost:3000` in your browser to see the live preview of the site.
-
-3.  Build the site.
-
-    ```sh
-    ./build.sh build
-    ```
-
-    This will build the site and place it in `dist/`.
+   This will build the site and place it in `dist/`.
