@@ -8,6 +8,7 @@ use crate::utils::{feed::process_feed, posts::process_post};
 mod utils {
     pub mod feed;
     pub mod highlight;
+    pub mod macros;
     pub mod posts;
 }
 

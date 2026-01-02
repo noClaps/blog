@@ -1,6 +1,6 @@
-use html::{Node, unescape_html};
+use html::Node;
 
-use crate::utils::highlight::highlight;
+use crate::{unescape_html, utils::highlight::highlight};
 
 pub fn process_post(html: &str) -> String {
     let document: Node = html.parse().unwrap();
