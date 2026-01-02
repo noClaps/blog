@@ -4,8 +4,6 @@
   show math.equation: to-mathml
   show math.equation.where(block: true): block
 
-  set raw(theme: none)
-
   show link: it => {
     if it.dest.starts-with("https") {
       html.a(target: "_blank", rel: ("noreferrer", "noopener"), href: it.dest, it.body)
@@ -40,7 +38,7 @@
     html.body({
       html.header({
         html.h1(html.a(href: "/", [The Blog of Random]))
-        html.nav(html.a(href: "/feed.atom", title: "Feed", image("../assets/rss.svg")))
+        html.nav(html.a(href: "/feed.atom", title: "Feed", include "../assets/rss.typ"))
       })
       html.main({
         html.div(class: "post-header", {

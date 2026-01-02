@@ -5,22 +5,15 @@ jobs:
     runs-on: codeberg-small-lazy
     steps:
       - uses: https://code.forgejo.org/actions/checkout@v6
-      - uses: https://code.forgejo.org/actions/cache@v5
-        with:
-          path: |
-            ~/.cargo/bin/
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-            target/
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
       - uses: https://github.com/typst-community/setup-typst@v4
       # TODO: Remove when Typst supports MathML
       - run: git clone --depth 1 https://codeberg.org/akida/mathyml.git packages/mathyml
 
-      - uses: https://github.com/dtolnay/rust-toolchain@stable
-      - run: ./build.sh
+      - uses: https://github.com/astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+      - run: uv run build.py
 
       - uses: https://code.forgejo.org/actions/setup-node@v6
         with:

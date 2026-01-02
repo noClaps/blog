@@ -14,7 +14,7 @@ A blog about the most random things you can think of.
 2. Build the site.
 
    ```sh
-   ./build.sh
+   uv run build.py
    ```
 
    This will build the site and place it in `dist/`.

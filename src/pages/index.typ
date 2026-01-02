@@ -33,7 +33,7 @@
     html.body({
       html.header({
         html.div()
-        html.nav(html.a(href: "/feed.atom", title: "Feed", image("../assets/rss.svg")))
+        html.nav(html.a(href: "/feed.atom", title: "Feed", include "../assets/rss.typ"))
       })
       html.main({
         html.div(class: "title", {

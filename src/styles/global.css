@@ -13,9 +13,6 @@
 
 /* Vars */
 :root {
-    --code-bg: #222;
-    --code-text: #ccc;
-
     --sans: system-ui;
     --serif: ui-serif, serif;
     --mono: ui-monospace, monospace;
@@ -74,9 +71,10 @@ header {
         }
     }
 
-    img {
+    svg {
         height: 1.25rem;
         width: 1.25rem;
+        stroke: var(--text);
     }
 
     h1 {
