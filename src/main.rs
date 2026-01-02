@@ -24,6 +24,12 @@ fn main() {
     let mut html = String::new();
     io::stdin().read_to_string(&mut html).unwrap();
 
-    let out = process_post(&html);
+    let mut out = html;
+    while let updated = process_post(&out)
+        && updated != out
+    {
+        out = updated;
+    }
+
     println!("{}", out);
 }

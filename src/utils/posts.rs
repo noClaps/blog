@@ -1,50 +1,24 @@
-use html::Node;
+use regex::Regex;
 
 use crate::{unescape_html, utils::highlight::highlight};
 
 pub fn process_post(html: &str) -> String {
-    let document: Node = html.parse().unwrap();
-    walk(&document).to_string()
-}
+    let mut edited = html.to_string();
 
-fn walk(node: &Node) -> Node {
-    match node {
-        Node::Root(els) => Node::Root(els.iter().map(|el| walk(el)).collect()),
-        Node::Element {
-            tag_name,
-            properties,
-            children,
-        } if tag_name == "code" && properties.contains_key("data-lang") => {
-            let Some(lang) = properties.get("data-lang") else {
-                unreachable!()
-            };
-            let text: String = children
-                .iter()
-                .filter_map(|c| match c {
-                    Node::Text(text) => Some(unescape_html!(text.clone())),
-                    Node::Element {
-                        tag_name,
-                        properties: _,
-                        children: _,
-                    } => (tag_name == "br").then_some("\n".to_string()),
-                    _ => None,
-                })
-                .collect();
-            let highlighted = format!("<code>{}</code>", highlight(&text, &lang));
-            let Node::Root(nodes) = highlighted.parse().unwrap() else {
-                unreachable!()
-            };
-            nodes[0].clone()
-        }
-        Node::Element {
-            tag_name,
-            properties,
-            children,
-        } => Node::Element {
-            tag_name: tag_name.clone(),
-            properties: properties.clone(),
-            children: children.iter().map(|c| walk(c)).collect(),
-        },
-        _ => node.clone(),
+    for (_, [lang, code]) in Regex::new(r#"<code data-lang="(\w+)">(.*)"#)
+        .unwrap()
+        .captures_iter(html)
+        .map(|c| c.extract())
+    {
+        let end_index = code.find("</code>").unwrap();
+        let code = &code[..end_index];
+
+        let highlighted = highlight(&unescape_html!(code.replace("<br>", "\n")), lang);
+        edited = edited.replace(
+            &format!("<code data-lang=\"{lang}\">{code}</code>"),
+            &format!("<code>{highlighted}</code>"),
+        );
     }
+
+    edited
 }

@@ -15,7 +15,7 @@ dependencies = [
 name = "blog"
 version = "0.0.0"
 dependencies = [
- "html",
+ "regex",
  "tree-sitter-bash",
  "tree-sitter-highlight",
  "tree-sitter-html",
@@ -51,11 +51,6 @@ name = "hashbrown"
 version = "0.16.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "841d1cc9bed7f9236f321df977030373f4a4163ae1a7dbfe1a51a2c1a51d9100"
-
-[[package]]
-name = "html"
-version = "0.0.0"
-source = "git+https://codeberg.org/noClaps/znak#27d754240df8704feb3c2546ae146b07c0d00f58"
 
 [[package]]
 name = "indexmap"

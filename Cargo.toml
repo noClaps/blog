@@ -3,7 +3,7 @@ name = "blog"
 edition = "2024"
 
 [dependencies]
-html = { git = "https://codeberg.org/noClaps/znak" }
+regex = "1.12.2"
 tree-sitter-bash = "0.25.1"
 tree-sitter-highlight = "0.26.3"
 tree-sitter-html = "0.23.2"
