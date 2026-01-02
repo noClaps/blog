@@ -3,14 +3,11 @@ use std::{
     io::{self, Read},
 };
 
-use crate::utils::{feed::process_feed, posts::process_post};
+use regex::Regex;
 
-mod utils {
-    pub mod feed;
-    pub mod highlight;
-    pub mod macros;
-    pub mod posts;
-}
+use crate::highlight::highlight;
+
+mod highlight;
 
 fn main() {
     if args().nth(1).is_some_and(|a| a == "feed") {
@@ -32,4 +29,42 @@ fn main() {
     }
 
     println!("{}", out);
+}
+
+macro_rules! unescape_html {
+    ($input:expr) => {
+        $input
+            .replace("&amp;", "&")
+            .replace("&quot;", "\"")
+            .replace("&#x27;", "'")
+            .replace("&lt;", "<")
+            .replace("&gt;", ">")
+    };
+}
+
+fn process_feed(html: &str) -> String {
+    let start_index = html.find("<p>").unwrap() + 3;
+    let end_index = start_index + html[start_index..].find("</p>").unwrap();
+    unescape_html!(&html[start_index..end_index])
+}
+
+fn process_post(html: &str) -> String {
+    let mut edited = html.to_string();
+
+    for (_, [lang, code]) in Regex::new(r#"<code data-lang="(\w+)">(.*)"#)
+        .unwrap()
+        .captures_iter(html)
+        .map(|c| c.extract())
+    {
+        let end_index = code.find("</code>").unwrap();
+        let code = &code[..end_index];
+
+        let highlighted = highlight(&unescape_html!(code.replace("<br>", "\n")), lang);
+        edited = edited.replace(
+            &format!("<code data-lang=\"{lang}\">{code}</code>"),
+            &format!("<code>{highlighted}</code>"),
+        );
+    }
+
+    edited
 }
