@@ -35,7 +35,6 @@
       html.style({
         read("../styles/global.css")
         read("../styles/post.css")
-        read("../styles/syntax.css")
       })
     })
     html.body({

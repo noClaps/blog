@@ -1,14 +1,15 @@
-use highlight::Highlight;
 use html::{Node, unescape_html};
 
-pub fn process_post(html: &str, hl: &Highlight) -> String {
+use crate::utils::highlight::highlight;
+
+pub fn process_post(html: &str) -> String {
     let document: Node = html.parse().unwrap();
-    walk(&document, hl).to_string()
+    walk(&document).to_string()
 }
 
-fn walk(node: &Node, hl: &Highlight) -> Node {
+fn walk(node: &Node) -> Node {
     match node {
-        Node::Root(els) => Node::Root(els.iter().map(|el| walk(el, hl)).collect()),
+        Node::Root(els) => Node::Root(els.iter().map(|el| walk(el)).collect()),
         Node::Element {
             tag_name,
             properties,
@@ -29,7 +30,7 @@ fn walk(node: &Node, hl: &Highlight) -> Node {
                     _ => None,
                 })
                 .collect();
-            let highlighted = format!("<code>{}</code>", hl.highlight(&text, &lang));
+            let highlighted = format!("<code>{}</code>", highlight(&text, &lang));
             let Node::Root(nodes) = highlighted.parse().unwrap() else {
                 unreachable!()
             };
@@ -42,7 +43,7 @@ fn walk(node: &Node, hl: &Highlight) -> Node {
         } => Node::Element {
             tag_name: tag_name.clone(),
             properties: properties.clone(),
-            children: children.iter().map(|c| walk(c, hl)).collect(),
+            children: children.iter().map(|c| walk(c)).collect(),
         },
         _ => node.clone(),
     }

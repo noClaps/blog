@@ -15,8 +15,14 @@ dependencies = [
 name = "blog"
 version = "0.0.0"
 dependencies = [
- "highlight",
  "html",
+ "tree-sitter-bash",
+ "tree-sitter-c",
+ "tree-sitter-highlight",
+ "tree-sitter-html",
+ "tree-sitter-json",
+ "tree-sitter-python",
+ "tree-sitter-typescript",
 ]
 
 [[package]]
@@ -46,20 +52,6 @@ name = "hashbrown"
 version = "0.16.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "841d1cc9bed7f9236f321df977030373f4a4163ae1a7dbfe1a51a2c1a51d9100"
-
-[[package]]
-name = "highlight"
-version = "0.0.0"
-source = "git+https://codeberg.org/noClaps/znak#b23cde9b19171c60a285ede979ee547a2f27991f"
-dependencies = [
- "tree-sitter-bash",
- "tree-sitter-c",
- "tree-sitter-highlight",
- "tree-sitter-html",
- "tree-sitter-json",
- "tree-sitter-python",
- "tree-sitter-typescript",
-]
 
 [[package]]
 name = "html"
