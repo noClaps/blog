@@ -38,7 +38,7 @@ fn get_language(name: &str) -> Option<HighlightConfiguration> {
             tree_sitter_html::LANGUAGE.into(),
             "html",
             include_str!("./queries/html/highlights.scm"),
-            include_str!("./queries/html/injections.scm"),
+            "",
             "",
         )
         .ok(),
@@ -54,7 +54,7 @@ fn get_language(name: &str) -> Option<HighlightConfiguration> {
             tree_sitter_python::LANGUAGE.into(),
             "python",
             include_str!("./queries/python/highlights.scm"),
-            include_str!("./queries/python/injections.scm"),
+            "",
             "",
         )
         .ok(),
@@ -62,7 +62,7 @@ fn get_language(name: &str) -> Option<HighlightConfiguration> {
             tree_sitter_typescript::LANGUAGE_TYPESCRIPT.into(),
             "typescript",
             include_str!("./queries/typescript/highlights.scm"),
-            include_str!("./queries/typescript/injections.scm"),
+            "",
             "",
         )
         .ok(),
