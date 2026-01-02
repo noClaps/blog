@@ -5,7 +5,7 @@ from os.path import dirname
 from shutil import copytree, rmtree
 from subprocess import PIPE, run
 
-rmtree("dist")
+rmtree("dist", ignore_errors=True)
 files = glob("src/content/**/*.typ")
 makedirs("dist")
 copytree("public", "dist", dirs_exist_ok=True)

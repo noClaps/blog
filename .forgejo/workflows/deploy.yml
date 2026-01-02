@@ -2,7 +2,7 @@ on: [push, workflow_dispatch]
 
 jobs:
   build:
-    runs-on: codeberg-small-lazy
+    runs-on: codeberg-tiny-lazy
     steps:
       - uses: https://code.forgejo.org/actions/checkout@v6
 
