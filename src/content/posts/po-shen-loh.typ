@@ -3,6 +3,7 @@
 #metadata((
   title: [Po-Shen Loh Quadratic Method],
   date: datetime(year: 2025, month: 4, day: 12),
+  lastmod: datetime(year: 2026, month: 1, day: 2),
 ))
 #show: post
 
@@ -98,33 +99,31 @@ Why do it using this method then? I think the logical steps that lead to the roo
 
 = Code implementation
 
-The algorithm above shouldn't be too difficult to implement yourself if you have even a little bit of coding knowledge, since it's mainly just additions, multiplications and square roots. I've written a short implementation of the algorithm in C, but you can translate the code into whatever other language you'd like.
+The algorithm above shouldn't be too difficult to implement yourself if you have even a little bit of coding knowledge, since it's mainly just additions, multiplications and square roots. I've written a short implementation of the algorithm in Python, but you can translate the code into whatever other language you'd like.
 
-```c
-#include <math.h>
-#include <stdio.h>
+```py
+import math
 
-int main() {
-  // Enter your values for the coefficients a, b and c in ax²+bx+c=0
-  double a = 1;
-  double b = 2;
-  double c = 1;
+# Enter your values for the coefficients a, b and c in ax²+bx+c=0
+a = 1
+b = 2
+c = 1
 
-  // Calculate b' and c'
-  double b_prime = b / a;
-  double c_prime = c / a;
+# Calculate b' and c'
+b_prime = b / a
+c_prime = c / a
 
-  // Calculate u = √(b'²/4 - c')
-  double u = sqrt((b_prime * b_prime) / 4 - c_prime);
+# Calculate u = √(b'²/4 - c')
+u = math.sqrt((b_prime**2) / 4 - c_prime)
 
-  // Calculate the two roots
-  double r1 = -b_prime / 2 + u;
-  double r2 = -b_prime / 2 - u;
+# Calculate the two roots
+r1 = -b_prime / 2 + u
+r2 = -b_prime / 2 - u
 
-  printf("r1 = %f\n"
-         "r2 = %f\n",
-         r1, r2);
-}
+print(f"""
+r1 = {r1}
+r2 = {r2}
+""")
 ```
 
-While this code doesn't handle it, the Po-Shen Loh method can also be used to handle complex roots. You can do this in C, but it'll be easier to do in a language that has a built-in complex number type like Go or Python.
+While this code doesn't handle it, the Po-Shen Loh method can also be used to handle complex roots.

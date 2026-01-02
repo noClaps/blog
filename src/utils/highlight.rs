@@ -34,14 +34,6 @@ fn get_language(name: &str) -> Option<HighlightConfiguration> {
             "",
         )
         .ok(),
-        "c" => HighlightConfiguration::new(
-            tree_sitter_c::LANGUAGE.into(),
-            "c",
-            include_str!("./queries/c/highlights.scm"),
-            include_str!("./queries/c/injections.scm"),
-            "",
-        )
-        .ok(),
         "html" => HighlightConfiguration::new(
             tree_sitter_html::LANGUAGE.into(),
             "html",

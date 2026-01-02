@@ -5,7 +5,6 @@ edition = "2024"
 [dependencies]
 html = { git = "https://codeberg.org/noClaps/znak" }
 tree-sitter-bash = "0.25.1"
-tree-sitter-c = "0.24.1"
 tree-sitter-highlight = "0.26.3"
 tree-sitter-html = "0.23.2"
 tree-sitter-json = "0.24.8"
