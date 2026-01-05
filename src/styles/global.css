@@ -18,15 +18,15 @@
     --mono: ui-monospace, monospace;
     --math: "NewComputerModernMath", math;
 
-    --text: oklch(90% 0 none);
-    --background: oklch(20% 0 none);
+    --text: light-dark(oklch(25% 0 none), oklch(90% 0 none));
+    --background: light-dark(oklch(100% 0 none), oklch(20% 0 none));
     --light: 70%;
-    --primary: oklch(70% 0.225 256);
+    --primary: light-dark(oklch(60% 0.225 256), oklch(70% 0.225 256));
 }
 
 /* Root */
 :root {
-    color-scheme: dark;
+    color-scheme: light dark;
     scroll-behavior: smooth;
     font-family: var(--sans);
 }
