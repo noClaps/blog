@@ -70,10 +70,6 @@ mover > mo {
     p {
         margin: 0.25rem 0;
     }
-
-    time {
-        font-weight: bold;
-    }
 }
 
 /* Figure */
@@ -150,11 +146,6 @@ ul {
 }
 
 /* Text */
-strong,
-b {
-    font-weight: 750;
-}
-
 article p {
     text-align: justify;
 }
