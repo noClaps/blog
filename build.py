@@ -2,13 +2,12 @@ from glob import glob
 from html import unescape
 from os import makedirs
 from os.path import dirname
-from shutil import copytree, rmtree
+from shutil import rmtree
 from subprocess import PIPE, run
 
 rmtree("dist", ignore_errors=True)
 files = glob("src/content/**/*.typ")
 makedirs("dist")
-copytree("public", "dist", dirs_exist_ok=True)
 
 for f in files:
     f = f.split(".", maxsplit=1)[0][12:]

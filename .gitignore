@@ -1,7 +1,2 @@
 dist/
 packages/
-
-
-# Added by cargo
-
-/target

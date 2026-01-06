@@ -48,13 +48,9 @@ div:has(math[display="block"]:first-child) {
     overflow-x: auto;
 }
 
-math {
-    font-family: var(--math);
-
-    &[display="block"] {
-        margin: 1rem;
-        font-size: 1.125rem;
-    }
+math[display="block"] {
+    margin: 1rem;
+    font-size: 1.125rem;
 }
 
 mover > mo {

@@ -1,12 +1,3 @@
-/* Fonts */
-@font-face {
-    font-family: NewComputerModernMath;
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url("/NewCMMath-Regular.woff2");
-}
-
 @view-transition {
     navigation: auto;
 }
@@ -16,7 +7,6 @@
     --sans: system-ui;
     --serif: ui-serif, serif;
     --mono: ui-monospace, monospace;
-    --math: "NewComputerModernMath", math;
 
     --text: light-dark(oklch(25% 0 none), oklch(90% 0 none));
     --background: light-dark(oklch(100% 0 none), oklch(20% 0 none));
