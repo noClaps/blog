@@ -104,7 +104,7 @@ $
 
 There are a lot of additional details about the floating point format that I won't go into here, because it's not really relevant to the main point of this post. There's a #link("https://ciechanow.ski/exposing-floating-point/")[great blog post] by Bartosz Ciechanowski going over how floating point works in much more detail, and if you had any questions, chances are that the answer is in that post. Ciechanowski also made #link("https://float.exposed")[Float Exposed], which gives you a more interactive way to understand how floats work.
 
-Nowadays, nearly all CPUs and GPUs support this floating point format in their built-in instructions. If you've ever heard the term "flops" when talking about processor speed, that's short for #strong[fl]oating point #strong[op]eration per s*econd.
+Nowadays, nearly all CPUs and GPUs support this floating point format in their built-in instructions. If you've ever heard the term "flops" when talking about processor speed, that's short for #strong[fl]oating point #strong[op]eration per #strong[s]econd.
 
 However, despite its ubiquity, there's one big drawback to the format: precision.
 
